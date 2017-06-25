@@ -1,0 +1,551 @@
+ARM GAS  /tmp/ccJ3MzTB.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m7
+   3              		.eabi_attribute 27, 1
+   4              		.eabi_attribute 28, 1
+   5              		.fpu fpv5-sp-d16
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 6
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.thumb
+  16              		.file	"hr_gettime.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              		.comm	tim2_handle,60,4
+  21              		.section	.rodata.ulReloadCount,"a",%progbits
+  22              		.align	2
+  25              	ulReloadCount:
+  26 0000 80969800 		.word	10000000
+  27              		.section	.rodata.ulPrescale,"a",%progbits
+  28              		.align	2
+  31              	ulPrescale:
+  32 0000 54000000 		.word	84
+  33              		.section	.bss.ulInterruptCount,"aw",%nobits
+  34              		.align	2
+  37              	ulInterruptCount:
+  38 0000 00000000 		.space	4
+  39              		.comm	ulTimer2Flags,4,4
+  40              		.section	.text.TIM2_IRQHandler,"ax",%progbits
+  41              		.align	2
+  42              		.global	TIM2_IRQHandler
+  43              		.thumb
+  44              		.thumb_func
+  46              	TIM2_IRQHandler:
+  47              	.LFB140:
+  48              		.file 1 "Src/hr_gettime.c"
+   1:Src/hr_gettime.c **** /*
+   2:Src/hr_gettime.c ****     FreeRTOS V9.0.0 - Copyright (C) 2016 Real Time Engineers Ltd.
+   3:Src/hr_gettime.c ****     All rights reserved
+   4:Src/hr_gettime.c **** 
+   5:Src/hr_gettime.c ****     VISIT http://www.FreeRTOS.org TO ENSURE YOU ARE USING THE LATEST VERSION.
+   6:Src/hr_gettime.c **** 
+   7:Src/hr_gettime.c ****     This file is part of the FreeRTOS distribution.
+   8:Src/hr_gettime.c **** 
+   9:Src/hr_gettime.c ****     FreeRTOS is free software; you can redistribute it and/or modify it under
+  10:Src/hr_gettime.c ****     the terms of the GNU General Public License (version 2) as published by the
+  11:Src/hr_gettime.c ****     Free Software Foundation >>>> AND MODIFIED BY <<<< the FreeRTOS exception.
+  12:Src/hr_gettime.c **** 
+  13:Src/hr_gettime.c ****     ***************************************************************************
+  14:Src/hr_gettime.c ****     >>!   NOTE: The modification to the GPL is included to allow you to     !<<
+  15:Src/hr_gettime.c ****     >>!   distribute a combined work that includes FreeRTOS without being   !<<
+  16:Src/hr_gettime.c ****     >>!   obliged to provide the source code for proprietary components     !<<
+ARM GAS  /tmp/ccJ3MzTB.s 			page 2
+
+
+  17:Src/hr_gettime.c ****     >>!   outside of the FreeRTOS kernel.                                   !<<
+  18:Src/hr_gettime.c ****     ***************************************************************************
+  19:Src/hr_gettime.c **** 
+  20:Src/hr_gettime.c ****     FreeRTOS is distributed in the hope that it will be useful, but WITHOUT ANY
+  21:Src/hr_gettime.c ****     WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+  22:Src/hr_gettime.c ****     FOR A PARTICULAR PURPOSE.  Full license text is available on the following
+  23:Src/hr_gettime.c ****     link: http://www.freertos.org/a00114.html
+  24:Src/hr_gettime.c **** 
+  25:Src/hr_gettime.c ****     ***************************************************************************
+  26:Src/hr_gettime.c ****      *                                                                       *
+  27:Src/hr_gettime.c ****      *    FreeRTOS provides completely free yet professionally developed,    *
+  28:Src/hr_gettime.c ****      *    robust, strictly quality controlled, supported, and cross          *
+  29:Src/hr_gettime.c ****      *    platform software that is more than just the market leader, it     *
+  30:Src/hr_gettime.c ****      *    is the industry's de facto standard.                               *
+  31:Src/hr_gettime.c ****      *                                                                       *
+  32:Src/hr_gettime.c ****      *    Help yourself get started quickly while simultaneously helping     *
+  33:Src/hr_gettime.c ****      *    to support the FreeRTOS project by purchasing a FreeRTOS           *
+  34:Src/hr_gettime.c ****      *    tutorial book, reference manual, or both:                          *
+  35:Src/hr_gettime.c ****      *    http://www.FreeRTOS.org/Documentation                              *
+  36:Src/hr_gettime.c ****      *                                                                       *
+  37:Src/hr_gettime.c ****     ***************************************************************************
+  38:Src/hr_gettime.c **** 
+  39:Src/hr_gettime.c ****     http://www.FreeRTOS.org/FAQHelp.html - Having a problem?  Start by reading
+  40:Src/hr_gettime.c ****     the FAQ page "My application does not run, what could be wrong?".  Have you
+  41:Src/hr_gettime.c ****     defined configASSERT()?
+  42:Src/hr_gettime.c **** 
+  43:Src/hr_gettime.c ****     http://www.FreeRTOS.org/support - In return for receiving this top quality
+  44:Src/hr_gettime.c ****     embedded software for free we request you assist our global community by
+  45:Src/hr_gettime.c ****     participating in the support forum.
+  46:Src/hr_gettime.c **** 
+  47:Src/hr_gettime.c ****     http://www.FreeRTOS.org/training - Investing in training allows your team to
+  48:Src/hr_gettime.c ****     be as productive as possible as early as possible.  Now you can receive
+  49:Src/hr_gettime.c ****     FreeRTOS training directly from Richard Barry, CEO of Real Time Engineers
+  50:Src/hr_gettime.c ****     Ltd, and the world's leading authority on the world's leading RTOS.
+  51:Src/hr_gettime.c **** 
+  52:Src/hr_gettime.c ****     http://www.FreeRTOS.org/plus - A selection of FreeRTOS ecosystem products,
+  53:Src/hr_gettime.c ****     including FreeRTOS+Trace - an indispensable productivity tool, a DOS
+  54:Src/hr_gettime.c ****     compatible FAT file system, and our tiny thread aware UDP/IP stack.
+  55:Src/hr_gettime.c **** 
+  56:Src/hr_gettime.c ****     http://www.FreeRTOS.org/labs - Where new FreeRTOS products go to incubate.
+  57:Src/hr_gettime.c ****     Come and try FreeRTOS+TCP, our new open source TCP/IP stack for FreeRTOS.
+  58:Src/hr_gettime.c **** 
+  59:Src/hr_gettime.c ****     http://www.OpenRTOS.com - Real Time Engineers ltd. license FreeRTOS to High
+  60:Src/hr_gettime.c ****     Integrity Systems ltd. to sell under the OpenRTOS brand.  Low cost OpenRTOS
+  61:Src/hr_gettime.c ****     licenses offer ticketed support, indemnification and commercial middleware.
+  62:Src/hr_gettime.c **** 
+  63:Src/hr_gettime.c ****     http://www.SafeRTOS.com - High Integrity Systems also provide a safety
+  64:Src/hr_gettime.c ****     engineered and independently SIL3 certified version for use in safety and
+  65:Src/hr_gettime.c ****     mission critical applications that require provable dependability.
+  66:Src/hr_gettime.c **** 
+  67:Src/hr_gettime.c ****     1 tab == 4 spaces!
+  68:Src/hr_gettime.c **** */
+  69:Src/hr_gettime.c **** /* Standard includes. */
+  70:Src/hr_gettime.c **** #include <stdint.h>
+  71:Src/hr_gettime.c **** #include <stdio.h>
+  72:Src/hr_gettime.c **** #include <stdlib.h>
+  73:Src/hr_gettime.c **** 
+ARM GAS  /tmp/ccJ3MzTB.s 			page 3
+
+
+  74:Src/hr_gettime.c **** /* FreeRTOS includes. */
+  75:Src/hr_gettime.c **** #include "FreeRTOS.h"
+  76:Src/hr_gettime.c **** #include "task.h"
+  77:Src/hr_gettime.c **** #include "queue.h"
+  78:Src/hr_gettime.c **** 
+  79:Src/hr_gettime.c **** #include "hr_gettime.h"
+  80:Src/hr_gettime.c **** 
+  81:Src/hr_gettime.c **** #if defined ( __ICCARM__ ) /*!< IAR Compiler */
+  82:Src/hr_gettime.c **** 	#define _NO_DEFINITIONS_IN_HEADER_FILES		1
+  83:Src/hr_gettime.c **** #endif
+  84:Src/hr_gettime.c **** 
+  85:Src/hr_gettime.c **** #include "stm32f7xx_hal.h"
+  86:Src/hr_gettime.c **** 
+  87:Src/hr_gettime.c **** TIM_HandleTypeDef tim2_handle;
+  88:Src/hr_gettime.c **** 
+  89:Src/hr_gettime.c **** static const uint32_t ulReloadCount = 10000000ul;
+  90:Src/hr_gettime.c **** static const uint32_t ulPrescale = 84ul;
+  91:Src/hr_gettime.c **** 
+  92:Src/hr_gettime.c **** static uint32_t ulInterruptCount = 0;
+  93:Src/hr_gettime.c **** 
+  94:Src/hr_gettime.c **** uint32_t ulTimer2Flags;
+  95:Src/hr_gettime.c **** void TIM2_IRQHandler(void)
+  96:Src/hr_gettime.c **** {
+  49              		.loc 1 96 0
+  50              		.cfi_startproc
+  51              		@ args = 0, pretend = 0, frame = 0
+  52              		@ frame_needed = 1, uses_anonymous_args = 0
+  53              		@ link register save eliminated.
+  54 0000 80B4     		push	{r7}
+  55              	.LCFI0:
+  56              		.cfi_def_cfa_offset 4
+  57              		.cfi_offset 7, -4
+  58 0002 00AF     		add	r7, sp, #0
+  59              	.LCFI1:
+  60              		.cfi_def_cfa_register 7
+  97:Src/hr_gettime.c **** 	ulTimer2Flags = tim2_handle.Instance->SR;
+  61              		.loc 1 97 0
+  62 0004 0C4B     		ldr	r3, .L3
+  63 0006 1B68     		ldr	r3, [r3]
+  64 0008 1B69     		ldr	r3, [r3, #16]
+  65 000a 0C4A     		ldr	r2, .L3+4
+  66 000c 1360     		str	r3, [r2]
+  98:Src/hr_gettime.c **** 	if( ( ulTimer2Flags & TIM_FLAG_UPDATE ) != 0 )
+  67              		.loc 1 98 0
+  68 000e 0B4B     		ldr	r3, .L3+4
+  69 0010 1B68     		ldr	r3, [r3]
+  70 0012 03F00103 		and	r3, r3, #1
+  71 0016 002B     		cmp	r3, #0
+  72 0018 09D0     		beq	.L1
+  99:Src/hr_gettime.c **** 	{
+ 100:Src/hr_gettime.c **** 		__HAL_TIM_CLEAR_FLAG( &tim2_handle, TIM_FLAG_UPDATE );
+  73              		.loc 1 100 0
+  74 001a 074B     		ldr	r3, .L3
+  75 001c 1B68     		ldr	r3, [r3]
+  76 001e 6FF00102 		mvn	r2, #1
+  77 0022 1A61     		str	r2, [r3, #16]
+ 101:Src/hr_gettime.c **** 		ulInterruptCount++;
+ARM GAS  /tmp/ccJ3MzTB.s 			page 4
+
+
+  78              		.loc 1 101 0
+  79 0024 064B     		ldr	r3, .L3+8
+  80 0026 1B68     		ldr	r3, [r3]
+  81 0028 0133     		adds	r3, r3, #1
+  82 002a 054A     		ldr	r2, .L3+8
+  83 002c 1360     		str	r3, [r2]
+  84              	.L1:
+ 102:Src/hr_gettime.c **** 	}
+ 103:Src/hr_gettime.c **** }
+  85              		.loc 1 103 0
+  86 002e BD46     		mov	sp, r7
+  87              	.LCFI2:
+  88              		.cfi_def_cfa_register 13
+  89              		@ sp needed
+  90 0030 5DF8047B 		ldr	r7, [sp], #4
+  91              	.LCFI3:
+  92              		.cfi_restore 7
+  93              		.cfi_def_cfa_offset 0
+  94 0034 7047     		bx	lr
+  95              	.L4:
+  96 0036 00BF     		.align	2
+  97              	.L3:
+  98 0038 00000000 		.word	tim2_handle
+  99 003c 00000000 		.word	ulTimer2Flags
+ 100 0040 00000000 		.word	ulInterruptCount
+ 101              		.cfi_endproc
+ 102              	.LFE140:
+ 104              		.section	.text.vStartHighResolutionTimer,"ax",%progbits
+ 105              		.align	2
+ 106              		.global	vStartHighResolutionTimer
+ 107              		.thumb
+ 108              		.thumb_func
+ 110              	vStartHighResolutionTimer:
+ 111              	.LFB141:
+ 104:Src/hr_gettime.c **** 
+ 105:Src/hr_gettime.c **** 
+ 106:Src/hr_gettime.c **** /* Timer2 initialization function */
+ 107:Src/hr_gettime.c **** void vStartHighResolutionTimer( void )
+ 108:Src/hr_gettime.c **** {
+ 112              		.loc 1 108 0
+ 113              		.cfi_startproc
+ 114              		@ args = 0, pretend = 0, frame = 8
+ 115              		@ frame_needed = 1, uses_anonymous_args = 0
+ 116 0000 80B5     		push	{r7, lr}
+ 117              	.LCFI4:
+ 118              		.cfi_def_cfa_offset 8
+ 119              		.cfi_offset 7, -8
+ 120              		.cfi_offset 14, -4
+ 121 0002 82B0     		sub	sp, sp, #8
+ 122              	.LCFI5:
+ 123              		.cfi_def_cfa_offset 16
+ 124 0004 00AF     		add	r7, sp, #0
+ 125              	.LCFI6:
+ 126              		.cfi_def_cfa_register 7
+ 127              	.LBB2:
+ 109:Src/hr_gettime.c **** 	/* TIM2 clock enable */
+ 110:Src/hr_gettime.c **** 	__HAL_RCC_TIM2_CLK_ENABLE();
+ARM GAS  /tmp/ccJ3MzTB.s 			page 5
+
+
+ 128              		.loc 1 110 0
+ 129 0006 1D4A     		ldr	r2, .L6
+ 130 0008 1C4B     		ldr	r3, .L6
+ 131 000a 1B6C     		ldr	r3, [r3, #64]
+ 132 000c 43F00103 		orr	r3, r3, #1
+ 133 0010 1364     		str	r3, [r2, #64]
+ 134 0012 1A4B     		ldr	r3, .L6
+ 135 0014 1B6C     		ldr	r3, [r3, #64]
+ 136 0016 03F00103 		and	r3, r3, #1
+ 137 001a 7B60     		str	r3, [r7, #4]
+ 138 001c 7B68     		ldr	r3, [r7, #4]
+ 139              	.LBE2:
+ 111:Src/hr_gettime.c **** 
+ 112:Src/hr_gettime.c **** 	tim2_handle.Instance = TIM2;     /* Register base address             */
+ 140              		.loc 1 112 0
+ 141 001e 184B     		ldr	r3, .L6+4
+ 142 0020 4FF08042 		mov	r2, #1073741824
+ 143 0024 1A60     		str	r2, [r3]
+ 113:Src/hr_gettime.c **** 
+ 114:Src/hr_gettime.c **** 	tim2_handle.Init.Prescaler = ( ulPrescale - 1ul );			/* Specifies the prescaler value used to divi
+ 144              		.loc 1 114 0
+ 145 0026 5423     		movs	r3, #84
+ 146 0028 013B     		subs	r3, r3, #1
+ 147 002a 154A     		ldr	r2, .L6+4
+ 148 002c 5360     		str	r3, [r2, #4]
+ 115:Src/hr_gettime.c **** 	tim2_handle.Init.CounterMode = TIM_COUNTERMODE_UP;			/* Specifies the counter mode. */
+ 149              		.loc 1 115 0
+ 150 002e 144B     		ldr	r3, .L6+4
+ 151 0030 0022     		movs	r2, #0
+ 152 0032 9A60     		str	r2, [r3, #8]
+ 116:Src/hr_gettime.c **** 	tim2_handle.Init.Period = ( ulReloadCount - 1ul );			/* Specifies the period value to be loaded in
+ 153              		.loc 1 116 0
+ 154 0034 134B     		ldr	r3, .L6+8
+ 155 0036 013B     		subs	r3, r3, #1
+ 156 0038 114A     		ldr	r2, .L6+4
+ 157 003a D360     		str	r3, [r2, #12]
+ 117:Src/hr_gettime.c **** 	tim2_handle.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;	/* Specifies the clock division. */
+ 158              		.loc 1 117 0
+ 159 003c 104B     		ldr	r3, .L6+4
+ 160 003e 0022     		movs	r2, #0
+ 161 0040 1A61     		str	r2, [r3, #16]
+ 118:Src/hr_gettime.c **** 	tim2_handle.Init.RepetitionCounter = 0ul;					/* Specifies the repetition counter value. */
+ 162              		.loc 1 118 0
+ 163 0042 0F4B     		ldr	r3, .L6+4
+ 164 0044 0022     		movs	r2, #0
+ 165 0046 5A61     		str	r2, [r3, #20]
+ 119:Src/hr_gettime.c **** 	tim2_handle.Channel = HAL_TIM_ACTIVE_CHANNEL_1;
+ 166              		.loc 1 119 0
+ 167 0048 0D4B     		ldr	r3, .L6+4
+ 168 004a 0122     		movs	r2, #1
+ 169 004c 1A76     		strb	r2, [r3, #24]
+ 120:Src/hr_gettime.c **** 
+ 121:Src/hr_gettime.c **** 	/* NVIC configuration for DMA transfer complete interrupt */
+ 122:Src/hr_gettime.c **** 	HAL_NVIC_SetPriority( TIM2_IRQn, configLIBRARY_MAX_SYSCALL_INTERRUPT_PRIORITY + 1, 0 );
+ 170              		.loc 1 122 0
+ 171 004e 1C20     		movs	r0, #28
+ 172 0050 0621     		movs	r1, #6
+ARM GAS  /tmp/ccJ3MzTB.s 			page 6
+
+
+ 173 0052 0022     		movs	r2, #0
+ 174 0054 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 123:Src/hr_gettime.c **** 	HAL_NVIC_EnableIRQ( TIM2_IRQn );
+ 175              		.loc 1 123 0
+ 176 0058 1C20     		movs	r0, #28
+ 177 005a FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 124:Src/hr_gettime.c **** 
+ 125:Src/hr_gettime.c **** 
+ 126:Src/hr_gettime.c **** 	HAL_TIM_Base_Init( &tim2_handle );
+ 178              		.loc 1 126 0
+ 179 005e 0848     		ldr	r0, .L6+4
+ 180 0060 FFF7FEFF 		bl	HAL_TIM_Base_Init
+ 127:Src/hr_gettime.c **** 	HAL_TIM_Base_Start_IT( &tim2_handle );
+ 181              		.loc 1 127 0
+ 182 0064 0648     		ldr	r0, .L6+4
+ 183 0066 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+ 128:Src/hr_gettime.c **** 	ulTimer2Flags = tim2_handle.Instance->SR;
+ 184              		.loc 1 128 0
+ 185 006a 054B     		ldr	r3, .L6+4
+ 186 006c 1B68     		ldr	r3, [r3]
+ 187 006e 1B69     		ldr	r3, [r3, #16]
+ 188 0070 054A     		ldr	r2, .L6+12
+ 189 0072 1360     		str	r3, [r2]
+ 129:Src/hr_gettime.c **** }
+ 190              		.loc 1 129 0
+ 191 0074 0837     		adds	r7, r7, #8
+ 192              	.LCFI7:
+ 193              		.cfi_def_cfa_offset 8
+ 194 0076 BD46     		mov	sp, r7
+ 195              	.LCFI8:
+ 196              		.cfi_def_cfa_register 13
+ 197              		@ sp needed
+ 198 0078 80BD     		pop	{r7, pc}
+ 199              	.L7:
+ 200 007a 00BF     		.align	2
+ 201              	.L6:
+ 202 007c 00380240 		.word	1073887232
+ 203 0080 00000000 		.word	tim2_handle
+ 204 0084 80969800 		.word	10000000
+ 205 0088 00000000 		.word	ulTimer2Flags
+ 206              		.cfi_endproc
+ 207              	.LFE141:
+ 209              		.section	.text.ullGetHighResolutionTime,"ax",%progbits
+ 210              		.align	2
+ 211              		.global	ullGetHighResolutionTime
+ 212              		.thumb
+ 213              		.thumb_func
+ 215              	ullGetHighResolutionTime:
+ 216              	.LFB142:
+ 130:Src/hr_gettime.c **** 
+ 131:Src/hr_gettime.c **** uint64_t ullGetHighResolutionTime()
+ 132:Src/hr_gettime.c **** {
+ 217              		.loc 1 132 0
+ 218              		.cfi_startproc
+ 219              		@ args = 0, pretend = 0, frame = 24
+ 220              		@ frame_needed = 1, uses_anonymous_args = 0
+ 221 0000 2DE9B04F 		push	{r4, r5, r7, r8, r9, r10, fp, lr}
+ARM GAS  /tmp/ccJ3MzTB.s 			page 7
+
+
+ 222              	.LCFI9:
+ 223              		.cfi_def_cfa_offset 32
+ 224              		.cfi_offset 4, -32
+ 225              		.cfi_offset 5, -28
+ 226              		.cfi_offset 7, -24
+ 227              		.cfi_offset 8, -20
+ 228              		.cfi_offset 9, -16
+ 229              		.cfi_offset 10, -12
+ 230              		.cfi_offset 11, -8
+ 231              		.cfi_offset 14, -4
+ 232 0004 86B0     		sub	sp, sp, #24
+ 233              	.LCFI10:
+ 234              		.cfi_def_cfa_offset 56
+ 235 0006 00AF     		add	r7, sp, #0
+ 236              	.LCFI11:
+ 237              		.cfi_def_cfa_register 7
+ 133:Src/hr_gettime.c **** uint64_t ullReturn;
+ 134:Src/hr_gettime.c **** 	if( tim2_handle.Instance == NULL )
+ 238              		.loc 1 134 0
+ 239 0008 2E4B     		ldr	r3, .L14
+ 240 000a 1B68     		ldr	r3, [r3]
+ 241 000c 002B     		cmp	r3, #0
+ 242 000e 24D1     		bne	.L9
+ 135:Src/hr_gettime.c **** 	{
+ 136:Src/hr_gettime.c **** 		ullReturn = 1000ull * xTaskGetTickCount();
+ 243              		.loc 1 136 0
+ 244 0010 FFF7FEFF 		bl	xTaskGetTickCount
+ 245 0014 0346     		mov	r3, r0
+ 246 0016 1846     		mov	r0, r3
+ 247 0018 4FF00001 		mov	r1, #0
+ 248 001c 0246     		mov	r2, r0
+ 249 001e 0B46     		mov	r3, r1
+ 250 0020 4FEA830B 		lsl	fp, r3, #2
+ 251 0024 4BEA927B 		orr	fp, fp, r2, lsr #30
+ 252 0028 4FEA820A 		lsl	r10, r2, #2
+ 253 002c 5246     		mov	r2, r10
+ 254 002e 5B46     		mov	r3, fp
+ 255 0030 5D01     		lsls	r5, r3, #5
+ 256 0032 45EAD265 		orr	r5, r5, r2, lsr #27
+ 257 0036 5401     		lsls	r4, r2, #5
+ 258 0038 A41A     		subs	r4, r4, r2
+ 259 003a 65EB0305 		sbc	r5, r5, r3
+ 260 003e 2418     		adds	r4, r4, r0
+ 261 0040 45EB0105 		adc	r5, r5, r1
+ 262 0044 4FEAC509 		lsl	r9, r5, #3
+ 263 0048 49EA5479 		orr	r9, r9, r4, lsr #29
+ 264 004c 4FEAC408 		lsl	r8, r4, #3
+ 265 0050 4446     		mov	r4, r8
+ 266 0052 4D46     		mov	r5, r9
+ 267 0054 C7E90445 		strd	r4, [r7, #16]
+ 268 0058 2BE0     		b	.L10
+ 269              	.L9:
+ 270              	.LBB3:
+ 137:Src/hr_gettime.c **** 	}
+ 138:Src/hr_gettime.c **** 	else
+ 139:Src/hr_gettime.c **** 	{
+ 140:Src/hr_gettime.c **** 	uint32_t ulCounts[2];
+ARM GAS  /tmp/ccJ3MzTB.s 			page 8
+
+
+ 141:Src/hr_gettime.c **** 	uint32_t ulSlowCount;
+ 142:Src/hr_gettime.c **** 
+ 143:Src/hr_gettime.c **** 		for( ;; )
+ 144:Src/hr_gettime.c **** 		{
+ 145:Src/hr_gettime.c **** 			ulCounts[ 0 ] = tim2_handle.Instance->CNT;
+ 271              		.loc 1 145 0
+ 272 005a 1A4B     		ldr	r3, .L14
+ 273 005c 1B68     		ldr	r3, [r3]
+ 274 005e 5B6A     		ldr	r3, [r3, #36]
+ 275 0060 7B60     		str	r3, [r7, #4]
+ 146:Src/hr_gettime.c **** 			ulSlowCount = ulInterruptCount;
+ 276              		.loc 1 146 0
+ 277 0062 194B     		ldr	r3, .L14+4
+ 278 0064 1B68     		ldr	r3, [r3]
+ 279 0066 FB60     		str	r3, [r7, #12]
+ 147:Src/hr_gettime.c **** 			ulCounts[ 1 ] = tim2_handle.Instance->CNT;
+ 280              		.loc 1 147 0
+ 281 0068 164B     		ldr	r3, .L14
+ 282 006a 1B68     		ldr	r3, [r3]
+ 283 006c 5B6A     		ldr	r3, [r3, #36]
+ 284 006e BB60     		str	r3, [r7, #8]
+ 148:Src/hr_gettime.c **** 			if( ulCounts[ 1 ] >= ulCounts[ 0 ] )
+ 285              		.loc 1 148 0
+ 286 0070 BA68     		ldr	r2, [r7, #8]
+ 287 0072 7B68     		ldr	r3, [r7, #4]
+ 288 0074 9A42     		cmp	r2, r3
+ 289 0076 1BD3     		bcc	.L11
+ 149:Src/hr_gettime.c **** 			{
+ 150:Src/hr_gettime.c **** 				/* TIM2_IRQHandler() has not occurred in between. */
+ 151:Src/hr_gettime.c **** 				break;
+ 290              		.loc 1 151 0
+ 291 0078 00BF     		nop
+ 152:Src/hr_gettime.c **** 			}
+ 153:Src/hr_gettime.c **** 		}
+ 154:Src/hr_gettime.c **** 		ullReturn = ( uint64_t )ulSlowCount * ulReloadCount + ulCounts[ 1 ];
+ 292              		.loc 1 154 0
+ 293 007a FB68     		ldr	r3, [r7, #12]
+ 294 007c 1846     		mov	r0, r3
+ 295 007e 4FF00001 		mov	r1, #0
+ 296 0082 124B     		ldr	r3, .L14+8
+ 297 0084 1A46     		mov	r2, r3
+ 298 0086 4FF00003 		mov	r3, #0
+ 299 008a 02FB01F5 		mul	r5, r2, r1
+ 300 008e 00FB03F4 		mul	r4, r0, r3
+ 301 0092 2C44     		add	r4, r4, r5
+ 302 0094 A0FB0223 		umull	r2, r3, r0, r2
+ 303 0098 E118     		adds	r1, r4, r3
+ 304 009a 0B46     		mov	r3, r1
+ 305 009c B968     		ldr	r1, [r7, #8]
+ 306 009e 0846     		mov	r0, r1
+ 307 00a0 4FF00001 		mov	r1, #0
+ 308 00a4 1218     		adds	r2, r2, r0
+ 309 00a6 43EB0103 		adc	r3, r3, r1
+ 310 00aa C7E90423 		strd	r2, [r7, #16]
+ 311 00ae 00E0     		b	.L10
+ 312              	.L11:
+ 153:Src/hr_gettime.c **** 		ullReturn = ( uint64_t )ulSlowCount * ulReloadCount + ulCounts[ 1 ];
+ARM GAS  /tmp/ccJ3MzTB.s 			page 9
+
+
+ 313              		.loc 1 153 0
+ 314 00b0 D3E7     		b	.L9
+ 315              	.L10:
+ 316              	.LBE3:
+ 155:Src/hr_gettime.c **** 	}
+ 156:Src/hr_gettime.c **** 
+ 157:Src/hr_gettime.c **** 	return ullReturn;
+ 317              		.loc 1 157 0
+ 318 00b2 D7E90423 		ldrd	r2, [r7, #16]
+ 158:Src/hr_gettime.c **** }
+ 319              		.loc 1 158 0
+ 320 00b6 1046     		mov	r0, r2
+ 321 00b8 1946     		mov	r1, r3
+ 322 00ba 1837     		adds	r7, r7, #24
+ 323              	.LCFI12:
+ 324              		.cfi_def_cfa_offset 32
+ 325 00bc BD46     		mov	sp, r7
+ 326              	.LCFI13:
+ 327              		.cfi_def_cfa_register 13
+ 328              		@ sp needed
+ 329 00be BDE8B08F 		pop	{r4, r5, r7, r8, r9, r10, fp, pc}
+ 330              	.L15:
+ 331 00c2 00BF     		.align	2
+ 332              	.L14:
+ 333 00c4 00000000 		.word	tim2_handle
+ 334 00c8 00000000 		.word	ulInterruptCount
+ 335 00cc 80969800 		.word	10000000
+ 336              		.cfi_endproc
+ 337              	.LFE142:
+ 339              		.text
+ 340              	.Letext0:
+ 341              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 342              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 343              		.file 4 "../../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f769xx.h"
+ 344              		.file 5 "../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+ 345              		.file 6 "../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
+ 346              		.file 7 "../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h"
+ 347              		.file 8 "../../Drivers/CMSIS/Include/core_cm7.h"
+ARM GAS  /tmp/ccJ3MzTB.s 			page 10
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 hr_gettime.c
+                            *COM*:000000000000003c tim2_handle
+     /tmp/ccJ3MzTB.s:22     .rodata.ulReloadCount:0000000000000000 $d
+     /tmp/ccJ3MzTB.s:25     .rodata.ulReloadCount:0000000000000000 ulReloadCount
+     /tmp/ccJ3MzTB.s:28     .rodata.ulPrescale:0000000000000000 $d
+     /tmp/ccJ3MzTB.s:31     .rodata.ulPrescale:0000000000000000 ulPrescale
+     /tmp/ccJ3MzTB.s:34     .bss.ulInterruptCount:0000000000000000 $d
+     /tmp/ccJ3MzTB.s:37     .bss.ulInterruptCount:0000000000000000 ulInterruptCount
+                            *COM*:0000000000000004 ulTimer2Flags
+     /tmp/ccJ3MzTB.s:41     .text.TIM2_IRQHandler:0000000000000000 $t
+     /tmp/ccJ3MzTB.s:46     .text.TIM2_IRQHandler:0000000000000000 TIM2_IRQHandler
+     /tmp/ccJ3MzTB.s:98     .text.TIM2_IRQHandler:0000000000000038 $d
+     /tmp/ccJ3MzTB.s:105    .text.vStartHighResolutionTimer:0000000000000000 $t
+     /tmp/ccJ3MzTB.s:110    .text.vStartHighResolutionTimer:0000000000000000 vStartHighResolutionTimer
+     /tmp/ccJ3MzTB.s:202    .text.vStartHighResolutionTimer:000000000000007c $d
+     /tmp/ccJ3MzTB.s:210    .text.ullGetHighResolutionTime:0000000000000000 $t
+     /tmp/ccJ3MzTB.s:215    .text.ullGetHighResolutionTime:0000000000000000 ullGetHighResolutionTime
+     /tmp/ccJ3MzTB.s:333    .text.ullGetHighResolutionTime:00000000000000c4 $d
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+HAL_NVIC_SetPriority
+HAL_NVIC_EnableIRQ
+HAL_TIM_Base_Init
+HAL_TIM_Base_Start_IT
+xTaskGetTickCount

@@ -1,0 +1,2307 @@
+ARM GAS  /tmp/ccdtxUmK.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m7
+   3              		.eabi_attribute 27, 1
+   4              		.eabi_attribute 28, 1
+   5              		.fpu fpv5-sp-d16
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 6
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.thumb
+  16              		.file	"FreeRTOS_ARP.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              		.section	.bss.xARPCache,"aw",%nobits
+  21              		.align	2
+  24              	xARPCache:
+  25 0000 00000000 		.space	72
+  25      00000000 
+  25      00000000 
+  25      00000000 
+  25      00000000 
+  26              		.section	.bss.xLastGratuitousARPTime,"aw",%nobits
+  27              		.align	2
+  30              	xLastGratuitousARPTime:
+  31 0000 00000000 		.space	4
+  32              		.section	.rodata.xDefaultPartARPPacketHeader,"a",%progbits
+  33              		.align	2
+  36              	xDefaultPartARPPacketHeader:
+  37 0000 FF       		.byte	-1
+  38 0001 FF       		.byte	-1
+  39 0002 FF       		.byte	-1
+  40 0003 FF       		.byte	-1
+  41 0004 FF       		.byte	-1
+  42 0005 FF       		.byte	-1
+  43 0006 00       		.byte	0
+  44 0007 00       		.byte	0
+  45 0008 00       		.byte	0
+  46 0009 00       		.byte	0
+  47 000a 00       		.byte	0
+  48 000b 00       		.byte	0
+  49 000c 08       		.byte	8
+  50 000d 06       		.byte	6
+  51 000e 00       		.byte	0
+  52 000f 01       		.byte	1
+  53 0010 08       		.byte	8
+  54 0011 00       		.byte	0
+  55 0012 06       		.byte	6
+  56 0013 04       		.byte	4
+  57 0014 00       		.byte	0
+  58 0015 01       		.byte	1
+  59 0016 00       		.byte	0
+ARM GAS  /tmp/ccdtxUmK.s 			page 2
+
+
+  60 0017 00       		.byte	0
+  61 0018 00       		.byte	0
+  62 0019 00       		.byte	0
+  63 001a 00       		.byte	0
+  64 001b 00       		.byte	0
+  65 001c 00       		.byte	0
+  66 001d 00       		.byte	0
+  67 001e 00       		.byte	0
+  68 001f 00       		.byte	0
+  69 0020 00       		.byte	0
+  70 0021 00       		.byte	0
+  71 0022 00       		.byte	0
+  72 0023 00       		.byte	0
+  73 0024 00       		.byte	0
+  74 0025 00       		.byte	0
+  75              		.section	.text.eARPProcessPacket,"ax",%progbits
+  76              		.align	2
+  77              		.global	eARPProcessPacket
+  78              		.thumb
+  79              		.thumb_func
+  81              	eARPProcessPacket:
+  82              	.LFB29:
+  83              		.file 1 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c"
+   1:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /*
+   2:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * FreeRTOS+TCP Labs Build 160919 (C) 2016 Real Time Engineers ltd.
+   3:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * Authors include Hein Tibosch and Richard Barry
+   4:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  *
+   5:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  *******************************************************************************
+   6:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  ***** NOTE ******* NOTE ******* NOTE ******* NOTE ******* NOTE ******* NOTE ***
+   7:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  ***                                                                         ***
+   8:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  ***                                                                         ***
+   9:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  ***   FREERTOS+TCP IS STILL IN THE LAB (mainly because the FTP and HTTP     ***
+  10:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  ***   demos have a dependency on FreeRTOS+FAT, which is only in the Labs    ***
+  11:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  ***   download):                                                            ***
+  12:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  ***                                                                         ***
+  13:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  ***   FreeRTOS+TCP is functional and has been used in commercial products   ***
+  14:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  ***   for some time.  Be aware however that we are still refining its       ***
+  15:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  ***   design, the source code does not yet quite conform to the strict      ***
+  16:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  ***   coding and style standards mandated by Real Time Engineers ltd., and  ***
+  17:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  ***   the documentation and testing is not necessarily complete.            ***
+  18:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  ***                                                                         ***
+  19:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  ***   PLEASE REPORT EXPERIENCES USING THE SUPPORT RESOURCES FOUND ON THE    ***
+  20:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  ***   URL: http://www.FreeRTOS.org/contact  Active early adopters may, at   ***
+  21:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  ***   the sole discretion of Real Time Engineers Ltd., be offered versions  ***
+  22:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  ***   under a license other than that described below.                      ***
+  23:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  ***                                                                         ***
+  24:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  ***                                                                         ***
+  25:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  ***** NOTE ******* NOTE ******* NOTE ******* NOTE ******* NOTE ******* NOTE ***
+  26:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  *******************************************************************************
+  27:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  *
+  28:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * FreeRTOS+TCP can be used under two different free open source licenses.  The
+  29:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * license that applies is dependent on the processor on which FreeRTOS+TCP is
+  30:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * executed, as follows:
+  31:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  *
+  32:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * If FreeRTOS+TCP is executed on one of the processors listed under the Special
+  33:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * License Arrangements heading of the FreeRTOS+TCP license information web
+  34:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * page, then it can be used under the terms of the FreeRTOS Open Source
+ARM GAS  /tmp/ccdtxUmK.s 			page 3
+
+
+  35:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * License.  If FreeRTOS+TCP is used on any other processor, then it can be used
+  36:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * under the terms of the GNU General Public License V2.  Links to the relevant
+  37:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * licenses follow:
+  38:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  *
+  39:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * The FreeRTOS+TCP License Information Page: http://www.FreeRTOS.org/tcp_license
+  40:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * The FreeRTOS Open Source License: http://www.FreeRTOS.org/license
+  41:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * The GNU General Public License Version 2: http://www.FreeRTOS.org/gpl-2.0.txt
+  42:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  *
+  43:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * FreeRTOS+TCP is distributed in the hope that it will be useful.  You cannot
+  44:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * use FreeRTOS+TCP unless you agree that you use the software 'as is'.
+  45:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * FreeRTOS+TCP is provided WITHOUT ANY WARRANTY; without even the implied
+  46:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * warranties of NON-INFRINGEMENT, MERCHANTABILITY or FITNESS FOR A PARTICULAR
+  47:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * PURPOSE. Real Time Engineers Ltd. disclaims all conditions and terms, be they
+  48:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * implied, expressed, or statutory.
+  49:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  *
+  50:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * 1 tab == 4 spaces!
+  51:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  *
+  52:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * http://www.FreeRTOS.org
+  53:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * http://www.FreeRTOS.org/plus
+  54:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * http://www.FreeRTOS.org/labs
+  55:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  *
+  56:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  */
+  57:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+  58:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /* Standard includes. */
+  59:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #include <stdint.h>
+  60:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #include <stdio.h>
+  61:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+  62:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /* FreeRTOS includes. */
+  63:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #include "FreeRTOS.h"
+  64:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #include "task.h"
+  65:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #include "queue.h"
+  66:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #include "semphr.h"
+  67:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+  68:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /* FreeRTOS+TCP includes. */
+  69:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #include "FreeRTOS_IP.h"
+  70:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #include "FreeRTOS_Sockets.h"
+  71:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #include "FreeRTOS_IP_Private.h"
+  72:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #include "FreeRTOS_ARP.h"
+  73:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #include "FreeRTOS_UDP_IP.h"
+  74:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #include "FreeRTOS_DHCP.h"
+  75:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #if( ipconfigUSE_LLMNR == 1 )
+  76:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	#include "FreeRTOS_DNS.h"
+  77:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #endif /* ipconfigUSE_LLMNR */
+  78:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #include "NetworkInterface.h"
+  79:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #include "NetworkBufferManagement.h"
+  80:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+  81:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+  82:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /* When the age of an entry in the ARP table reaches this value (it counts down
+  83:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** to zero, so this is an old entry) an ARP request will be sent to see if the
+  84:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** entry is still valid and can therefore be refreshed. */
+  85:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #define arpMAX_ARP_AGE_BEFORE_NEW_ARP_REQUEST		( 3 )
+  86:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+  87:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /* The time between gratuitous ARPs. */
+  88:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #ifndef arpGRATUITOUS_ARP_PERIOD
+  89:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	#define arpGRATUITOUS_ARP_PERIOD					( pdMS_TO_TICKS( 20000 ) )
+  90:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #endif
+  91:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ARM GAS  /tmp/ccdtxUmK.s 			page 4
+
+
+  92:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /*-----------------------------------------------------------*/
+  93:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+  94:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /*
+  95:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * Lookup an MAC address in the ARP cache from the IP address.
+  96:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  */
+  97:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** static eARPLookupResult_t prvCacheLookup( uint32_t ulAddressToLookup, MACAddress_t * const pxMACAdd
+  98:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+  99:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /*-----------------------------------------------------------*/
+ 100:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 101:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /* The ARP cache. */
+ 102:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** static ARPCacheRow_t xARPCache[ ipconfigARP_CACHE_ENTRIES ];
+ 103:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 104:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /* The time at which the last gratuitous ARP was sent.  Gratuitous ARPs are used
+ 105:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** to ensure ARP tables are up to date and to detect IP address conflicts. */
+ 106:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** static TickType_t xLastGratuitousARPTime = ( TickType_t ) 0;
+ 107:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 108:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /*
+ 109:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * IP-clash detection is currently only used internally. When DHCP doesn't respond, the
+ 110:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * driver can try out a random LinkLayer IP address (169.254.x.x).  It will send out a
+ 111:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  * gratuitos ARP message and, after a period of time, check the variables here below:
+ 112:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c ****  */
+ 113:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #if( ipconfigARP_USE_CLASH_DETECTION != 0 )
+ 114:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	/* Becomes non-zero if another device responded to a gratuitos ARP message. */
+ 115:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	BaseType_t xARPHadIPClash;
+ 116:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	/* MAC-address of the other device containing the same IP-address. */
+ 117:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	MACAddress_t xARPClashMacAddress;
+ 118:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #endif /* ipconfigARP_USE_CLASH_DETECTION */
+ 119:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 120:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /* Part of the Ethernet and ARP headers are always constant when sending an IPv4
+ 121:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** ARP packet.  This array defines the constant parts, allowing this part of the
+ 122:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** packet to be filled in using a simple memcpy() instead of individual writes. */
+ 123:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** static const uint8_t xDefaultPartARPPacketHeader[] =
+ 124:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** {
+ 125:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 	/* Ethernet destination address. */
+ 126:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 	/* Ethernet source address. */
+ 127:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	0x08, 0x06, 							/* Ethernet frame type (ipARP_FRAME_TYPE). */
+ 128:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	0x00, 0x01, 							/* usHardwareType (ipARP_HARDWARE_TYPE_ETHERNET). */
+ 129:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	0x08, 0x00,								/* usProtocolType. */
+ 130:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	ipMAC_ADDRESS_LENGTH_BYTES, 			/* ucHardwareAddressLength. */
+ 131:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	ipIP_ADDRESS_LENGTH_BYTES, 				/* ucProtocolAddressLength. */
+ 132:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	0x00, 0x01, 							/* usOperation (ipARP_REQUEST). */
+ 133:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 	/* xSenderHardwareAddress. */
+ 134:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	0x00, 0x00, 0x00, 0x00, 				/* ulSenderProtocolAddress. */
+ 135:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00 		/* xTargetHardwareAddress. */
+ 136:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** };
+ 137:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 138:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /*-----------------------------------------------------------*/
+ 139:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 140:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** eFrameProcessingResult_t eARPProcessPacket( ARPPacket_t * const pxARPFrame )
+ 141:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** {
+  84              		.loc 1 141 0
+  85              		.cfi_startproc
+  86              		@ args = 0, pretend = 0, frame = 16
+  87              		@ frame_needed = 1, uses_anonymous_args = 0
+  88 0000 80B5     		push	{r7, lr}
+  89              	.LCFI0:
+  90              		.cfi_def_cfa_offset 8
+ARM GAS  /tmp/ccdtxUmK.s 			page 5
+
+
+  91              		.cfi_offset 7, -8
+  92              		.cfi_offset 14, -4
+  93 0002 84B0     		sub	sp, sp, #16
+  94              	.LCFI1:
+  95              		.cfi_def_cfa_offset 24
+  96 0004 00AF     		add	r7, sp, #0
+  97              	.LCFI2:
+  98              		.cfi_def_cfa_register 7
+  99 0006 7860     		str	r0, [r7, #4]
+ 142:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** eFrameProcessingResult_t eReturn = eReleaseBuffer;
+ 100              		.loc 1 142 0
+ 101 0008 0023     		movs	r3, #0
+ 102 000a FB73     		strb	r3, [r7, #15]
+ 143:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** ARPHeader_t *pxARPHeader;
+ 144:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 145:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	pxARPHeader = &( pxARPFrame->xARPHeader );
+ 103              		.loc 1 145 0
+ 104 000c 7B68     		ldr	r3, [r7, #4]
+ 105 000e 0E33     		adds	r3, r3, #14
+ 106 0010 BB60     		str	r3, [r7, #8]
+ 146:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 147:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	traceARP_PACKET_RECEIVED();
+ 148:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 149:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	/* Don't do anything if the local IP address is zero because
+ 150:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	that means a DHCP request has not completed. */
+ 151:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	if( *ipLOCAL_IP_ADDRESS_POINTER != 0UL )
+ 107              		.loc 1 151 0
+ 108 0012 394B     		ldr	r3, .L10
+ 109 0014 5B69     		ldr	r3, [r3, #20]
+ 110 0016 002B     		cmp	r3, #0
+ 111 0018 69D0     		beq	.L2
+ 152:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	{
+ 153:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		switch( pxARPHeader->usOperation )
+ 112              		.loc 1 153 0
+ 113 001a BB68     		ldr	r3, [r7, #8]
+ 114 001c DB88     		ldrh	r3, [r3, #6]	@ unaligned
+ 115 001e 9BB2     		uxth	r3, r3
+ 116 0020 B3F5807F 		cmp	r3, #256
+ 117 0024 03D0     		beq	.L4
+ 118 0026 B3F5007F 		cmp	r3, #512
+ 119 002a 55D0     		beq	.L5
+ 154:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		{
+ 155:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			case ipARP_REQUEST	:
+ 156:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				/* The packet contained an ARP request.  Was it for the IP
+ 157:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				address of the node running this code? */
+ 158:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				if( pxARPHeader->ulTargetProtocolAddress == *ipLOCAL_IP_ADDRESS_POINTER )
+ 159:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				{
+ 160:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					iptraceSENDING_ARP_REPLY( pxARPHeader->ulSenderProtocolAddress );
+ 161:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 162:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					/* The request is for the address of this node.  Add the
+ 163:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					entry into the ARP cache, or refresh the entry if it
+ 164:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					already exists. */
+ 165:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					vARPRefreshCacheEntry( &( pxARPHeader->xSenderHardwareAddress ), pxARPHeader->ulSenderProtocol
+ 166:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 167:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					/* Generate a reply payload in the same buffer. */
+ 168:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					pxARPHeader->usOperation = ( uint16_t ) ipARP_REPLY;
+ 169:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					if( pxARPHeader->ulTargetProtocolAddress == pxARPHeader->ulSenderProtocolAddress )
+ARM GAS  /tmp/ccdtxUmK.s 			page 6
+
+
+ 170:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					{
+ 171:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 						/* A double IP address is detected! */
+ 172:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 						/* Give the sources MAC address the value of the broadcast address, will be swapped later */
+ 173:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 						memcpy( pxARPFrame->xEthernetHeader.xSourceAddress.ucBytes, xBroadcastMACAddress.ucBytes, siz
+ 174:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 						memset( pxARPHeader->xTargetHardwareAddress.ucBytes, '\0', sizeof( MACAddress_t ) );
+ 175:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 						pxARPHeader->ulTargetProtocolAddress = 0UL;
+ 176:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					}
+ 177:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					else
+ 178:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					{
+ 179:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 						memcpy( pxARPHeader->xTargetHardwareAddress.ucBytes, pxARPHeader->xSenderHardwareAddress.ucBy
+ 180:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 						pxARPHeader->ulTargetProtocolAddress = pxARPHeader->ulSenderProtocolAddress;
+ 181:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					}
+ 182:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					memcpy( pxARPHeader->xSenderHardwareAddress.ucBytes, ( void * ) ipLOCAL_MAC_ADDRESS, sizeof( M
+ 183:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					pxARPHeader->ulSenderProtocolAddress = *ipLOCAL_IP_ADDRESS_POINTER;
+ 184:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 185:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					eReturn = eReturnEthernetFrame;
+ 186:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				}
+ 187:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				break;
+ 188:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 189:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			case ipARP_REPLY :
+ 190:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				iptracePROCESSING_RECEIVED_ARP_REPLY( pxARPHeader->ulTargetProtocolAddress );
+ 191:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				vARPRefreshCacheEntry( &( pxARPHeader->xSenderHardwareAddress ), pxARPHeader->ulSenderProtocolA
+ 192:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				/* Process received ARP frame to see if there is a clash. */
+ 193:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				#if( ipconfigARP_USE_CLASH_DETECTION != 0 )
+ 194:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				{
+ 195:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					if( pxARPHeader->ulSenderProtocolAddress == *ipLOCAL_IP_ADDRESS_POINTER )
+ 196:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					{
+ 197:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 						xARPHadIPClash = pdTRUE;
+ 198:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 						memcpy( xARPClashMacAddress.ucBytes, pxARPHeader->xSenderHardwareAddress.ucBytes, sizeof( xAR
+ 199:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					}
+ 200:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				}
+ 201:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				#endif /* ipconfigARP_USE_CLASH_DETECTION */
+ 202:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				break;
+ 203:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 204:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			default :
+ 205:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				/* Invalid. */
+ 206:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				break;
+ 120              		.loc 1 206 0
+ 121 002c 5FE0     		b	.L2
+ 122              	.L4:
+ 158:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				{
+ 123              		.loc 1 158 0
+ 124 002e BB68     		ldr	r3, [r7, #8]
+ 125 0030 9A69     		ldr	r2, [r3, #24]	@ unaligned
+ 126 0032 314B     		ldr	r3, .L10
+ 127 0034 5B69     		ldr	r3, [r3, #20]
+ 128 0036 9A42     		cmp	r2, r3
+ 129 0038 4DD1     		bne	.L6
+ 165:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 130              		.loc 1 165 0
+ 131 003a BB68     		ldr	r3, [r7, #8]
+ 132 003c 03F10802 		add	r2, r3, #8
+ 133 0040 BB68     		ldr	r3, [r7, #8]
+ 134 0042 D3F80E30 		ldr	r3, [r3, #14]	@ unaligned
+ 135 0046 1046     		mov	r0, r2
+ 136 0048 1946     		mov	r1, r3
+ 137 004a FFF7FEFF 		bl	vARPRefreshCacheEntry
+ARM GAS  /tmp/ccdtxUmK.s 			page 7
+
+
+ 168:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					if( pxARPHeader->ulTargetProtocolAddress == pxARPHeader->ulSenderProtocolAddress )
+ 138              		.loc 1 168 0
+ 139 004e BB68     		ldr	r3, [r7, #8]
+ 140 0050 0022     		movs	r2, #0
+ 141 0052 9A71     		strb	r2, [r3, #6]
+ 142 0054 0022     		movs	r2, #0
+ 143 0056 42F00202 		orr	r2, r2, #2
+ 144 005a DA71     		strb	r2, [r3, #7]
+ 169:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					{
+ 145              		.loc 1 169 0
+ 146 005c BB68     		ldr	r3, [r7, #8]
+ 147 005e 9A69     		ldr	r2, [r3, #24]	@ unaligned
+ 148 0060 BB68     		ldr	r3, [r7, #8]
+ 149 0062 D3F80E30 		ldr	r3, [r3, #14]	@ unaligned
+ 150 0066 9A42     		cmp	r2, r3
+ 151 0068 17D1     		bne	.L7
+ 173:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 						memset( pxARPHeader->xTargetHardwareAddress.ucBytes, '\0', sizeof( MACAddress_t ) );
+ 152              		.loc 1 173 0
+ 153 006a 7B68     		ldr	r3, [r7, #4]
+ 154 006c 0633     		adds	r3, r3, #6
+ 155 006e 234A     		ldr	r2, .L10+4
+ 156 0070 1168     		ldr	r1, [r2]	@ unaligned
+ 157 0072 1960     		str	r1, [r3]	@ unaligned
+ 158 0074 9288     		ldrh	r2, [r2, #4]	@ unaligned
+ 159 0076 9A80     		strh	r2, [r3, #4]	@ unaligned
+ 174:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 						pxARPHeader->ulTargetProtocolAddress = 0UL;
+ 160              		.loc 1 174 0
+ 161 0078 BB68     		ldr	r3, [r7, #8]
+ 162 007a 1233     		adds	r3, r3, #18
+ 163 007c 1846     		mov	r0, r3
+ 164 007e 0021     		movs	r1, #0
+ 165 0080 0622     		movs	r2, #6
+ 166 0082 FFF7FEFF 		bl	memset
+ 175:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					}
+ 167              		.loc 1 175 0
+ 168 0086 BB68     		ldr	r3, [r7, #8]
+ 169 0088 0022     		movs	r2, #0
+ 170 008a 1A76     		strb	r2, [r3, #24]
+ 171 008c 0022     		movs	r2, #0
+ 172 008e 5A76     		strb	r2, [r3, #25]
+ 173 0090 0022     		movs	r2, #0
+ 174 0092 9A76     		strb	r2, [r3, #26]
+ 175 0094 0022     		movs	r2, #0
+ 176 0096 DA76     		strb	r2, [r3, #27]
+ 177 0098 0EE0     		b	.L8
+ 178              	.L7:
+ 179:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 						pxARPHeader->ulTargetProtocolAddress = pxARPHeader->ulSenderProtocolAddress;
+ 179              		.loc 1 179 0
+ 180 009a BB68     		ldr	r3, [r7, #8]
+ 181 009c 03F11202 		add	r2, r3, #18
+ 182 00a0 BB68     		ldr	r3, [r7, #8]
+ 183 00a2 0833     		adds	r3, r3, #8
+ 184 00a4 1046     		mov	r0, r2
+ 185 00a6 1946     		mov	r1, r3
+ 186 00a8 0622     		movs	r2, #6
+ 187 00aa FFF7FEFF 		bl	memcpy
+ 180:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					}
+ARM GAS  /tmp/ccdtxUmK.s 			page 8
+
+
+ 188              		.loc 1 180 0
+ 189 00ae BB68     		ldr	r3, [r7, #8]
+ 190 00b0 D3F80E20 		ldr	r2, [r3, #14]	@ unaligned
+ 191 00b4 BB68     		ldr	r3, [r7, #8]
+ 192 00b6 9A61     		str	r2, [r3, #24]	@ unaligned
+ 193              	.L8:
+ 182:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					pxARPHeader->ulSenderProtocolAddress = *ipLOCAL_IP_ADDRESS_POINTER;
+ 194              		.loc 1 182 0
+ 195 00b8 BB68     		ldr	r3, [r7, #8]
+ 196 00ba 0833     		adds	r3, r3, #8
+ 197 00bc 1846     		mov	r0, r3
+ 198 00be 0E49     		ldr	r1, .L10
+ 199 00c0 0622     		movs	r2, #6
+ 200 00c2 FFF7FEFF 		bl	memcpy
+ 183:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 201              		.loc 1 183 0
+ 202 00c6 0C4B     		ldr	r3, .L10
+ 203 00c8 5A69     		ldr	r2, [r3, #20]
+ 204 00ca BB68     		ldr	r3, [r7, #8]
+ 205 00cc C3F80E20 		str	r2, [r3, #14]	@ unaligned
+ 185:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				}
+ 206              		.loc 1 185 0
+ 207 00d0 0223     		movs	r3, #2
+ 208 00d2 FB73     		strb	r3, [r7, #15]
+ 187:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 209              		.loc 1 187 0
+ 210 00d4 0BE0     		b	.L2
+ 211              	.L6:
+ 212 00d6 0AE0     		b	.L2
+ 213              	.L5:
+ 191:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				/* Process received ARP frame to see if there is a clash. */
+ 214              		.loc 1 191 0
+ 215 00d8 BB68     		ldr	r3, [r7, #8]
+ 216 00da 03F10802 		add	r2, r3, #8
+ 217 00de BB68     		ldr	r3, [r7, #8]
+ 218 00e0 D3F80E30 		ldr	r3, [r3, #14]	@ unaligned
+ 219 00e4 1046     		mov	r0, r2
+ 220 00e6 1946     		mov	r1, r3
+ 221 00e8 FFF7FEFF 		bl	vARPRefreshCacheEntry
+ 202:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 222              		.loc 1 202 0
+ 223 00ec 00BF     		nop
+ 224              	.L2:
+ 207:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		}
+ 208:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	}
+ 209:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 210:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	return eReturn;
+ 225              		.loc 1 210 0
+ 226 00ee FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 211:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** }
+ 227              		.loc 1 211 0
+ 228 00f0 1846     		mov	r0, r3
+ 229 00f2 1037     		adds	r7, r7, #16
+ 230              	.LCFI3:
+ 231              		.cfi_def_cfa_offset 8
+ 232 00f4 BD46     		mov	sp, r7
+ 233              	.LCFI4:
+ARM GAS  /tmp/ccdtxUmK.s 			page 9
+
+
+ 234              		.cfi_def_cfa_register 13
+ 235              		@ sp needed
+ 236 00f6 80BD     		pop	{r7, pc}
+ 237              	.L11:
+ 238              		.align	2
+ 239              	.L10:
+ 240 00f8 00000000 		.word	xDefaultPartUDPPacketHeader
+ 241 00fc 00000000 		.word	xBroadcastMACAddress
+ 242              		.cfi_endproc
+ 243              	.LFE29:
+ 245              		.section	.text.vARPRefreshCacheEntry,"ax",%progbits
+ 246              		.align	2
+ 247              		.global	vARPRefreshCacheEntry
+ 248              		.thumb
+ 249              		.thumb_func
+ 251              	vARPRefreshCacheEntry:
+ 252              	.LFB30:
+ 212:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /*-----------------------------------------------------------*/
+ 213:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 214:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #if( ipconfigUSE_ARP_REMOVE_ENTRY != 0 )
+ 215:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 216:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	uint32_t ulARPRemoveCacheEntryByMac( const MACAddress_t * pxMACAddress )
+ 217:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	{
+ 218:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	BaseType_t x;
+ 219:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	uint32_t lResult = 0;
+ 220:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 221:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		/* For each entry in the ARP cache table. */
+ 222:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		for( x = 0; x < ipconfigARP_CACHE_ENTRIES; x++ )
+ 223:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		{
+ 224:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			if( ( memcmp( xARPCache[ x ].xMACAddress.ucBytes, pxMACAddress->ucBytes, sizeof( pxMACAddress->u
+ 225:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			{
+ 226:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				lResult = xARPCache[ x ].ulIPAddress;
+ 227:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				memset( &xARPCache[ x ], '\0', sizeof( xARPCache[ x ] ) );
+ 228:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				break;
+ 229:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			}
+ 230:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		}
+ 231:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 232:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		return lResult;
+ 233:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	}
+ 234:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 235:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #endif	/* ipconfigUSE_ARP_REMOVE_ENTRY != 0 */
+ 236:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /*-----------------------------------------------------------*/
+ 237:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 238:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** void vARPRefreshCacheEntry( const MACAddress_t * pxMACAddress, const uint32_t ulIPAddress )
+ 239:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** {
+ 253              		.loc 1 239 0
+ 254              		.cfi_startproc
+ 255              		@ args = 0, pretend = 0, frame = 32
+ 256              		@ frame_needed = 1, uses_anonymous_args = 0
+ 257 0000 80B5     		push	{r7, lr}
+ 258              	.LCFI5:
+ 259              		.cfi_def_cfa_offset 8
+ 260              		.cfi_offset 7, -8
+ 261              		.cfi_offset 14, -4
+ 262 0002 88B0     		sub	sp, sp, #32
+ 263              	.LCFI6:
+ 264              		.cfi_def_cfa_offset 40
+ARM GAS  /tmp/ccdtxUmK.s 			page 10
+
+
+ 265 0004 00AF     		add	r7, sp, #0
+ 266              	.LCFI7:
+ 267              		.cfi_def_cfa_register 7
+ 268 0006 7860     		str	r0, [r7, #4]
+ 269 0008 3960     		str	r1, [r7]
+ 240:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** BaseType_t x, xIpEntry = -1, xMacEntry = -1, xUseEntry = 0;
+ 270              		.loc 1 240 0
+ 271 000a 4FF0FF33 		mov	r3, #-1
+ 272 000e BB61     		str	r3, [r7, #24]
+ 273 0010 4FF0FF33 		mov	r3, #-1
+ 274 0014 7B61     		str	r3, [r7, #20]
+ 275 0016 0023     		movs	r3, #0
+ 276 0018 3B61     		str	r3, [r7, #16]
+ 241:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** uint8_t ucMinAgeFound = 0U;
+ 277              		.loc 1 241 0
+ 278 001a 0023     		movs	r3, #0
+ 279 001c FB73     		strb	r3, [r7, #15]
+ 242:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 243:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	#if( ipconfigARP_STORES_REMOTE_ADDRESSES == 0 )
+ 244:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		/* Only process the IP address if it is on the local network.
+ 245:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		Unless: when '*ipLOCAL_IP_ADDRESS_POINTER' equals zero, the IP-address
+ 246:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		and netmask are still unknown. */
+ 247:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		if( ( ( ulIPAddress & xNetworkAddressing.ulNetMask ) == ( ( *ipLOCAL_IP_ADDRESS_POINTER ) & xNetw
+ 280              		.loc 1 247 0
+ 281 001e 724B     		ldr	r3, .L27
+ 282 0020 5A69     		ldr	r2, [r3, #20]
+ 283 0022 3B68     		ldr	r3, [r7]
+ 284 0024 5A40     		eors	r2, r2, r3
+ 285 0026 714B     		ldr	r3, .L27+4
+ 286 0028 5B68     		ldr	r3, [r3, #4]
+ 287 002a 1340     		ands	r3, r3, r2
+ 288 002c 002B     		cmp	r3, #0
+ 289 002e 04D0     		beq	.L13
+ 248:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			( *ipLOCAL_IP_ADDRESS_POINTER == 0ul ) )
+ 290              		.loc 1 248 0 discriminator 1
+ 291 0030 6D4B     		ldr	r3, .L27
+ 292 0032 5B69     		ldr	r3, [r3, #20]
+ 247:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			( *ipLOCAL_IP_ADDRESS_POINTER == 0ul ) )
+ 293              		.loc 1 247 0 discriminator 1
+ 294 0034 002B     		cmp	r3, #0
+ 295 0036 40F0D480 		bne	.L12
+ 296              	.L13:
+ 249:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	#else
+ 250:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		/* If ipconfigARP_STORES_REMOTE_ADDRESSES is non-zero, IP addresses with
+ 251:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		a different netmask will also be stored.  After when replying to a UDP
+ 252:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		message from a different netmask, the IP address can be looped up and a
+ 253:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		reply sent.  This option is useful for systems with multiple gateways,
+ 254:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		the reply will surely arrive.  If ipconfigARP_STORES_REMOTE_ADDRESSES is
+ 255:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		zero the the gateway address is the only option. */
+ 256:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		if( pdTRUE )
+ 257:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	#endif
+ 258:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	{
+ 259:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		/* Start with the maximum possible number. */
+ 260:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		ucMinAgeFound--;
+ 297              		.loc 1 260 0
+ 298 003a FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 299 003c 013B     		subs	r3, r3, #1
+ARM GAS  /tmp/ccdtxUmK.s 			page 11
+
+
+ 300 003e FB73     		strb	r3, [r7, #15]
+ 261:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 262:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		/* For each entry in the ARP cache table. */
+ 263:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		for( x = 0; x < ipconfigARP_CACHE_ENTRIES; x++ )
+ 301              		.loc 1 263 0
+ 302 0040 0023     		movs	r3, #0
+ 303 0042 FB61     		str	r3, [r7, #28]
+ 304 0044 6BE0     		b	.L15
+ 305              	.L22:
+ 264:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		{
+ 265:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			/* Does this line in the cache table hold an entry for the IP
+ 266:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			address	being queried? */
+ 267:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			if( xARPCache[ x ].ulIPAddress == ulIPAddress )
+ 306              		.loc 1 267 0
+ 307 0046 6A49     		ldr	r1, .L27+8
+ 308 0048 FA69     		ldr	r2, [r7, #28]
+ 309 004a 1346     		mov	r3, r2
+ 310 004c 5B00     		lsls	r3, r3, #1
+ 311 004e 1344     		add	r3, r3, r2
+ 312 0050 9B00     		lsls	r3, r3, #2
+ 313 0052 0B44     		add	r3, r3, r1
+ 314 0054 1A68     		ldr	r2, [r3]
+ 315 0056 3B68     		ldr	r3, [r7]
+ 316 0058 9A42     		cmp	r2, r3
+ 317 005a 2ED1     		bne	.L16
+ 268:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			{
+ 269:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				if( pxMACAddress == NULL )
+ 318              		.loc 1 269 0
+ 319 005c 7B68     		ldr	r3, [r7, #4]
+ 320 005e 002B     		cmp	r3, #0
+ 321 0060 02D1     		bne	.L17
+ 270:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				{
+ 271:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					/* In case the parameter pxMACAddress is NULL, an entry will be reserved to
+ 272:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					indicate that there is an outstanding ARP request, This entry will have
+ 273:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					"ucValid == pdFALSE". */
+ 274:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					xIpEntry = x;
+ 322              		.loc 1 274 0
+ 323 0062 FB69     		ldr	r3, [r7, #28]
+ 324 0064 BB61     		str	r3, [r7, #24]
+ 275:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					break;
+ 325              		.loc 1 275 0
+ 326 0066 5DE0     		b	.L18
+ 327              	.L17:
+ 276:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				}
+ 277:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 278:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				/* See if the MAC-address also matches. */
+ 279:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				if( memcmp( xARPCache[ x ].xMACAddress.ucBytes, pxMACAddress->ucBytes, sizeof( pxMACAddress->uc
+ 328              		.loc 1 279 0
+ 329 0068 FA69     		ldr	r2, [r7, #28]
+ 330 006a 1346     		mov	r3, r2
+ 331 006c 5B00     		lsls	r3, r3, #1
+ 332 006e 1344     		add	r3, r3, r2
+ 333 0070 9B00     		lsls	r3, r3, #2
+ 334 0072 5F4A     		ldr	r2, .L27+8
+ 335 0074 1344     		add	r3, r3, r2
+ 336 0076 1A1D     		adds	r2, r3, #4
+ 337 0078 7B68     		ldr	r3, [r7, #4]
+ARM GAS  /tmp/ccdtxUmK.s 			page 12
+
+
+ 338 007a 1046     		mov	r0, r2
+ 339 007c 1946     		mov	r1, r3
+ 340 007e 0622     		movs	r2, #6
+ 341 0080 FFF7FEFF 		bl	memcmp
+ 342 0084 0346     		mov	r3, r0
+ 343 0086 002B     		cmp	r3, #0
+ 344 0088 14D1     		bne	.L19
+ 280:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				{
+ 281:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					/* This function will be called for each received packet
+ 282:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					As this is by far the most common path the coding standard
+ 283:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					is relaxed in this case and a return is permitted as an
+ 284:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					optimisation. */
+ 285:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					xARPCache[ x ].ucAge = ( uint8_t ) ipconfigMAX_ARP_AGE;
+ 345              		.loc 1 285 0
+ 346 008a 5949     		ldr	r1, .L27+8
+ 347 008c FA69     		ldr	r2, [r7, #28]
+ 348 008e 1346     		mov	r3, r2
+ 349 0090 5B00     		lsls	r3, r3, #1
+ 350 0092 1344     		add	r3, r3, r2
+ 351 0094 9B00     		lsls	r3, r3, #2
+ 352 0096 0B44     		add	r3, r3, r1
+ 353 0098 0833     		adds	r3, r3, #8
+ 354 009a 9622     		movs	r2, #150
+ 355 009c 9A70     		strb	r2, [r3, #2]
+ 286:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					xARPCache[ x ].ucValid = ( uint8_t ) pdTRUE;
+ 356              		.loc 1 286 0
+ 357 009e 5449     		ldr	r1, .L27+8
+ 358 00a0 FA69     		ldr	r2, [r7, #28]
+ 359 00a2 1346     		mov	r3, r2
+ 360 00a4 5B00     		lsls	r3, r3, #1
+ 361 00a6 1344     		add	r3, r3, r2
+ 362 00a8 9B00     		lsls	r3, r3, #2
+ 363 00aa 0B44     		add	r3, r3, r1
+ 364 00ac 0833     		adds	r3, r3, #8
+ 365 00ae 0122     		movs	r2, #1
+ 366 00b0 DA70     		strb	r2, [r3, #3]
+ 287:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					return;
+ 367              		.loc 1 287 0
+ 368 00b2 96E0     		b	.L12
+ 369              	.L19:
+ 288:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				}
+ 289:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 290:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				/* Found an entry containing ulIPAddress, but the MAC address
+ 291:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				doesn't match.  Might be an entry with ucValid=pdFALSE, waiting
+ 292:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				for an ARP reply.  Still want to see if there is match with the
+ 293:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				given MAC address.ucBytes.  If found, either of the two entries
+ 294:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				must be cleared. */
+ 295:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				xIpEntry = x;
+ 370              		.loc 1 295 0
+ 371 00b4 FB69     		ldr	r3, [r7, #28]
+ 372 00b6 BB61     		str	r3, [r7, #24]
+ 373 00b8 2EE0     		b	.L20
+ 374              	.L16:
+ 296:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			}
+ 297:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			else if( ( pxMACAddress != NULL ) && ( memcmp( xARPCache[ x ].xMACAddress.ucBytes, pxMACAddress-
+ 375              		.loc 1 297 0
+ 376 00ba 7B68     		ldr	r3, [r7, #4]
+ARM GAS  /tmp/ccdtxUmK.s 			page 13
+
+
+ 377 00bc 002B     		cmp	r3, #0
+ 378 00be 13D0     		beq	.L21
+ 379              		.loc 1 297 0 is_stmt 0 discriminator 1
+ 380 00c0 FA69     		ldr	r2, [r7, #28]
+ 381 00c2 1346     		mov	r3, r2
+ 382 00c4 5B00     		lsls	r3, r3, #1
+ 383 00c6 1344     		add	r3, r3, r2
+ 384 00c8 9B00     		lsls	r3, r3, #2
+ 385 00ca 494A     		ldr	r2, .L27+8
+ 386 00cc 1344     		add	r3, r3, r2
+ 387 00ce 1A1D     		adds	r2, r3, #4
+ 388 00d0 7B68     		ldr	r3, [r7, #4]
+ 389 00d2 1046     		mov	r0, r2
+ 390 00d4 1946     		mov	r1, r3
+ 391 00d6 0622     		movs	r2, #6
+ 392 00d8 FFF7FEFF 		bl	memcmp
+ 393 00dc 0346     		mov	r3, r0
+ 394 00de 002B     		cmp	r3, #0
+ 395 00e0 02D1     		bne	.L21
+ 298:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			{
+ 299:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				/* Found an entry with the given MAC-address, but the IP-address
+ 300:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				is different.  Continue looping to find a possible match with
+ 301:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				ulIPAddress. */
+ 302:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	#if( ipconfigARP_STORES_REMOTE_ADDRESSES != 0 )
+ 303:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				/* If ARP stores the MAC address of IP addresses outside the
+ 304:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				network, than the MAC address of the gateway should not be
+ 305:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				overwritten. */
+ 306:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				BaseType_t bIsLocal[ 2 ];
+ 307:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				bIsLocal[ 0 ] = ( ( xARPCache[ x ].ulIPAddress & xNetworkAddressing.ulNetMask ) == ( ( *ipLOCAL
+ 308:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				bIsLocal[ 1 ] = ( ( ulIPAddress & xNetworkAddressing.ulNetMask ) == ( ( *ipLOCAL_IP_ADDRESS_POI
+ 309:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				if( bIsLocal[ 0 ] == bIsLocal[ 1 ] )
+ 310:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				{
+ 311:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					xMacEntry = x;
+ 312:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				}
+ 313:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	#else
+ 314:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				xMacEntry = x;
+ 396              		.loc 1 314 0 is_stmt 1
+ 397 00e2 FB69     		ldr	r3, [r7, #28]
+ 398 00e4 7B61     		str	r3, [r7, #20]
+ 399 00e6 17E0     		b	.L20
+ 400              	.L21:
+ 315:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	#endif
+ 316:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			}
+ 317:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			/* _HT_
+ 318:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			Shouldn't we test for xARPCache[ x ].ucValid == pdFALSE here ? */
+ 319:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			else if( xARPCache[ x ].ucAge < ucMinAgeFound )
+ 401              		.loc 1 319 0
+ 402 00e8 4149     		ldr	r1, .L27+8
+ 403 00ea FA69     		ldr	r2, [r7, #28]
+ 404 00ec 1346     		mov	r3, r2
+ 405 00ee 5B00     		lsls	r3, r3, #1
+ 406 00f0 1344     		add	r3, r3, r2
+ 407 00f2 9B00     		lsls	r3, r3, #2
+ 408 00f4 0B44     		add	r3, r3, r1
+ 409 00f6 0833     		adds	r3, r3, #8
+ 410 00f8 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 411 00fa FA7B     		ldrb	r2, [r7, #15]	@ zero_extendqisi2
+ARM GAS  /tmp/ccdtxUmK.s 			page 14
+
+
+ 412 00fc 9A42     		cmp	r2, r3
+ 413 00fe 0BD9     		bls	.L20
+ 320:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			{
+ 321:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				/* As the table is traversed, remember the table row that
+ 322:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				contains the oldest entry (the lowest age count, as ages are
+ 323:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				decremented to zero) so the row can be re-used if this function
+ 324:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				needs to add an entry that does not already exist. */
+ 325:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				ucMinAgeFound = xARPCache[ x ].ucAge;
+ 414              		.loc 1 325 0
+ 415 0100 3B49     		ldr	r1, .L27+8
+ 416 0102 FA69     		ldr	r2, [r7, #28]
+ 417 0104 1346     		mov	r3, r2
+ 418 0106 5B00     		lsls	r3, r3, #1
+ 419 0108 1344     		add	r3, r3, r2
+ 420 010a 9B00     		lsls	r3, r3, #2
+ 421 010c 0B44     		add	r3, r3, r1
+ 422 010e 0833     		adds	r3, r3, #8
+ 423 0110 9B78     		ldrb	r3, [r3, #2]
+ 424 0112 FB73     		strb	r3, [r7, #15]
+ 326:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				xUseEntry = x;
+ 425              		.loc 1 326 0
+ 426 0114 FB69     		ldr	r3, [r7, #28]
+ 427 0116 3B61     		str	r3, [r7, #16]
+ 428              	.L20:
+ 263:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		{
+ 429              		.loc 1 263 0 discriminator 2
+ 430 0118 FB69     		ldr	r3, [r7, #28]
+ 431 011a 0133     		adds	r3, r3, #1
+ 432 011c FB61     		str	r3, [r7, #28]
+ 433              	.L15:
+ 263:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		{
+ 434              		.loc 1 263 0 is_stmt 0 discriminator 1
+ 435 011e FB69     		ldr	r3, [r7, #28]
+ 436 0120 052B     		cmp	r3, #5
+ 437 0122 90DD     		ble	.L22
+ 438              	.L18:
+ 327:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			}
+ 328:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		}
+ 329:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 330:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		if( xMacEntry >= 0 )
+ 439              		.loc 1 330 0 is_stmt 1
+ 440 0124 7B69     		ldr	r3, [r7, #20]
+ 441 0126 002B     		cmp	r3, #0
+ 442 0128 11DB     		blt	.L23
+ 331:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		{
+ 332:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			xUseEntry = xMacEntry;
+ 443              		.loc 1 332 0
+ 444 012a 7B69     		ldr	r3, [r7, #20]
+ 445 012c 3B61     		str	r3, [r7, #16]
+ 333:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 334:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			if( xIpEntry >= 0 )
+ 446              		.loc 1 334 0
+ 447 012e BB69     		ldr	r3, [r7, #24]
+ 448 0130 002B     		cmp	r3, #0
+ 449 0132 11DB     		blt	.L25
+ 335:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			{
+ 336:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				/* Both the MAC address as well as the IP address were found in
+ARM GAS  /tmp/ccdtxUmK.s 			page 15
+
+
+ 337:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				different locations: clear the entry which matches the
+ 338:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				IP-address */
+ 339:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				memset( &xARPCache[ xIpEntry ], '\0', sizeof( xARPCache[ xIpEntry ] ) );
+ 450              		.loc 1 339 0
+ 451 0134 BA69     		ldr	r2, [r7, #24]
+ 452 0136 1346     		mov	r3, r2
+ 453 0138 5B00     		lsls	r3, r3, #1
+ 454 013a 1344     		add	r3, r3, r2
+ 455 013c 9B00     		lsls	r3, r3, #2
+ 456 013e 2C4A     		ldr	r2, .L27+8
+ 457 0140 1344     		add	r3, r3, r2
+ 458 0142 1846     		mov	r0, r3
+ 459 0144 0021     		movs	r1, #0
+ 460 0146 0C22     		movs	r2, #12
+ 461 0148 FFF7FEFF 		bl	memset
+ 462 014c 04E0     		b	.L25
+ 463              	.L23:
+ 340:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			}
+ 341:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		}
+ 342:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		else if( xIpEntry >= 0 )
+ 464              		.loc 1 342 0
+ 465 014e BB69     		ldr	r3, [r7, #24]
+ 466 0150 002B     		cmp	r3, #0
+ 467 0152 01DB     		blt	.L25
+ 343:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		{
+ 344:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			/* An entry containing the IP-address was found, but it had a different MAC address */
+ 345:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			xUseEntry = xIpEntry;
+ 468              		.loc 1 345 0
+ 469 0154 BB69     		ldr	r3, [r7, #24]
+ 470 0156 3B61     		str	r3, [r7, #16]
+ 471              	.L25:
+ 346:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		}
+ 347:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 348:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		/* If the entry was not found, we use the oldest entry and set the IPaddress */
+ 349:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		xARPCache[ xUseEntry ].ulIPAddress = ulIPAddress;
+ 472              		.loc 1 349 0
+ 473 0158 2549     		ldr	r1, .L27+8
+ 474 015a 3A69     		ldr	r2, [r7, #16]
+ 475 015c 1346     		mov	r3, r2
+ 476 015e 5B00     		lsls	r3, r3, #1
+ 477 0160 1344     		add	r3, r3, r2
+ 478 0162 9B00     		lsls	r3, r3, #2
+ 479 0164 0B44     		add	r3, r3, r1
+ 480 0166 3A68     		ldr	r2, [r7]
+ 481 0168 1A60     		str	r2, [r3]
+ 350:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 351:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		if( pxMACAddress != NULL )
+ 482              		.loc 1 351 0
+ 483 016a 7B68     		ldr	r3, [r7, #4]
+ 484 016c 002B     		cmp	r3, #0
+ 485 016e 21D0     		beq	.L26
+ 352:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		{
+ 353:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			memcpy( xARPCache[ xUseEntry ].xMACAddress.ucBytes, pxMACAddress->ucBytes, sizeof( pxMACAddress-
+ 486              		.loc 1 353 0
+ 487 0170 3A69     		ldr	r2, [r7, #16]
+ 488 0172 1346     		mov	r3, r2
+ 489 0174 5B00     		lsls	r3, r3, #1
+ARM GAS  /tmp/ccdtxUmK.s 			page 16
+
+
+ 490 0176 1344     		add	r3, r3, r2
+ 491 0178 9B00     		lsls	r3, r3, #2
+ 492 017a 1D4A     		ldr	r2, .L27+8
+ 493 017c 1344     		add	r3, r3, r2
+ 494 017e 0433     		adds	r3, r3, #4
+ 495 0180 7A68     		ldr	r2, [r7, #4]
+ 496 0182 1168     		ldr	r1, [r2]	@ unaligned
+ 497 0184 1960     		str	r1, [r3]	@ unaligned
+ 498 0186 9288     		ldrh	r2, [r2, #4]	@ unaligned
+ 499 0188 9A80     		strh	r2, [r3, #4]	@ unaligned
+ 354:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 355:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			iptraceARP_TABLE_ENTRY_CREATED( ulIPAddress, (*pxMACAddress) );
+ 356:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			/* And this entry does not need immediate attention */
+ 357:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			xARPCache[ xUseEntry ].ucAge = ( uint8_t ) ipconfigMAX_ARP_AGE;
+ 500              		.loc 1 357 0
+ 501 018a 1949     		ldr	r1, .L27+8
+ 502 018c 3A69     		ldr	r2, [r7, #16]
+ 503 018e 1346     		mov	r3, r2
+ 504 0190 5B00     		lsls	r3, r3, #1
+ 505 0192 1344     		add	r3, r3, r2
+ 506 0194 9B00     		lsls	r3, r3, #2
+ 507 0196 0B44     		add	r3, r3, r1
+ 508 0198 0833     		adds	r3, r3, #8
+ 509 019a 9622     		movs	r2, #150
+ 510 019c 9A70     		strb	r2, [r3, #2]
+ 358:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			xARPCache[ xUseEntry ].ucValid = ( uint8_t ) pdTRUE;
+ 511              		.loc 1 358 0
+ 512 019e 1449     		ldr	r1, .L27+8
+ 513 01a0 3A69     		ldr	r2, [r7, #16]
+ 514 01a2 1346     		mov	r3, r2
+ 515 01a4 5B00     		lsls	r3, r3, #1
+ 516 01a6 1344     		add	r3, r3, r2
+ 517 01a8 9B00     		lsls	r3, r3, #2
+ 518 01aa 0B44     		add	r3, r3, r1
+ 519 01ac 0833     		adds	r3, r3, #8
+ 520 01ae 0122     		movs	r2, #1
+ 521 01b0 DA70     		strb	r2, [r3, #3]
+ 522 01b2 16E0     		b	.L12
+ 523              	.L26:
+ 359:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		}
+ 360:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		else if( xIpEntry < 0 )
+ 524              		.loc 1 360 0
+ 525 01b4 BB69     		ldr	r3, [r7, #24]
+ 526 01b6 002B     		cmp	r3, #0
+ 527 01b8 13DA     		bge	.L12
+ 361:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		{
+ 362:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			xARPCache[ xUseEntry ].ucAge = ( uint8_t ) ipconfigMAX_ARP_RETRANSMISSIONS;
+ 528              		.loc 1 362 0
+ 529 01ba 0D49     		ldr	r1, .L27+8
+ 530 01bc 3A69     		ldr	r2, [r7, #16]
+ 531 01be 1346     		mov	r3, r2
+ 532 01c0 5B00     		lsls	r3, r3, #1
+ 533 01c2 1344     		add	r3, r3, r2
+ 534 01c4 9B00     		lsls	r3, r3, #2
+ 535 01c6 0B44     		add	r3, r3, r1
+ 536 01c8 0833     		adds	r3, r3, #8
+ 537 01ca 0522     		movs	r2, #5
+ARM GAS  /tmp/ccdtxUmK.s 			page 17
+
+
+ 538 01cc 9A70     		strb	r2, [r3, #2]
+ 363:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			xARPCache[ xUseEntry ].ucValid = ( uint8_t ) pdFALSE;
+ 539              		.loc 1 363 0
+ 540 01ce 0849     		ldr	r1, .L27+8
+ 541 01d0 3A69     		ldr	r2, [r7, #16]
+ 542 01d2 1346     		mov	r3, r2
+ 543 01d4 5B00     		lsls	r3, r3, #1
+ 544 01d6 1344     		add	r3, r3, r2
+ 545 01d8 9B00     		lsls	r3, r3, #2
+ 546 01da 0B44     		add	r3, r3, r1
+ 547 01dc 0833     		adds	r3, r3, #8
+ 548 01de 0022     		movs	r2, #0
+ 549 01e0 DA70     		strb	r2, [r3, #3]
+ 550              	.L12:
+ 364:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		}
+ 365:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	}
+ 366:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** }
+ 551              		.loc 1 366 0
+ 552 01e2 2037     		adds	r7, r7, #32
+ 553              	.LCFI8:
+ 554              		.cfi_def_cfa_offset 8
+ 555 01e4 BD46     		mov	sp, r7
+ 556              	.LCFI9:
+ 557              		.cfi_def_cfa_register 13
+ 558              		@ sp needed
+ 559 01e6 80BD     		pop	{r7, pc}
+ 560              	.L28:
+ 561              		.align	2
+ 562              	.L27:
+ 563 01e8 00000000 		.word	xDefaultPartUDPPacketHeader
+ 564 01ec 00000000 		.word	xNetworkAddressing
+ 565 01f0 00000000 		.word	xARPCache
+ 566              		.cfi_endproc
+ 567              	.LFE30:
+ 569              		.section	.text.eARPGetCacheEntry,"ax",%progbits
+ 570              		.align	2
+ 571              		.global	eARPGetCacheEntry
+ 572              		.thumb
+ 573              		.thumb_func
+ 575              	eARPGetCacheEntry:
+ 576              	.LFB31:
+ 367:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /*-----------------------------------------------------------*/
+ 368:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 369:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #if( ipconfigUSE_ARP_REVERSED_LOOKUP == 1 )
+ 370:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	eARPLookupResult_t eARPGetCacheEntryByMac( MACAddress_t * const pxMACAddress, uint32_t *pulIPAddre
+ 371:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	{
+ 372:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	BaseType_t x;
+ 373:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	eARPLookupResult_t eReturn = eARPCacheMiss;
+ 374:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 375:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		/* Loop through each entry in the ARP cache. */
+ 376:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		for( x = 0; x < ipconfigARP_CACHE_ENTRIES; x++ )
+ 377:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		{
+ 378:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			/* Does this row in the ARP cache table hold an entry for the MAC
+ 379:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			address being searched? */
+ 380:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			if( memcmp( pxMACAddress->ucBytes, xARPCache[ x ].xMACAddress.ucBytes, sizeof( MACAddress_t ) ) 
+ 381:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			{
+ 382:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				*pulIPAddress = xARPCache[ x ].ulIPAddress;
+ARM GAS  /tmp/ccdtxUmK.s 			page 18
+
+
+ 383:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				eReturn = eARPCacheHit;
+ 384:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				break;
+ 385:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			}
+ 386:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		}
+ 387:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 388:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		return eReturn;
+ 389:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	}
+ 390:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #endif /* ipconfigUSE_ARP_REVERSED_LOOKUP */
+ 391:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 392:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /*-----------------------------------------------------------*/
+ 393:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 394:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** eARPLookupResult_t eARPGetCacheEntry( uint32_t *pulIPAddress, MACAddress_t * const pxMACAddress )
+ 395:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** {
+ 577              		.loc 1 395 0
+ 578              		.cfi_startproc
+ 579              		@ args = 0, pretend = 0, frame = 16
+ 580              		@ frame_needed = 1, uses_anonymous_args = 0
+ 581 0000 80B5     		push	{r7, lr}
+ 582              	.LCFI10:
+ 583              		.cfi_def_cfa_offset 8
+ 584              		.cfi_offset 7, -8
+ 585              		.cfi_offset 14, -4
+ 586 0002 84B0     		sub	sp, sp, #16
+ 587              	.LCFI11:
+ 588              		.cfi_def_cfa_offset 24
+ 589 0004 00AF     		add	r7, sp, #0
+ 590              	.LCFI12:
+ 591              		.cfi_def_cfa_register 7
+ 592 0006 7860     		str	r0, [r7, #4]
+ 593 0008 3960     		str	r1, [r7]
+ 396:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** eARPLookupResult_t eReturn;
+ 397:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** uint32_t ulAddressToLookup;
+ 398:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 399:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #if( ipconfigUSE_LLMNR == 1 )
+ 400:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	if( *pulIPAddress == ipLLMNR_IP_ADDR )	/* Is in network byte order */
+ 594              		.loc 1 400 0
+ 595 000a 7B68     		ldr	r3, [r7, #4]
+ 596 000c 1B68     		ldr	r3, [r3]
+ 597 000e 2A4A     		ldr	r2, .L39
+ 598 0010 9342     		cmp	r3, r2
+ 599 0012 08D1     		bne	.L30
+ 401:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	{
+ 402:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		/* The LLMNR IP-address has a fixed virtual MAC address */
+ 403:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		memcpy( pxMACAddress->ucBytes, xLLMNR_MacAdress.ucBytes, sizeof( MACAddress_t ) );
+ 600              		.loc 1 403 0
+ 601 0014 3B68     		ldr	r3, [r7]
+ 602 0016 294A     		ldr	r2, .L39+4
+ 603 0018 1168     		ldr	r1, [r2]	@ unaligned
+ 604 001a 1960     		str	r1, [r3]	@ unaligned
+ 605 001c 9288     		ldrh	r2, [r2, #4]	@ unaligned
+ 606 001e 9A80     		strh	r2, [r3, #4]	@ unaligned
+ 404:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		eReturn = eARPCacheHit;
+ 607              		.loc 1 404 0
+ 608 0020 0123     		movs	r3, #1
+ 609 0022 FB73     		strb	r3, [r7, #15]
+ 610 0024 42E0     		b	.L31
+ 611              	.L30:
+ARM GAS  /tmp/ccdtxUmK.s 			page 19
+
+
+ 405:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	}
+ 406:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	else
+ 407:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #endif
+ 408:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	if( ( *pulIPAddress == ipBROADCAST_IP_ADDRESS ) ||	/* Is it the general broadcast address 255.255.
+ 612              		.loc 1 408 0
+ 613 0026 7B68     		ldr	r3, [r7, #4]
+ 614 0028 1B68     		ldr	r3, [r3]
+ 615 002a B3F1FF3F 		cmp	r3, #-1
+ 616 002e 05D0     		beq	.L32
+ 409:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		( *pulIPAddress == xNetworkAddressing.ulBroadcastAddress ) )/* Or a local broadcast address, eg 1
+ 617              		.loc 1 409 0 discriminator 1
+ 618 0030 7B68     		ldr	r3, [r7, #4]
+ 619 0032 1A68     		ldr	r2, [r3]
+ 620 0034 224B     		ldr	r3, .L39+8
+ 621 0036 1B69     		ldr	r3, [r3, #16]
+ 408:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		( *pulIPAddress == xNetworkAddressing.ulBroadcastAddress ) )/* Or a local broadcast address, eg 1
+ 622              		.loc 1 408 0 discriminator 1
+ 623 0038 9A42     		cmp	r2, r3
+ 624 003a 08D1     		bne	.L33
+ 625              	.L32:
+ 410:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	{
+ 411:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		/* This is a broadcast so uses the broadcast MAC address. */
+ 412:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		memcpy( pxMACAddress->ucBytes, xBroadcastMACAddress.ucBytes, sizeof( MACAddress_t ) );
+ 626              		.loc 1 412 0
+ 627 003c 3B68     		ldr	r3, [r7]
+ 628 003e 214A     		ldr	r2, .L39+12
+ 629 0040 1168     		ldr	r1, [r2]	@ unaligned
+ 630 0042 1960     		str	r1, [r3]	@ unaligned
+ 631 0044 9288     		ldrh	r2, [r2, #4]	@ unaligned
+ 632 0046 9A80     		strh	r2, [r3, #4]	@ unaligned
+ 413:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		eReturn = eARPCacheHit;
+ 633              		.loc 1 413 0
+ 634 0048 0123     		movs	r3, #1
+ 635 004a FB73     		strb	r3, [r7, #15]
+ 636 004c 2EE0     		b	.L31
+ 637              	.L33:
+ 414:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	}
+ 415:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	else if( *ipLOCAL_IP_ADDRESS_POINTER == 0UL )
+ 638              		.loc 1 415 0
+ 639 004e 1E4B     		ldr	r3, .L39+16
+ 640 0050 5B69     		ldr	r3, [r3, #20]
+ 641 0052 002B     		cmp	r3, #0
+ 642 0054 02D1     		bne	.L34
+ 416:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	{
+ 417:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		/* The IP address has not yet been assigned, so there is nothing that
+ 418:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		can be done. */
+ 419:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		eReturn = eCantSendPacket;
+ 643              		.loc 1 419 0
+ 644 0056 0223     		movs	r3, #2
+ 645 0058 FB73     		strb	r3, [r7, #15]
+ 646 005a 27E0     		b	.L31
+ 647              	.L34:
+ 420:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	}
+ 421:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	else
+ 422:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	{
+ 423:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		eReturn = eARPCacheMiss;
+ 648              		.loc 1 423 0
+ARM GAS  /tmp/ccdtxUmK.s 			page 20
+
+
+ 649 005c 0023     		movs	r3, #0
+ 650 005e FB73     		strb	r3, [r7, #15]
+ 424:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 425:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		if( ( *pulIPAddress & xNetworkAddressing.ulNetMask ) != ( ( *ipLOCAL_IP_ADDRESS_POINTER ) & xNetw
+ 651              		.loc 1 425 0
+ 652 0060 7B68     		ldr	r3, [r7, #4]
+ 653 0062 1A68     		ldr	r2, [r3]
+ 654 0064 184B     		ldr	r3, .L39+16
+ 655 0066 5B69     		ldr	r3, [r3, #20]
+ 656 0068 5A40     		eors	r2, r2, r3
+ 657 006a 154B     		ldr	r3, .L39+8
+ 658 006c 5B68     		ldr	r3, [r3, #4]
+ 659 006e 1340     		ands	r3, r3, r2
+ 660 0070 002B     		cmp	r3, #0
+ 661 0072 03D0     		beq	.L35
+ 426:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		{
+ 427:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #if( ipconfigARP_STORES_REMOTE_ADDRESSES == 1 )
+ 428:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			eReturn = prvCacheLookup( *pulIPAddress, pxMACAddress );
+ 429:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 430:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			if( eReturn == eARPCacheHit )
+ 431:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			{
+ 432:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				/* The stack is configured to store 'remote IP addresses', i.e. addresses
+ 433:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				belonging to a different the netmask.  prvCacheLookup() returned a hit, so
+ 434:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				the MAC address is known */
+ 435:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			}
+ 436:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			else
+ 437:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #endif
+ 438:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			{
+ 439:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				/* The IP address is off the local network, so look up the
+ 440:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				hardware address of the router, if any. */
+ 441:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				ulAddressToLookup = xNetworkAddressing.ulGatewayAddress;
+ 662              		.loc 1 441 0
+ 663 0074 124B     		ldr	r3, .L39+8
+ 664 0076 9B68     		ldr	r3, [r3, #8]
+ 665 0078 BB60     		str	r3, [r7, #8]
+ 666 007a 02E0     		b	.L36
+ 667              	.L35:
+ 442:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			}
+ 443:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		}
+ 444:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		else
+ 445:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		{
+ 446:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			/* The IP address is on the local network, so lookup the requested
+ 447:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			IP address directly. */
+ 448:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			ulAddressToLookup = *pulIPAddress;
+ 668              		.loc 1 448 0
+ 669 007c 7B68     		ldr	r3, [r7, #4]
+ 670 007e 1B68     		ldr	r3, [r3]
+ 671 0080 BB60     		str	r3, [r7, #8]
+ 672              	.L36:
+ 449:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		}
+ 450:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 451:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		if( eReturn == eARPCacheMiss )
+ 673              		.loc 1 451 0
+ 674 0082 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 675 0084 002B     		cmp	r3, #0
+ 676 0086 11D1     		bne	.L31
+ 452:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		{
+ARM GAS  /tmp/ccdtxUmK.s 			page 21
+
+
+ 453:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			if( ulAddressToLookup == 0UL )
+ 677              		.loc 1 453 0
+ 678 0088 BB68     		ldr	r3, [r7, #8]
+ 679 008a 002B     		cmp	r3, #0
+ 680 008c 02D1     		bne	.L37
+ 454:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			{
+ 455:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				/* The address is not on the local network, and there is not a
+ 456:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				router. */
+ 457:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				eReturn = eCantSendPacket;
+ 681              		.loc 1 457 0
+ 682 008e 0223     		movs	r3, #2
+ 683 0090 FB73     		strb	r3, [r7, #15]
+ 684 0092 0BE0     		b	.L31
+ 685              	.L37:
+ 458:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			}
+ 459:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			else
+ 460:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			{
+ 461:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				eReturn = prvCacheLookup( ulAddressToLookup, pxMACAddress );
+ 686              		.loc 1 461 0
+ 687 0094 B868     		ldr	r0, [r7, #8]
+ 688 0096 3968     		ldr	r1, [r7]
+ 689 0098 FFF7FEFF 		bl	prvCacheLookup
+ 690 009c 0346     		mov	r3, r0
+ 691 009e FB73     		strb	r3, [r7, #15]
+ 462:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 463:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				if( eReturn == eARPCacheMiss )
+ 692              		.loc 1 463 0
+ 693 00a0 FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 694 00a2 002B     		cmp	r3, #0
+ 695 00a4 02D1     		bne	.L31
+ 464:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				{
+ 465:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					/* It might be that the ARP has to go to the gateway. */
+ 466:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					*pulIPAddress = ulAddressToLookup;
+ 696              		.loc 1 466 0
+ 697 00a6 7B68     		ldr	r3, [r7, #4]
+ 698 00a8 BA68     		ldr	r2, [r7, #8]
+ 699 00aa 1A60     		str	r2, [r3]
+ 700              	.L31:
+ 467:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				}
+ 468:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			}
+ 469:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		}
+ 470:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	}
+ 471:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 472:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	return eReturn;
+ 701              		.loc 1 472 0
+ 702 00ac FB7B     		ldrb	r3, [r7, #15]	@ zero_extendqisi2
+ 473:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** }
+ 703              		.loc 1 473 0
+ 704 00ae 1846     		mov	r0, r3
+ 705 00b0 1037     		adds	r7, r7, #16
+ 706              	.LCFI13:
+ 707              		.cfi_def_cfa_offset 8
+ 708 00b2 BD46     		mov	sp, r7
+ 709              	.LCFI14:
+ 710              		.cfi_def_cfa_register 13
+ 711              		@ sp needed
+ 712 00b4 80BD     		pop	{r7, pc}
+ARM GAS  /tmp/ccdtxUmK.s 			page 22
+
+
+ 713              	.L40:
+ 714 00b6 00BF     		.align	2
+ 715              	.L39:
+ 716 00b8 E00000FC 		.word	-67108640
+ 717 00bc 00000000 		.word	xLLMNR_MacAdress
+ 718 00c0 00000000 		.word	xNetworkAddressing
+ 719 00c4 00000000 		.word	xBroadcastMACAddress
+ 720 00c8 00000000 		.word	xDefaultPartUDPPacketHeader
+ 721              		.cfi_endproc
+ 722              	.LFE31:
+ 724              		.section	.text.prvCacheLookup,"ax",%progbits
+ 725              		.align	2
+ 726              		.thumb
+ 727              		.thumb_func
+ 729              	prvCacheLookup:
+ 730              	.LFB32:
+ 474:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 475:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /*-----------------------------------------------------------*/
+ 476:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 477:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** static eARPLookupResult_t prvCacheLookup( uint32_t ulAddressToLookup, MACAddress_t * const pxMACAdd
+ 478:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** {
+ 731              		.loc 1 478 0
+ 732              		.cfi_startproc
+ 733              		@ args = 0, pretend = 0, frame = 16
+ 734              		@ frame_needed = 1, uses_anonymous_args = 0
+ 735              		@ link register save eliminated.
+ 736 0000 80B4     		push	{r7}
+ 737              	.LCFI15:
+ 738              		.cfi_def_cfa_offset 4
+ 739              		.cfi_offset 7, -4
+ 740 0002 85B0     		sub	sp, sp, #20
+ 741              	.LCFI16:
+ 742              		.cfi_def_cfa_offset 24
+ 743 0004 00AF     		add	r7, sp, #0
+ 744              	.LCFI17:
+ 745              		.cfi_def_cfa_register 7
+ 746 0006 7860     		str	r0, [r7, #4]
+ 747 0008 3960     		str	r1, [r7]
+ 479:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** BaseType_t x;
+ 480:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** eARPLookupResult_t eReturn = eARPCacheMiss;
+ 748              		.loc 1 480 0
+ 749 000a 0023     		movs	r3, #0
+ 750 000c FB72     		strb	r3, [r7, #11]
+ 481:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 482:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	/* Loop through each entry in the ARP cache. */
+ 483:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	for( x = 0; x < ipconfigARP_CACHE_ENTRIES; x++ )
+ 751              		.loc 1 483 0
+ 752 000e 0023     		movs	r3, #0
+ 753 0010 FB60     		str	r3, [r7, #12]
+ 754 0012 2CE0     		b	.L42
+ 755              	.L47:
+ 484:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	{
+ 485:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		/* Does this row in the ARP cache table hold an entry for the IP address
+ 486:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		being queried? */
+ 487:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		if( xARPCache[ x ].ulIPAddress == ulAddressToLookup )
+ 756              		.loc 1 487 0
+ 757 0014 1B49     		ldr	r1, .L49
+ARM GAS  /tmp/ccdtxUmK.s 			page 23
+
+
+ 758 0016 FA68     		ldr	r2, [r7, #12]
+ 759 0018 1346     		mov	r3, r2
+ 760 001a 5B00     		lsls	r3, r3, #1
+ 761 001c 1344     		add	r3, r3, r2
+ 762 001e 9B00     		lsls	r3, r3, #2
+ 763 0020 0B44     		add	r3, r3, r1
+ 764 0022 1A68     		ldr	r2, [r3]
+ 765 0024 7B68     		ldr	r3, [r7, #4]
+ 766 0026 9A42     		cmp	r2, r3
+ 767 0028 1ED1     		bne	.L43
+ 488:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		{
+ 489:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			/* A matching valid entry was found. */
+ 490:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			if( xARPCache[ x ].ucValid == ( uint8_t ) pdFALSE )
+ 768              		.loc 1 490 0
+ 769 002a 1649     		ldr	r1, .L49
+ 770 002c FA68     		ldr	r2, [r7, #12]
+ 771 002e 1346     		mov	r3, r2
+ 772 0030 5B00     		lsls	r3, r3, #1
+ 773 0032 1344     		add	r3, r3, r2
+ 774 0034 9B00     		lsls	r3, r3, #2
+ 775 0036 0B44     		add	r3, r3, r1
+ 776 0038 0833     		adds	r3, r3, #8
+ 777 003a DB78     		ldrb	r3, [r3, #3]	@ zero_extendqisi2
+ 778 003c 002B     		cmp	r3, #0
+ 779 003e 02D1     		bne	.L44
+ 491:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			{
+ 492:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				/* This entry is waiting an ARP reply, so is not valid. */
+ 493:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				eReturn = eCantSendPacket;
+ 780              		.loc 1 493 0
+ 781 0040 0223     		movs	r3, #2
+ 782 0042 FB72     		strb	r3, [r7, #11]
+ 494:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			}
+ 495:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			else
+ 496:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			{
+ 497:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				/* A valid entry was found. */
+ 498:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				memcpy( pxMACAddress->ucBytes, xARPCache[ x ].xMACAddress.ucBytes, sizeof( MACAddress_t ) );
+ 499:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				eReturn = eARPCacheHit;
+ 500:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			}
+ 501:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			break;
+ 783              		.loc 1 501 0
+ 784 0044 16E0     		b	.L46
+ 785              	.L44:
+ 498:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				eReturn = eARPCacheHit;
+ 786              		.loc 1 498 0
+ 787 0046 3968     		ldr	r1, [r7]
+ 788 0048 FA68     		ldr	r2, [r7, #12]
+ 789 004a 1346     		mov	r3, r2
+ 790 004c 5B00     		lsls	r3, r3, #1
+ 791 004e 1344     		add	r3, r3, r2
+ 792 0050 9B00     		lsls	r3, r3, #2
+ 793 0052 0C4A     		ldr	r2, .L49
+ 794 0054 1344     		add	r3, r3, r2
+ 795 0056 1A1D     		adds	r2, r3, #4
+ 796 0058 0B46     		mov	r3, r1
+ 797 005a 1168     		ldr	r1, [r2]	@ unaligned
+ 798 005c 1960     		str	r1, [r3]	@ unaligned
+ 799 005e 9288     		ldrh	r2, [r2, #4]	@ unaligned
+ARM GAS  /tmp/ccdtxUmK.s 			page 24
+
+
+ 800 0060 9A80     		strh	r2, [r3, #4]	@ unaligned
+ 499:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			}
+ 801              		.loc 1 499 0
+ 802 0062 0123     		movs	r3, #1
+ 803 0064 FB72     		strb	r3, [r7, #11]
+ 804              		.loc 1 501 0
+ 805 0066 05E0     		b	.L46
+ 806              	.L43:
+ 483:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	{
+ 807              		.loc 1 483 0 discriminator 2
+ 808 0068 FB68     		ldr	r3, [r7, #12]
+ 809 006a 0133     		adds	r3, r3, #1
+ 810 006c FB60     		str	r3, [r7, #12]
+ 811              	.L42:
+ 483:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	{
+ 812              		.loc 1 483 0 is_stmt 0 discriminator 1
+ 813 006e FB68     		ldr	r3, [r7, #12]
+ 814 0070 052B     		cmp	r3, #5
+ 815 0072 CFDD     		ble	.L47
+ 816              	.L46:
+ 502:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		}
+ 503:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	}
+ 504:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 505:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	return eReturn;
+ 817              		.loc 1 505 0 is_stmt 1
+ 818 0074 FB7A     		ldrb	r3, [r7, #11]	@ zero_extendqisi2
+ 506:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** }
+ 819              		.loc 1 506 0
+ 820 0076 1846     		mov	r0, r3
+ 821 0078 1437     		adds	r7, r7, #20
+ 822              	.LCFI18:
+ 823              		.cfi_def_cfa_offset 4
+ 824 007a BD46     		mov	sp, r7
+ 825              	.LCFI19:
+ 826              		.cfi_def_cfa_register 13
+ 827              		@ sp needed
+ 828 007c 5DF8047B 		ldr	r7, [sp], #4
+ 829              	.LCFI20:
+ 830              		.cfi_restore 7
+ 831              		.cfi_def_cfa_offset 0
+ 832 0080 7047     		bx	lr
+ 833              	.L50:
+ 834 0082 00BF     		.align	2
+ 835              	.L49:
+ 836 0084 00000000 		.word	xARPCache
+ 837              		.cfi_endproc
+ 838              	.LFE32:
+ 840              		.section	.text.vARPAgeCache,"ax",%progbits
+ 841              		.align	2
+ 842              		.global	vARPAgeCache
+ 843              		.thumb
+ 844              		.thumb_func
+ 846              	vARPAgeCache:
+ 847              	.LFB33:
+ 507:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /*-----------------------------------------------------------*/
+ 508:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 509:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** void vARPAgeCache( void )
+ARM GAS  /tmp/ccdtxUmK.s 			page 25
+
+
+ 510:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** {
+ 848              		.loc 1 510 0
+ 849              		.cfi_startproc
+ 850              		@ args = 0, pretend = 0, frame = 8
+ 851              		@ frame_needed = 1, uses_anonymous_args = 0
+ 852 0000 80B5     		push	{r7, lr}
+ 853              	.LCFI21:
+ 854              		.cfi_def_cfa_offset 8
+ 855              		.cfi_offset 7, -8
+ 856              		.cfi_offset 14, -4
+ 857 0002 82B0     		sub	sp, sp, #8
+ 858              	.LCFI22:
+ 859              		.cfi_def_cfa_offset 16
+ 860 0004 00AF     		add	r7, sp, #0
+ 861              	.LCFI23:
+ 862              		.cfi_def_cfa_register 7
+ 511:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** BaseType_t x;
+ 512:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** TickType_t xTimeNow;
+ 513:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 514:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	/* Loop through each entry in the ARP cache. */
+ 515:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	for( x = 0; x < ipconfigARP_CACHE_ENTRIES; x++ )
+ 863              		.loc 1 515 0
+ 864 0006 0023     		movs	r3, #0
+ 865 0008 7B60     		str	r3, [r7, #4]
+ 866 000a 63E0     		b	.L52
+ 867              	.L56:
+ 516:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	{
+ 517:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		/* If the entry is valid (its age is greater than zero). */
+ 518:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		if( xARPCache[ x ].ucAge > 0U )
+ 868              		.loc 1 518 0
+ 869 000c 4049     		ldr	r1, .L59
+ 870 000e 7A68     		ldr	r2, [r7, #4]
+ 871 0010 1346     		mov	r3, r2
+ 872 0012 5B00     		lsls	r3, r3, #1
+ 873 0014 1344     		add	r3, r3, r2
+ 874 0016 9B00     		lsls	r3, r3, #2
+ 875 0018 0B44     		add	r3, r3, r1
+ 876 001a 0833     		adds	r3, r3, #8
+ 877 001c 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 878 001e 002B     		cmp	r3, #0
+ 879 0020 55D0     		beq	.L53
+ 519:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		{
+ 520:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			/* Decrement the age value of the entry in this ARP cache table row.
+ 521:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			When the age reaches zero it is no longer considered valid. */
+ 522:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			( xARPCache[ x ].ucAge )--;
+ 880              		.loc 1 522 0
+ 881 0022 3B49     		ldr	r1, .L59
+ 882 0024 7A68     		ldr	r2, [r7, #4]
+ 883 0026 1346     		mov	r3, r2
+ 884 0028 5B00     		lsls	r3, r3, #1
+ 885 002a 1344     		add	r3, r3, r2
+ 886 002c 9B00     		lsls	r3, r3, #2
+ 887 002e 0B44     		add	r3, r3, r1
+ 888 0030 0833     		adds	r3, r3, #8
+ 889 0032 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 890 0034 013B     		subs	r3, r3, #1
+ 891 0036 D8B2     		uxtb	r0, r3
+ARM GAS  /tmp/ccdtxUmK.s 			page 26
+
+
+ 892 0038 3549     		ldr	r1, .L59
+ 893 003a 7A68     		ldr	r2, [r7, #4]
+ 894 003c 1346     		mov	r3, r2
+ 895 003e 5B00     		lsls	r3, r3, #1
+ 896 0040 1344     		add	r3, r3, r2
+ 897 0042 9B00     		lsls	r3, r3, #2
+ 898 0044 0B44     		add	r3, r3, r1
+ 899 0046 0833     		adds	r3, r3, #8
+ 900 0048 0246     		mov	r2, r0
+ 901 004a 9A70     		strb	r2, [r3, #2]
+ 523:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 524:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			/* If the entry is not yet valid, then it is waiting an ARP
+ 525:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			reply, and the ARP request should be retransmitted. */
+ 526:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			if( xARPCache[ x ].ucValid == ( uint8_t ) pdFALSE )
+ 902              		.loc 1 526 0
+ 903 004c 3049     		ldr	r1, .L59
+ 904 004e 7A68     		ldr	r2, [r7, #4]
+ 905 0050 1346     		mov	r3, r2
+ 906 0052 5B00     		lsls	r3, r3, #1
+ 907 0054 1344     		add	r3, r3, r2
+ 908 0056 9B00     		lsls	r3, r3, #2
+ 909 0058 0B44     		add	r3, r3, r1
+ 910 005a 0833     		adds	r3, r3, #8
+ 911 005c DB78     		ldrb	r3, [r3, #3]	@ zero_extendqisi2
+ 912 005e 002B     		cmp	r3, #0
+ 913 0060 0BD1     		bne	.L54
+ 527:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			{
+ 528:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				FreeRTOS_OutputARPRequest( xARPCache[ x ].ulIPAddress );
+ 914              		.loc 1 528 0
+ 915 0062 2B49     		ldr	r1, .L59
+ 916 0064 7A68     		ldr	r2, [r7, #4]
+ 917 0066 1346     		mov	r3, r2
+ 918 0068 5B00     		lsls	r3, r3, #1
+ 919 006a 1344     		add	r3, r3, r2
+ 920 006c 9B00     		lsls	r3, r3, #2
+ 921 006e 0B44     		add	r3, r3, r1
+ 922 0070 1B68     		ldr	r3, [r3]
+ 923 0072 1846     		mov	r0, r3
+ 924 0074 FFF7FEFF 		bl	FreeRTOS_OutputARPRequest
+ 925 0078 15E0     		b	.L55
+ 926              	.L54:
+ 529:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			}
+ 530:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			else if( xARPCache[ x ].ucAge <= ( uint8_t ) arpMAX_ARP_AGE_BEFORE_NEW_ARP_REQUEST )
+ 927              		.loc 1 530 0
+ 928 007a 2549     		ldr	r1, .L59
+ 929 007c 7A68     		ldr	r2, [r7, #4]
+ 930 007e 1346     		mov	r3, r2
+ 931 0080 5B00     		lsls	r3, r3, #1
+ 932 0082 1344     		add	r3, r3, r2
+ 933 0084 9B00     		lsls	r3, r3, #2
+ 934 0086 0B44     		add	r3, r3, r1
+ 935 0088 0833     		adds	r3, r3, #8
+ 936 008a 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 937 008c 032B     		cmp	r3, #3
+ 938 008e 0AD8     		bhi	.L55
+ 531:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			{
+ 532:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				/* This entry will get removed soon.  See if the MAC address is
+ARM GAS  /tmp/ccdtxUmK.s 			page 27
+
+
+ 533:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				still valid to prevent this happening. */
+ 534:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				iptraceARP_TABLE_ENTRY_WILL_EXPIRE( xARPCache[ x ].ulIPAddress );
+ 535:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				FreeRTOS_OutputARPRequest( xARPCache[ x ].ulIPAddress );
+ 939              		.loc 1 535 0
+ 940 0090 1F49     		ldr	r1, .L59
+ 941 0092 7A68     		ldr	r2, [r7, #4]
+ 942 0094 1346     		mov	r3, r2
+ 943 0096 5B00     		lsls	r3, r3, #1
+ 944 0098 1344     		add	r3, r3, r2
+ 945 009a 9B00     		lsls	r3, r3, #2
+ 946 009c 0B44     		add	r3, r3, r1
+ 947 009e 1B68     		ldr	r3, [r3]
+ 948 00a0 1846     		mov	r0, r3
+ 949 00a2 FFF7FEFF 		bl	FreeRTOS_OutputARPRequest
+ 950              	.L55:
+ 536:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			}
+ 537:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			else
+ 538:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			{
+ 539:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				/* The age has just ticked down, with nothing to do. */
+ 540:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			}
+ 541:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 542:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			if( xARPCache[ x ].ucAge == 0u )
+ 951              		.loc 1 542 0
+ 952 00a6 1A49     		ldr	r1, .L59
+ 953 00a8 7A68     		ldr	r2, [r7, #4]
+ 954 00aa 1346     		mov	r3, r2
+ 955 00ac 5B00     		lsls	r3, r3, #1
+ 956 00ae 1344     		add	r3, r3, r2
+ 957 00b0 9B00     		lsls	r3, r3, #2
+ 958 00b2 0B44     		add	r3, r3, r1
+ 959 00b4 0833     		adds	r3, r3, #8
+ 960 00b6 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 961 00b8 002B     		cmp	r3, #0
+ 962 00ba 08D1     		bne	.L53
+ 543:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			{
+ 544:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				/* The entry is no longer valid.  Wipe it out. */
+ 545:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				iptraceARP_TABLE_ENTRY_EXPIRED( xARPCache[ x ].ulIPAddress );
+ 546:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				xARPCache[ x ].ulIPAddress = 0UL;
+ 963              		.loc 1 546 0
+ 964 00bc 1449     		ldr	r1, .L59
+ 965 00be 7A68     		ldr	r2, [r7, #4]
+ 966 00c0 1346     		mov	r3, r2
+ 967 00c2 5B00     		lsls	r3, r3, #1
+ 968 00c4 1344     		add	r3, r3, r2
+ 969 00c6 9B00     		lsls	r3, r3, #2
+ 970 00c8 0B44     		add	r3, r3, r1
+ 971 00ca 0022     		movs	r2, #0
+ 972 00cc 1A60     		str	r2, [r3]
+ 973              	.L53:
+ 515:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	{
+ 974              		.loc 1 515 0 discriminator 2
+ 975 00ce 7B68     		ldr	r3, [r7, #4]
+ 976 00d0 0133     		adds	r3, r3, #1
+ 977 00d2 7B60     		str	r3, [r7, #4]
+ 978              	.L52:
+ 515:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	{
+ 979              		.loc 1 515 0 is_stmt 0 discriminator 1
+ARM GAS  /tmp/ccdtxUmK.s 			page 28
+
+
+ 980 00d4 7B68     		ldr	r3, [r7, #4]
+ 981 00d6 052B     		cmp	r3, #5
+ 982 00d8 98DD     		ble	.L56
+ 547:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			}
+ 548:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		}
+ 549:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	}
+ 550:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 551:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	xTimeNow = xTaskGetTickCount ();
+ 983              		.loc 1 551 0 is_stmt 1
+ 984 00da FFF7FEFF 		bl	xTaskGetTickCount
+ 985 00de 3860     		str	r0, [r7]
+ 552:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 553:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	if( ( xLastGratuitousARPTime == ( TickType_t ) 0 ) || ( ( xTimeNow - xLastGratuitousARPTime ) > ( 
+ 986              		.loc 1 553 0
+ 987 00e0 0C4B     		ldr	r3, .L59+4
+ 988 00e2 1B68     		ldr	r3, [r3]
+ 989 00e4 002B     		cmp	r3, #0
+ 990 00e6 07D0     		beq	.L57
+ 991              		.loc 1 553 0 is_stmt 0 discriminator 1
+ 992 00e8 0A4B     		ldr	r3, .L59+4
+ 993 00ea 1B68     		ldr	r3, [r3]
+ 994 00ec 3A68     		ldr	r2, [r7]
+ 995 00ee D31A     		subs	r3, r2, r3
+ 996 00f0 44F62062 		movw	r2, #20000
+ 997 00f4 9342     		cmp	r3, r2
+ 998 00f6 07D9     		bls	.L51
+ 999              	.L57:
+ 554:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	{
+ 555:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		FreeRTOS_OutputARPRequest( *ipLOCAL_IP_ADDRESS_POINTER );
+ 1000              		.loc 1 555 0 is_stmt 1
+ 1001 00f8 074B     		ldr	r3, .L59+8
+ 1002 00fa 5B69     		ldr	r3, [r3, #20]
+ 1003 00fc 1846     		mov	r0, r3
+ 1004 00fe FFF7FEFF 		bl	FreeRTOS_OutputARPRequest
+ 556:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		xLastGratuitousARPTime = xTimeNow;
+ 1005              		.loc 1 556 0
+ 1006 0102 044A     		ldr	r2, .L59+4
+ 1007 0104 3B68     		ldr	r3, [r7]
+ 1008 0106 1360     		str	r3, [r2]
+ 1009              	.L51:
+ 557:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	}
+ 558:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** }
+ 1010              		.loc 1 558 0
+ 1011 0108 0837     		adds	r7, r7, #8
+ 1012              	.LCFI24:
+ 1013              		.cfi_def_cfa_offset 8
+ 1014 010a BD46     		mov	sp, r7
+ 1015              	.LCFI25:
+ 1016              		.cfi_def_cfa_register 13
+ 1017              		@ sp needed
+ 1018 010c 80BD     		pop	{r7, pc}
+ 1019              	.L60:
+ 1020 010e 00BF     		.align	2
+ 1021              	.L59:
+ 1022 0110 00000000 		.word	xARPCache
+ 1023 0114 00000000 		.word	xLastGratuitousARPTime
+ 1024 0118 00000000 		.word	xDefaultPartUDPPacketHeader
+ARM GAS  /tmp/ccdtxUmK.s 			page 29
+
+
+ 1025              		.cfi_endproc
+ 1026              	.LFE33:
+ 1028              		.section	.text.vARPSendGratuitous,"ax",%progbits
+ 1029              		.align	2
+ 1030              		.global	vARPSendGratuitous
+ 1031              		.thumb
+ 1032              		.thumb_func
+ 1034              	vARPSendGratuitous:
+ 1035              	.LFB34:
+ 559:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /*-----------------------------------------------------------*/
+ 560:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 561:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** void vARPSendGratuitous( void )
+ 562:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** {
+ 1036              		.loc 1 562 0
+ 1037              		.cfi_startproc
+ 1038              		@ args = 0, pretend = 0, frame = 0
+ 1039              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1040 0000 80B5     		push	{r7, lr}
+ 1041              	.LCFI26:
+ 1042              		.cfi_def_cfa_offset 8
+ 1043              		.cfi_offset 7, -8
+ 1044              		.cfi_offset 14, -4
+ 1045 0002 00AF     		add	r7, sp, #0
+ 1046              	.LCFI27:
+ 1047              		.cfi_def_cfa_register 7
+ 563:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	/* Setting xLastGratuitousARPTime to 0 will force a gratuitous ARP the next
+ 564:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	time vARPAgeCache() is called. */
+ 565:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	xLastGratuitousARPTime = ( TickType_t ) 0;
+ 1048              		.loc 1 565 0
+ 1049 0004 034B     		ldr	r3, .L62
+ 1050 0006 0022     		movs	r2, #0
+ 1051 0008 1A60     		str	r2, [r3]
+ 566:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 567:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	/* Let the IP-task call vARPAgeCache(). */
+ 568:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	xSendEventToIPTask( eARPTimerEvent );
+ 1052              		.loc 1 568 0
+ 1053 000a 0220     		movs	r0, #2
+ 1054 000c FFF7FEFF 		bl	xSendEventToIPTask
+ 569:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** }
+ 1055              		.loc 1 569 0
+ 1056 0010 80BD     		pop	{r7, pc}
+ 1057              	.L63:
+ 1058 0012 00BF     		.align	2
+ 1059              	.L62:
+ 1060 0014 00000000 		.word	xLastGratuitousARPTime
+ 1061              		.cfi_endproc
+ 1062              	.LFE34:
+ 1064              		.section	.text.FreeRTOS_OutputARPRequest,"ax",%progbits
+ 1065              		.align	2
+ 1066              		.global	FreeRTOS_OutputARPRequest
+ 1067              		.thumb
+ 1068              		.thumb_func
+ 1070              	FreeRTOS_OutputARPRequest:
+ 1071              	.LFB35:
+ 570:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 571:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /*-----------------------------------------------------------*/
+ 572:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** void FreeRTOS_OutputARPRequest( uint32_t ulIPAddress )
+ARM GAS  /tmp/ccdtxUmK.s 			page 30
+
+
+ 573:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** {
+ 1072              		.loc 1 573 0
+ 1073              		.cfi_startproc
+ 1074              		@ args = 0, pretend = 0, frame = 16
+ 1075              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1076 0000 80B5     		push	{r7, lr}
+ 1077              	.LCFI28:
+ 1078              		.cfi_def_cfa_offset 8
+ 1079              		.cfi_offset 7, -8
+ 1080              		.cfi_offset 14, -4
+ 1081 0002 84B0     		sub	sp, sp, #16
+ 1082              	.LCFI29:
+ 1083              		.cfi_def_cfa_offset 24
+ 1084 0004 00AF     		add	r7, sp, #0
+ 1085              	.LCFI30:
+ 1086              		.cfi_def_cfa_register 7
+ 1087 0006 7860     		str	r0, [r7, #4]
+ 574:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** NetworkBufferDescriptor_t *pxNetworkBuffer;
+ 575:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 576:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	/* This is called from the context of the IP event task, so a block time
+ 577:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	must not be used. */
+ 578:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	pxNetworkBuffer = pxGetNetworkBufferWithDescriptor( sizeof( ARPPacket_t ), ( TickType_t ) 0 );
+ 1088              		.loc 1 578 0
+ 1089 0008 2A20     		movs	r0, #42
+ 1090 000a 0021     		movs	r1, #0
+ 1091 000c FFF7FEFF 		bl	pxGetNetworkBufferWithDescriptor
+ 1092 0010 F860     		str	r0, [r7, #12]
+ 579:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 580:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	if( pxNetworkBuffer != NULL )
+ 1093              		.loc 1 580 0
+ 1094 0012 FB68     		ldr	r3, [r7, #12]
+ 1095 0014 002B     		cmp	r3, #0
+ 1096 0016 09D0     		beq	.L64
+ 581:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	{
+ 582:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		pxNetworkBuffer->ulIPAddress = ulIPAddress;
+ 1097              		.loc 1 582 0
+ 1098 0018 FB68     		ldr	r3, [r7, #12]
+ 1099 001a 7A68     		ldr	r2, [r7, #4]
+ 1100 001c 5A61     		str	r2, [r3, #20]
+ 583:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		vARPGenerateRequestPacket( pxNetworkBuffer );
+ 1101              		.loc 1 583 0
+ 1102 001e F868     		ldr	r0, [r7, #12]
+ 1103 0020 FFF7FEFF 		bl	vARPGenerateRequestPacket
+ 584:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 585:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		#if defined( ipconfigETHERNET_MINIMUM_PACKET_BYTES )
+ 586:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		{
+ 587:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			if( pxNetworkBuffer->xDataLength < ( size_t ) ipconfigETHERNET_MINIMUM_PACKET_BYTES )
+ 588:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			{
+ 589:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			BaseType_t xIndex;
+ 590:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 591:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				FreeRTOS_printf( ( "OutputARPRequest: length %lu\n", pxNetworkBuffer->xDataLength ) );
+ 592:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				for( xIndex = ( BaseType_t ) pxNetworkBuffer->xDataLength; xIndex < ( BaseType_t ) ipconfigETHE
+ 593:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				{
+ 594:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					pxNetworkBuffer->pucEthernetBuffer[ xIndex ] = 0u;
+ 595:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				}
+ 596:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				pxNetworkBuffer->xDataLength = ( size_t ) ipconfigETHERNET_MINIMUM_PACKET_BYTES;
+ 597:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			}
+ARM GAS  /tmp/ccdtxUmK.s 			page 31
+
+
+ 598:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		}
+ 599:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		#endif
+ 600:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 601:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		xNetworkInterfaceOutput( pxNetworkBuffer, pdTRUE );
+ 1104              		.loc 1 601 0
+ 1105 0024 F868     		ldr	r0, [r7, #12]
+ 1106 0026 0121     		movs	r1, #1
+ 1107 0028 FFF7FEFF 		bl	xNetworkInterfaceOutput
+ 1108              	.L64:
+ 602:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	}
+ 603:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** }
+ 1109              		.loc 1 603 0
+ 1110 002c 1037     		adds	r7, r7, #16
+ 1111              	.LCFI31:
+ 1112              		.cfi_def_cfa_offset 8
+ 1113 002e BD46     		mov	sp, r7
+ 1114              	.LCFI32:
+ 1115              		.cfi_def_cfa_register 13
+ 1116              		@ sp needed
+ 1117 0030 80BD     		pop	{r7, pc}
+ 1118              		.cfi_endproc
+ 1119              	.LFE35:
+ 1121 0032 00BF     		.section	.text.vARPGenerateRequestPacket,"ax",%progbits
+ 1122              		.align	2
+ 1123              		.global	vARPGenerateRequestPacket
+ 1124              		.thumb
+ 1125              		.thumb_func
+ 1127              	vARPGenerateRequestPacket:
+ 1128              	.LFB36:
+ 604:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 605:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** void vARPGenerateRequestPacket( NetworkBufferDescriptor_t * const pxNetworkBuffer )
+ 606:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** {
+ 1129              		.loc 1 606 0
+ 1130              		.cfi_startproc
+ 1131              		@ args = 0, pretend = 0, frame = 16
+ 1132              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1133 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 1134              	.LCFI33:
+ 1135              		.cfi_def_cfa_offset 20
+ 1136              		.cfi_offset 4, -20
+ 1137              		.cfi_offset 5, -16
+ 1138              		.cfi_offset 6, -12
+ 1139              		.cfi_offset 7, -8
+ 1140              		.cfi_offset 14, -4
+ 1141 0002 85B0     		sub	sp, sp, #20
+ 1142              	.LCFI34:
+ 1143              		.cfi_def_cfa_offset 40
+ 1144 0004 00AF     		add	r7, sp, #0
+ 1145              	.LCFI35:
+ 1146              		.cfi_def_cfa_register 7
+ 1147 0006 7860     		str	r0, [r7, #4]
+ 607:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** ARPPacket_t *pxARPPacket;
+ 608:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 609:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	pxARPPacket = ( ARPPacket_t * ) pxNetworkBuffer->pucEthernetBuffer;
+ 1148              		.loc 1 609 0
+ 1149 0008 7B68     		ldr	r3, [r7, #4]
+ 1150 000a 9B69     		ldr	r3, [r3, #24]
+ARM GAS  /tmp/ccdtxUmK.s 			page 32
+
+
+ 1151 000c FB60     		str	r3, [r7, #12]
+ 610:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 611:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	/* memcpy the const part of the header information into the correct
+ 612:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	location in the packet.  This copies:
+ 613:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		xEthernetHeader.ulDestinationAddress
+ 614:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		xEthernetHeader.usFrameType;
+ 615:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		xARPHeader.usHardwareType;
+ 616:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		xARPHeader.usProtocolType;
+ 617:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		xARPHeader.ucHardwareAddressLength;
+ 618:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		xARPHeader.ucProtocolAddressLength;
+ 619:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		xARPHeader.usOperation;
+ 620:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		xARPHeader.xTargetHardwareAddress;
+ 621:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	*/
+ 622:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	memcpy( ( void * ) &( pxARPPacket->xEthernetHeader ), ( void * ) xDefaultPartARPPacketHeader, size
+ 1152              		.loc 1 622 0
+ 1153 000e FB68     		ldr	r3, [r7, #12]
+ 1154 0010 194A     		ldr	r2, .L68
+ 1155 0012 1446     		mov	r4, r2
+ 1156 0014 9E46     		mov	lr, r3
+ 1157 0016 04F1200C 		add	ip, r4, #32
+ 1158              	.L67:
+ 1159 001a 7546     		mov	r5, lr
+ 1160 001c 2646     		mov	r6, r4
+ 1161 001e 0FCE     		ldmia	r6!, {r0, r1, r2, r3}
+ 1162 0020 2860     		str	r0, [r5]	@ unaligned
+ 1163 0022 6960     		str	r1, [r5, #4]	@ unaligned
+ 1164 0024 AA60     		str	r2, [r5, #8]	@ unaligned
+ 1165 0026 EB60     		str	r3, [r5, #12]	@ unaligned
+ 1166 0028 1034     		adds	r4, r4, #16
+ 1167 002a 0EF1100E 		add	lr, lr, #16
+ 1168 002e 6445     		cmp	r4, ip
+ 1169 0030 F3D1     		bne	.L67
+ 1170 0032 7346     		mov	r3, lr
+ 1171 0034 2246     		mov	r2, r4
+ 1172 0036 1068     		ldr	r0, [r2]	@ unaligned
+ 1173 0038 1860     		str	r0, [r3]	@ unaligned
+ 1174 003a 9288     		ldrh	r2, [r2, #4]	@ unaligned
+ 1175 003c 9A80     		strh	r2, [r3, #4]	@ unaligned
+ 623:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	memcpy( ( void * ) pxARPPacket->xEthernetHeader.xSourceAddress.ucBytes , ( void * ) ipLOCAL_MAC_AD
+ 1176              		.loc 1 623 0
+ 1177 003e FB68     		ldr	r3, [r7, #12]
+ 1178 0040 0633     		adds	r3, r3, #6
+ 1179 0042 1846     		mov	r0, r3
+ 1180 0044 0D49     		ldr	r1, .L68+4
+ 1181 0046 0622     		movs	r2, #6
+ 1182 0048 FFF7FEFF 		bl	memcpy
+ 624:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	memcpy( ( void * ) pxARPPacket->xARPHeader.xSenderHardwareAddress.ucBytes, ( void * ) ipLOCAL_MAC_
+ 1183              		.loc 1 624 0
+ 1184 004c FB68     		ldr	r3, [r7, #12]
+ 1185 004e 1633     		adds	r3, r3, #22
+ 1186 0050 1846     		mov	r0, r3
+ 1187 0052 0A49     		ldr	r1, .L68+4
+ 1188 0054 0622     		movs	r2, #6
+ 1189 0056 FFF7FEFF 		bl	memcpy
+ 625:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	/* HT:endian: network to network */
+ 626:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	pxARPPacket->xARPHeader.ulSenderProtocolAddress = *ipLOCAL_IP_ADDRESS_POINTER;
+ 1190              		.loc 1 626 0
+ARM GAS  /tmp/ccdtxUmK.s 			page 33
+
+
+ 1191 005a 084B     		ldr	r3, .L68+4
+ 1192 005c 5A69     		ldr	r2, [r3, #20]
+ 1193 005e FB68     		ldr	r3, [r7, #12]
+ 1194 0060 DA61     		str	r2, [r3, #28]	@ unaligned
+ 627:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	pxARPPacket->xARPHeader.ulTargetProtocolAddress = pxNetworkBuffer->ulIPAddress;
+ 1195              		.loc 1 627 0
+ 1196 0062 7B68     		ldr	r3, [r7, #4]
+ 1197 0064 5A69     		ldr	r2, [r3, #20]
+ 1198 0066 FB68     		ldr	r3, [r7, #12]
+ 1199 0068 C3F82620 		str	r2, [r3, #38]	@ unaligned
+ 628:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 629:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	pxNetworkBuffer->xDataLength = sizeof( ARPPacket_t );
+ 1200              		.loc 1 629 0
+ 1201 006c 7B68     		ldr	r3, [r7, #4]
+ 1202 006e 2A22     		movs	r2, #42
+ 1203 0070 DA61     		str	r2, [r3, #28]
+ 630:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 631:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	iptraceCREATING_ARP_REQUEST( pxNetworkBuffer->ulIPAddress );
+ 632:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** }
+ 1204              		.loc 1 632 0
+ 1205 0072 1437     		adds	r7, r7, #20
+ 1206              	.LCFI36:
+ 1207              		.cfi_def_cfa_offset 20
+ 1208 0074 BD46     		mov	sp, r7
+ 1209              	.LCFI37:
+ 1210              		.cfi_def_cfa_register 13
+ 1211              		@ sp needed
+ 1212 0076 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 1213              	.L69:
+ 1214              		.align	2
+ 1215              	.L68:
+ 1216 0078 00000000 		.word	xDefaultPartARPPacketHeader
+ 1217 007c 00000000 		.word	xDefaultPartUDPPacketHeader
+ 1218              		.cfi_endproc
+ 1219              	.LFE36:
+ 1221              		.section	.text.FreeRTOS_ClearARP,"ax",%progbits
+ 1222              		.align	2
+ 1223              		.global	FreeRTOS_ClearARP
+ 1224              		.thumb
+ 1225              		.thumb_func
+ 1227              	FreeRTOS_ClearARP:
+ 1228              	.LFB37:
+ 633:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /*-----------------------------------------------------------*/
+ 634:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 635:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** void FreeRTOS_ClearARP( void )
+ 636:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** {
+ 1229              		.loc 1 636 0
+ 1230              		.cfi_startproc
+ 1231              		@ args = 0, pretend = 0, frame = 0
+ 1232              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1233 0000 80B5     		push	{r7, lr}
+ 1234              	.LCFI38:
+ 1235              		.cfi_def_cfa_offset 8
+ 1236              		.cfi_offset 7, -8
+ 1237              		.cfi_offset 14, -4
+ 1238 0002 00AF     		add	r7, sp, #0
+ 1239              	.LCFI39:
+ARM GAS  /tmp/ccdtxUmK.s 			page 34
+
+
+ 1240              		.cfi_def_cfa_register 7
+ 637:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	memset( xARPCache, '\0', sizeof( xARPCache ) );
+ 1241              		.loc 1 637 0
+ 1242 0004 0248     		ldr	r0, .L71
+ 1243 0006 0021     		movs	r1, #0
+ 1244 0008 4822     		movs	r2, #72
+ 1245 000a FFF7FEFF 		bl	memset
+ 638:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** }
+ 1246              		.loc 1 638 0
+ 1247 000e 80BD     		pop	{r7, pc}
+ 1248              	.L72:
+ 1249              		.align	2
+ 1250              	.L71:
+ 1251 0010 00000000 		.word	xARPCache
+ 1252              		.cfi_endproc
+ 1253              	.LFE37:
+ 1255              		.section	.rodata
+ 1256              		.align	2
+ 1257              	.LC0:
+ 1258 0000 41727020 		.ascii	"Arp %2ld: %3u - %16lxip : %02x:%02x:%02x : %02x:%02"
+ 1258      25326C64 
+ 1258      3A202533 
+ 1258      75202D20 
+ 1258      2531366C 
+ 1259 0033 783A2530 		.ascii	"x:%02x\012\000"
+ 1259      32780A00 
+ 1260 003b 00       		.align	2
+ 1261              	.LC1:
+ 1262 003c 41727020 		.ascii	"Arp has %ld entries\012\000"
+ 1262      68617320 
+ 1262      256C6420 
+ 1262      656E7472 
+ 1262      6965730A 
+ 1263              		.section	.text.FreeRTOS_PrintARPCache,"ax",%progbits
+ 1264              		.align	2
+ 1265              		.global	FreeRTOS_PrintARPCache
+ 1266              		.thumb
+ 1267              		.thumb_func
+ 1269              	FreeRTOS_PrintARPCache:
+ 1270              	.LFB38:
+ 639:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** /*-----------------------------------------------------------*/
+ 640:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 641:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** #if( ipconfigHAS_PRINTF != 0 ) || ( ipconfigHAS_DEBUG_PRINTF != 0 )
+ 642:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 643:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	void FreeRTOS_PrintARPCache( void )
+ 644:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	{
+ 1271              		.loc 1 644 0
+ 1272              		.cfi_startproc
+ 1273              		@ args = 0, pretend = 0, frame = 8
+ 1274              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1275 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 1276              	.LCFI40:
+ 1277              		.cfi_def_cfa_offset 24
+ 1278              		.cfi_offset 4, -24
+ 1279              		.cfi_offset 5, -20
+ 1280              		.cfi_offset 6, -16
+ 1281              		.cfi_offset 7, -12
+ARM GAS  /tmp/ccdtxUmK.s 			page 35
+
+
+ 1282              		.cfi_offset 8, -8
+ 1283              		.cfi_offset 14, -4
+ 1284 0004 88B0     		sub	sp, sp, #32
+ 1285              	.LCFI41:
+ 1286              		.cfi_def_cfa_offset 56
+ 1287 0006 06AF     		add	r7, sp, #24
+ 1288              	.LCFI42:
+ 1289              		.cfi_def_cfa 7, 32
+ 645:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	BaseType_t x, xCount = 0;
+ 1290              		.loc 1 645 0
+ 1291 0008 0023     		movs	r3, #0
+ 1292 000a 3B60     		str	r3, [r7]
+ 646:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 647:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		/* Loop through each entry in the ARP cache. */
+ 648:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		for( x = 0; x < ipconfigARP_CACHE_ENTRIES; x++ )
+ 1293              		.loc 1 648 0
+ 1294 000c 0023     		movs	r3, #0
+ 1295 000e 7B60     		str	r3, [r7, #4]
+ 1296 0010 74E0     		b	.L74
+ 1297              	.L76:
+ 649:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		{
+ 650:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			if( ( xARPCache[ x ].ulIPAddress != 0ul ) && ( xARPCache[ x ].ucAge > 0U ) )
+ 1298              		.loc 1 650 0
+ 1299 0012 4049     		ldr	r1, .L77
+ 1300 0014 7A68     		ldr	r2, [r7, #4]
+ 1301 0016 1346     		mov	r3, r2
+ 1302 0018 5B00     		lsls	r3, r3, #1
+ 1303 001a 1344     		add	r3, r3, r2
+ 1304 001c 9B00     		lsls	r3, r3, #2
+ 1305 001e 0B44     		add	r3, r3, r1
+ 1306 0020 1B68     		ldr	r3, [r3]
+ 1307 0022 002B     		cmp	r3, #0
+ 1308 0024 67D0     		beq	.L75
+ 1309              		.loc 1 650 0 is_stmt 0 discriminator 1
+ 1310 0026 3B49     		ldr	r1, .L77
+ 1311 0028 7A68     		ldr	r2, [r7, #4]
+ 1312 002a 1346     		mov	r3, r2
+ 1313 002c 5B00     		lsls	r3, r3, #1
+ 1314 002e 1344     		add	r3, r3, r2
+ 1315 0030 9B00     		lsls	r3, r3, #2
+ 1316 0032 0B44     		add	r3, r3, r1
+ 1317 0034 0833     		adds	r3, r3, #8
+ 1318 0036 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 1319 0038 002B     		cmp	r3, #0
+ 1320 003a 5CD0     		beq	.L75
+ 651:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			{
+ 652:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				/* See if the MAC-address also matches, and we're all happy */
+ 653:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				FreeRTOS_printf( ( "Arp %2ld: %3u - %16lxip : %02x:%02x:%02x : %02x:%02x:%02x\n",
+ 1321              		.loc 1 653 0 is_stmt 1
+ 1322 003c 3549     		ldr	r1, .L77
+ 1323 003e 7A68     		ldr	r2, [r7, #4]
+ 1324 0040 1346     		mov	r3, r2
+ 1325 0042 5B00     		lsls	r3, r3, #1
+ 1326 0044 1344     		add	r3, r3, r2
+ 1327 0046 9B00     		lsls	r3, r3, #2
+ 1328 0048 0B44     		add	r3, r3, r1
+ 1329 004a 0833     		adds	r3, r3, #8
+ARM GAS  /tmp/ccdtxUmK.s 			page 36
+
+
+ 1330 004c 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 1331 004e 9846     		mov	r8, r3
+ 1332 0050 3049     		ldr	r1, .L77
+ 1333 0052 7A68     		ldr	r2, [r7, #4]
+ 1334 0054 1346     		mov	r3, r2
+ 1335 0056 5B00     		lsls	r3, r3, #1
+ 1336 0058 1344     		add	r3, r3, r2
+ 1337 005a 9B00     		lsls	r3, r3, #2
+ 1338 005c 0B44     		add	r3, r3, r1
+ 1339 005e 1C68     		ldr	r4, [r3]
+ 1340 0060 2C49     		ldr	r1, .L77
+ 1341 0062 7A68     		ldr	r2, [r7, #4]
+ 1342 0064 1346     		mov	r3, r2
+ 1343 0066 5B00     		lsls	r3, r3, #1
+ 1344 0068 1344     		add	r3, r3, r2
+ 1345 006a 9B00     		lsls	r3, r3, #2
+ 1346 006c 0B44     		add	r3, r3, r1
+ 1347 006e 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 1348 0070 9C46     		mov	ip, r3
+ 1349 0072 2849     		ldr	r1, .L77
+ 1350 0074 7A68     		ldr	r2, [r7, #4]
+ 1351 0076 1346     		mov	r3, r2
+ 1352 0078 5B00     		lsls	r3, r3, #1
+ 1353 007a 1344     		add	r3, r3, r2
+ 1354 007c 9B00     		lsls	r3, r3, #2
+ 1355 007e 0B44     		add	r3, r3, r1
+ 1356 0080 0133     		adds	r3, r3, #1
+ 1357 0082 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 1358 0084 9E46     		mov	lr, r3
+ 1359 0086 2349     		ldr	r1, .L77
+ 1360 0088 7A68     		ldr	r2, [r7, #4]
+ 1361 008a 1346     		mov	r3, r2
+ 1362 008c 5B00     		lsls	r3, r3, #1
+ 1363 008e 1344     		add	r3, r3, r2
+ 1364 0090 9B00     		lsls	r3, r3, #2
+ 1365 0092 0B44     		add	r3, r3, r1
+ 1366 0094 0233     		adds	r3, r3, #2
+ 1367 0096 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 1368 0098 1E46     		mov	r6, r3
+ 1369 009a 1E49     		ldr	r1, .L77
+ 1370 009c 7A68     		ldr	r2, [r7, #4]
+ 1371 009e 1346     		mov	r3, r2
+ 1372 00a0 5B00     		lsls	r3, r3, #1
+ 1373 00a2 1344     		add	r3, r3, r2
+ 1374 00a4 9B00     		lsls	r3, r3, #2
+ 1375 00a6 0B44     		add	r3, r3, r1
+ 1376 00a8 0333     		adds	r3, r3, #3
+ 1377 00aa 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 1378 00ac 1D46     		mov	r5, r3
+ 1379 00ae 1949     		ldr	r1, .L77
+ 1380 00b0 7A68     		ldr	r2, [r7, #4]
+ 1381 00b2 1346     		mov	r3, r2
+ 1382 00b4 5B00     		lsls	r3, r3, #1
+ 1383 00b6 1344     		add	r3, r3, r2
+ 1384 00b8 9B00     		lsls	r3, r3, #2
+ 1385 00ba 0B44     		add	r3, r3, r1
+ 1386 00bc 0433     		adds	r3, r3, #4
+ARM GAS  /tmp/ccdtxUmK.s 			page 37
+
+
+ 1387 00be 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 1388 00c0 1846     		mov	r0, r3
+ 1389 00c2 1449     		ldr	r1, .L77
+ 1390 00c4 7A68     		ldr	r2, [r7, #4]
+ 1391 00c6 1346     		mov	r3, r2
+ 1392 00c8 5B00     		lsls	r3, r3, #1
+ 1393 00ca 1344     		add	r3, r3, r2
+ 1394 00cc 9B00     		lsls	r3, r3, #2
+ 1395 00ce 0B44     		add	r3, r3, r1
+ 1396 00d0 0533     		adds	r3, r3, #5
+ 1397 00d2 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
+ 1398 00d4 CDF800C0 		str	ip, [sp]
+ 1399 00d8 CDF804E0 		str	lr, [sp, #4]
+ 1400 00dc 0296     		str	r6, [sp, #8]
+ 1401 00de 0395     		str	r5, [sp, #12]
+ 1402 00e0 0490     		str	r0, [sp, #16]
+ 1403 00e2 0593     		str	r3, [sp, #20]
+ 1404 00e4 0C48     		ldr	r0, .L77+4
+ 1405 00e6 7968     		ldr	r1, [r7, #4]
+ 1406 00e8 4246     		mov	r2, r8
+ 1407 00ea 2346     		mov	r3, r4
+ 1408 00ec FFF7FEFF 		bl	lUDPLoggingPrintf
+ 654:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					x,
+ 655:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					xARPCache[ x ].ucAge,
+ 656:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					xARPCache[ x ].ulIPAddress,
+ 657:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					xARPCache[ x ].xMACAddress.ucBytes[0],
+ 658:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					xARPCache[ x ].xMACAddress.ucBytes[1],
+ 659:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					xARPCache[ x ].xMACAddress.ucBytes[2],
+ 660:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					xARPCache[ x ].xMACAddress.ucBytes[3],
+ 661:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					xARPCache[ x ].xMACAddress.ucBytes[4],
+ 662:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 					xARPCache[ x ].xMACAddress.ucBytes[5] ) );
+ 663:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 				xCount++;
+ 1409              		.loc 1 663 0
+ 1410 00f0 3B68     		ldr	r3, [r7]
+ 1411 00f2 0133     		adds	r3, r3, #1
+ 1412 00f4 3B60     		str	r3, [r7]
+ 1413              	.L75:
+ 648:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		{
+ 1414              		.loc 1 648 0 discriminator 2
+ 1415 00f6 7B68     		ldr	r3, [r7, #4]
+ 1416 00f8 0133     		adds	r3, r3, #1
+ 1417 00fa 7B60     		str	r3, [r7, #4]
+ 1418              	.L74:
+ 648:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		{
+ 1419              		.loc 1 648 0 is_stmt 0 discriminator 1
+ 1420 00fc 7B68     		ldr	r3, [r7, #4]
+ 1421 00fe 052B     		cmp	r3, #5
+ 1422 0100 87DD     		ble	.L76
+ 664:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 			}
+ 665:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		}
+ 666:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 
+ 667:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 		FreeRTOS_printf( ( "Arp has %ld entries\n", xCount ) );
+ 1423              		.loc 1 667 0 is_stmt 1
+ 1424 0102 0648     		ldr	r0, .L77+8
+ 1425 0104 3968     		ldr	r1, [r7]
+ 1426 0106 FFF7FEFF 		bl	lUDPLoggingPrintf
+ 668:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_ARP.c **** 	}
+ARM GAS  /tmp/ccdtxUmK.s 			page 38
+
+
+ 1427              		.loc 1 668 0
+ 1428 010a 0837     		adds	r7, r7, #8
+ 1429              	.LCFI43:
+ 1430              		.cfi_def_cfa_offset 24
+ 1431 010c BD46     		mov	sp, r7
+ 1432              	.LCFI44:
+ 1433              		.cfi_def_cfa_register 13
+ 1434              		@ sp needed
+ 1435 010e BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 1436              	.L78:
+ 1437 0112 00BF     		.align	2
+ 1438              	.L77:
+ 1439 0114 00000000 		.word	xARPCache
+ 1440 0118 00000000 		.word	.LC0
+ 1441 011c 3C000000 		.word	.LC1
+ 1442              		.cfi_endproc
+ 1443              	.LFE38:
+ 1445              		.text
+ 1446              	.Letext0:
+ 1447              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 1448              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 1449              		.file 4 "/usr/lib/gcc/arm-none-eabi/4.9.3/include/stddef.h"
+ 1450              		.file 5 "../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ 1451              		.file 6 "../../../FreeRTOS_9_0/Source/include/list.h"
+ 1452              		.file 7 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h"
+ 1453              		.file 8 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h"
+ 1454              		.file 9 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_ARP.h"
+ 1455              		.file 10 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_DNS.h"
+ARM GAS  /tmp/ccdtxUmK.s 			page 39
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 FreeRTOS_ARP.c
+     /tmp/ccdtxUmK.s:21     .bss.xARPCache:0000000000000000 $d
+     /tmp/ccdtxUmK.s:24     .bss.xARPCache:0000000000000000 xARPCache
+     /tmp/ccdtxUmK.s:27     .bss.xLastGratuitousARPTime:0000000000000000 $d
+     /tmp/ccdtxUmK.s:30     .bss.xLastGratuitousARPTime:0000000000000000 xLastGratuitousARPTime
+     /tmp/ccdtxUmK.s:33     .rodata.xDefaultPartARPPacketHeader:0000000000000000 $d
+     /tmp/ccdtxUmK.s:36     .rodata.xDefaultPartARPPacketHeader:0000000000000000 xDefaultPartARPPacketHeader
+     /tmp/ccdtxUmK.s:76     .text.eARPProcessPacket:0000000000000000 $t
+     /tmp/ccdtxUmK.s:81     .text.eARPProcessPacket:0000000000000000 eARPProcessPacket
+     /tmp/ccdtxUmK.s:251    .text.vARPRefreshCacheEntry:0000000000000000 vARPRefreshCacheEntry
+     /tmp/ccdtxUmK.s:240    .text.eARPProcessPacket:00000000000000f8 $d
+     /tmp/ccdtxUmK.s:246    .text.vARPRefreshCacheEntry:0000000000000000 $t
+     /tmp/ccdtxUmK.s:563    .text.vARPRefreshCacheEntry:00000000000001e8 $d
+     /tmp/ccdtxUmK.s:570    .text.eARPGetCacheEntry:0000000000000000 $t
+     /tmp/ccdtxUmK.s:575    .text.eARPGetCacheEntry:0000000000000000 eARPGetCacheEntry
+     /tmp/ccdtxUmK.s:729    .text.prvCacheLookup:0000000000000000 prvCacheLookup
+     /tmp/ccdtxUmK.s:716    .text.eARPGetCacheEntry:00000000000000b8 $d
+     /tmp/ccdtxUmK.s:725    .text.prvCacheLookup:0000000000000000 $t
+     /tmp/ccdtxUmK.s:836    .text.prvCacheLookup:0000000000000084 $d
+     /tmp/ccdtxUmK.s:841    .text.vARPAgeCache:0000000000000000 $t
+     /tmp/ccdtxUmK.s:846    .text.vARPAgeCache:0000000000000000 vARPAgeCache
+     /tmp/ccdtxUmK.s:1070   .text.FreeRTOS_OutputARPRequest:0000000000000000 FreeRTOS_OutputARPRequest
+     /tmp/ccdtxUmK.s:1022   .text.vARPAgeCache:0000000000000110 $d
+     /tmp/ccdtxUmK.s:1029   .text.vARPSendGratuitous:0000000000000000 $t
+     /tmp/ccdtxUmK.s:1034   .text.vARPSendGratuitous:0000000000000000 vARPSendGratuitous
+     /tmp/ccdtxUmK.s:1060   .text.vARPSendGratuitous:0000000000000014 $d
+     /tmp/ccdtxUmK.s:1065   .text.FreeRTOS_OutputARPRequest:0000000000000000 $t
+     /tmp/ccdtxUmK.s:1127   .text.vARPGenerateRequestPacket:0000000000000000 vARPGenerateRequestPacket
+     /tmp/ccdtxUmK.s:1122   .text.vARPGenerateRequestPacket:0000000000000000 $t
+     /tmp/ccdtxUmK.s:1216   .text.vARPGenerateRequestPacket:0000000000000078 $d
+     /tmp/ccdtxUmK.s:1222   .text.FreeRTOS_ClearARP:0000000000000000 $t
+     /tmp/ccdtxUmK.s:1227   .text.FreeRTOS_ClearARP:0000000000000000 FreeRTOS_ClearARP
+     /tmp/ccdtxUmK.s:1251   .text.FreeRTOS_ClearARP:0000000000000010 $d
+     /tmp/ccdtxUmK.s:1256   .rodata:0000000000000000 $d
+     /tmp/ccdtxUmK.s:1264   .text.FreeRTOS_PrintARPCache:0000000000000000 $t
+     /tmp/ccdtxUmK.s:1269   .text.FreeRTOS_PrintARPCache:0000000000000000 FreeRTOS_PrintARPCache
+     /tmp/ccdtxUmK.s:1439   .text.FreeRTOS_PrintARPCache:0000000000000114 $d
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+memset
+memcpy
+xDefaultPartUDPPacketHeader
+xBroadcastMACAddress
+memcmp
+xNetworkAddressing
+xLLMNR_MacAdress
+xTaskGetTickCount
+xSendEventToIPTask
+pxGetNetworkBufferWithDescriptor
+xNetworkInterfaceOutput
+lUDPLoggingPrintf

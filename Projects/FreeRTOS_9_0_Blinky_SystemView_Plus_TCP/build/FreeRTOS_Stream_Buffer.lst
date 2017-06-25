@@ -1,0 +1,1515 @@
+ARM GAS  /tmp/cc9fYl89.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m7
+   3              		.eabi_attribute 27, 1
+   4              		.eabi_attribute 28, 1
+   5              		.fpu fpv5-sp-d16
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 6
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.thumb
+  16              		.file	"FreeRTOS_Stream_Buffer.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              		.section	.text.FreeRTOS_min_uint32,"ax",%progbits
+  21              		.align	2
+  22              		.thumb
+  23              		.thumb_func
+  25              	FreeRTOS_min_uint32:
+  26              	.LFB8:
+  27              		.file 1 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h"
+   1:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** /*
+   2:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * FreeRTOS+TCP Labs Build 160919 (C) 2016 Real Time Engineers ltd.
+   3:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * Authors include Hein Tibosch and Richard Barry
+   4:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  *
+   5:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  *******************************************************************************
+   6:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  ***** NOTE ******* NOTE ******* NOTE ******* NOTE ******* NOTE ******* NOTE ***
+   7:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  ***                                                                         ***
+   8:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  ***                                                                         ***
+   9:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  ***   FREERTOS+TCP IS STILL IN THE LAB (mainly because the FTP and HTTP     ***
+  10:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  ***   demos have a dependency on FreeRTOS+FAT, which is only in the Labs    ***
+  11:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  ***   download):                                                            ***
+  12:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  ***                                                                         ***
+  13:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  ***   FreeRTOS+TCP is functional and has been used in commercial products   ***
+  14:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  ***   for some time.  Be aware however that we are still refining its       ***
+  15:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  ***   design, the source code does not yet quite conform to the strict      ***
+  16:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  ***   coding and style standards mandated by Real Time Engineers ltd., and  ***
+  17:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  ***   the documentation and testing is not necessarily complete.            ***
+  18:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  ***                                                                         ***
+  19:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  ***   PLEASE REPORT EXPERIENCES USING THE SUPPORT RESOURCES FOUND ON THE    ***
+  20:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  ***   URL: http://www.FreeRTOS.org/contact  Active early adopters may, at   ***
+  21:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  ***   the sole discretion of Real Time Engineers Ltd., be offered versions  ***
+  22:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  ***   under a license other than that described below.                      ***
+  23:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  ***                                                                         ***
+  24:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  ***                                                                         ***
+  25:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  ***** NOTE ******* NOTE ******* NOTE ******* NOTE ******* NOTE ******* NOTE ***
+  26:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  *******************************************************************************
+  27:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  *
+  28:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * FreeRTOS+TCP can be used under two different free open source licenses.  The
+  29:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * license that applies is dependent on the processor on which FreeRTOS+TCP is
+  30:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * executed, as follows:
+  31:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  *
+ARM GAS  /tmp/cc9fYl89.s 			page 2
+
+
+  32:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * If FreeRTOS+TCP is executed on one of the processors listed under the Special
+  33:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * License Arrangements heading of the FreeRTOS+TCP license information web
+  34:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * page, then it can be used under the terms of the FreeRTOS Open Source
+  35:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * License.  If FreeRTOS+TCP is used on any other processor, then it can be used
+  36:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * under the terms of the GNU General Public License V2.  Links to the relevant
+  37:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * licenses follow:
+  38:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  *
+  39:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * The FreeRTOS+TCP License Information Page: http://www.FreeRTOS.org/tcp_license
+  40:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * The FreeRTOS Open Source License: http://www.FreeRTOS.org/license
+  41:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * The GNU General Public License Version 2: http://www.FreeRTOS.org/gpl-2.0.txt
+  42:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  *
+  43:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * FreeRTOS+TCP is distributed in the hope that it will be useful.  You cannot
+  44:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * use FreeRTOS+TCP unless you agree that you use the software 'as is'.
+  45:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * FreeRTOS+TCP is provided WITHOUT ANY WARRANTY; without even the implied
+  46:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * warranties of NON-INFRINGEMENT, MERCHANTABILITY or FITNESS FOR A PARTICULAR
+  47:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * PURPOSE. Real Time Engineers Ltd. disclaims all conditions and terms, be they
+  48:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * implied, expressed, or statutory.
+  49:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  *
+  50:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * 1 tab == 4 spaces!
+  51:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  *
+  52:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * http://www.FreeRTOS.org
+  53:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * http://www.FreeRTOS.org/plus
+  54:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * http://www.FreeRTOS.org/labs
+  55:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  *
+  56:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  */
+  57:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+  58:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #ifndef FREERTOS_IP_H
+  59:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #define FREERTOS_IP_H
+  60:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+  61:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #ifdef __cplusplus
+  62:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** extern "C" {
+  63:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #endif
+  64:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+  65:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** /* Application level configuration options. */
+  66:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #include "FreeRTOSIPConfig.h"
+  67:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #include "FreeRTOSIPConfigDefaults.h"
+  68:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #include "IPTraceMacroDefaults.h"
+  69:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+  70:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** /* Some constants defining the sizes of several parts of a packet */
+  71:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #define ipSIZE_OF_ETH_HEADER			14u
+  72:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #define ipSIZE_OF_IPv4_HEADER			20u
+  73:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #define ipSIZE_OF_IGMP_HEADER			8u
+  74:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #define ipSIZE_OF_ICMP_HEADER			8u
+  75:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #define ipSIZE_OF_UDP_HEADER			8u
+  76:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #define ipSIZE_OF_TCP_HEADER			20u
+  77:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+  78:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+  79:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** /* The number of octets in the MAC and IP addresses respectively. */
+  80:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #define ipMAC_ADDRESS_LENGTH_BYTES ( 6 )
+  81:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #define ipIP_ADDRESS_LENGTH_BYTES ( 4 )
+  82:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+  83:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** /* IP protocol definitions. */
+  84:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #define ipPROTOCOL_ICMP			( 1 )
+  85:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #define ipPROTOCOL_IGMP         ( 2 )
+  86:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #define ipPROTOCOL_TCP			( 6 )
+  87:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #define ipPROTOCOL_UDP			( 17 )
+  88:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+ARM GAS  /tmp/cc9fYl89.s 			page 3
+
+
+  89:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** /* Dimensions the buffers that are filled by received Ethernet frames. */
+  90:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #define ipSIZE_OF_ETH_CRC_BYTES					( 4UL )
+  91:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #define ipSIZE_OF_ETH_OPTIONAL_802_1Q_TAG_BYTES	( 4UL )
+  92:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #define ipTOTAL_ETHERNET_FRAME_SIZE				( ( ( uint32_t ) ipconfigNETWORK_MTU ) + ( ( uint32_t ) ipSI
+  93:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+  94:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** /*_RB_ Comment may need updating. */
+  95:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** /* Space left at the beginning of a network buffer storage area to store a
+  96:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** pointer back to the network buffer.  Should be a multiple of 8 to ensure 8 byte
+  97:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** alignment is maintained on architectures that require it.
+  98:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+  99:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** In order to get a 32-bit alignment of network packets, an offset of 2 bytes
+ 100:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** would be desirable, as defined by ipconfigPACKET_FILLER_SIZE.  So the malloc'd
+ 101:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** buffer will have the following contents:
+ 102:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	uint32_t pointer;	// word-aligned
+ 103:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	uchar_8 filler[6];
+ 104:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	<< ETH-header >>	// half-word-aligned
+ 105:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	uchar_8 dest[6];    // start of pucEthernetBuffer
+ 106:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	uchar_8 dest[6];
+ 107:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	uchar16_t type;
+ 108:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	<< IP-header >>		// word-aligned
+ 109:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	uint8_t ucVersionHeaderLength;
+ 110:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	etc
+ 111:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  */
+ 112:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #if( ipconfigBUFFER_PADDING != 0 )
+ 113:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****     #define ipBUFFER_PADDING    ipconfigBUFFER_PADDING
+ 114:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #else
+ 115:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****     #define ipBUFFER_PADDING    ( 8u + ipconfigPACKET_FILLER_SIZE )
+ 116:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #endif
+ 117:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+ 118:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** /* The structure used to store buffers and pass them around the network stack.
+ 119:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** Buffers can be in use by the stack, in use by the network interface hardware
+ 120:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** driver, or free (not in use). */
+ 121:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** typedef struct xNETWORK_BUFFER
+ 122:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** {
+ 123:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	ListItem_t xBufferListItem; 	/* Used to reference the buffer form the free buffer list or a socket
+ 124:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	uint32_t ulIPAddress;			/* Source or destination IP address, depending on usage scenario. */
+ 125:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	uint8_t *pucEthernetBuffer; 	/* Pointer to the start of the Ethernet frame. */
+ 126:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	size_t xDataLength; 			/* Starts by holding the total Ethernet frame length, then the UDP/TCP payl
+ 127:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	uint16_t usPort;				/* Source or destination port, depending on usage scenario. */
+ 128:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	uint16_t usBoundPort;			/* The port to which a transmitting socket is bound. */
+ 129:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	#if( ipconfigUSE_LINKED_RX_MESSAGES != 0 )
+ 130:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 		struct xNETWORK_BUFFER *pxNextBuffer; /* Possible optimisation for expert users - requires networ
+ 131:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	#endif
+ 132:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** } NetworkBufferDescriptor_t;
+ 133:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+ 134:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #include "pack_struct_start.h"
+ 135:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** struct xMAC_ADDRESS
+ 136:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** {
+ 137:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	uint8_t ucBytes[ ipMAC_ADDRESS_LENGTH_BYTES ];
+ 138:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** }
+ 139:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #include "pack_struct_end.h"
+ 140:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** typedef struct xMAC_ADDRESS MACAddress_t;
+ 141:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+ 142:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** typedef enum eNETWORK_EVENTS
+ 143:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** {
+ 144:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	eNetworkUp,		/* The network is configured. */
+ 145:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	eNetworkDown	/* The network connection has been lost. */
+ARM GAS  /tmp/cc9fYl89.s 			page 4
+
+
+ 146:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** } eIPCallbackEvent_t;
+ 147:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+ 148:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** typedef enum ePING_REPLY_STATUS
+ 149:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** {
+ 150:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	eSuccess = 0,		/* A correct reply has been received for an outgoing ping. */
+ 151:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	eInvalidChecksum,	/* A reply was received for an outgoing ping but the checksum of the reply was i
+ 152:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	eInvalidData		/* A reply was received to an outgoing ping but the payload of the reply was not cor
+ 153:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** } ePingReplyStatus_t;
+ 154:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+ 155:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** /* Endian related definitions. */
+ 156:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #if( ipconfigBYTE_ORDER == pdFREERTOS_LITTLE_ENDIAN )
+ 157:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+ 158:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	/* FreeRTOS_htons / FreeRTOS_htonl: some platforms might have built-in versions
+ 159:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	using a single instruction so allow these versions to be overridden. */
+ 160:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	#ifndef FreeRTOS_htons
+ 161:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 		#define FreeRTOS_htons( usIn ) ( (uint16_t) ( ( ( usIn ) << 8U ) | ( ( usIn ) >> 8U ) ) )
+ 162:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	#endif
+ 163:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+ 164:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	#ifndef	FreeRTOS_htonl
+ 165:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 		#define FreeRTOS_htonl( ulIn ) 											\
+ 166:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 			(																	\
+ 167:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 				( uint32_t ) 													\
+ 168:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 				( 																\
+ 169:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 					( ( ( ( uint32_t ) ( ulIn ) )                ) << 24  ) | 	\
+ 170:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 					( ( ( ( uint32_t ) ( ulIn ) ) & 0x0000ff00UL ) <<  8  ) | 	\
+ 171:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 					( ( ( ( uint32_t ) ( ulIn ) ) & 0x00ff0000UL ) >>  8  ) | 	\
+ 172:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 					( ( ( ( uint32_t ) ( ulIn ) )                ) >> 24  )  	\
+ 173:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 				) 																\
+ 174:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 			)
+ 175:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	#endif
+ 176:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+ 177:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #else /* ipconfigBYTE_ORDER */
+ 178:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+ 179:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	#define FreeRTOS_htons( x ) ( ( uint16_t ) ( x ) )
+ 180:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	#define FreeRTOS_htonl( x ) ( ( uint32_t ) ( x ) )
+ 181:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+ 182:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #endif /* ipconfigBYTE_ORDER == pdFREERTOS_LITTLE_ENDIAN */
+ 183:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+ 184:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #define FreeRTOS_ntohs( x ) FreeRTOS_htons( x )
+ 185:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #define FreeRTOS_ntohl( x ) FreeRTOS_htonl( x )
+ 186:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+ 187:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #if( ipconfigHAS_INLINE_FUNCTIONS == 1 )
+ 188:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+ 189:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	static portINLINE int32_t  FreeRTOS_max_int32  (int32_t  a, int32_t  b);
+ 190:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	static portINLINE uint32_t FreeRTOS_max_uint32 (uint32_t a, uint32_t b);
+ 191:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	static portINLINE int32_t  FreeRTOS_min_int32  (int32_t  a, int32_t  b);
+ 192:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	static portINLINE uint32_t FreeRTOS_min_uint32 (uint32_t a, uint32_t b);
+ 193:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	static portINLINE uint32_t FreeRTOS_round_up   (uint32_t a, uint32_t d);
+ 194:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	static portINLINE uint32_t FreeRTOS_round_down (uint32_t a, uint32_t d);
+ 195:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	static portINLINE BaseType_t  FreeRTOS_min_BaseType  (BaseType_t  a, BaseType_t  b);
+ 196:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	static portINLINE BaseType_t  FreeRTOS_max_BaseType  (BaseType_t  a, BaseType_t  b);
+ 197:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	static portINLINE UBaseType_t FreeRTOS_max_UBaseTyp (UBaseType_t a, UBaseType_t b);
+ 198:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	static portINLINE BaseType_t  	FreeRTOS_min_BaseType  (BaseType_t  a, BaseType_t  b);
+ 199:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	static portINLINE UBaseType_t  	FreeRTOS_min_UBaseType (UBaseType_t  a, UBaseType_t  b);
+ 200:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+ 201:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
+ 202:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	static portINLINE int32_t  FreeRTOS_max_int32  (int32_t  a, int32_t  b) { return a >= b ? a : b; }
+ARM GAS  /tmp/cc9fYl89.s 			page 5
+
+
+ 203:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	static portINLINE uint32_t FreeRTOS_max_uint32 (uint32_t a, uint32_t b) { return a >= b ? a : b; }
+ 204:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	static portINLINE int32_t  FreeRTOS_min_int32  (int32_t  a, int32_t  b) { return a <= b ? a : b; }
+ 205:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	static portINLINE uint32_t FreeRTOS_min_uint32 (uint32_t a, uint32_t b) { return a <= b ? a : b; }
+  28              		.loc 1 205 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 8
+  31              		@ frame_needed = 1, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  33 0000 80B4     		push	{r7}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 4
+  36              		.cfi_offset 7, -4
+  37 0002 83B0     		sub	sp, sp, #12
+  38              	.LCFI1:
+  39              		.cfi_def_cfa_offset 16
+  40 0004 00AF     		add	r7, sp, #0
+  41              	.LCFI2:
+  42              		.cfi_def_cfa_register 7
+  43 0006 7860     		str	r0, [r7, #4]
+  44 0008 3960     		str	r1, [r7]
+  45              		.loc 1 205 0
+  46 000a 7A68     		ldr	r2, [r7, #4]
+  47 000c 3B68     		ldr	r3, [r7]
+  48 000e 9342     		cmp	r3, r2
+  49 0010 28BF     		it	cs
+  50 0012 1346     		movcs	r3, r2
+  51 0014 1846     		mov	r0, r3
+  52 0016 0C37     		adds	r7, r7, #12
+  53              	.LCFI3:
+  54              		.cfi_def_cfa_offset 4
+  55 0018 BD46     		mov	sp, r7
+  56              	.LCFI4:
+  57              		.cfi_def_cfa_register 13
+  58              		@ sp needed
+  59 001a 5DF8047B 		ldr	r7, [sp], #4
+  60              	.LCFI5:
+  61              		.cfi_restore 7
+  62              		.cfi_def_cfa_offset 0
+  63 001e 7047     		bx	lr
+  64              		.cfi_endproc
+  65              	.LFE8:
+  67              		.section	.text.uxStreamBufferSpace,"ax",%progbits
+  68              		.align	2
+  69              		.thumb
+  70              		.thumb_func
+  72              	uxStreamBufferSpace:
+  73              	.LFB16:
+  74              		.file 2 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h"
+   1:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /*
+   2:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * FreeRTOS+TCP Labs Build 160919 (C) 2016 Real Time Engineers ltd.
+   3:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * Authors include Hein Tibosch and Richard Barry
+   4:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  *
+   5:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  *******************************************************************************
+   6:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  ***** NOTE ******* NOTE ******* NOTE ******* NOTE ******* NOTE ******* NOTE ***
+   7:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  ***                                                                         ***
+   8:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  ***                                                                         ***
+   9:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  ***   FREERTOS+TCP IS STILL IN THE LAB (mainly because the FTP and HTTP     ***
+ARM GAS  /tmp/cc9fYl89.s 			page 6
+
+
+  10:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  ***   demos have a dependency on FreeRTOS+FAT, which is only in the Labs    ***
+  11:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  ***   download):                                                            ***
+  12:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  ***                                                                         ***
+  13:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  ***   FreeRTOS+TCP is functional and has been used in commercial products   ***
+  14:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  ***   for some time.  Be aware however that we are still refining its       ***
+  15:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  ***   design, the source code does not yet quite conform to the strict      ***
+  16:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  ***   coding and style standards mandated by Real Time Engineers ltd., and  ***
+  17:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  ***   the documentation and testing is not necessarily complete.            ***
+  18:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  ***                                                                         ***
+  19:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  ***   PLEASE REPORT EXPERIENCES USING THE SUPPORT RESOURCES FOUND ON THE    ***
+  20:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  ***   URL: http://www.FreeRTOS.org/contact  Active early adopters may, at   ***
+  21:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  ***   the sole discretion of Real Time Engineers Ltd., be offered versions  ***
+  22:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  ***   under a license other than that described below.                      ***
+  23:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  ***                                                                         ***
+  24:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  ***                                                                         ***
+  25:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  ***** NOTE ******* NOTE ******* NOTE ******* NOTE ******* NOTE ******* NOTE ***
+  26:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  *******************************************************************************
+  27:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  *
+  28:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * FreeRTOS+TCP can be used under two different free open source licenses.  The
+  29:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * license that applies is dependent on the processor on which FreeRTOS+TCP is
+  30:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * executed, as follows:
+  31:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  *
+  32:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * If FreeRTOS+TCP is executed on one of the processors listed under the Special
+  33:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * License Arrangements heading of the FreeRTOS+TCP license information web
+  34:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * page, then it can be used under the terms of the FreeRTOS Open Source
+  35:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * License.  If FreeRTOS+TCP is used on any other processor, then it can be used
+  36:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * under the terms of the GNU General Public License V2.  Links to the relevant
+  37:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * licenses follow:
+  38:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  *
+  39:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * The FreeRTOS+TCP License Information Page: http://www.FreeRTOS.org/tcp_license
+  40:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * The FreeRTOS Open Source License: http://www.FreeRTOS.org/license
+  41:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * The GNU General Public License Version 2: http://www.FreeRTOS.org/gpl-2.0.txt
+  42:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  *
+  43:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * FreeRTOS+TCP is distributed in the hope that it will be useful.  You cannot
+  44:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * use FreeRTOS+TCP unless you agree that you use the software 'as is'.
+  45:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * FreeRTOS+TCP is provided WITHOUT ANY WARRANTY; without even the implied
+  46:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * warranties of NON-INFRINGEMENT, MERCHANTABILITY or FITNESS FOR A PARTICULAR
+  47:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * PURPOSE. Real Time Engineers Ltd. disclaims all conditions and terms, be they
+  48:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * implied, expressed, or statutory.
+  49:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  *
+  50:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * 1 tab == 4 spaces!
+  51:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  *
+  52:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * http://www.FreeRTOS.org
+  53:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * http://www.FreeRTOS.org/plus
+  54:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * http://www.FreeRTOS.org/labs
+  55:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  *
+  56:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  */
+  57:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+  58:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /*
+  59:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  *	FreeRTOS_Stream_Buffer.h
+  60:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  *
+  61:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  *	A cicular character buffer
+  62:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  *	An implementation of a circular buffer without a length field
+  63:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  *	If LENGTH defines the size of the buffer, a maximum of (LENGT-1) bytes can be stored
+  64:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  *	In order to add or read data from the buffer, memcpy() will be called at most 2 times
+  65:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  */
+  66:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ARM GAS  /tmp/cc9fYl89.s 			page 7
+
+
+  67:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** #ifndef FREERTOS_STREAM_BUFFER_H
+  68:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** #define	FREERTOS_STREAM_BUFFER_H
+  69:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+  70:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** #ifdef __cplusplus
+  71:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** extern "C" {
+  72:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** #endif
+  73:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+  74:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** typedef struct xSTREAM_BUFFER {
+  75:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	volatile size_t uxTail;		/* next item to read */
+  76:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	volatile size_t uxMid;		/* iterator within the valid items */
+  77:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	volatile size_t uxHead;		/* next position store a new item */
+  78:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	volatile size_t uxFront;	/* iterator within the free space */
+  79:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	size_t LENGTH;				/* const value: number of reserved elements */
+  80:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	uint8_t ucArray[ sizeof( size_t ) ];
+  81:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** } StreamBuffer_t;
+  82:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+  83:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE void vStreamBufferClear( StreamBuffer_t *pxBuffer );
+  84:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE void vStreamBufferClear( StreamBuffer_t *pxBuffer )
+  85:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** {
+  86:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	/* Make the circular buffer empty */
+  87:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	pxBuffer->uxHead = 0u;
+  88:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	pxBuffer->uxTail = 0u;
+  89:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	pxBuffer->uxFront = 0u;
+  90:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	pxBuffer->uxMid = 0u;
+  91:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** }
+  92:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /*-----------------------------------------------------------*/
+  93:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+  94:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE size_t uxStreamBufferSpace( const StreamBuffer_t *pxBuffer, const size_t uxLower,
+  95:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE size_t uxStreamBufferSpace( const StreamBuffer_t *pxBuffer, const size_t uxLower,
+  96:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** {
+  75              		.loc 2 96 0
+  76              		.cfi_startproc
+  77              		@ args = 0, pretend = 0, frame = 24
+  78              		@ frame_needed = 1, uses_anonymous_args = 0
+  79              		@ link register save eliminated.
+  80 0000 80B4     		push	{r7}
+  81              	.LCFI6:
+  82              		.cfi_def_cfa_offset 4
+  83              		.cfi_offset 7, -4
+  84 0002 87B0     		sub	sp, sp, #28
+  85              	.LCFI7:
+  86              		.cfi_def_cfa_offset 32
+  87 0004 00AF     		add	r7, sp, #0
+  88              	.LCFI8:
+  89              		.cfi_def_cfa_register 7
+  90 0006 F860     		str	r0, [r7, #12]
+  91 0008 B960     		str	r1, [r7, #8]
+  92 000a 7A60     		str	r2, [r7, #4]
+  97:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /* Returns the space between uxLower and uxUpper, which equals to the distance minus 1 */
+  98:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** size_t uxCount;
+  99:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ 100:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	uxCount = pxBuffer->LENGTH + uxUpper - uxLower - 1u;
+  93              		.loc 2 100 0
+  94 000c FB68     		ldr	r3, [r7, #12]
+  95 000e 1A69     		ldr	r2, [r3, #16]
+  96 0010 7B68     		ldr	r3, [r7, #4]
+  97 0012 1A44     		add	r2, r2, r3
+ARM GAS  /tmp/cc9fYl89.s 			page 8
+
+
+  98 0014 BB68     		ldr	r3, [r7, #8]
+  99 0016 D31A     		subs	r3, r2, r3
+ 100 0018 013B     		subs	r3, r3, #1
+ 101 001a 7B61     		str	r3, [r7, #20]
+ 101:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	if( uxCount >= pxBuffer->LENGTH )
+ 102              		.loc 2 101 0
+ 103 001c FB68     		ldr	r3, [r7, #12]
+ 104 001e 1A69     		ldr	r2, [r3, #16]
+ 105 0020 7B69     		ldr	r3, [r7, #20]
+ 106 0022 9A42     		cmp	r2, r3
+ 107 0024 04D8     		bhi	.L4
+ 102:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	{
+ 103:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 		uxCount -= pxBuffer->LENGTH;
+ 108              		.loc 2 103 0
+ 109 0026 FB68     		ldr	r3, [r7, #12]
+ 110 0028 1B69     		ldr	r3, [r3, #16]
+ 111 002a 7A69     		ldr	r2, [r7, #20]
+ 112 002c D31A     		subs	r3, r2, r3
+ 113 002e 7B61     		str	r3, [r7, #20]
+ 114              	.L4:
+ 104:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	}
+ 105:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ 106:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	return uxCount;
+ 115              		.loc 2 106 0
+ 116 0030 7B69     		ldr	r3, [r7, #20]
+ 107:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** }
+ 117              		.loc 2 107 0
+ 118 0032 1846     		mov	r0, r3
+ 119 0034 1C37     		adds	r7, r7, #28
+ 120              	.LCFI9:
+ 121              		.cfi_def_cfa_offset 4
+ 122 0036 BD46     		mov	sp, r7
+ 123              	.LCFI10:
+ 124              		.cfi_def_cfa_register 13
+ 125              		@ sp needed
+ 126 0038 5DF8047B 		ldr	r7, [sp], #4
+ 127              	.LCFI11:
+ 128              		.cfi_restore 7
+ 129              		.cfi_def_cfa_offset 0
+ 130 003c 7047     		bx	lr
+ 131              		.cfi_endproc
+ 132              	.LFE16:
+ 134 003e 00BF     		.section	.text.uxStreamBufferDistance,"ax",%progbits
+ 135              		.align	2
+ 136              		.thumb
+ 137              		.thumb_func
+ 139              	uxStreamBufferDistance:
+ 140              	.LFB17:
+ 108:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /*-----------------------------------------------------------*/
+ 109:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ 110:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE size_t uxStreamBufferDistance( const StreamBuffer_t *pxBuffer, const size_t uxLow
+ 111:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE size_t uxStreamBufferDistance( const StreamBuffer_t *pxBuffer, const size_t uxLow
+ 112:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** {
+ 141              		.loc 2 112 0
+ 142              		.cfi_startproc
+ 143              		@ args = 0, pretend = 0, frame = 24
+ 144              		@ frame_needed = 1, uses_anonymous_args = 0
+ARM GAS  /tmp/cc9fYl89.s 			page 9
+
+
+ 145              		@ link register save eliminated.
+ 146 0000 80B4     		push	{r7}
+ 147              	.LCFI12:
+ 148              		.cfi_def_cfa_offset 4
+ 149              		.cfi_offset 7, -4
+ 150 0002 87B0     		sub	sp, sp, #28
+ 151              	.LCFI13:
+ 152              		.cfi_def_cfa_offset 32
+ 153 0004 00AF     		add	r7, sp, #0
+ 154              	.LCFI14:
+ 155              		.cfi_def_cfa_register 7
+ 156 0006 F860     		str	r0, [r7, #12]
+ 157 0008 B960     		str	r1, [r7, #8]
+ 158 000a 7A60     		str	r2, [r7, #4]
+ 113:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /* Returns the distance between uxLower and uxUpper */
+ 114:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** size_t uxCount;
+ 115:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ 116:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	uxCount = pxBuffer->LENGTH + uxUpper - uxLower;
+ 159              		.loc 2 116 0
+ 160 000c FB68     		ldr	r3, [r7, #12]
+ 161 000e 1A69     		ldr	r2, [r3, #16]
+ 162 0010 7B68     		ldr	r3, [r7, #4]
+ 163 0012 1A44     		add	r2, r2, r3
+ 164 0014 BB68     		ldr	r3, [r7, #8]
+ 165 0016 D31A     		subs	r3, r2, r3
+ 166 0018 7B61     		str	r3, [r7, #20]
+ 117:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	if ( uxCount >= pxBuffer->LENGTH )
+ 167              		.loc 2 117 0
+ 168 001a FB68     		ldr	r3, [r7, #12]
+ 169 001c 1A69     		ldr	r2, [r3, #16]
+ 170 001e 7B69     		ldr	r3, [r7, #20]
+ 171 0020 9A42     		cmp	r2, r3
+ 172 0022 04D8     		bhi	.L7
+ 118:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	{
+ 119:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 		uxCount -= pxBuffer->LENGTH;
+ 173              		.loc 2 119 0
+ 174 0024 FB68     		ldr	r3, [r7, #12]
+ 175 0026 1B69     		ldr	r3, [r3, #16]
+ 176 0028 7A69     		ldr	r2, [r7, #20]
+ 177 002a D31A     		subs	r3, r2, r3
+ 178 002c 7B61     		str	r3, [r7, #20]
+ 179              	.L7:
+ 120:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	}
+ 121:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ 122:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	return uxCount;
+ 180              		.loc 2 122 0
+ 181 002e 7B69     		ldr	r3, [r7, #20]
+ 123:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** }
+ 182              		.loc 2 123 0
+ 183 0030 1846     		mov	r0, r3
+ 184 0032 1C37     		adds	r7, r7, #28
+ 185              	.LCFI15:
+ 186              		.cfi_def_cfa_offset 4
+ 187 0034 BD46     		mov	sp, r7
+ 188              	.LCFI16:
+ 189              		.cfi_def_cfa_register 13
+ 190              		@ sp needed
+ARM GAS  /tmp/cc9fYl89.s 			page 10
+
+
+ 191 0036 5DF8047B 		ldr	r7, [sp], #4
+ 192              	.LCFI17:
+ 193              		.cfi_restore 7
+ 194              		.cfi_def_cfa_offset 0
+ 195 003a 7047     		bx	lr
+ 196              		.cfi_endproc
+ 197              	.LFE17:
+ 199              		.section	.text.uxStreamBufferGetSpace,"ax",%progbits
+ 200              		.align	2
+ 201              		.thumb
+ 202              		.thumb_func
+ 204              	uxStreamBufferGetSpace:
+ 205              	.LFB18:
+ 124:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /*-----------------------------------------------------------*/
+ 125:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ 126:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE size_t uxStreamBufferGetSpace( const StreamBuffer_t *pxBuffer );
+ 127:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE size_t uxStreamBufferGetSpace( const StreamBuffer_t *pxBuffer )
+ 128:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** {
+ 206              		.loc 2 128 0
+ 207              		.cfi_startproc
+ 208              		@ args = 0, pretend = 0, frame = 16
+ 209              		@ frame_needed = 1, uses_anonymous_args = 0
+ 210 0000 80B5     		push	{r7, lr}
+ 211              	.LCFI18:
+ 212              		.cfi_def_cfa_offset 8
+ 213              		.cfi_offset 7, -8
+ 214              		.cfi_offset 14, -4
+ 215 0002 84B0     		sub	sp, sp, #16
+ 216              	.LCFI19:
+ 217              		.cfi_def_cfa_offset 24
+ 218 0004 00AF     		add	r7, sp, #0
+ 219              	.LCFI20:
+ 220              		.cfi_def_cfa_register 7
+ 221 0006 7860     		str	r0, [r7, #4]
+ 129:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /* Returns the number of items which can still be added to uxHead
+ 130:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** before hitting on uxTail */
+ 131:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** size_t uxHead = pxBuffer->uxHead;
+ 222              		.loc 2 131 0
+ 223 0008 7B68     		ldr	r3, [r7, #4]
+ 224 000a 9B68     		ldr	r3, [r3, #8]
+ 225 000c FB60     		str	r3, [r7, #12]
+ 132:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** size_t uxTail = pxBuffer->uxTail;
+ 226              		.loc 2 132 0
+ 227 000e 7B68     		ldr	r3, [r7, #4]
+ 228 0010 1B68     		ldr	r3, [r3]
+ 229 0012 BB60     		str	r3, [r7, #8]
+ 133:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ 134:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	return uxStreamBufferSpace( pxBuffer, uxHead, uxTail );
+ 230              		.loc 2 134 0
+ 231 0014 7868     		ldr	r0, [r7, #4]
+ 232 0016 F968     		ldr	r1, [r7, #12]
+ 233 0018 BA68     		ldr	r2, [r7, #8]
+ 234 001a FFF7FEFF 		bl	uxStreamBufferSpace
+ 235 001e 0346     		mov	r3, r0
+ 135:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** }
+ 236              		.loc 2 135 0
+ 237 0020 1846     		mov	r0, r3
+ARM GAS  /tmp/cc9fYl89.s 			page 11
+
+
+ 238 0022 1037     		adds	r7, r7, #16
+ 239              	.LCFI21:
+ 240              		.cfi_def_cfa_offset 8
+ 241 0024 BD46     		mov	sp, r7
+ 242              	.LCFI22:
+ 243              		.cfi_def_cfa_register 13
+ 244              		@ sp needed
+ 245 0026 80BD     		pop	{r7, pc}
+ 246              		.cfi_endproc
+ 247              	.LFE18:
+ 249              		.section	.text.uxStreamBufferGetSize,"ax",%progbits
+ 250              		.align	2
+ 251              		.thumb
+ 252              		.thumb_func
+ 254              	uxStreamBufferGetSize:
+ 255              	.LFB20:
+ 136:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /*-----------------------------------------------------------*/
+ 137:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ 138:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE size_t uxStreamBufferFrontSpace( const StreamBuffer_t *pxBuffer );
+ 139:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE size_t uxStreamBufferFrontSpace( const StreamBuffer_t *pxBuffer )
+ 140:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** {
+ 141:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /* Distance between uxFront and uxTail
+ 142:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** or the number of items which can still be added to uxFront,
+ 143:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** before hitting on uxTail */
+ 144:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ 145:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** size_t uxFront = pxBuffer->uxFront;
+ 146:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** size_t uxTail = pxBuffer->uxTail;
+ 147:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ 148:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	return uxStreamBufferSpace( pxBuffer, uxFront, uxTail );
+ 149:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** }
+ 150:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /*-----------------------------------------------------------*/
+ 151:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ 152:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE size_t uxStreamBufferGetSize( const StreamBuffer_t *pxBuffer );
+ 153:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE size_t uxStreamBufferGetSize( const StreamBuffer_t *pxBuffer )
+ 154:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** {
+ 256              		.loc 2 154 0
+ 257              		.cfi_startproc
+ 258              		@ args = 0, pretend = 0, frame = 16
+ 259              		@ frame_needed = 1, uses_anonymous_args = 0
+ 260 0000 80B5     		push	{r7, lr}
+ 261              	.LCFI23:
+ 262              		.cfi_def_cfa_offset 8
+ 263              		.cfi_offset 7, -8
+ 264              		.cfi_offset 14, -4
+ 265 0002 84B0     		sub	sp, sp, #16
+ 266              	.LCFI24:
+ 267              		.cfi_def_cfa_offset 24
+ 268 0004 00AF     		add	r7, sp, #0
+ 269              	.LCFI25:
+ 270              		.cfi_def_cfa_register 7
+ 271 0006 7860     		str	r0, [r7, #4]
+ 155:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /* Returns the number of items which can be read from uxTail
+ 156:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** before reaching uxHead */
+ 157:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** size_t uxHead = pxBuffer->uxHead;
+ 272              		.loc 2 157 0
+ 273 0008 7B68     		ldr	r3, [r7, #4]
+ 274 000a 9B68     		ldr	r3, [r3, #8]
+ARM GAS  /tmp/cc9fYl89.s 			page 12
+
+
+ 275 000c FB60     		str	r3, [r7, #12]
+ 158:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** size_t uxTail = pxBuffer->uxTail;
+ 276              		.loc 2 158 0
+ 277 000e 7B68     		ldr	r3, [r7, #4]
+ 278 0010 1B68     		ldr	r3, [r3]
+ 279 0012 BB60     		str	r3, [r7, #8]
+ 159:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ 160:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	return uxStreamBufferDistance( pxBuffer, uxTail, uxHead );
+ 280              		.loc 2 160 0
+ 281 0014 7868     		ldr	r0, [r7, #4]
+ 282 0016 B968     		ldr	r1, [r7, #8]
+ 283 0018 FA68     		ldr	r2, [r7, #12]
+ 284 001a FFF7FEFF 		bl	uxStreamBufferDistance
+ 285 001e 0346     		mov	r3, r0
+ 161:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** }
+ 286              		.loc 2 161 0
+ 287 0020 1846     		mov	r0, r3
+ 288 0022 1037     		adds	r7, r7, #16
+ 289              	.LCFI26:
+ 290              		.cfi_def_cfa_offset 8
+ 291 0024 BD46     		mov	sp, r7
+ 292              	.LCFI27:
+ 293              		.cfi_def_cfa_register 13
+ 294              		@ sp needed
+ 295 0026 80BD     		pop	{r7, pc}
+ 296              		.cfi_endproc
+ 297              	.LFE20:
+ 299              		.section	.text.xStreamBufferLessThenEqual,"ax",%progbits
+ 300              		.align	2
+ 301              		.thumb
+ 302              		.thumb_func
+ 304              	xStreamBufferLessThenEqual:
+ 305              	.LFB25:
+ 162:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /*-----------------------------------------------------------*/
+ 163:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ 164:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE size_t uxStreamBufferMidSpace( const StreamBuffer_t *pxBuffer );
+ 165:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE size_t uxStreamBufferMidSpace( const StreamBuffer_t *pxBuffer )
+ 166:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** {
+ 167:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /* Returns the distance between uxHead and uxMid */
+ 168:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** size_t uxHead = pxBuffer->uxHead;
+ 169:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** size_t uxMid = pxBuffer->uxMid;
+ 170:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ 171:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	return uxStreamBufferDistance( pxBuffer, uxMid, uxHead );
+ 172:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** }
+ 173:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /*-----------------------------------------------------------*/
+ 174:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ 175:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE void vStreamBufferMoveMid( StreamBuffer_t *pxBuffer, size_t uxCount );
+ 176:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE void vStreamBufferMoveMid( StreamBuffer_t *pxBuffer, size_t uxCount )
+ 177:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** {
+ 178:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /* Increment uxMid, but no further than uxHead */
+ 179:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** size_t uxSize = uxStreamBufferMidSpace( pxBuffer );
+ 180:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ 181:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	if( uxCount > uxSize )
+ 182:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	{
+ 183:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 		uxCount = uxSize;
+ 184:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	}
+ 185:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	pxBuffer->uxMid += uxCount;
+ARM GAS  /tmp/cc9fYl89.s 			page 13
+
+
+ 186:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	if( pxBuffer->uxMid >= pxBuffer->LENGTH )
+ 187:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	{
+ 188:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 		pxBuffer->uxMid -= pxBuffer->LENGTH;
+ 189:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	}
+ 190:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** }
+ 191:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /*-----------------------------------------------------------*/
+ 192:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE BaseType_t xStreamBufferIsEmpty( const StreamBuffer_t *pxBuffer );
+ 193:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE BaseType_t xStreamBufferIsEmpty( const StreamBuffer_t *pxBuffer )
+ 194:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** {
+ 195:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** BaseType_t xReturn;
+ 196:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ 197:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	/* True if no item is available */
+ 198:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	if( pxBuffer->uxHead == pxBuffer->uxTail )
+ 199:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	{
+ 200:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 		xReturn = pdTRUE;
+ 201:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	}
+ 202:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	else
+ 203:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	{
+ 204:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 		xReturn = pdFALSE;
+ 205:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	}
+ 206:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	return xReturn;
+ 207:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** }
+ 208:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /*-----------------------------------------------------------*/
+ 209:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ 210:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE BaseType_t xStreamBufferIsFull( const StreamBuffer_t *pxBuffer );
+ 211:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE BaseType_t xStreamBufferIsFull( const StreamBuffer_t *pxBuffer )
+ 212:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** {
+ 213:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	/* True if the available space equals zero. */
+ 214:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	return ( BaseType_t ) ( uxStreamBufferGetSpace( pxBuffer ) == 0u );
+ 215:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** }
+ 216:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /*-----------------------------------------------------------*/
+ 217:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ 218:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE BaseType_t xStreamBufferLessThenEqual( const StreamBuffer_t *pxBuffer, const size
+ 219:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE BaseType_t xStreamBufferLessThenEqual( const StreamBuffer_t *pxBuffer, const size
+ 220:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** {
+ 306              		.loc 2 220 0
+ 307              		.cfi_startproc
+ 308              		@ args = 0, pretend = 0, frame = 24
+ 309              		@ frame_needed = 1, uses_anonymous_args = 0
+ 310              		@ link register save eliminated.
+ 311 0000 80B4     		push	{r7}
+ 312              	.LCFI28:
+ 313              		.cfi_def_cfa_offset 4
+ 314              		.cfi_offset 7, -4
+ 315 0002 87B0     		sub	sp, sp, #28
+ 316              	.LCFI29:
+ 317              		.cfi_def_cfa_offset 32
+ 318 0004 00AF     		add	r7, sp, #0
+ 319              	.LCFI30:
+ 320              		.cfi_def_cfa_register 7
+ 321 0006 F860     		str	r0, [r7, #12]
+ 322 0008 B960     		str	r1, [r7, #8]
+ 323 000a 7A60     		str	r2, [r7, #4]
+ 221:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** BaseType_t xReturn;
+ 222:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** size_t uxTail = pxBuffer->uxTail;
+ 324              		.loc 2 222 0
+ 325 000c FB68     		ldr	r3, [r7, #12]
+ARM GAS  /tmp/cc9fYl89.s 			page 14
+
+
+ 326 000e 1B68     		ldr	r3, [r3]
+ 327 0010 3B61     		str	r3, [r7, #16]
+ 223:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
+ 224:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	/* Returns true if ( uxLeft < uxRight ) */
+ 225:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	if( ( uxLeft < uxTail ) ^ ( uxRight < uxTail ) )
+ 328              		.loc 2 225 0
+ 329 0012 BA68     		ldr	r2, [r7, #8]
+ 330 0014 3B69     		ldr	r3, [r7, #16]
+ 331 0016 9A42     		cmp	r2, r3
+ 332 0018 34BF     		ite	cc
+ 333 001a 0123     		movcc	r3, #1
+ 334 001c 0023     		movcs	r3, #0
+ 335 001e DAB2     		uxtb	r2, r3
+ 336 0020 7968     		ldr	r1, [r7, #4]
+ 337 0022 3B69     		ldr	r3, [r7, #16]
+ 338 0024 9942     		cmp	r1, r3
+ 339 0026 34BF     		ite	cc
+ 340 0028 0123     		movcc	r3, #1
+ 341 002a 0023     		movcs	r3, #0
+ 342 002c DBB2     		uxtb	r3, r3
+ 343 002e 5340     		eors	r3, r3, r2
+ 344 0030 DBB2     		uxtb	r3, r3
+ 345 0032 002B     		cmp	r3, #0
+ 346 0034 09D0     		beq	.L14
+ 226:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	{
+ 227:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 		if( uxRight < uxTail )
+ 347              		.loc 2 227 0
+ 348 0036 7A68     		ldr	r2, [r7, #4]
+ 349 0038 3B69     		ldr	r3, [r7, #16]
+ 350 003a 9A42     		cmp	r2, r3
+ 351 003c 02D2     		bcs	.L15
+ 228:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 		{
+ 229:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 			xReturn = pdTRUE;
+ 352              		.loc 2 229 0
+ 353 003e 0123     		movs	r3, #1
+ 354 0040 7B61     		str	r3, [r7, #20]
+ 355 0042 0BE0     		b	.L17
+ 356              	.L15:
+ 230:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 		}
+ 231:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 		else
+ 232:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 		{
+ 233:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 			xReturn = pdFALSE;
+ 357              		.loc 2 233 0
+ 358 0044 0023     		movs	r3, #0
+ 359 0046 7B61     		str	r3, [r7, #20]
+ 360 0048 08E0     		b	.L17
+ 361              	.L14:
+ 234:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 		}
+ 235:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	}
+ 236:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	else
+ 237:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	{
+ 238:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 		if( uxLeft <= uxRight )
+ 362              		.loc 2 238 0
+ 363 004a BA68     		ldr	r2, [r7, #8]
+ 364 004c 7B68     		ldr	r3, [r7, #4]
+ 365 004e 9A42     		cmp	r2, r3
+ 366 0050 02D8     		bhi	.L18
+ARM GAS  /tmp/cc9fYl89.s 			page 15
+
+
+ 239:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 		{
+ 240:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 			xReturn = pdTRUE;
+ 367              		.loc 2 240 0
+ 368 0052 0123     		movs	r3, #1
+ 369 0054 7B61     		str	r3, [r7, #20]
+ 370 0056 01E0     		b	.L17
+ 371              	.L18:
+ 241:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 		}
+ 242:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 		else
+ 243:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 		{
+ 244:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 			xReturn = pdFALSE;
+ 372              		.loc 2 244 0
+ 373 0058 0023     		movs	r3, #0
+ 374 005a 7B61     		str	r3, [r7, #20]
+ 375              	.L17:
+ 245:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 		}
+ 246:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	}
+ 247:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	return xReturn;
+ 376              		.loc 2 247 0
+ 377 005c 7B69     		ldr	r3, [r7, #20]
+ 248:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** }
+ 378              		.loc 2 248 0
+ 379 005e 1846     		mov	r0, r3
+ 380 0060 1C37     		adds	r7, r7, #28
+ 381              	.LCFI31:
+ 382              		.cfi_def_cfa_offset 4
+ 383 0062 BD46     		mov	sp, r7
+ 384              	.LCFI32:
+ 385              		.cfi_def_cfa_register 13
+ 386              		@ sp needed
+ 387 0064 5DF8047B 		ldr	r7, [sp], #4
+ 388              	.LCFI33:
+ 389              		.cfi_restore 7
+ 390              		.cfi_def_cfa_offset 0
+ 391 0068 7047     		bx	lr
+ 392              		.cfi_endproc
+ 393              	.LFE25:
+ 395 006a 00BF     		.section	.text.uxStreamBufferAdd,"ax",%progbits
+ 396              		.align	2
+ 397              		.global	uxStreamBufferAdd
+ 398              		.thumb
+ 399              		.thumb_func
+ 401              	uxStreamBufferAdd:
+ 402              	.LFB29:
+ 403              		.file 3 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c"
+   1:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** /*
+   2:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * FreeRTOS+TCP Labs Build 160919 (C) 2016 Real Time Engineers ltd.
+   3:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * Authors include Hein Tibosch and Richard Barry
+   4:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  *
+   5:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  *******************************************************************************
+   6:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  ***** NOTE ******* NOTE ******* NOTE ******* NOTE ******* NOTE ******* NOTE ***
+   7:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  ***                                                                         ***
+   8:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  ***                                                                         ***
+   9:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  ***   FREERTOS+TCP IS STILL IN THE LAB (mainly because the FTP and HTTP     ***
+  10:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  ***   demos have a dependency on FreeRTOS+FAT, which is only in the Labs    ***
+  11:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  ***   download):                                                            ***
+  12:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  ***                                                                         ***
+ARM GAS  /tmp/cc9fYl89.s 			page 16
+
+
+  13:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  ***   FreeRTOS+TCP is functional and has been used in commercial products   ***
+  14:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  ***   for some time.  Be aware however that we are still refining its       ***
+  15:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  ***   design, the source code does not yet quite conform to the strict      ***
+  16:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  ***   coding and style standards mandated by Real Time Engineers ltd., and  ***
+  17:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  ***   the documentation and testing is not necessarily complete.            ***
+  18:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  ***                                                                         ***
+  19:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  ***   PLEASE REPORT EXPERIENCES USING THE SUPPORT RESOURCES FOUND ON THE    ***
+  20:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  ***   URL: http://www.FreeRTOS.org/contact  Active early adopters may, at   ***
+  21:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  ***   the sole discretion of Real Time Engineers Ltd., be offered versions  ***
+  22:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  ***   under a license other than that described below.                      ***
+  23:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  ***                                                                         ***
+  24:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  ***                                                                         ***
+  25:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  ***** NOTE ******* NOTE ******* NOTE ******* NOTE ******* NOTE ******* NOTE ***
+  26:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  *******************************************************************************
+  27:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  *
+  28:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * FreeRTOS+TCP can be used under two different free open source licenses.  The
+  29:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * license that applies is dependent on the processor on which FreeRTOS+TCP is
+  30:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * executed, as follows:
+  31:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  *
+  32:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * If FreeRTOS+TCP is executed on one of the processors listed under the Special
+  33:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * License Arrangements heading of the FreeRTOS+TCP license information web
+  34:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * page, then it can be used under the terms of the FreeRTOS Open Source
+  35:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * License.  If FreeRTOS+TCP is used on any other processor, then it can be used
+  36:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * under the terms of the GNU General Public License V2.  Links to the relevant
+  37:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * licenses follow:
+  38:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  *
+  39:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * The FreeRTOS+TCP License Information Page: http://www.FreeRTOS.org/tcp_license
+  40:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * The FreeRTOS Open Source License: http://www.FreeRTOS.org/license
+  41:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * The GNU General Public License Version 2: http://www.FreeRTOS.org/gpl-2.0.txt
+  42:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  *
+  43:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * FreeRTOS+TCP is distributed in the hope that it will be useful.  You cannot
+  44:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * use FreeRTOS+TCP unless you agree that you use the software 'as is'.
+  45:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * FreeRTOS+TCP is provided WITHOUT ANY WARRANTY; without even the implied
+  46:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * warranties of NON-INFRINGEMENT, MERCHANTABILITY or FITNESS FOR A PARTICULAR
+  47:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * PURPOSE. Real Time Engineers Ltd. disclaims all conditions and terms, be they
+  48:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * implied, expressed, or statutory.
+  49:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  *
+  50:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * 1 tab == 4 spaces!
+  51:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  *
+  52:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * http://www.FreeRTOS.org
+  53:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * http://www.FreeRTOS.org/plus
+  54:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * http://www.FreeRTOS.org/labs
+  55:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  *
+  56:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  */
+  57:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+  58:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** /* Standard includes. */
+  59:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** #include <stdint.h>
+  60:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+  61:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** /* FreeRTOS includes. */
+  62:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** #include "FreeRTOS.h"
+  63:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** #include "task.h"
+  64:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** #include "semphr.h"
+  65:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+  66:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** /* FreeRTOS+TCP includes. */
+  67:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** #include "FreeRTOS_UDP_IP.h"
+  68:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** #include "FreeRTOS_IP.h"
+  69:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** #include "FreeRTOS_Sockets.h"
+ARM GAS  /tmp/cc9fYl89.s 			page 17
+
+
+  70:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** #include "FreeRTOS_IP_Private.h"
+  71:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+  72:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** /*
+  73:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * uxStreamBufferAdd( )
+  74:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * Adds data to a stream buffer.  If uxOffset > 0, data will be written at
+  75:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * an offset from uxHead while uxHead will not be moved yet.  This possibility
+  76:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * will be used when TCP data is received while earlier data is still missing.
+  77:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * If 'pucData' equals NULL, the function is called to advance 'uxHead' only.
+  78:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  */
+  79:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** size_t uxStreamBufferAdd( StreamBuffer_t *pxBuffer, size_t uxOffset, const uint8_t *pucData, size_t
+  80:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** {
+ 404              		.loc 3 80 0
+ 405              		.cfi_startproc
+ 406              		@ args = 0, pretend = 0, frame = 32
+ 407              		@ frame_needed = 1, uses_anonymous_args = 0
+ 408 0000 80B5     		push	{r7, lr}
+ 409              	.LCFI34:
+ 410              		.cfi_def_cfa_offset 8
+ 411              		.cfi_offset 7, -8
+ 412              		.cfi_offset 14, -4
+ 413 0002 88B0     		sub	sp, sp, #32
+ 414              	.LCFI35:
+ 415              		.cfi_def_cfa_offset 40
+ 416 0004 00AF     		add	r7, sp, #0
+ 417              	.LCFI36:
+ 418              		.cfi_def_cfa_register 7
+ 419 0006 F860     		str	r0, [r7, #12]
+ 420 0008 B960     		str	r1, [r7, #8]
+ 421 000a 7A60     		str	r2, [r7, #4]
+ 422 000c 3B60     		str	r3, [r7]
+  81:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** size_t uxSpace, uxNextHead, uxFirst;
+  82:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+  83:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	uxSpace = uxStreamBufferGetSpace( pxBuffer );
+ 423              		.loc 3 83 0
+ 424 000e F868     		ldr	r0, [r7, #12]
+ 425 0010 FFF7FEFF 		bl	uxStreamBufferGetSpace
+ 426 0014 F861     		str	r0, [r7, #28]
+  84:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+  85:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	/* If uxOffset > 0, items can be placed in front of uxHead */
+  86:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	if( uxSpace > uxOffset )
+ 427              		.loc 3 86 0
+ 428 0016 FA69     		ldr	r2, [r7, #28]
+ 429 0018 BB68     		ldr	r3, [r7, #8]
+ 430 001a 9A42     		cmp	r2, r3
+ 431 001c 04D9     		bls	.L21
+  87:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	{
+  88:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		uxSpace -= uxOffset;
+ 432              		.loc 3 88 0
+ 433 001e FA69     		ldr	r2, [r7, #28]
+ 434 0020 BB68     		ldr	r3, [r7, #8]
+ 435 0022 D31A     		subs	r3, r2, r3
+ 436 0024 FB61     		str	r3, [r7, #28]
+ 437 0026 01E0     		b	.L22
+ 438              	.L21:
+  89:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	}
+  90:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	else
+  91:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	{
+ARM GAS  /tmp/cc9fYl89.s 			page 18
+
+
+  92:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		uxSpace = 0u;
+ 439              		.loc 3 92 0
+ 440 0028 0023     		movs	r3, #0
+ 441 002a FB61     		str	r3, [r7, #28]
+ 442              	.L22:
+  93:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	}
+  94:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+  95:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	/* The number of bytes that can be written is the minimum of the number of
+  96:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	bytes requested and the number available. */
+  97:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	uxCount = FreeRTOS_min_uint32( uxSpace, uxCount );
+ 443              		.loc 3 97 0
+ 444 002c F869     		ldr	r0, [r7, #28]
+ 445 002e 3968     		ldr	r1, [r7]
+ 446 0030 FFF7FEFF 		bl	FreeRTOS_min_uint32
+ 447 0034 3860     		str	r0, [r7]
+  98:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+  99:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	if( uxCount != 0u )
+ 448              		.loc 3 99 0
+ 449 0036 3B68     		ldr	r3, [r7]
+ 450 0038 002B     		cmp	r3, #0
+ 451 003a 5AD0     		beq	.L23
+ 100:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	{
+ 101:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		uxNextHead = pxBuffer->uxHead;
+ 452              		.loc 3 101 0
+ 453 003c FB68     		ldr	r3, [r7, #12]
+ 454 003e 9B68     		ldr	r3, [r3, #8]
+ 455 0040 BB61     		str	r3, [r7, #24]
+ 102:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+ 103:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		if( uxOffset != 0u )
+ 456              		.loc 3 103 0
+ 457 0042 BB68     		ldr	r3, [r7, #8]
+ 458 0044 002B     		cmp	r3, #0
+ 459 0046 0DD0     		beq	.L24
+ 104:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		{
+ 105:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			/* ( uxOffset > 0 ) means: write in front if the uxHead marker */
+ 106:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			uxNextHead += uxOffset;
+ 460              		.loc 3 106 0
+ 461 0048 BA69     		ldr	r2, [r7, #24]
+ 462 004a BB68     		ldr	r3, [r7, #8]
+ 463 004c 1344     		add	r3, r3, r2
+ 464 004e BB61     		str	r3, [r7, #24]
+ 107:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			if( uxNextHead >= pxBuffer->LENGTH )
+ 465              		.loc 3 107 0
+ 466 0050 FB68     		ldr	r3, [r7, #12]
+ 467 0052 1A69     		ldr	r2, [r3, #16]
+ 468 0054 BB69     		ldr	r3, [r7, #24]
+ 469 0056 9A42     		cmp	r2, r3
+ 470 0058 04D8     		bhi	.L24
+ 108:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			{
+ 109:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 				uxNextHead -= pxBuffer->LENGTH;
+ 471              		.loc 3 109 0
+ 472 005a FB68     		ldr	r3, [r7, #12]
+ 473 005c 1B69     		ldr	r3, [r3, #16]
+ 474 005e BA69     		ldr	r2, [r7, #24]
+ 475 0060 D31A     		subs	r3, r2, r3
+ 476 0062 BB61     		str	r3, [r7, #24]
+ 477              	.L24:
+ARM GAS  /tmp/cc9fYl89.s 			page 19
+
+
+ 110:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			}
+ 111:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		}
+ 112:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+ 113:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		if( pucData != NULL )
+ 478              		.loc 3 113 0
+ 479 0064 7B68     		ldr	r3, [r7, #4]
+ 480 0066 002B     		cmp	r3, #0
+ 481 0068 22D0     		beq	.L25
+ 114:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		{
+ 115:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			/* Calculate the number of bytes that can be added in the first
+ 116:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			write - which may be less than the total number of bytes that need
+ 117:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			to be added if the buffer will wrap back to the beginning. */
+ 118:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			uxFirst = FreeRTOS_min_uint32( pxBuffer->LENGTH - uxNextHead, uxCount );
+ 482              		.loc 3 118 0
+ 483 006a FB68     		ldr	r3, [r7, #12]
+ 484 006c 1A69     		ldr	r2, [r3, #16]
+ 485 006e BB69     		ldr	r3, [r7, #24]
+ 486 0070 D31A     		subs	r3, r2, r3
+ 487 0072 1846     		mov	r0, r3
+ 488 0074 3968     		ldr	r1, [r7]
+ 489 0076 FFF7FEFF 		bl	FreeRTOS_min_uint32
+ 490 007a 7861     		str	r0, [r7, #20]
+ 119:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+ 120:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			/* Write as many bytes as can be written in the first write. */
+ 121:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			memcpy( ( void* ) ( pxBuffer->ucArray + uxNextHead ), pucData, uxFirst );
+ 491              		.loc 3 121 0
+ 492 007c BB69     		ldr	r3, [r7, #24]
+ 493 007e 1033     		adds	r3, r3, #16
+ 494 0080 FA68     		ldr	r2, [r7, #12]
+ 495 0082 1344     		add	r3, r3, r2
+ 496 0084 0433     		adds	r3, r3, #4
+ 497 0086 1846     		mov	r0, r3
+ 498 0088 7968     		ldr	r1, [r7, #4]
+ 499 008a 7A69     		ldr	r2, [r7, #20]
+ 500 008c FFF7FEFF 		bl	memcpy
+ 122:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+ 123:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			/* If the number of bytes written was less than the number that
+ 124:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			could be written in the first write... */
+ 125:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			if( uxCount > uxFirst )
+ 501              		.loc 3 125 0
+ 502 0090 3A68     		ldr	r2, [r7]
+ 503 0092 7B69     		ldr	r3, [r7, #20]
+ 504 0094 9A42     		cmp	r2, r3
+ 505 0096 0BD9     		bls	.L25
+ 126:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			{
+ 127:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 				/* ...then write the remaining bytes to the start of the
+ 128:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 				buffer. */
+ 129:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 				memcpy( ( void * )pxBuffer->ucArray, pucData + uxFirst, uxCount - uxFirst );
+ 506              		.loc 3 129 0
+ 507 0098 FB68     		ldr	r3, [r7, #12]
+ 508 009a 03F11400 		add	r0, r3, #20
+ 509 009e 7A68     		ldr	r2, [r7, #4]
+ 510 00a0 7B69     		ldr	r3, [r7, #20]
+ 511 00a2 D118     		adds	r1, r2, r3
+ 512 00a4 3A68     		ldr	r2, [r7]
+ 513 00a6 7B69     		ldr	r3, [r7, #20]
+ 514 00a8 D31A     		subs	r3, r2, r3
+ARM GAS  /tmp/cc9fYl89.s 			page 20
+
+
+ 515 00aa 1A46     		mov	r2, r3
+ 516 00ac FFF7FEFF 		bl	memcpy
+ 517              	.L25:
+ 130:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			}
+ 131:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		}
+ 132:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+ 133:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		if( uxOffset == 0u )
+ 518              		.loc 3 133 0
+ 519 00b0 BB68     		ldr	r3, [r7, #8]
+ 520 00b2 002B     		cmp	r3, #0
+ 521 00b4 10D1     		bne	.L26
+ 134:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		{
+ 135:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			/* ( uxOffset == 0 ) means: write at uxHead position */
+ 136:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			uxNextHead += uxCount;
+ 522              		.loc 3 136 0
+ 523 00b6 BA69     		ldr	r2, [r7, #24]
+ 524 00b8 3B68     		ldr	r3, [r7]
+ 525 00ba 1344     		add	r3, r3, r2
+ 526 00bc BB61     		str	r3, [r7, #24]
+ 137:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			if( uxNextHead >= pxBuffer->LENGTH )
+ 527              		.loc 3 137 0
+ 528 00be FB68     		ldr	r3, [r7, #12]
+ 529 00c0 1A69     		ldr	r2, [r3, #16]
+ 530 00c2 BB69     		ldr	r3, [r7, #24]
+ 531 00c4 9A42     		cmp	r2, r3
+ 532 00c6 04D8     		bhi	.L27
+ 138:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			{
+ 139:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 				uxNextHead -= pxBuffer->LENGTH;
+ 533              		.loc 3 139 0
+ 534 00c8 FB68     		ldr	r3, [r7, #12]
+ 535 00ca 1B69     		ldr	r3, [r3, #16]
+ 536 00cc BA69     		ldr	r2, [r7, #24]
+ 537 00ce D31A     		subs	r3, r2, r3
+ 538 00d0 BB61     		str	r3, [r7, #24]
+ 539              	.L27:
+ 140:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			}
+ 141:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			pxBuffer->uxHead = uxNextHead;
+ 540              		.loc 3 141 0
+ 541 00d2 FB68     		ldr	r3, [r7, #12]
+ 542 00d4 BA69     		ldr	r2, [r7, #24]
+ 543 00d6 9A60     		str	r2, [r3, #8]
+ 544              	.L26:
+ 142:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		}
+ 143:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+ 144:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		if( xStreamBufferLessThenEqual( pxBuffer, pxBuffer->uxFront, uxNextHead ) != pdFALSE )
+ 545              		.loc 3 144 0
+ 546 00d8 FB68     		ldr	r3, [r7, #12]
+ 547 00da DB68     		ldr	r3, [r3, #12]
+ 548 00dc F868     		ldr	r0, [r7, #12]
+ 549 00de 1946     		mov	r1, r3
+ 550 00e0 BA69     		ldr	r2, [r7, #24]
+ 551 00e2 FFF7FEFF 		bl	xStreamBufferLessThenEqual
+ 552 00e6 0346     		mov	r3, r0
+ 553 00e8 002B     		cmp	r3, #0
+ 554 00ea 02D0     		beq	.L23
+ 145:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		{
+ 146:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			/* Advance the front pointer */
+ARM GAS  /tmp/cc9fYl89.s 			page 21
+
+
+ 147:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			pxBuffer->uxFront = uxNextHead;
+ 555              		.loc 3 147 0
+ 556 00ec FB68     		ldr	r3, [r7, #12]
+ 557 00ee BA69     		ldr	r2, [r7, #24]
+ 558 00f0 DA60     		str	r2, [r3, #12]
+ 559              	.L23:
+ 148:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		}
+ 149:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	}
+ 150:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+ 151:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	return uxCount;
+ 560              		.loc 3 151 0
+ 561 00f2 3B68     		ldr	r3, [r7]
+ 152:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** }
+ 562              		.loc 3 152 0
+ 563 00f4 1846     		mov	r0, r3
+ 564 00f6 2037     		adds	r7, r7, #32
+ 565              	.LCFI37:
+ 566              		.cfi_def_cfa_offset 8
+ 567 00f8 BD46     		mov	sp, r7
+ 568              	.LCFI38:
+ 569              		.cfi_def_cfa_register 13
+ 570              		@ sp needed
+ 571 00fa 80BD     		pop	{r7, pc}
+ 572              		.cfi_endproc
+ 573              	.LFE29:
+ 575              		.section	.text.uxStreamBufferGet,"ax",%progbits
+ 576              		.align	2
+ 577              		.global	uxStreamBufferGet
+ 578              		.thumb
+ 579              		.thumb_func
+ 581              	uxStreamBufferGet:
+ 582              	.LFB30:
+ 153:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** /*-----------------------------------------------------------*/
+ 154:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+ 155:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** /*
+ 156:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * uxStreamBufferGet( )
+ 157:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * 'uxOffset' can be used to read data located at a certain offset from 'lTail'.
+ 158:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * If 'pucData' equals NULL, the function is called to advance 'lTail' only.
+ 159:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * if 'xPeek' is pdTRUE, or if 'uxOffset' is non-zero, the 'lTail' pointer will
+ 160:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  * not be advanced.
+ 161:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c ****  */
+ 162:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** size_t uxStreamBufferGet( StreamBuffer_t *pxBuffer, size_t uxOffset, uint8_t *pucData, size_t uxMax
+ 163:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** {
+ 583              		.loc 3 163 0
+ 584              		.cfi_startproc
+ 585              		@ args = 4, pretend = 0, frame = 32
+ 586              		@ frame_needed = 1, uses_anonymous_args = 0
+ 587 0000 80B5     		push	{r7, lr}
+ 588              	.LCFI39:
+ 589              		.cfi_def_cfa_offset 8
+ 590              		.cfi_offset 7, -8
+ 591              		.cfi_offset 14, -4
+ 592 0002 88B0     		sub	sp, sp, #32
+ 593              	.LCFI40:
+ 594              		.cfi_def_cfa_offset 40
+ 595 0004 00AF     		add	r7, sp, #0
+ 596              	.LCFI41:
+ARM GAS  /tmp/cc9fYl89.s 			page 22
+
+
+ 597              		.cfi_def_cfa_register 7
+ 598 0006 F860     		str	r0, [r7, #12]
+ 599 0008 B960     		str	r1, [r7, #8]
+ 600 000a 7A60     		str	r2, [r7, #4]
+ 601 000c 3B60     		str	r3, [r7]
+ 164:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** size_t uxSize, uxCount, uxFirst, uxNextTail;
+ 165:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+ 166:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	/* How much data is available? */
+ 167:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	uxSize = uxStreamBufferGetSize( pxBuffer );
+ 602              		.loc 3 167 0
+ 603 000e F868     		ldr	r0, [r7, #12]
+ 604 0010 FFF7FEFF 		bl	uxStreamBufferGetSize
+ 605 0014 F861     		str	r0, [r7, #28]
+ 168:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+ 169:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	if( uxSize > uxOffset )
+ 606              		.loc 3 169 0
+ 607 0016 FA69     		ldr	r2, [r7, #28]
+ 608 0018 BB68     		ldr	r3, [r7, #8]
+ 609 001a 9A42     		cmp	r2, r3
+ 610 001c 04D9     		bls	.L30
+ 170:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	{
+ 171:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		uxSize -= uxOffset;
+ 611              		.loc 3 171 0
+ 612 001e FA69     		ldr	r2, [r7, #28]
+ 613 0020 BB68     		ldr	r3, [r7, #8]
+ 614 0022 D31A     		subs	r3, r2, r3
+ 615 0024 FB61     		str	r3, [r7, #28]
+ 616 0026 01E0     		b	.L31
+ 617              	.L30:
+ 172:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	}
+ 173:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	else
+ 174:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	{
+ 175:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		uxSize = 0u;
+ 618              		.loc 3 175 0
+ 619 0028 0023     		movs	r3, #0
+ 620 002a FB61     		str	r3, [r7, #28]
+ 621              	.L31:
+ 176:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	}
+ 177:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+ 178:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	/* Use the minimum of the wanted bytes and the available bytes. */
+ 179:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	uxCount = FreeRTOS_min_uint32( uxSize, uxMaxCount );
+ 622              		.loc 3 179 0
+ 623 002c F869     		ldr	r0, [r7, #28]
+ 624 002e 3968     		ldr	r1, [r7]
+ 625 0030 FFF7FEFF 		bl	FreeRTOS_min_uint32
+ 626 0034 7861     		str	r0, [r7, #20]
+ 180:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+ 181:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	if( uxCount > 0u )
+ 627              		.loc 3 181 0
+ 628 0036 7B69     		ldr	r3, [r7, #20]
+ 629 0038 002B     		cmp	r3, #0
+ 630 003a 50D0     		beq	.L32
+ 182:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	{
+ 183:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		uxNextTail = pxBuffer->uxTail;
+ 631              		.loc 3 183 0
+ 632 003c FB68     		ldr	r3, [r7, #12]
+ 633 003e 1B68     		ldr	r3, [r3]
+ARM GAS  /tmp/cc9fYl89.s 			page 23
+
+
+ 634 0040 BB61     		str	r3, [r7, #24]
+ 184:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+ 185:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		if( uxOffset != 0u )
+ 635              		.loc 3 185 0
+ 636 0042 BB68     		ldr	r3, [r7, #8]
+ 637 0044 002B     		cmp	r3, #0
+ 638 0046 0DD0     		beq	.L33
+ 186:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		{
+ 187:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			uxNextTail += uxOffset;
+ 639              		.loc 3 187 0
+ 640 0048 BA69     		ldr	r2, [r7, #24]
+ 641 004a BB68     		ldr	r3, [r7, #8]
+ 642 004c 1344     		add	r3, r3, r2
+ 643 004e BB61     		str	r3, [r7, #24]
+ 188:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			if( uxNextTail >= pxBuffer->LENGTH )
+ 644              		.loc 3 188 0
+ 645 0050 FB68     		ldr	r3, [r7, #12]
+ 646 0052 1A69     		ldr	r2, [r3, #16]
+ 647 0054 BB69     		ldr	r3, [r7, #24]
+ 648 0056 9A42     		cmp	r2, r3
+ 649 0058 04D8     		bhi	.L33
+ 189:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			{
+ 190:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 				uxNextTail -= pxBuffer->LENGTH;
+ 650              		.loc 3 190 0
+ 651 005a FB68     		ldr	r3, [r7, #12]
+ 652 005c 1B69     		ldr	r3, [r3, #16]
+ 653 005e BA69     		ldr	r2, [r7, #24]
+ 654 0060 D31A     		subs	r3, r2, r3
+ 655 0062 BB61     		str	r3, [r7, #24]
+ 656              	.L33:
+ 191:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			}
+ 192:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		}
+ 193:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+ 194:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		if( pucData != NULL )
+ 657              		.loc 3 194 0
+ 658 0064 7B68     		ldr	r3, [r7, #4]
+ 659 0066 002B     		cmp	r3, #0
+ 660 0068 22D0     		beq	.L34
+ 195:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		{
+ 196:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			/* Calculate the number of bytes that can be read - which may be
+ 197:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			less than the number wanted if the data wraps around to the start of
+ 198:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			the buffer. */
+ 199:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			uxFirst = FreeRTOS_min_uint32( pxBuffer->LENGTH - uxNextTail, uxCount );
+ 661              		.loc 3 199 0
+ 662 006a FB68     		ldr	r3, [r7, #12]
+ 663 006c 1A69     		ldr	r2, [r3, #16]
+ 664 006e BB69     		ldr	r3, [r7, #24]
+ 665 0070 D31A     		subs	r3, r2, r3
+ 666 0072 1846     		mov	r0, r3
+ 667 0074 7969     		ldr	r1, [r7, #20]
+ 668 0076 FFF7FEFF 		bl	FreeRTOS_min_uint32
+ 669 007a 3861     		str	r0, [r7, #16]
+ 200:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+ 201:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			/* Obtain the number of bytes it is possible to obtain in the first
+ 202:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			read. */
+ 203:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			memcpy( pucData, pxBuffer->ucArray + uxNextTail, uxFirst );
+ 670              		.loc 3 203 0
+ARM GAS  /tmp/cc9fYl89.s 			page 24
+
+
+ 671 007c BB69     		ldr	r3, [r7, #24]
+ 672 007e 1033     		adds	r3, r3, #16
+ 673 0080 FA68     		ldr	r2, [r7, #12]
+ 674 0082 1344     		add	r3, r3, r2
+ 675 0084 0433     		adds	r3, r3, #4
+ 676 0086 7868     		ldr	r0, [r7, #4]
+ 677 0088 1946     		mov	r1, r3
+ 678 008a 3A69     		ldr	r2, [r7, #16]
+ 679 008c FFF7FEFF 		bl	memcpy
+ 204:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+ 205:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			/* If the total number of wanted bytes is greater than the number
+ 206:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			that could be read in the first read... */
+ 207:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			if( uxCount > uxFirst )
+ 680              		.loc 3 207 0
+ 681 0090 7A69     		ldr	r2, [r7, #20]
+ 682 0092 3B69     		ldr	r3, [r7, #16]
+ 683 0094 9A42     		cmp	r2, r3
+ 684 0096 0BD9     		bls	.L34
+ 208:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			{
+ 209:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 				/*...then read the remaining bytes from the start of the buffer. */
+ 210:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 				memcpy( pucData + uxFirst, pxBuffer->ucArray, uxCount - uxFirst );
+ 685              		.loc 3 210 0
+ 686 0098 7A68     		ldr	r2, [r7, #4]
+ 687 009a 3B69     		ldr	r3, [r7, #16]
+ 688 009c D018     		adds	r0, r2, r3
+ 689 009e FB68     		ldr	r3, [r7, #12]
+ 690 00a0 03F11401 		add	r1, r3, #20
+ 691 00a4 7A69     		ldr	r2, [r7, #20]
+ 692 00a6 3B69     		ldr	r3, [r7, #16]
+ 693 00a8 D31A     		subs	r3, r2, r3
+ 694 00aa 1A46     		mov	r2, r3
+ 695 00ac FFF7FEFF 		bl	memcpy
+ 696              	.L34:
+ 211:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			}
+ 212:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		}
+ 213:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+ 214:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		if( ( xPeek == pdFALSE ) && ( uxOffset == 0UL ) )
+ 697              		.loc 3 214 0
+ 698 00b0 BB6A     		ldr	r3, [r7, #40]
+ 699 00b2 002B     		cmp	r3, #0
+ 700 00b4 13D1     		bne	.L32
+ 701              		.loc 3 214 0 is_stmt 0 discriminator 1
+ 702 00b6 BB68     		ldr	r3, [r7, #8]
+ 703 00b8 002B     		cmp	r3, #0
+ 704 00ba 10D1     		bne	.L32
+ 215:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		{
+ 216:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			/* Move the tail pointer to effecively remove the data read from
+ 217:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			the buffer. */
+ 218:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			uxNextTail += uxCount;
+ 705              		.loc 3 218 0 is_stmt 1
+ 706 00bc BA69     		ldr	r2, [r7, #24]
+ 707 00be 7B69     		ldr	r3, [r7, #20]
+ 708 00c0 1344     		add	r3, r3, r2
+ 709 00c2 BB61     		str	r3, [r7, #24]
+ 219:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+ 220:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			if( uxNextTail >= pxBuffer->LENGTH )
+ 710              		.loc 3 220 0
+ARM GAS  /tmp/cc9fYl89.s 			page 25
+
+
+ 711 00c4 FB68     		ldr	r3, [r7, #12]
+ 712 00c6 1A69     		ldr	r2, [r3, #16]
+ 713 00c8 BB69     		ldr	r3, [r7, #24]
+ 714 00ca 9A42     		cmp	r2, r3
+ 715 00cc 04D8     		bhi	.L35
+ 221:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			{
+ 222:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 				uxNextTail -= pxBuffer->LENGTH;
+ 716              		.loc 3 222 0
+ 717 00ce FB68     		ldr	r3, [r7, #12]
+ 718 00d0 1B69     		ldr	r3, [r3, #16]
+ 719 00d2 BA69     		ldr	r2, [r7, #24]
+ 720 00d4 D31A     		subs	r3, r2, r3
+ 721 00d6 BB61     		str	r3, [r7, #24]
+ 722              	.L35:
+ 223:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			}
+ 224:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+ 225:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 			pxBuffer->uxTail = uxNextTail;
+ 723              		.loc 3 225 0
+ 724 00d8 FB68     		ldr	r3, [r7, #12]
+ 725 00da BA69     		ldr	r2, [r7, #24]
+ 726 00dc 1A60     		str	r2, [r3]
+ 727              	.L32:
+ 226:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 		}
+ 227:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	}
+ 228:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 
+ 229:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** 	return uxCount;
+ 728              		.loc 3 229 0
+ 729 00de 7B69     		ldr	r3, [r7, #20]
+ 230:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c **** }
+ 730              		.loc 3 230 0
+ 731 00e0 1846     		mov	r0, r3
+ 732 00e2 2037     		adds	r7, r7, #32
+ 733              	.LCFI42:
+ 734              		.cfi_def_cfa_offset 8
+ 735 00e4 BD46     		mov	sp, r7
+ 736              	.LCFI43:
+ 737              		.cfi_def_cfa_register 13
+ 738              		@ sp needed
+ 739 00e6 80BD     		pop	{r7, pc}
+ 740              		.cfi_endproc
+ 741              	.LFE30:
+ 743              		.text
+ 744              	.Letext0:
+ 745              		.file 4 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 746              		.file 5 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 747              		.file 6 "/usr/lib/gcc/arm-none-eabi/4.9.3/include/stddef.h"
+ 748              		.file 7 "../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ARM GAS  /tmp/cc9fYl89.s 			page 26
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 FreeRTOS_Stream_Buffer.c
+     /tmp/cc9fYl89.s:21     .text.FreeRTOS_min_uint32:0000000000000000 $t
+     /tmp/cc9fYl89.s:25     .text.FreeRTOS_min_uint32:0000000000000000 FreeRTOS_min_uint32
+     /tmp/cc9fYl89.s:68     .text.uxStreamBufferSpace:0000000000000000 $t
+     /tmp/cc9fYl89.s:72     .text.uxStreamBufferSpace:0000000000000000 uxStreamBufferSpace
+     /tmp/cc9fYl89.s:135    .text.uxStreamBufferDistance:0000000000000000 $t
+     /tmp/cc9fYl89.s:139    .text.uxStreamBufferDistance:0000000000000000 uxStreamBufferDistance
+     /tmp/cc9fYl89.s:200    .text.uxStreamBufferGetSpace:0000000000000000 $t
+     /tmp/cc9fYl89.s:204    .text.uxStreamBufferGetSpace:0000000000000000 uxStreamBufferGetSpace
+     /tmp/cc9fYl89.s:250    .text.uxStreamBufferGetSize:0000000000000000 $t
+     /tmp/cc9fYl89.s:254    .text.uxStreamBufferGetSize:0000000000000000 uxStreamBufferGetSize
+     /tmp/cc9fYl89.s:300    .text.xStreamBufferLessThenEqual:0000000000000000 $t
+     /tmp/cc9fYl89.s:304    .text.xStreamBufferLessThenEqual:0000000000000000 xStreamBufferLessThenEqual
+     /tmp/cc9fYl89.s:396    .text.uxStreamBufferAdd:0000000000000000 $t
+     /tmp/cc9fYl89.s:401    .text.uxStreamBufferAdd:0000000000000000 uxStreamBufferAdd
+     /tmp/cc9fYl89.s:576    .text.uxStreamBufferGet:0000000000000000 $t
+     /tmp/cc9fYl89.s:581    .text.uxStreamBufferGet:0000000000000000 uxStreamBufferGet
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+memcpy

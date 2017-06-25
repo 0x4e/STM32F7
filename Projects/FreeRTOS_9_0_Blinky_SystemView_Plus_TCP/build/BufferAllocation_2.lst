@@ -1,0 +1,1583 @@
+ARM GAS  /tmp/ccCA6Ywq.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m7
+   3              		.eabi_attribute 27, 1
+   4              		.eabi_attribute 28, 1
+   5              		.fpu fpv5-sp-d16
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 6
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.thumb
+  16              		.file	"BufferAllocation_2.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              		.section	.bss.xFreeBuffersList,"aw",%nobits
+  21              		.align	2
+  24              	xFreeBuffersList:
+  25 0000 00000000 		.space	20
+  25      00000000 
+  25      00000000 
+  25      00000000 
+  25      00000000 
+  26              		.section	.bss.uxMinimumFreeNetworkBuffers,"aw",%nobits
+  27              		.align	2
+  30              	uxMinimumFreeNetworkBuffers:
+  31 0000 00000000 		.space	4
+  32              		.section	.bss.xNetworkBufferDescriptors,"aw",%nobits
+  33              		.align	2
+  36              	xNetworkBufferDescriptors:
+  37 0000 00000000 		.space	1116
+  37      00000000 
+  37      00000000 
+  37      00000000 
+  37      00000000 
+  38              		.global	xBufferAllocFixedSize
+  39              		.section	.rodata.xBufferAllocFixedSize,"a",%progbits
+  40              		.align	2
+  43              	xBufferAllocFixedSize:
+  44 0000 00000000 		.space	4
+  45              		.section	.bss.xNetworkBufferSemaphore,"aw",%nobits
+  46              		.align	2
+  49              	xNetworkBufferSemaphore:
+  50 0000 00000000 		.space	4
+  51              		.section	.rodata
+  52              		.align	2
+  53              	.LC0:
+  54 0000 4E657442 		.ascii	"NetBufSem\000"
+  54      75665365 
+  54      6D00
+  55              		.section	.text.xNetworkBuffersInitialise,"ax",%progbits
+  56              		.align	2
+  57              		.global	xNetworkBuffersInitialise
+ARM GAS  /tmp/ccCA6Ywq.s 			page 2
+
+
+  58              		.thumb
+  59              		.thumb_func
+  61              	xNetworkBuffersInitialise:
+  62              	.LFB29:
+  63              		.file 1 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocatio
+   1:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /*
+   2:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * FreeRTOS+TCP Labs Build 160919 (C) 2016 Real Time Engineers ltd.
+   3:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * Authors include Hein Tibosch and Richard Barry
+   4:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  *
+   5:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  *******************************************************************************
+   6:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ***** NOTE ******* NOTE ******* NOTE ******* NOTE ******* NOTE ******* NOTE ***
+   7:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ***                                                                         ***
+   8:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ***                                                                         ***
+   9:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ***   FREERTOS+TCP IS STILL IN THE LAB (mainly because the FTP and HTTP     ***
+  10:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ***   demos have a dependency on FreeRTOS+FAT, which is only in the Labs    ***
+  11:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ***   download):                                                            ***
+  12:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ***                                                                         ***
+  13:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ***   FreeRTOS+TCP is functional and has been used in commercial products   ***
+  14:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ***   for some time.  Be aware however that we are still refining its       ***
+  15:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ***   design, the source code does not yet quite conform to the strict      ***
+  16:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ***   coding and style standards mandated by Real Time Engineers ltd., and  ***
+  17:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ***   the documentation and testing is not necessarily complete.            ***
+  18:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ***                                                                         ***
+  19:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ***   PLEASE REPORT EXPERIENCES USING THE SUPPORT RESOURCES FOUND ON THE    ***
+  20:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ***   URL: http://www.FreeRTOS.org/contact  Active early adopters may, at   ***
+  21:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ***   the sole discretion of Real Time Engineers Ltd., be offered versions  ***
+  22:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ***   under a license other than that described below.                      ***
+  23:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ***                                                                         ***
+  24:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ***                                                                         ***
+  25:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ***** NOTE ******* NOTE ******* NOTE ******* NOTE ******* NOTE ******* NOTE ***
+  26:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  *******************************************************************************
+  27:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  *
+  28:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * FreeRTOS+TCP can be used under two different free open source licenses.  The
+  29:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * license that applies is dependent on the processor on which FreeRTOS+TCP is
+  30:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * executed, as follows:
+  31:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  *
+  32:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * If FreeRTOS+TCP is executed on one of the processors listed under the Special
+  33:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * License Arrangements heading of the FreeRTOS+TCP license information web
+  34:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * page, then it can be used under the terms of the FreeRTOS Open Source
+  35:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * License.  If FreeRTOS+TCP is used on any other processor, then it can be used
+  36:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * under the terms of the GNU General Public License V2.  Links to the relevant
+  37:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * licenses follow:
+  38:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  *
+  39:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * The FreeRTOS+TCP License Information Page: http://www.FreeRTOS.org/tcp_license
+  40:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * The FreeRTOS Open Source License: http://www.FreeRTOS.org/license
+  41:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * The GNU General Public License Version 2: http://www.FreeRTOS.org/gpl-2.0.txt
+  42:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  *
+  43:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * FreeRTOS+TCP is distributed in the hope that it will be useful.  You cannot
+  44:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * use FreeRTOS+TCP unless you agree that you use the software 'as is'.
+  45:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * FreeRTOS+TCP is provided WITHOUT ANY WARRANTY; without even the implied
+  46:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * warranties of NON-INFRINGEMENT, MERCHANTABILITY or FITNESS FOR A PARTICULAR
+  47:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * PURPOSE. Real Time Engineers Ltd. disclaims all conditions and terms, be they
+  48:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * implied, expressed, or statutory.
+  49:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  *
+  50:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * 1 tab == 4 spaces!
+  51:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  *
+  52:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * http://www.FreeRTOS.org
+ARM GAS  /tmp/ccCA6Ywq.s 			page 3
+
+
+  53:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * http://www.FreeRTOS.org/plus
+  54:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * http://www.FreeRTOS.org/labs
+  55:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  *
+  56:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  */
+  57:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+  58:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /******************************************************************************
+  59:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  *
+  60:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * See the following web page for essential buffer allocation scheme usage and
+  61:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * configuration details:
+  62:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * http://www.FreeRTOS.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/Embedded_Ethernet_Buffer_Management.html
+  63:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  *
+  64:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  ******************************************************************************/
+  65:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+  66:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /* THIS FILE SHOULD NOT BE USED IF THE PROJECT INCLUDES A MEMORY ALLOCATOR
+  67:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** THAT WILL FRAGMENT THE HEAP MEMORY.  For example, heap_2 must not be used,
+  68:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** heap_4 can be used. */
+  69:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+  70:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+  71:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /* Standard includes. */
+  72:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** #include <stdint.h>
+  73:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+  74:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /* FreeRTOS includes. */
+  75:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** #include "FreeRTOS.h"
+  76:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** #include "task.h"
+  77:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** #include "semphr.h"
+  78:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+  79:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /* FreeRTOS+TCP includes. */
+  80:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** #include "FreeRTOS_IP.h"
+  81:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** #include "FreeRTOS_UDP_IP.h"
+  82:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** #include "FreeRTOS_IP_Private.h"
+  83:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** #include "NetworkInterface.h"
+  84:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** #include "NetworkBufferManagement.h"
+  85:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+  86:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /* The obtained network buffer must be large enough to hold a packet that might
+  87:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** replace the packet that was requested to be sent. */
+  88:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** #if ipconfigUSE_TCP == 1
+  89:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	#define baMINIMAL_BUFFER_SIZE		sizeof( TCPPacket_t )
+  90:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** #else
+  91:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	#define baMINIMAL_BUFFER_SIZE		sizeof( ARPPacket_t )
+  92:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** #endif /* ipconfigUSE_TCP == 1 */
+  93:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+  94:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /*_RB_ This is too complex not to have an explanation. */
+  95:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** #if defined( ipconfigETHERNET_MINIMUM_PACKET_BYTES )
+  96:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	#define ASSERT_CONCAT_(a, b) a##b
+  97:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	#define ASSERT_CONCAT(a, b) ASSERT_CONCAT_(a, b)
+  98:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	#define STATIC_ASSERT(e) \
+  99:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		;enum { ASSERT_CONCAT(assert_line_, __LINE__) = 1/(!!(e)) }
+ 100:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 101:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	STATIC_ASSERT( ipconfigETHERNET_MINIMUM_PACKET_BYTES <= baMINIMAL_BUFFER_SIZE );
+ 102:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** #endif
+ 103:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 104:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /* A list of free (available) NetworkBufferDescriptor_t structures. */
+ 105:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** static List_t xFreeBuffersList;
+ 106:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 107:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /* Some statistics about the use of buffers. */
+ 108:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** static size_t uxMinimumFreeNetworkBuffers;
+ 109:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ARM GAS  /tmp/ccCA6Ywq.s 			page 4
+
+
+ 110:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /* Declares the pool of NetworkBufferDescriptor_t structures that are available
+ 111:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** to the system.  All the network buffers referenced from xFreeBuffersList exist
+ 112:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** in this array.  The array is not accessed directly except during initialisation,
+ 113:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** when the xFreeBuffersList is filled (as all the buffers are free when the system
+ 114:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** is booted). */
+ 115:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** static NetworkBufferDescriptor_t xNetworkBufferDescriptors[ ipconfigNUM_NETWORK_BUFFER_DESCRIPTORS 
+ 116:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 117:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /* This constant is defined as false to let FreeRTOS_TCP_IP.c know that the
+ 118:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** network buffers have a variable size: resizing may be necessary */
+ 119:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** const BaseType_t xBufferAllocFixedSize = pdFALSE;
+ 120:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 121:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /* The semaphore used to obtain network buffers. */
+ 122:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** static SemaphoreHandle_t xNetworkBufferSemaphore = NULL;
+ 123:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 124:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /*-----------------------------------------------------------*/
+ 125:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 126:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** BaseType_t xNetworkBuffersInitialise( void )
+ 127:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** {
+  64              		.loc 1 127 0
+  65              		.cfi_startproc
+  66              		@ args = 0, pretend = 0, frame = 16
+  67              		@ frame_needed = 1, uses_anonymous_args = 0
+  68 0000 80B5     		push	{r7, lr}
+  69              	.LCFI0:
+  70              		.cfi_def_cfa_offset 8
+  71              		.cfi_offset 7, -8
+  72              		.cfi_offset 14, -4
+  73 0002 84B0     		sub	sp, sp, #16
+  74              	.LCFI1:
+  75              		.cfi_def_cfa_offset 24
+  76 0004 00AF     		add	r7, sp, #0
+  77              	.LCFI2:
+  78              		.cfi_def_cfa_register 7
+ 128:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** BaseType_t xReturn, x;
+ 129:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 130:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	/* Only initialise the buffers and their associated kernel objects if they
+ 131:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	have not been initialised before. */
+ 132:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	if( xNetworkBufferSemaphore == NULL )
+  79              		.loc 1 132 0
+  80 0006 374B     		ldr	r3, .L10
+  81 0008 1B68     		ldr	r3, [r3]
+  82 000a 002B     		cmp	r3, #0
+  83 000c 5CD1     		bne	.L2
+ 133:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	{
+ 134:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		xNetworkBufferSemaphore = xSemaphoreCreateCounting( ipconfigNUM_NETWORK_BUFFER_DESCRIPTORS, ipcon
+  84              		.loc 1 134 0
+  85 000e 1F20     		movs	r0, #31
+  86 0010 1F21     		movs	r1, #31
+  87 0012 FFF7FEFF 		bl	xQueueCreateCountingSemaphore
+  88 0016 0246     		mov	r2, r0
+  89 0018 324B     		ldr	r3, .L10
+  90 001a 1A60     		str	r2, [r3]
+ 135:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		configASSERT( xNetworkBufferSemaphore );
+  91              		.loc 1 135 0
+  92 001c 314B     		ldr	r3, .L10
+  93 001e 1B68     		ldr	r3, [r3]
+  94 0020 002B     		cmp	r3, #0
+ARM GAS  /tmp/ccCA6Ywq.s 			page 5
+
+
+  95 0022 09D1     		bne	.L3
+  96              	.LBB8:
+  97              	.LBB9:
+  98              		.file 2 "../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h"
+   1:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** /*
+   2:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     FreeRTOS V9.0.0 - Copyright (C) 2016 Real Time Engineers Ltd.
+   3:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     All rights reserved
+   4:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+   5:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     VISIT http://www.FreeRTOS.org TO ENSURE YOU ARE USING THE LATEST VERSION.
+   6:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+   7:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     This file is part of the FreeRTOS distribution.
+   8:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+   9:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     FreeRTOS is free software; you can redistribute it and/or modify it under
+  10:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     the terms of the GNU General Public License (version 2) as published by the
+  11:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     Free Software Foundation >>>> AND MODIFIED BY <<<< the FreeRTOS exception.
+  12:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+  13:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     ***************************************************************************
+  14:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     >>!   NOTE: The modification to the GPL is included to allow you to     !<<
+  15:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     >>!   distribute a combined work that includes FreeRTOS without being   !<<
+  16:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     >>!   obliged to provide the source code for proprietary components     !<<
+  17:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     >>!   outside of the FreeRTOS kernel.                                   !<<
+  18:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     ***************************************************************************
+  19:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+  20:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     FreeRTOS is distributed in the hope that it will be useful, but WITHOUT ANY
+  21:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+  22:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     FOR A PARTICULAR PURPOSE.  Full license text is available on the following
+  23:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     link: http://www.freertos.org/a00114.html
+  24:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+  25:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     ***************************************************************************
+  26:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****      *                                                                       *
+  27:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****      *    FreeRTOS provides completely free yet professionally developed,    *
+  28:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****      *    robust, strictly quality controlled, supported, and cross          *
+  29:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****      *    platform software that is more than just the market leader, it     *
+  30:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****      *    is the industry's de facto standard.                               *
+  31:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****      *                                                                       *
+  32:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****      *    Help yourself get started quickly while simultaneously helping     *
+  33:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****      *    to support the FreeRTOS project by purchasing a FreeRTOS           *
+  34:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****      *    tutorial book, reference manual, or both:                          *
+  35:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****      *    http://www.FreeRTOS.org/Documentation                              *
+  36:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****      *                                                                       *
+  37:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     ***************************************************************************
+  38:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+  39:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     http://www.FreeRTOS.org/FAQHelp.html - Having a problem?  Start by reading
+  40:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     the FAQ page "My application does not run, what could be wrong?".  Have you
+  41:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     defined configASSERT()?
+  42:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+  43:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     http://www.FreeRTOS.org/support - In return for receiving this top quality
+  44:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     embedded software for free we request you assist our global community by
+  45:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     participating in the support forum.
+  46:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+  47:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     http://www.FreeRTOS.org/training - Investing in training allows your team to
+  48:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     be as productive as possible as early as possible.  Now you can receive
+  49:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     FreeRTOS training directly from Richard Barry, CEO of Real Time Engineers
+  50:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     Ltd, and the world's leading authority on the world's leading RTOS.
+  51:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+  52:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     http://www.FreeRTOS.org/plus - A selection of FreeRTOS ecosystem products,
+  53:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     including FreeRTOS+Trace - an indispensable productivity tool, a DOS
+ARM GAS  /tmp/ccCA6Ywq.s 			page 6
+
+
+  54:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     compatible FAT file system, and our tiny thread aware UDP/IP stack.
+  55:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+  56:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     http://www.FreeRTOS.org/labs - Where new FreeRTOS products go to incubate.
+  57:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     Come and try FreeRTOS+TCP, our new open source TCP/IP stack for FreeRTOS.
+  58:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+  59:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     http://www.OpenRTOS.com - Real Time Engineers ltd. license FreeRTOS to High
+  60:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     Integrity Systems ltd. to sell under the OpenRTOS brand.  Low cost OpenRTOS
+  61:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     licenses offer ticketed support, indemnification and commercial middleware.
+  62:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+  63:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     http://www.SafeRTOS.com - High Integrity Systems also provide a safety
+  64:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     engineered and independently SIL3 certified version for use in safety and
+  65:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     mission critical applications that require provable dependability.
+  66:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+  67:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     1 tab == 4 spaces!
+  68:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** */
+  69:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+  70:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+  71:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #ifndef PORTMACRO_H
+  72:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define PORTMACRO_H
+  73:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+  74:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #ifdef __cplusplus
+  75:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** extern "C" {
+  76:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #endif
+  77:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+  78:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** /*-----------------------------------------------------------
+  79:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****  * Port specific definitions.
+  80:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****  *
+  81:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****  * The settings in this file configure FreeRTOS correctly for the
+  82:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****  * given hardware and compiler.
+  83:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****  *
+  84:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****  * These settings should not be altered.
+  85:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****  *-----------------------------------------------------------
+  86:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****  */
+  87:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+  88:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** /* Type definitions. */
+  89:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portCHAR		char
+  90:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portFLOAT		float
+  91:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portDOUBLE		double
+  92:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portLONG		long
+  93:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portSHORT		short
+  94:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portSTACK_TYPE	uint32_t
+  95:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portBASE_TYPE	long
+  96:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+  97:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** typedef portSTACK_TYPE StackType_t;
+  98:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** typedef long BaseType_t;
+  99:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** typedef unsigned long UBaseType_t;
+ 100:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 101:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #if( configUSE_16_BIT_TICKS == 1 )
+ 102:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	typedef uint16_t TickType_t;
+ 103:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	#define portMAX_DELAY ( TickType_t ) 0xffff
+ 104:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #else
+ 105:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	typedef uint32_t TickType_t;
+ 106:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	#define portMAX_DELAY ( TickType_t ) 0xffffffffUL
+ 107:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 108:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	/* 32-bit tick type on a 32-bit architecture, so reads of the tick count do
+ 109:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	not need to be guarded with a critical section. */
+ 110:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	#define portTICK_TYPE_IS_ATOMIC 1
+ARM GAS  /tmp/ccCA6Ywq.s 			page 7
+
+
+ 111:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #endif
+ 112:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** /*-----------------------------------------------------------*/
+ 113:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 114:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** /* Architecture specifics. */
+ 115:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portSTACK_GROWTH			( -1 )
+ 116:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portTICK_PERIOD_MS			( ( TickType_t ) 1000 / configTICK_RATE_HZ )
+ 117:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portBYTE_ALIGNMENT			8
+ 118:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** /*-----------------------------------------------------------*/
+ 119:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 120:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** /* Scheduler utilities. */
+ 121:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portYIELD() 															\
+ 122:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** {																				\
+ 123:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	/* Set a PendSV to request a context switch. */								\
+ 124:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	portNVIC_INT_CTRL_REG = portNVIC_PENDSVSET_BIT;								\
+ 125:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 																				\
+ 126:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	/* Barriers are normally not required but do ensure the code is completely	\
+ 127:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	within the specified behaviour for the architecture. */						\
+ 128:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	__asm volatile( "dsb" );													\
+ 129:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	__asm volatile( "isb" );													\
+ 130:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** }
+ 131:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 132:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portNVIC_INT_CTRL_REG		( * ( ( volatile uint32_t * ) 0xe000ed04 ) )
+ 133:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portNVIC_PENDSVSET_BIT		( 1UL << 28UL )
+ 134:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portEND_SWITCHING_ISR( xSwitchRequired ) { if( xSwitchRequired != pdFALSE ) { traceISR_EXIT
+ 135:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portYIELD_FROM_ISR( x ) portEND_SWITCHING_ISR( x )
+ 136:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** /*-----------------------------------------------------------*/
+ 137:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 138:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** /* Critical section management. */
+ 139:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** extern void vPortEnterCritical( void );
+ 140:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** extern void vPortExitCritical( void );
+ 141:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portSET_INTERRUPT_MASK_FROM_ISR()		ulPortRaiseBASEPRI()
+ 142:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portCLEAR_INTERRUPT_MASK_FROM_ISR(x)	vPortSetBASEPRI(x)
+ 143:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portDISABLE_INTERRUPTS()				vPortRaiseBASEPRI()
+ 144:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portENABLE_INTERRUPTS()					vPortSetBASEPRI(0)
+ 145:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portENTER_CRITICAL()					vPortEnterCritical()
+ 146:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portEXIT_CRITICAL()						vPortExitCritical()
+ 147:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 148:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** /*-----------------------------------------------------------*/
+ 149:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 150:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** /* Task function macros as described on the FreeRTOS.org WEB site.  These are
+ 151:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** not necessary for to use this port.  They are defined so the common demo files
+ 152:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** (which build with all the ports) will build. */
+ 153:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portTASK_FUNCTION_PROTO( vFunction, pvParameters ) void vFunction( void *pvParameters )
+ 154:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portTASK_FUNCTION( vFunction, pvParameters ) void vFunction( void *pvParameters )
+ 155:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** /*-----------------------------------------------------------*/
+ 156:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 157:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** /* Tickless idle/low power functionality. */
+ 158:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #ifndef portSUPPRESS_TICKS_AND_SLEEP
+ 159:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	extern void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime );
+ 160:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	#define portSUPPRESS_TICKS_AND_SLEEP( xExpectedIdleTime ) vPortSuppressTicksAndSleep( xExpectedIdl
+ 161:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #endif
+ 162:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** /*-----------------------------------------------------------*/
+ 163:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 164:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** /* Architecture specific optimisations. */
+ 165:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #ifndef configUSE_PORT_OPTIMISED_TASK_SELECTION
+ 166:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	#define configUSE_PORT_OPTIMISED_TASK_SELECTION 1
+ 167:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #endif
+ARM GAS  /tmp/ccCA6Ywq.s 			page 8
+
+
+ 168:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 169:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #if configUSE_PORT_OPTIMISED_TASK_SELECTION == 1
+ 170:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 171:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	/* Generic helper function. */
+ 172:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	__attribute__( ( always_inline ) ) static inline uint8_t ucPortCountLeadingZeros( uint32_t ulBitma
+ 173:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	{
+ 174:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	uint8_t ucReturn;
+ 175:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 176:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 		__asm volatile ( "clz %0, %1" : "=r" ( ucReturn ) : "r" ( ulBitmap ) );
+ 177:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 		return ucReturn;
+ 178:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	}
+ 179:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 180:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	/* Check the configuration. */
+ 181:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	#if( configMAX_PRIORITIES > 32 )
+ 182:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 		#error configUSE_PORT_OPTIMISED_TASK_SELECTION can only be set to 1 when configMAX_PRIORITIES is 
+ 183:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	#endif
+ 184:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 185:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	/* Store/clear the ready priorities in a bit map. */
+ 186:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	#define portRECORD_READY_PRIORITY( uxPriority, uxReadyPriorities ) ( uxReadyPriorities ) |= ( 1UL 
+ 187:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	#define portRESET_READY_PRIORITY( uxPriority, uxReadyPriorities ) ( uxReadyPriorities ) &= ~( 1UL 
+ 188:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 189:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	/*-----------------------------------------------------------*/
+ 190:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 191:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	#define portGET_HIGHEST_PRIORITY( uxTopPriority, uxReadyPriorities ) uxTopPriority = ( 31UL - ( ui
+ 192:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 193:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #endif /* configUSE_PORT_OPTIMISED_TASK_SELECTION */
+ 194:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 195:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** /*-----------------------------------------------------------*/
+ 196:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 197:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #ifdef configASSERT
+ 198:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	void vPortValidateInterruptPriority( void );
+ 199:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	#define portASSERT_IF_INTERRUPT_PRIORITY_INVALID() 	vPortValidateInterruptPriority()
+ 200:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #endif
+ 201:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 202:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** /* portNOP() is not required by this port. */
+ 203:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portNOP()
+ 204:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 205:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #define portINLINE	__inline
+ 206:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 207:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #ifndef portFORCE_INLINE
+ 208:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	#define portFORCE_INLINE inline __attribute__(( always_inline))
+ 209:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #endif
+ 210:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 211:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** portFORCE_INLINE static BaseType_t xPortIsInsideInterrupt( void )
+ 212:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** {
+ 213:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** uint32_t ulCurrentInterrupt;
+ 214:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** BaseType_t xReturn;
+ 215:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 216:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	/* Obtain the number of the currently executing interrupt. */
+ 217:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	__asm volatile( "mrs %0, ipsr" : "=r"( ulCurrentInterrupt ) );
+ 218:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 219:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	if( ulCurrentInterrupt == 0 )
+ 220:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	{
+ 221:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 		xReturn = pdFALSE;
+ 222:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	}
+ 223:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	else
+ 224:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	{
+ARM GAS  /tmp/ccCA6Ywq.s 			page 9
+
+
+ 225:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 		xReturn = pdTRUE;
+ 226:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	}
+ 227:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 228:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	return xReturn;
+ 229:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** }
+ 230:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 231:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** /*-----------------------------------------------------------*/
+ 232:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 233:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** portFORCE_INLINE static void vPortRaiseBASEPRI( void )
+ 234:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** {
+ 235:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** uint32_t ulNewBASEPRI;
+ 236:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
+ 237:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	__asm volatile
+  99              		.loc 2 237 0 discriminator 1
+ 100              	@ 237 "../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 101 0024 4FF05003 			mov r3, #80												
+ 102 0028 83F31188 		msr basepri, r3											
+ 103 002c BFF36F8F 		isb														
+ 104 0030 BFF34F8F 		dsb														
+ 105              	
+ 106              	@ 0 "" 2
+ 107              		.thumb
+ 108 0034 7B60     		str	r3, [r7, #4]
+ 109              	.L4:
+ 110              	.LBE9:
+ 111              	.LBE8:
+ 112              		.loc 1 135 0 discriminator 1
+ 113 0036 FEE7     		b	.L4
+ 114              	.L3:
+ 136:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		#if ( configQUEUE_REGISTRY_SIZE > 0 )
+ 137:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		{
+ 138:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			vQueueAddToRegistry( xNetworkBufferSemaphore, "NetBufSem" );
+ 115              		.loc 1 138 0
+ 116 0038 2A4B     		ldr	r3, .L10
+ 117 003a 1B68     		ldr	r3, [r3]
+ 118 003c 1846     		mov	r0, r3
+ 119 003e 2A49     		ldr	r1, .L10+4
+ 120 0040 FFF7FEFF 		bl	vQueueAddToRegistry
+ 139:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		}
+ 140:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		#endif /* configQUEUE_REGISTRY_SIZE */
+ 141:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 142:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		/* If the trace recorder code is included name the semaphore for viewing
+ 143:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		in FreeRTOS+Trace.  */
+ 144:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		#if( ipconfigINCLUDE_EXAMPLE_FREERTOS_PLUS_TRACE_CALLS == 1 )
+ 145:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		{
+ 146:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			extern QueueHandle_t xNetworkEventQueue;
+ 147:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			vTraceSetQueueName( xNetworkEventQueue, "IPStackEvent" );
+ 148:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			vTraceSetQueueName( xNetworkBufferSemaphore, "NetworkBufferCount" );
+ 149:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		}
+ 150:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		#endif /*  ipconfigINCLUDE_EXAMPLE_FREERTOS_PLUS_TRACE_CALLS == 1 */
+ 151:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 152:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		if( xNetworkBufferSemaphore != NULL )
+ 121              		.loc 1 152 0
+ 122 0044 274B     		ldr	r3, .L10
+ 123 0046 1B68     		ldr	r3, [r3]
+ 124 0048 002B     		cmp	r3, #0
+ 125 004a 3DD0     		beq	.L2
+ARM GAS  /tmp/ccCA6Ywq.s 			page 10
+
+
+ 153:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		{
+ 154:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			vListInitialise( &xFreeBuffersList );
+ 126              		.loc 1 154 0
+ 127 004c 2748     		ldr	r0, .L10+8
+ 128 004e FFF7FEFF 		bl	vListInitialise
+ 155:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 156:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			/* Initialise all the network buffers.  No storage is allocated to
+ 157:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			the buffers yet. */
+ 158:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			for( x = 0; x < ipconfigNUM_NETWORK_BUFFER_DESCRIPTORS; x++ )
+ 129              		.loc 1 158 0
+ 130 0052 0023     		movs	r3, #0
+ 131 0054 BB60     		str	r3, [r7, #8]
+ 132 0056 31E0     		b	.L5
+ 133              	.L6:
+ 159:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			{
+ 160:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				/* Initialise and set the owner of the buffer list items. */
+ 161:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				xNetworkBufferDescriptors[ x ].pucEthernetBuffer = NULL;
+ 134              		.loc 1 161 0 discriminator 3
+ 135 0058 2549     		ldr	r1, .L10+12
+ 136 005a BA68     		ldr	r2, [r7, #8]
+ 137 005c 1346     		mov	r3, r2
+ 138 005e DB00     		lsls	r3, r3, #3
+ 139 0060 1344     		add	r3, r3, r2
+ 140 0062 9B00     		lsls	r3, r3, #2
+ 141 0064 0B44     		add	r3, r3, r1
+ 142 0066 1833     		adds	r3, r3, #24
+ 143 0068 0022     		movs	r2, #0
+ 144 006a 1A60     		str	r2, [r3]
+ 162:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				vListInitialiseItem( &( xNetworkBufferDescriptors[ x ].xBufferListItem ) );
+ 145              		.loc 1 162 0 discriminator 3
+ 146 006c BA68     		ldr	r2, [r7, #8]
+ 147 006e 1346     		mov	r3, r2
+ 148 0070 DB00     		lsls	r3, r3, #3
+ 149 0072 1344     		add	r3, r3, r2
+ 150 0074 9B00     		lsls	r3, r3, #2
+ 151 0076 1E4A     		ldr	r2, .L10+12
+ 152 0078 1344     		add	r3, r3, r2
+ 153 007a 1846     		mov	r0, r3
+ 154 007c FFF7FEFF 		bl	vListInitialiseItem
+ 163:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				listSET_LIST_ITEM_OWNER( &( xNetworkBufferDescriptors[ x ].xBufferListItem ), &xNetworkBufferDe
+ 155              		.loc 1 163 0 discriminator 3
+ 156 0080 BA68     		ldr	r2, [r7, #8]
+ 157 0082 1346     		mov	r3, r2
+ 158 0084 DB00     		lsls	r3, r3, #3
+ 159 0086 1344     		add	r3, r3, r2
+ 160 0088 9B00     		lsls	r3, r3, #2
+ 161 008a 194A     		ldr	r2, .L10+12
+ 162 008c 9918     		adds	r1, r3, r2
+ 163 008e 1848     		ldr	r0, .L10+12
+ 164 0090 BA68     		ldr	r2, [r7, #8]
+ 165 0092 1346     		mov	r3, r2
+ 166 0094 DB00     		lsls	r3, r3, #3
+ 167 0096 1344     		add	r3, r3, r2
+ 168 0098 9B00     		lsls	r3, r3, #2
+ 169 009a 0344     		add	r3, r3, r0
+ 170 009c 0833     		adds	r3, r3, #8
+ 171 009e 5960     		str	r1, [r3, #4]
+ARM GAS  /tmp/ccCA6Ywq.s 			page 11
+
+
+ 164:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 165:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				/* Currently, all buffers are available for use. */
+ 166:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				vListInsert( &xFreeBuffersList, &( xNetworkBufferDescriptors[ x ].xBufferListItem ) );
+ 172              		.loc 1 166 0 discriminator 3
+ 173 00a0 BA68     		ldr	r2, [r7, #8]
+ 174 00a2 1346     		mov	r3, r2
+ 175 00a4 DB00     		lsls	r3, r3, #3
+ 176 00a6 1344     		add	r3, r3, r2
+ 177 00a8 9B00     		lsls	r3, r3, #2
+ 178 00aa 114A     		ldr	r2, .L10+12
+ 179 00ac 1344     		add	r3, r3, r2
+ 180 00ae 0F48     		ldr	r0, .L10+8
+ 181 00b0 1946     		mov	r1, r3
+ 182 00b2 FFF7FEFF 		bl	vListInsert
+ 158:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			{
+ 183              		.loc 1 158 0 discriminator 3
+ 184 00b6 BB68     		ldr	r3, [r7, #8]
+ 185 00b8 0133     		adds	r3, r3, #1
+ 186 00ba BB60     		str	r3, [r7, #8]
+ 187              	.L5:
+ 158:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			{
+ 188              		.loc 1 158 0 is_stmt 0 discriminator 1
+ 189 00bc BB68     		ldr	r3, [r7, #8]
+ 190 00be 1E2B     		cmp	r3, #30
+ 191 00c0 CADD     		ble	.L6
+ 167:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			}
+ 168:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 169:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			uxMinimumFreeNetworkBuffers = ipconfigNUM_NETWORK_BUFFER_DESCRIPTORS;
+ 192              		.loc 1 169 0 is_stmt 1
+ 193 00c2 0C4B     		ldr	r3, .L10+16
+ 194 00c4 1F22     		movs	r2, #31
+ 195 00c6 1A60     		str	r2, [r3]
+ 196              	.L2:
+ 170:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		}
+ 171:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	}
+ 172:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 173:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	if( xNetworkBufferSemaphore == NULL )
+ 197              		.loc 1 173 0
+ 198 00c8 064B     		ldr	r3, .L10
+ 199 00ca 1B68     		ldr	r3, [r3]
+ 200 00cc 002B     		cmp	r3, #0
+ 201 00ce 02D1     		bne	.L7
+ 174:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	{
+ 175:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		xReturn = pdFAIL;
+ 202              		.loc 1 175 0
+ 203 00d0 0023     		movs	r3, #0
+ 204 00d2 FB60     		str	r3, [r7, #12]
+ 205 00d4 01E0     		b	.L8
+ 206              	.L7:
+ 176:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	}
+ 177:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	else
+ 178:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	{
+ 179:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		xReturn = pdPASS;
+ 207              		.loc 1 179 0
+ 208 00d6 0123     		movs	r3, #1
+ 209 00d8 FB60     		str	r3, [r7, #12]
+ 210              	.L8:
+ARM GAS  /tmp/ccCA6Ywq.s 			page 12
+
+
+ 180:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	}
+ 181:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 182:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	return xReturn;
+ 211              		.loc 1 182 0
+ 212 00da FB68     		ldr	r3, [r7, #12]
+ 183:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** }
+ 213              		.loc 1 183 0
+ 214 00dc 1846     		mov	r0, r3
+ 215 00de 1037     		adds	r7, r7, #16
+ 216              	.LCFI3:
+ 217              		.cfi_def_cfa_offset 8
+ 218 00e0 BD46     		mov	sp, r7
+ 219              	.LCFI4:
+ 220              		.cfi_def_cfa_register 13
+ 221              		@ sp needed
+ 222 00e2 80BD     		pop	{r7, pc}
+ 223              	.L11:
+ 224              		.align	2
+ 225              	.L10:
+ 226 00e4 00000000 		.word	xNetworkBufferSemaphore
+ 227 00e8 00000000 		.word	.LC0
+ 228 00ec 00000000 		.word	xFreeBuffersList
+ 229 00f0 00000000 		.word	xNetworkBufferDescriptors
+ 230 00f4 00000000 		.word	uxMinimumFreeNetworkBuffers
+ 231              		.cfi_endproc
+ 232              	.LFE29:
+ 234              		.section	.text.pucGetNetworkBuffer,"ax",%progbits
+ 235              		.align	2
+ 236              		.global	pucGetNetworkBuffer
+ 237              		.thumb
+ 238              		.thumb_func
+ 240              	pucGetNetworkBuffer:
+ 241              	.LFB30:
+ 184:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /*-----------------------------------------------------------*/
+ 185:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 186:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** uint8_t *pucGetNetworkBuffer( size_t *pxRequestedSizeBytes )
+ 187:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** {
+ 242              		.loc 1 187 0
+ 243              		.cfi_startproc
+ 244              		@ args = 0, pretend = 0, frame = 24
+ 245              		@ frame_needed = 1, uses_anonymous_args = 0
+ 246 0000 80B5     		push	{r7, lr}
+ 247              	.LCFI5:
+ 248              		.cfi_def_cfa_offset 8
+ 249              		.cfi_offset 7, -8
+ 250              		.cfi_offset 14, -4
+ 251 0002 86B0     		sub	sp, sp, #24
+ 252              	.LCFI6:
+ 253              		.cfi_def_cfa_offset 32
+ 254 0004 00AF     		add	r7, sp, #0
+ 255              	.LCFI7:
+ 256              		.cfi_def_cfa_register 7
+ 257 0006 7860     		str	r0, [r7, #4]
+ 188:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** uint8_t *pucEthernetBuffer;
+ 189:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** size_t xSize = *pxRequestedSizeBytes;
+ 258              		.loc 1 189 0
+ 259 0008 7B68     		ldr	r3, [r7, #4]
+ARM GAS  /tmp/ccCA6Ywq.s 			page 13
+
+
+ 260 000a 1B68     		ldr	r3, [r3]
+ 261 000c 3B61     		str	r3, [r7, #16]
+ 190:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 191:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	if( xSize < baMINIMAL_BUFFER_SIZE )
+ 262              		.loc 1 191 0
+ 263 000e 3B69     		ldr	r3, [r7, #16]
+ 264 0010 452B     		cmp	r3, #69
+ 265 0012 01D8     		bhi	.L13
+ 192:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	{
+ 193:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		/* Buffers must be at least large enough to hold a TCP-packet with
+ 194:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		headers, or an ARP packet, in case TCP is not included. */
+ 195:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		xSize = baMINIMAL_BUFFER_SIZE;
+ 266              		.loc 1 195 0
+ 267 0014 4623     		movs	r3, #70
+ 268 0016 3B61     		str	r3, [r7, #16]
+ 269              	.L13:
+ 196:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	}
+ 197:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 198:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	/* Round up xSize to the nearest multiple of N bytes,
+ 199:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	where N equals 'sizeof( size_t )'. */
+ 200:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	if( ( xSize & ( sizeof( size_t ) - 1u ) ) != 0u )
+ 270              		.loc 1 200 0
+ 271 0018 3B69     		ldr	r3, [r7, #16]
+ 272 001a 03F00303 		and	r3, r3, #3
+ 273 001e 002B     		cmp	r3, #0
+ 274 0020 04D0     		beq	.L14
+ 201:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	{
+ 202:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		xSize = ( xSize | ( sizeof( size_t ) - 1u ) ) + 1u;
+ 275              		.loc 1 202 0
+ 276 0022 3B69     		ldr	r3, [r7, #16]
+ 277 0024 43F00303 		orr	r3, r3, #3
+ 278 0028 0133     		adds	r3, r3, #1
+ 279 002a 3B61     		str	r3, [r7, #16]
+ 280              	.L14:
+ 203:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	}
+ 204:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	*pxRequestedSizeBytes = xSize;
+ 281              		.loc 1 204 0
+ 282 002c 7B68     		ldr	r3, [r7, #4]
+ 283 002e 3A69     		ldr	r2, [r7, #16]
+ 284 0030 1A60     		str	r2, [r3]
+ 205:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 206:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	/* Allocate a buffer large enough to store the requested Ethernet frame size
+ 207:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	and a pointer to a network buffer structure (hence the addition of
+ 208:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	ipBUFFER_PADDING bytes). */
+ 209:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	pucEthernetBuffer = ( uint8_t * ) pvPortMalloc( xSize + ipBUFFER_PADDING );
+ 285              		.loc 1 209 0
+ 286 0032 3B69     		ldr	r3, [r7, #16]
+ 287 0034 0A33     		adds	r3, r3, #10
+ 288 0036 1846     		mov	r0, r3
+ 289 0038 FFF7FEFF 		bl	pvPortMalloc
+ 290 003c 7861     		str	r0, [r7, #20]
+ 210:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	configASSERT( pucEthernetBuffer );
+ 291              		.loc 1 210 0
+ 292 003e 7B69     		ldr	r3, [r7, #20]
+ 293 0040 002B     		cmp	r3, #0
+ 294 0042 09D1     		bne	.L15
+ 295              	.LBB10:
+ARM GAS  /tmp/ccCA6Ywq.s 			page 14
+
+
+ 296              	.LBB11:
+ 297              		.loc 2 237 0 discriminator 1
+ 298              	@ 237 "../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 299 0044 4FF05003 			mov r3, #80												
+ 300 0048 83F31188 		msr basepri, r3											
+ 301 004c BFF36F8F 		isb														
+ 302 0050 BFF34F8F 		dsb														
+ 303              	
+ 304              	@ 0 "" 2
+ 305              		.thumb
+ 306 0054 FB60     		str	r3, [r7, #12]
+ 307              	.L16:
+ 308              	.LBE11:
+ 309              	.LBE10:
+ 310              		.loc 1 210 0 discriminator 1
+ 311 0056 FEE7     		b	.L16
+ 312              	.L15:
+ 211:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 212:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	if( pucEthernetBuffer != NULL )
+ 313              		.loc 1 212 0
+ 314 0058 7B69     		ldr	r3, [r7, #20]
+ 315 005a 002B     		cmp	r3, #0
+ 316 005c 02D0     		beq	.L17
+ 213:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	{
+ 214:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		/* Enough space is left at the start of the buffer to place a pointer to
+ 215:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		the network buffer structure that references this Ethernet buffer.
+ 216:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		Return a pointer to the start of the Ethernet buffer itself. */
+ 217:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		pucEthernetBuffer += ipBUFFER_PADDING;
+ 317              		.loc 1 217 0
+ 318 005e 7B69     		ldr	r3, [r7, #20]
+ 319 0060 0A33     		adds	r3, r3, #10
+ 320 0062 7B61     		str	r3, [r7, #20]
+ 321              	.L17:
+ 218:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	}
+ 219:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 220:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	return pucEthernetBuffer;
+ 322              		.loc 1 220 0
+ 323 0064 7B69     		ldr	r3, [r7, #20]
+ 221:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** }
+ 324              		.loc 1 221 0
+ 325 0066 1846     		mov	r0, r3
+ 326 0068 1837     		adds	r7, r7, #24
+ 327              	.LCFI8:
+ 328              		.cfi_def_cfa_offset 8
+ 329 006a BD46     		mov	sp, r7
+ 330              	.LCFI9:
+ 331              		.cfi_def_cfa_register 13
+ 332              		@ sp needed
+ 333 006c 80BD     		pop	{r7, pc}
+ 334              		.cfi_endproc
+ 335              	.LFE30:
+ 337 006e 00BF     		.section	.text.vReleaseNetworkBuffer,"ax",%progbits
+ 338              		.align	2
+ 339              		.global	vReleaseNetworkBuffer
+ 340              		.thumb
+ 341              		.thumb_func
+ 343              	vReleaseNetworkBuffer:
+ARM GAS  /tmp/ccCA6Ywq.s 			page 15
+
+
+ 344              	.LFB31:
+ 222:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /*-----------------------------------------------------------*/
+ 223:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 224:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** void vReleaseNetworkBuffer( uint8_t *pucEthernetBuffer )
+ 225:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** {
+ 345              		.loc 1 225 0
+ 346              		.cfi_startproc
+ 347              		@ args = 0, pretend = 0, frame = 8
+ 348              		@ frame_needed = 1, uses_anonymous_args = 0
+ 349 0000 80B5     		push	{r7, lr}
+ 350              	.LCFI10:
+ 351              		.cfi_def_cfa_offset 8
+ 352              		.cfi_offset 7, -8
+ 353              		.cfi_offset 14, -4
+ 354 0002 82B0     		sub	sp, sp, #8
+ 355              	.LCFI11:
+ 356              		.cfi_def_cfa_offset 16
+ 357 0004 00AF     		add	r7, sp, #0
+ 358              	.LCFI12:
+ 359              		.cfi_def_cfa_register 7
+ 360 0006 7860     		str	r0, [r7, #4]
+ 226:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	/* There is space before the Ethernet buffer in which a pointer to the
+ 227:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	network buffer that references this Ethernet buffer is stored.  Remove the
+ 228:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	space before freeing the buffer. */
+ 229:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	if( pucEthernetBuffer != NULL )
+ 361              		.loc 1 229 0
+ 362 0008 7B68     		ldr	r3, [r7, #4]
+ 363 000a 002B     		cmp	r3, #0
+ 364 000c 05D0     		beq	.L19
+ 230:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	{
+ 231:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		pucEthernetBuffer -= ipBUFFER_PADDING;
+ 365              		.loc 1 231 0
+ 366 000e 7B68     		ldr	r3, [r7, #4]
+ 367 0010 0A3B     		subs	r3, r3, #10
+ 368 0012 7B60     		str	r3, [r7, #4]
+ 232:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		vPortFree( ( void * ) pucEthernetBuffer );
+ 369              		.loc 1 232 0
+ 370 0014 7868     		ldr	r0, [r7, #4]
+ 371 0016 FFF7FEFF 		bl	vPortFree
+ 372              	.L19:
+ 233:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	}
+ 234:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** }
+ 373              		.loc 1 234 0
+ 374 001a 0837     		adds	r7, r7, #8
+ 375              	.LCFI13:
+ 376              		.cfi_def_cfa_offset 8
+ 377 001c BD46     		mov	sp, r7
+ 378              	.LCFI14:
+ 379              		.cfi_def_cfa_register 13
+ 380              		@ sp needed
+ 381 001e 80BD     		pop	{r7, pc}
+ 382              		.cfi_endproc
+ 383              	.LFE31:
+ 385              		.section	.text.pxGetNetworkBufferWithDescriptor,"ax",%progbits
+ 386              		.align	2
+ 387              		.global	pxGetNetworkBufferWithDescriptor
+ 388              		.thumb
+ARM GAS  /tmp/ccCA6Ywq.s 			page 16
+
+
+ 389              		.thumb_func
+ 391              	pxGetNetworkBufferWithDescriptor:
+ 392              	.LFB32:
+ 235:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /*-----------------------------------------------------------*/
+ 236:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 237:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** NetworkBufferDescriptor_t *pxGetNetworkBufferWithDescriptor( size_t xRequestedSizeBytes, TickType_t
+ 238:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** {
+ 393              		.loc 1 238 0
+ 394              		.cfi_startproc
+ 395              		@ args = 0, pretend = 0, frame = 24
+ 396              		@ frame_needed = 1, uses_anonymous_args = 0
+ 397 0000 80B5     		push	{r7, lr}
+ 398              	.LCFI15:
+ 399              		.cfi_def_cfa_offset 8
+ 400              		.cfi_offset 7, -8
+ 401              		.cfi_offset 14, -4
+ 402 0002 86B0     		sub	sp, sp, #24
+ 403              	.LCFI16:
+ 404              		.cfi_def_cfa_offset 32
+ 405 0004 00AF     		add	r7, sp, #0
+ 406              	.LCFI17:
+ 407              		.cfi_def_cfa_register 7
+ 408 0006 7860     		str	r0, [r7, #4]
+ 409 0008 3960     		str	r1, [r7]
+ 239:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** NetworkBufferDescriptor_t *pxReturn = NULL;
+ 410              		.loc 1 239 0
+ 411 000a 0023     		movs	r3, #0
+ 412 000c 7B61     		str	r3, [r7, #20]
+ 240:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** size_t uxCount;
+ 241:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 242:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	if( ( xRequestedSizeBytes != 0u ) && ( xRequestedSizeBytes < ( size_t ) baMINIMAL_BUFFER_SIZE ) )
+ 413              		.loc 1 242 0
+ 414 000e 7B68     		ldr	r3, [r7, #4]
+ 415 0010 002B     		cmp	r3, #0
+ 416 0012 04D0     		beq	.L22
+ 417              		.loc 1 242 0 is_stmt 0 discriminator 1
+ 418 0014 7B68     		ldr	r3, [r7, #4]
+ 419 0016 452B     		cmp	r3, #69
+ 420 0018 01D8     		bhi	.L22
+ 243:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	{
+ 244:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		/* ARP packets can replace application packets, so the storage must be
+ 245:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		at least large enough to hold an ARP. */
+ 246:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		xRequestedSizeBytes = baMINIMAL_BUFFER_SIZE;
+ 421              		.loc 1 246 0 is_stmt 1
+ 422 001a 4623     		movs	r3, #70
+ 423 001c 7B60     		str	r3, [r7, #4]
+ 424              	.L22:
+ 247:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	}
+ 248:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	xRequestedSizeBytes += 2u;
+ 425              		.loc 1 248 0
+ 426 001e 7B68     		ldr	r3, [r7, #4]
+ 427 0020 0233     		adds	r3, r3, #2
+ 428 0022 7B60     		str	r3, [r7, #4]
+ 249:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	if( ( xRequestedSizeBytes & ( sizeof( size_t ) - 1u ) ) != 0u )
+ 429              		.loc 1 249 0
+ 430 0024 7B68     		ldr	r3, [r7, #4]
+ 431 0026 03F00303 		and	r3, r3, #3
+ARM GAS  /tmp/ccCA6Ywq.s 			page 17
+
+
+ 432 002a 002B     		cmp	r3, #0
+ 433 002c 04D0     		beq	.L23
+ 250:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	{
+ 251:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		xRequestedSizeBytes = ( xRequestedSizeBytes | ( sizeof( size_t ) - 1u ) ) + 1u;
+ 434              		.loc 1 251 0
+ 435 002e 7B68     		ldr	r3, [r7, #4]
+ 436 0030 43F00303 		orr	r3, r3, #3
+ 437 0034 0133     		adds	r3, r3, #1
+ 438 0036 7B60     		str	r3, [r7, #4]
+ 439              	.L23:
+ 252:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	}
+ 253:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 254:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	/* If there is a semaphore available, there is a network buffer available. */
+ 255:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	if( xSemaphoreTake( xNetworkBufferSemaphore, xBlockTimeTicks ) == pdPASS )
+ 440              		.loc 1 255 0
+ 441 0038 2B4B     		ldr	r3, .L31
+ 442 003a 1B68     		ldr	r3, [r3]
+ 443 003c 1846     		mov	r0, r3
+ 444 003e 0021     		movs	r1, #0
+ 445 0040 3A68     		ldr	r2, [r7]
+ 446 0042 0023     		movs	r3, #0
+ 447 0044 FFF7FEFF 		bl	xQueueGenericReceive
+ 448 0048 0346     		mov	r3, r0
+ 449 004a 012B     		cmp	r3, #1
+ 450 004c 46D1     		bne	.L24
+ 256:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	{
+ 257:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		/* Protect the structure as it is accessed from tasks and interrupts. */
+ 258:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		taskENTER_CRITICAL();
+ 451              		.loc 1 258 0
+ 452 004e FFF7FEFF 		bl	vPortEnterCritical
+ 259:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		{
+ 260:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			pxReturn = ( NetworkBufferDescriptor_t * ) listGET_OWNER_OF_HEAD_ENTRY( &xFreeBuffersList );
+ 453              		.loc 1 260 0
+ 454 0052 264B     		ldr	r3, .L31+4
+ 455 0054 DB68     		ldr	r3, [r3, #12]
+ 456 0056 DB68     		ldr	r3, [r3, #12]
+ 457 0058 7B61     		str	r3, [r7, #20]
+ 261:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			uxListRemove( &( pxReturn->xBufferListItem ) );
+ 458              		.loc 1 261 0
+ 459 005a 7B69     		ldr	r3, [r7, #20]
+ 460 005c 1846     		mov	r0, r3
+ 461 005e FFF7FEFF 		bl	uxListRemove
+ 262:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		}
+ 263:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		taskEXIT_CRITICAL();
+ 462              		.loc 1 263 0
+ 463 0062 FFF7FEFF 		bl	vPortExitCritical
+ 264:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 265:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		/* Reading UBaseType_t, no critical section needed. */
+ 266:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		uxCount = listCURRENT_LIST_LENGTH( &xFreeBuffersList );
+ 464              		.loc 1 266 0
+ 465 0066 214B     		ldr	r3, .L31+4
+ 466 0068 1B68     		ldr	r3, [r3]
+ 467 006a 3B61     		str	r3, [r7, #16]
+ 267:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 268:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		if( uxMinimumFreeNetworkBuffers > uxCount )
+ 468              		.loc 1 268 0
+ 469 006c 204B     		ldr	r3, .L31+8
+ARM GAS  /tmp/ccCA6Ywq.s 			page 18
+
+
+ 470 006e 1A68     		ldr	r2, [r3]
+ 471 0070 3B69     		ldr	r3, [r7, #16]
+ 472 0072 9A42     		cmp	r2, r3
+ 473 0074 02D9     		bls	.L25
+ 269:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		{
+ 270:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			uxMinimumFreeNetworkBuffers = uxCount;
+ 474              		.loc 1 270 0
+ 475 0076 1E4A     		ldr	r2, .L31+8
+ 476 0078 3B69     		ldr	r3, [r7, #16]
+ 477 007a 1360     		str	r3, [r2]
+ 478              	.L25:
+ 271:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		}
+ 272:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 273:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		/* Allocate storage of exactly the requested size to the buffer. */
+ 274:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		configASSERT( pxReturn->pucEthernetBuffer == NULL );
+ 479              		.loc 1 274 0
+ 480 007c 7B69     		ldr	r3, [r7, #20]
+ 481 007e 9B69     		ldr	r3, [r3, #24]
+ 482 0080 002B     		cmp	r3, #0
+ 483 0082 09D0     		beq	.L26
+ 484              	.LBB12:
+ 485              	.LBB13:
+ 486              		.loc 2 237 0 discriminator 1
+ 487              	@ 237 "../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h" 1
+ 488 0084 4FF05003 			mov r3, #80												
+ 489 0088 83F31188 		msr basepri, r3											
+ 490 008c BFF36F8F 		isb														
+ 491 0090 BFF34F8F 		dsb														
+ 492              	
+ 493              	@ 0 "" 2
+ 494              		.thumb
+ 495 0094 FB60     		str	r3, [r7, #12]
+ 496              	.L27:
+ 497              	.LBE13:
+ 498              	.LBE12:
+ 499              		.loc 1 274 0 discriminator 1
+ 500 0096 FEE7     		b	.L27
+ 501              	.L26:
+ 275:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		if( xRequestedSizeBytes > 0 )
+ 502              		.loc 1 275 0
+ 503 0098 7B68     		ldr	r3, [r7, #4]
+ 504 009a 002B     		cmp	r3, #0
+ 505 009c 1ED0     		beq	.L24
+ 276:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		{
+ 277:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			/* Extra space is obtained so a pointer to the network buffer can
+ 278:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			be stored at the beginning of the buffer. */
+ 279:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			pxReturn->pucEthernetBuffer = ( uint8_t * ) pvPortMalloc( xRequestedSizeBytes + ipBUFFER_PADDING
+ 506              		.loc 1 279 0
+ 507 009e 7B68     		ldr	r3, [r7, #4]
+ 508 00a0 0A33     		adds	r3, r3, #10
+ 509 00a2 1846     		mov	r0, r3
+ 510 00a4 FFF7FEFF 		bl	pvPortMalloc
+ 511 00a8 0246     		mov	r2, r0
+ 512 00aa 7B69     		ldr	r3, [r7, #20]
+ 513 00ac 9A61     		str	r2, [r3, #24]
+ 280:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 281:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			if( pxReturn->pucEthernetBuffer == NULL )
+ARM GAS  /tmp/ccCA6Ywq.s 			page 19
+
+
+ 514              		.loc 1 281 0
+ 515 00ae 7B69     		ldr	r3, [r7, #20]
+ 516 00b0 9B69     		ldr	r3, [r3, #24]
+ 517 00b2 002B     		cmp	r3, #0
+ 518 00b4 05D1     		bne	.L28
+ 282:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			{
+ 283:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				/* The attempt to allocate storage for the buffer payload failed,
+ 284:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				so the network buffer structure cannot be used and must be
+ 285:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				released. */
+ 286:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				vReleaseNetworkBufferAndDescriptor( pxReturn );
+ 519              		.loc 1 286 0
+ 520 00b6 7869     		ldr	r0, [r7, #20]
+ 521 00b8 FFF7FEFF 		bl	vReleaseNetworkBufferAndDescriptor
+ 287:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				pxReturn = NULL;
+ 522              		.loc 1 287 0
+ 523 00bc 0023     		movs	r3, #0
+ 524 00be 7B61     		str	r3, [r7, #20]
+ 525 00c0 0CE0     		b	.L24
+ 526              	.L28:
+ 288:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			}
+ 289:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			else
+ 290:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			{
+ 291:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				/* Store a pointer to the network buffer structure in the
+ 292:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				buffer storage area, then move the buffer pointer on past the
+ 293:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				stored pointer so the pointer value is not overwritten by the
+ 294:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				application when the buffer is used. */
+ 295:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				*( ( NetworkBufferDescriptor_t ** ) ( pxReturn->pucEthernetBuffer ) ) = pxReturn;
+ 527              		.loc 1 295 0
+ 528 00c2 7B69     		ldr	r3, [r7, #20]
+ 529 00c4 9B69     		ldr	r3, [r3, #24]
+ 530 00c6 7A69     		ldr	r2, [r7, #20]
+ 531 00c8 1A60     		str	r2, [r3]
+ 296:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				pxReturn->pucEthernetBuffer += ipBUFFER_PADDING;
+ 532              		.loc 1 296 0
+ 533 00ca 7B69     		ldr	r3, [r7, #20]
+ 534 00cc 9B69     		ldr	r3, [r3, #24]
+ 535 00ce 03F10A02 		add	r2, r3, #10
+ 536 00d2 7B69     		ldr	r3, [r7, #20]
+ 537 00d4 9A61     		str	r2, [r3, #24]
+ 297:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 298:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				/* Store the actual size of the allocated buffer, which may be
+ 299:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				greater than the original requested size. */
+ 300:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				pxReturn->xDataLength = xRequestedSizeBytes;
+ 538              		.loc 1 300 0
+ 539 00d6 7B69     		ldr	r3, [r7, #20]
+ 540 00d8 7A68     		ldr	r2, [r7, #4]
+ 541 00da DA61     		str	r2, [r3, #28]
+ 542              	.L24:
+ 301:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 302:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				#if( ipconfigUSE_LINKED_RX_MESSAGES != 0 )
+ 303:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				{
+ 304:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 					/* make sure the buffer is not linked */
+ 305:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 					pxReturn->pxNextBuffer = NULL;
+ 306:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				}
+ 307:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 				#endif /* ipconfigUSE_LINKED_RX_MESSAGES */
+ 308:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			}
+ 309:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		}
+ARM GAS  /tmp/ccCA6Ywq.s 			page 20
+
+
+ 310:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		else
+ 311:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		{
+ 312:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			/* A descriptor is being returned without an associated buffer being
+ 313:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			allocated. */
+ 314:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		}
+ 315:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	}
+ 316:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 317:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	if( pxReturn == NULL )
+ 318:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	{
+ 319:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		iptraceFAILED_TO_OBTAIN_NETWORK_BUFFER();
+ 320:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	}
+ 321:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	else
+ 322:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	{
+ 323:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		iptraceNETWORK_BUFFER_OBTAINED( pxReturn );
+ 324:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	}
+ 325:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 326:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	return pxReturn;
+ 543              		.loc 1 326 0
+ 544 00dc 7B69     		ldr	r3, [r7, #20]
+ 327:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** }
+ 545              		.loc 1 327 0
+ 546 00de 1846     		mov	r0, r3
+ 547 00e0 1837     		adds	r7, r7, #24
+ 548              	.LCFI18:
+ 549              		.cfi_def_cfa_offset 8
+ 550 00e2 BD46     		mov	sp, r7
+ 551              	.LCFI19:
+ 552              		.cfi_def_cfa_register 13
+ 553              		@ sp needed
+ 554 00e4 80BD     		pop	{r7, pc}
+ 555              	.L32:
+ 556 00e6 00BF     		.align	2
+ 557              	.L31:
+ 558 00e8 00000000 		.word	xNetworkBufferSemaphore
+ 559 00ec 00000000 		.word	xFreeBuffersList
+ 560 00f0 00000000 		.word	uxMinimumFreeNetworkBuffers
+ 561              		.cfi_endproc
+ 562              	.LFE32:
+ 564              		.section	.text.vReleaseNetworkBufferAndDescriptor,"ax",%progbits
+ 565              		.align	2
+ 566              		.global	vReleaseNetworkBufferAndDescriptor
+ 567              		.thumb
+ 568              		.thumb_func
+ 570              	vReleaseNetworkBufferAndDescriptor:
+ 571              	.LFB33:
+ 328:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /*-----------------------------------------------------------*/
+ 329:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 330:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** void vReleaseNetworkBufferAndDescriptor( NetworkBufferDescriptor_t * const pxNetworkBuffer )
+ 331:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** {
+ 572              		.loc 1 331 0
+ 573              		.cfi_startproc
+ 574              		@ args = 0, pretend = 0, frame = 16
+ 575              		@ frame_needed = 1, uses_anonymous_args = 0
+ 576 0000 80B5     		push	{r7, lr}
+ 577              	.LCFI20:
+ 578              		.cfi_def_cfa_offset 8
+ 579              		.cfi_offset 7, -8
+ARM GAS  /tmp/ccCA6Ywq.s 			page 21
+
+
+ 580              		.cfi_offset 14, -4
+ 581 0002 84B0     		sub	sp, sp, #16
+ 582              	.LCFI21:
+ 583              		.cfi_def_cfa_offset 24
+ 584 0004 00AF     		add	r7, sp, #0
+ 585              	.LCFI22:
+ 586              		.cfi_def_cfa_register 7
+ 587 0006 7860     		str	r0, [r7, #4]
+ 332:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** BaseType_t xListItemAlreadyInFreeList;
+ 333:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 334:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	/* Ensure the buffer is returned to the list of free buffers before the
+ 335:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	counting semaphore is 'given' to say a buffer is available.  Release the
+ 336:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	storage allocated to the buffer payload.  THIS FILE SHOULD NOT BE USED
+ 337:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	IF THE PROJECT INCLUDES A MEMORY ALLOCATOR THAT WILL FRAGMENT THE HEAP
+ 338:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	MEMORY.  For example, heap_2 must not be used, heap_4 can be used. */
+ 339:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	vReleaseNetworkBuffer( pxNetworkBuffer->pucEthernetBuffer );
+ 588              		.loc 1 339 0
+ 589 0008 7B68     		ldr	r3, [r7, #4]
+ 590 000a 9B69     		ldr	r3, [r3, #24]
+ 591 000c 1846     		mov	r0, r3
+ 592 000e FFF7FEFF 		bl	vReleaseNetworkBuffer
+ 340:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	pxNetworkBuffer->pucEthernetBuffer = NULL;
+ 593              		.loc 1 340 0
+ 594 0012 7B68     		ldr	r3, [r7, #4]
+ 595 0014 0022     		movs	r2, #0
+ 596 0016 9A61     		str	r2, [r3, #24]
+ 341:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 342:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	taskENTER_CRITICAL();
+ 597              		.loc 1 342 0
+ 598 0018 FFF7FEFF 		bl	vPortEnterCritical
+ 343:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	{
+ 344:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		xListItemAlreadyInFreeList = listIS_CONTAINED_WITHIN( &xFreeBuffersList, &( pxNetworkBuffer->xBuf
+ 599              		.loc 1 344 0
+ 600 001c 7B68     		ldr	r3, [r7, #4]
+ 601 001e 1B69     		ldr	r3, [r3, #16]
+ 602 0020 0F4A     		ldr	r2, .L36
+ 603 0022 9342     		cmp	r3, r2
+ 604 0024 0CBF     		ite	eq
+ 605 0026 0123     		moveq	r3, #1
+ 606 0028 0023     		movne	r3, #0
+ 607 002a DBB2     		uxtb	r3, r3
+ 608 002c FB60     		str	r3, [r7, #12]
+ 345:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 346:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		if( xListItemAlreadyInFreeList == pdFALSE )
+ 609              		.loc 1 346 0
+ 610 002e FB68     		ldr	r3, [r7, #12]
+ 611 0030 002B     		cmp	r3, #0
+ 612 0032 04D1     		bne	.L34
+ 347:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		{
+ 348:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			vListInsertEnd( &xFreeBuffersList, &( pxNetworkBuffer->xBufferListItem ) );
+ 613              		.loc 1 348 0
+ 614 0034 7B68     		ldr	r3, [r7, #4]
+ 615 0036 0A48     		ldr	r0, .L36
+ 616 0038 1946     		mov	r1, r3
+ 617 003a FFF7FEFF 		bl	vListInsertEnd
+ 618              	.L34:
+ 349:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		}
+ARM GAS  /tmp/ccCA6Ywq.s 			page 22
+
+
+ 350:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	}
+ 351:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	taskEXIT_CRITICAL();
+ 619              		.loc 1 351 0
+ 620 003e FFF7FEFF 		bl	vPortExitCritical
+ 352:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 353:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	if( xListItemAlreadyInFreeList == pdFALSE )
+ 621              		.loc 1 353 0
+ 622 0042 FB68     		ldr	r3, [r7, #12]
+ 623 0044 002B     		cmp	r3, #0
+ 624 0046 07D1     		bne	.L33
+ 354:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	{
+ 355:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		xSemaphoreGive( xNetworkBufferSemaphore );
+ 625              		.loc 1 355 0
+ 626 0048 064B     		ldr	r3, .L36+4
+ 627 004a 1B68     		ldr	r3, [r3]
+ 628 004c 1846     		mov	r0, r3
+ 629 004e 0021     		movs	r1, #0
+ 630 0050 0022     		movs	r2, #0
+ 631 0052 0023     		movs	r3, #0
+ 632 0054 FFF7FEFF 		bl	xQueueGenericSend
+ 633              	.L33:
+ 356:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	}
+ 357:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 358:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	iptraceNETWORK_BUFFER_RELEASED( pxNetworkBuffer );
+ 359:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** }
+ 634              		.loc 1 359 0
+ 635 0058 1037     		adds	r7, r7, #16
+ 636              	.LCFI23:
+ 637              		.cfi_def_cfa_offset 8
+ 638 005a BD46     		mov	sp, r7
+ 639              	.LCFI24:
+ 640              		.cfi_def_cfa_register 13
+ 641              		@ sp needed
+ 642 005c 80BD     		pop	{r7, pc}
+ 643              	.L37:
+ 644 005e 00BF     		.align	2
+ 645              	.L36:
+ 646 0060 00000000 		.word	xFreeBuffersList
+ 647 0064 00000000 		.word	xNetworkBufferSemaphore
+ 648              		.cfi_endproc
+ 649              	.LFE33:
+ 651              		.section	.text.uxGetNumberOfFreeNetworkBuffers,"ax",%progbits
+ 652              		.align	2
+ 653              		.global	uxGetNumberOfFreeNetworkBuffers
+ 654              		.thumb
+ 655              		.thumb_func
+ 657              	uxGetNumberOfFreeNetworkBuffers:
+ 658              	.LFB34:
+ 360:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /*-----------------------------------------------------------*/
+ 361:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 362:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /*
+ 363:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  * Returns the number of free network buffers
+ 364:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c ****  */
+ 365:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** UBaseType_t uxGetNumberOfFreeNetworkBuffers( void )
+ 366:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** {
+ 659              		.loc 1 366 0
+ 660              		.cfi_startproc
+ARM GAS  /tmp/ccCA6Ywq.s 			page 23
+
+
+ 661              		@ args = 0, pretend = 0, frame = 0
+ 662              		@ frame_needed = 1, uses_anonymous_args = 0
+ 663              		@ link register save eliminated.
+ 664 0000 80B4     		push	{r7}
+ 665              	.LCFI25:
+ 666              		.cfi_def_cfa_offset 4
+ 667              		.cfi_offset 7, -4
+ 668 0002 00AF     		add	r7, sp, #0
+ 669              	.LCFI26:
+ 670              		.cfi_def_cfa_register 7
+ 367:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	return listCURRENT_LIST_LENGTH( &xFreeBuffersList );
+ 671              		.loc 1 367 0
+ 672 0004 034B     		ldr	r3, .L40
+ 673 0006 1B68     		ldr	r3, [r3]
+ 368:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** }
+ 674              		.loc 1 368 0
+ 675 0008 1846     		mov	r0, r3
+ 676 000a BD46     		mov	sp, r7
+ 677              	.LCFI27:
+ 678              		.cfi_def_cfa_register 13
+ 679              		@ sp needed
+ 680 000c 5DF8047B 		ldr	r7, [sp], #4
+ 681              	.LCFI28:
+ 682              		.cfi_restore 7
+ 683              		.cfi_def_cfa_offset 0
+ 684 0010 7047     		bx	lr
+ 685              	.L41:
+ 686 0012 00BF     		.align	2
+ 687              	.L40:
+ 688 0014 00000000 		.word	xFreeBuffersList
+ 689              		.cfi_endproc
+ 690              	.LFE34:
+ 692              		.section	.text.uxGetMinimumFreeNetworkBuffers,"ax",%progbits
+ 693              		.align	2
+ 694              		.global	uxGetMinimumFreeNetworkBuffers
+ 695              		.thumb
+ 696              		.thumb_func
+ 698              	uxGetMinimumFreeNetworkBuffers:
+ 699              	.LFB35:
+ 369:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /*-----------------------------------------------------------*/
+ 370:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 371:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** UBaseType_t uxGetMinimumFreeNetworkBuffers( void )
+ 372:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** {
+ 700              		.loc 1 372 0
+ 701              		.cfi_startproc
+ 702              		@ args = 0, pretend = 0, frame = 0
+ 703              		@ frame_needed = 1, uses_anonymous_args = 0
+ 704              		@ link register save eliminated.
+ 705 0000 80B4     		push	{r7}
+ 706              	.LCFI29:
+ 707              		.cfi_def_cfa_offset 4
+ 708              		.cfi_offset 7, -4
+ 709 0002 00AF     		add	r7, sp, #0
+ 710              	.LCFI30:
+ 711              		.cfi_def_cfa_register 7
+ 373:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	return uxMinimumFreeNetworkBuffers;
+ 712              		.loc 1 373 0
+ARM GAS  /tmp/ccCA6Ywq.s 			page 24
+
+
+ 713 0004 034B     		ldr	r3, .L44
+ 714 0006 1B68     		ldr	r3, [r3]
+ 374:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** }
+ 715              		.loc 1 374 0
+ 716 0008 1846     		mov	r0, r3
+ 717 000a BD46     		mov	sp, r7
+ 718              	.LCFI31:
+ 719              		.cfi_def_cfa_register 13
+ 720              		@ sp needed
+ 721 000c 5DF8047B 		ldr	r7, [sp], #4
+ 722              	.LCFI32:
+ 723              		.cfi_restore 7
+ 724              		.cfi_def_cfa_offset 0
+ 725 0010 7047     		bx	lr
+ 726              	.L45:
+ 727 0012 00BF     		.align	2
+ 728              	.L44:
+ 729 0014 00000000 		.word	uxMinimumFreeNetworkBuffers
+ 730              		.cfi_endproc
+ 731              	.LFE35:
+ 733              		.section	.text.pxResizeNetworkBufferWithDescriptor,"ax",%progbits
+ 734              		.align	2
+ 735              		.global	pxResizeNetworkBufferWithDescriptor
+ 736              		.thumb
+ 737              		.thumb_func
+ 739              	pxResizeNetworkBufferWithDescriptor:
+ 740              	.LFB36:
+ 375:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** /*-----------------------------------------------------------*/
+ 376:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 377:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** NetworkBufferDescriptor_t *pxResizeNetworkBufferWithDescriptor( NetworkBufferDescriptor_t * pxNetwo
+ 378:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** {
+ 741              		.loc 1 378 0
+ 742              		.cfi_startproc
+ 743              		@ args = 0, pretend = 0, frame = 16
+ 744              		@ frame_needed = 1, uses_anonymous_args = 0
+ 745 0000 80B5     		push	{r7, lr}
+ 746              	.LCFI33:
+ 747              		.cfi_def_cfa_offset 8
+ 748              		.cfi_offset 7, -8
+ 749              		.cfi_offset 14, -4
+ 750 0002 84B0     		sub	sp, sp, #16
+ 751              	.LCFI34:
+ 752              		.cfi_def_cfa_offset 24
+ 753 0004 00AF     		add	r7, sp, #0
+ 754              	.LCFI35:
+ 755              		.cfi_def_cfa_register 7
+ 756 0006 7860     		str	r0, [r7, #4]
+ 757 0008 3960     		str	r1, [r7]
+ 379:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** size_t xOriginalLength;
+ 380:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** uint8_t *pucBuffer;
+ 381:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 382:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	xOriginalLength = pxNetworkBuffer->xDataLength + ipBUFFER_PADDING;
+ 758              		.loc 1 382 0
+ 759 000a 7B68     		ldr	r3, [r7, #4]
+ 760 000c DB69     		ldr	r3, [r3, #28]
+ 761 000e 0A33     		adds	r3, r3, #10
+ 762 0010 FB60     		str	r3, [r7, #12]
+ARM GAS  /tmp/ccCA6Ywq.s 			page 25
+
+
+ 383:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	xNewSizeBytes = xNewSizeBytes + ipBUFFER_PADDING;
+ 763              		.loc 1 383 0
+ 764 0012 3B68     		ldr	r3, [r7]
+ 765 0014 0A33     		adds	r3, r3, #10
+ 766 0016 3B60     		str	r3, [r7]
+ 384:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 385:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	pucBuffer = pucGetNetworkBuffer( &( xNewSizeBytes ) );
+ 767              		.loc 1 385 0
+ 768 0018 3B46     		mov	r3, r7
+ 769 001a 1846     		mov	r0, r3
+ 770 001c FFF7FEFF 		bl	pucGetNetworkBuffer
+ 771 0020 B860     		str	r0, [r7, #8]
+ 386:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 
+ 387:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	if( pucBuffer != NULL )
+ 772              		.loc 1 387 0
+ 773 0022 BB68     		ldr	r3, [r7, #8]
+ 774 0024 002B     		cmp	r3, #0
+ 775 0026 1AD0     		beq	.L47
+ 388:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	{
+ 389:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		if( xNewSizeBytes > xOriginalLength )
+ 776              		.loc 1 389 0
+ 777 0028 3A68     		ldr	r2, [r7]
+ 778 002a FB68     		ldr	r3, [r7, #12]
+ 779 002c 9A42     		cmp	r2, r3
+ 780 002e 01D9     		bls	.L48
+ 390:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		{
+ 391:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 			xNewSizeBytes = xOriginalLength;
+ 781              		.loc 1 391 0
+ 782 0030 FB68     		ldr	r3, [r7, #12]
+ 783 0032 3B60     		str	r3, [r7]
+ 784              	.L48:
+ 392:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		}
+ 393:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		memcpy( pucBuffer - ipBUFFER_PADDING, pxNetworkBuffer->pucEthernetBuffer - ipBUFFER_PADDING, xNew
+ 785              		.loc 1 393 0
+ 786 0034 BB68     		ldr	r3, [r7, #8]
+ 787 0036 A3F10A01 		sub	r1, r3, #10
+ 788 003a 7B68     		ldr	r3, [r7, #4]
+ 789 003c 9B69     		ldr	r3, [r3, #24]
+ 790 003e A3F10A02 		sub	r2, r3, #10
+ 791 0042 3B68     		ldr	r3, [r7]
+ 792 0044 0846     		mov	r0, r1
+ 793 0046 1146     		mov	r1, r2
+ 794 0048 1A46     		mov	r2, r3
+ 795 004a FFF7FEFF 		bl	memcpy
+ 394:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		vReleaseNetworkBuffer( pxNetworkBuffer->pucEthernetBuffer );
+ 796              		.loc 1 394 0
+ 797 004e 7B68     		ldr	r3, [r7, #4]
+ 798 0050 9B69     		ldr	r3, [r3, #24]
+ 799 0052 1846     		mov	r0, r3
+ 800 0054 FFF7FEFF 		bl	vReleaseNetworkBuffer
+ 395:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 		pxNetworkBuffer->pucEthernetBuffer = pucBuffer;
+ 801              		.loc 1 395 0
+ 802 0058 7B68     		ldr	r3, [r7, #4]
+ 803 005a BA68     		ldr	r2, [r7, #8]
+ 804 005c 9A61     		str	r2, [r3, #24]
+ 805              	.L47:
+ 396:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	}
+ARM GAS  /tmp/ccCA6Ywq.s 			page 26
+
+
+ 397:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	
+ 398:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** 	return pxNetworkBuffer;
+ 806              		.loc 1 398 0
+ 807 005e 7B68     		ldr	r3, [r7, #4]
+ 399:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c **** }
+ 808              		.loc 1 399 0
+ 809 0060 1846     		mov	r0, r3
+ 810 0062 1037     		adds	r7, r7, #16
+ 811              	.LCFI36:
+ 812              		.cfi_def_cfa_offset 8
+ 813 0064 BD46     		mov	sp, r7
+ 814              	.LCFI37:
+ 815              		.cfi_def_cfa_register 13
+ 816              		@ sp needed
+ 817 0066 80BD     		pop	{r7, pc}
+ 818              		.cfi_endproc
+ 819              	.LFE36:
+ 821              		.text
+ 822              	.Letext0:
+ 823              		.file 3 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 824              		.file 4 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 825              		.file 5 "/usr/lib/gcc/arm-none-eabi/4.9.3/include/stddef.h"
+ 826              		.file 6 "../../../FreeRTOS_9_0/Source/include/list.h"
+ 827              		.file 7 "../../../FreeRTOS_9_0/Source/include/queue.h"
+ 828              		.file 8 "../../../FreeRTOS_9_0/Source/include/semphr.h"
+ 829              		.file 9 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h"
+ARM GAS  /tmp/ccCA6Ywq.s 			page 27
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 BufferAllocation_2.c
+     /tmp/ccCA6Ywq.s:21     .bss.xFreeBuffersList:0000000000000000 $d
+     /tmp/ccCA6Ywq.s:24     .bss.xFreeBuffersList:0000000000000000 xFreeBuffersList
+     /tmp/ccCA6Ywq.s:27     .bss.uxMinimumFreeNetworkBuffers:0000000000000000 $d
+     /tmp/ccCA6Ywq.s:30     .bss.uxMinimumFreeNetworkBuffers:0000000000000000 uxMinimumFreeNetworkBuffers
+     /tmp/ccCA6Ywq.s:33     .bss.xNetworkBufferDescriptors:0000000000000000 $d
+     /tmp/ccCA6Ywq.s:36     .bss.xNetworkBufferDescriptors:0000000000000000 xNetworkBufferDescriptors
+     /tmp/ccCA6Ywq.s:43     .rodata.xBufferAllocFixedSize:0000000000000000 xBufferAllocFixedSize
+     /tmp/ccCA6Ywq.s:40     .rodata.xBufferAllocFixedSize:0000000000000000 $d
+     /tmp/ccCA6Ywq.s:46     .bss.xNetworkBufferSemaphore:0000000000000000 $d
+     /tmp/ccCA6Ywq.s:49     .bss.xNetworkBufferSemaphore:0000000000000000 xNetworkBufferSemaphore
+     /tmp/ccCA6Ywq.s:52     .rodata:0000000000000000 $d
+     /tmp/ccCA6Ywq.s:56     .text.xNetworkBuffersInitialise:0000000000000000 $t
+     /tmp/ccCA6Ywq.s:61     .text.xNetworkBuffersInitialise:0000000000000000 xNetworkBuffersInitialise
+     /tmp/ccCA6Ywq.s:226    .text.xNetworkBuffersInitialise:00000000000000e4 $d
+     /tmp/ccCA6Ywq.s:235    .text.pucGetNetworkBuffer:0000000000000000 $t
+     /tmp/ccCA6Ywq.s:240    .text.pucGetNetworkBuffer:0000000000000000 pucGetNetworkBuffer
+     /tmp/ccCA6Ywq.s:338    .text.vReleaseNetworkBuffer:0000000000000000 $t
+     /tmp/ccCA6Ywq.s:343    .text.vReleaseNetworkBuffer:0000000000000000 vReleaseNetworkBuffer
+     /tmp/ccCA6Ywq.s:386    .text.pxGetNetworkBufferWithDescriptor:0000000000000000 $t
+     /tmp/ccCA6Ywq.s:391    .text.pxGetNetworkBufferWithDescriptor:0000000000000000 pxGetNetworkBufferWithDescriptor
+     /tmp/ccCA6Ywq.s:570    .text.vReleaseNetworkBufferAndDescriptor:0000000000000000 vReleaseNetworkBufferAndDescriptor
+     /tmp/ccCA6Ywq.s:558    .text.pxGetNetworkBufferWithDescriptor:00000000000000e8 $d
+     /tmp/ccCA6Ywq.s:565    .text.vReleaseNetworkBufferAndDescriptor:0000000000000000 $t
+     /tmp/ccCA6Ywq.s:646    .text.vReleaseNetworkBufferAndDescriptor:0000000000000060 $d
+     /tmp/ccCA6Ywq.s:652    .text.uxGetNumberOfFreeNetworkBuffers:0000000000000000 $t
+     /tmp/ccCA6Ywq.s:657    .text.uxGetNumberOfFreeNetworkBuffers:0000000000000000 uxGetNumberOfFreeNetworkBuffers
+     /tmp/ccCA6Ywq.s:688    .text.uxGetNumberOfFreeNetworkBuffers:0000000000000014 $d
+     /tmp/ccCA6Ywq.s:693    .text.uxGetMinimumFreeNetworkBuffers:0000000000000000 $t
+     /tmp/ccCA6Ywq.s:698    .text.uxGetMinimumFreeNetworkBuffers:0000000000000000 uxGetMinimumFreeNetworkBuffers
+     /tmp/ccCA6Ywq.s:729    .text.uxGetMinimumFreeNetworkBuffers:0000000000000014 $d
+     /tmp/ccCA6Ywq.s:734    .text.pxResizeNetworkBufferWithDescriptor:0000000000000000 $t
+     /tmp/ccCA6Ywq.s:739    .text.pxResizeNetworkBufferWithDescriptor:0000000000000000 pxResizeNetworkBufferWithDescriptor
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+xQueueCreateCountingSemaphore
+vQueueAddToRegistry
+vListInitialise
+vListInitialiseItem
+vListInsert
+pvPortMalloc
+vPortFree
+xQueueGenericReceive
+vPortEnterCritical
+uxListRemove
+vPortExitCritical
+vListInsertEnd
+xQueueGenericSend
+memcpy
