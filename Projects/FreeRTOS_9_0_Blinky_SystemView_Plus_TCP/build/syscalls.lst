@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccwaObhj.s 			page 1
+ARM GAS  /tmp/ccGvW0TZ.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
   28:syscalls.c    ****   register char * stack_ptr asm("sp");
   29:syscalls.c    **** #endif
   30:syscalls.c    **** 
-ARM GAS  /tmp/ccwaObhj.s 			page 2
+ARM GAS  /tmp/ccGvW0TZ.s 			page 2
 
 
   31:syscalls.c    **** 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
   64              		.loc 1 49 0
   65 0024 BB68     		ldr	r3, [r7, #8]
   66 0026 A3F50053 		sub	r3, r3, #8192
-ARM GAS  /tmp/ccwaObhj.s 			page 3
+ARM GAS  /tmp/ccGvW0TZ.s 			page 3
 
 
   67 002a BB60     		str	r3, [r7, #8]
@@ -178,10 +178,10 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
  105              	.L6:
  106              		.align	2
  107              	.L5:
-ARM GAS  /tmp/ccwaObhj.s 			page 4
+ARM GAS  /tmp/ccGvW0TZ.s 			page 4
 
 
- 108 0060 00000000 		.word	heap_end.5710
+ 108 0060 00000000 		.word	heap_end.5262
  109 0064 00000000 		.word	end
  110 0068 08ED00E0 		.word	-536810232
  111              		.cfi_endproc
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
   83:syscalls.c    ****       tzp->tz_dsttime = 0;
  147              		.loc 1 83 0
  148 0016 3B68     		ldr	r3, [r7]
-ARM GAS  /tmp/ccwaObhj.s 			page 5
+ARM GAS  /tmp/ccGvW0TZ.s 			page 5
 
 
  149 0018 0022     		movs	r2, #0
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
  198              		.cfi_restore 7
  199              		.cfi_def_cfa_offset 0
  200 000a 7047     		bx	lr
-ARM GAS  /tmp/ccwaObhj.s 			page 6
+ARM GAS  /tmp/ccGvW0TZ.s 			page 6
 
 
  201              		.cfi_endproc
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
  251              		@ frame_needed = 1, uses_anonymous_args = 0
  252 0000 80B5     		push	{r7, lr}
  253              	.LCFI19:
-ARM GAS  /tmp/ccwaObhj.s 			page 7
+ARM GAS  /tmp/ccGvW0TZ.s 			page 7
 
 
  254              		.cfi_def_cfa_offset 8
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
  304              		.cfi_def_cfa_offset 16
  305 0004 00AF     		add	r7, sp, #0
  306              	.LCFI26:
-ARM GAS  /tmp/ccwaObhj.s 			page 8
+ARM GAS  /tmp/ccGvW0TZ.s 			page 8
 
 
  307              		.cfi_def_cfa_register 7
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
  352 0014 5A1C     		adds	r2, r3, #1
  353 0016 BA60     		str	r2, [r7, #8]
  354 0018 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
-ARM GAS  /tmp/ccwaObhj.s 			page 9
+ARM GAS  /tmp/ccGvW0TZ.s 			page 9
 
 
  355 001a 1846     		mov	r0, r3
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
  403              	.LCFI34:
  404              		.cfi_def_cfa_register 7
  405 0006 7860     		str	r0, [r7, #4]
-ARM GAS  /tmp/ccwaObhj.s 			page 10
+ARM GAS  /tmp/ccGvW0TZ.s 			page 10
 
 
  122:syscalls.c    **** 	return -1;
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
  455 0012 0023     		movs	r3, #0
  129:syscalls.c    **** }
  456              		.loc 1 129 0
-ARM GAS  /tmp/ccwaObhj.s 			page 11
+ARM GAS  /tmp/ccGvW0TZ.s 			page 11
 
 
  457 0014 1846     		mov	r0, r3
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
  508 0010 5DF8047B 		ldr	r7, [sp], #4
  509              	.LCFI49:
  510              		.cfi_restore 7
-ARM GAS  /tmp/ccwaObhj.s 			page 12
+ARM GAS  /tmp/ccGvW0TZ.s 			page 12
 
 
  511              		.cfi_def_cfa_offset 0
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
  563              		.global	_read
  564              		.thumb
  565              		.thumb_func
-ARM GAS  /tmp/ccwaObhj.s 			page 13
+ARM GAS  /tmp/ccGvW0TZ.s 			page 13
 
 
  567              	_read:
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
  148:syscalls.c    **** 	}
  149:syscalls.c    **** 
  150:syscalls.c    ****    return len;
-ARM GAS  /tmp/ccwaObhj.s 			page 14
+ARM GAS  /tmp/ccGvW0TZ.s 			page 14
 
 
  611              		.loc 1 150 0 is_stmt 1
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
  660 0010 0837     		adds	r7, r7, #8
  661              	.LCFI65:
  662              		.cfi_def_cfa_offset 16
-ARM GAS  /tmp/ccwaObhj.s 			page 15
+ARM GAS  /tmp/ccGvW0TZ.s 			page 15
 
 
  663 0012 BD46     		mov	sp, r7
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
  713 0016 1846     		mov	r0, r3
  714 0018 0837     		adds	r7, r7, #8
  715              	.LCFI72:
-ARM GAS  /tmp/ccwaObhj.s 			page 16
+ARM GAS  /tmp/ccGvW0TZ.s 			page 16
 
 
  716              		.cfi_def_cfa_offset 8
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
  766              		.cfi_endproc
  767              	.LFE14:
  769 001e 00BF     		.section	.text._times,"ax",%progbits
-ARM GAS  /tmp/ccwaObhj.s 			page 17
+ARM GAS  /tmp/ccGvW0TZ.s 			page 17
 
 
  770              		.align	2
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
  177:syscalls.c    **** {
  820              		.loc 1 177 0
  821              		.cfi_startproc
-ARM GAS  /tmp/ccwaObhj.s 			page 18
+ARM GAS  /tmp/ccGvW0TZ.s 			page 18
 
 
  822              		@ args = 0, pretend = 0, frame = 8
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
  872 0000 80B5     		push	{r7, lr}
  873              	.LCFI91:
  874              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/ccwaObhj.s 			page 19
+ARM GAS  /tmp/ccGvW0TZ.s 			page 19
 
 
  875              		.cfi_offset 7, -8
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
  190:syscalls.c    **** 	errno = EAGAIN;
  925              		.loc 1 190 0
  926 0004 FFF7FEFF 		bl	__errno
-ARM GAS  /tmp/ccwaObhj.s 			page 20
+ARM GAS  /tmp/ccGvW0TZ.s 			page 20
 
 
  927 0008 0246     		mov	r2, r0
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
  975              		.cfi_def_cfa_offset 8
  976 001e BD46     		mov	sp, r7
  977              	.LCFI102:
-ARM GAS  /tmp/ccwaObhj.s 			page 21
+ARM GAS  /tmp/ccGvW0TZ.s 			page 21
 
 
  978              		.cfi_def_cfa_register 13
@@ -1206,9 +1206,9 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
  980 0020 80BD     		pop	{r7, pc}
  981              		.cfi_endproc
  982              	.LFE19:
- 984 0022 00BF     		.section	.bss.heap_end.5710,"aw",%nobits
+ 984 0022 00BF     		.section	.bss.heap_end.5262,"aw",%nobits
  985              		.align	2
- 988              	heap_end.5710:
+ 988              	heap_end.5262:
  989 0000 00000000 		.space	4
  990              		.weak	__io_getchar
  991              		.weak	__io_putchar
@@ -1220,54 +1220,54 @@ ARM GAS  /tmp/ccwaObhj.s 			page 1
  997              		.file 5 "/usr/arm-none-eabi/include/sys/times.h"
  998              		.file 6 "/usr/arm-none-eabi/include/sys/wait.h"
  999              		.file 7 "/usr/arm-none-eabi/include/sys/unistd.h"
-ARM GAS  /tmp/ccwaObhj.s 			page 22
+ARM GAS  /tmp/ccGvW0TZ.s 			page 22
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 syscalls.c
-     /tmp/ccwaObhj.s:21     .text._sbrk:0000000000000000 $t
-     /tmp/ccwaObhj.s:26     .text._sbrk:0000000000000000 _sbrk
-     /tmp/ccwaObhj.s:108    .text._sbrk:0000000000000060 $d
-     /tmp/ccwaObhj.s:988    .bss.heap_end.5710:0000000000000000 heap_end.5710
-     /tmp/ccwaObhj.s:115    .text._gettimeofday:0000000000000000 $t
-     /tmp/ccwaObhj.s:120    .text._gettimeofday:0000000000000000 _gettimeofday
-     /tmp/ccwaObhj.s:172    .text.initialise_monitor_handles:0000000000000000 $t
-     /tmp/ccwaObhj.s:177    .text.initialise_monitor_handles:0000000000000000 initialise_monitor_handles
-     /tmp/ccwaObhj.s:205    .text._getpid:0000000000000000 $t
-     /tmp/ccwaObhj.s:210    .text._getpid:0000000000000000 _getpid
-     /tmp/ccwaObhj.s:241    .text._kill:0000000000000000 $t
-     /tmp/ccwaObhj.s:246    .text._kill:0000000000000000 _kill
-     /tmp/ccwaObhj.s:286    .text._exit:0000000000000000 $t
-     /tmp/ccwaObhj.s:291    .text._exit:0000000000000000 _exit
-     /tmp/ccwaObhj.s:320    .text._write:0000000000000000 $t
-     /tmp/ccwaObhj.s:325    .text._write:0000000000000000 _write
-     /tmp/ccwaObhj.s:383    .text._close:0000000000000000 $t
-     /tmp/ccwaObhj.s:388    .text._close:0000000000000000 _close
-     /tmp/ccwaObhj.s:426    .text._fstat:0000000000000000 $t
-     /tmp/ccwaObhj.s:431    .text._fstat:0000000000000000 _fstat
-     /tmp/ccwaObhj.s:474    .text._isatty:0000000000000000 $t
-     /tmp/ccwaObhj.s:479    .text._isatty:0000000000000000 _isatty
-     /tmp/ccwaObhj.s:517    .text._lseek:0000000000000000 $t
-     /tmp/ccwaObhj.s:522    .text._lseek:0000000000000000 _lseek
-     /tmp/ccwaObhj.s:562    .text._read:0000000000000000 $t
-     /tmp/ccwaObhj.s:567    .text._read:0000000000000000 _read
-     /tmp/ccwaObhj.s:627    .text._open:0000000000000000 $t
-     /tmp/ccwaObhj.s:632    .text._open:0000000000000000 _open
-     /tmp/ccwaObhj.s:682    .text._wait:0000000000000000 $t
-     /tmp/ccwaObhj.s:687    .text._wait:0000000000000000 _wait
-     /tmp/ccwaObhj.s:726    .text._unlink:0000000000000000 $t
-     /tmp/ccwaObhj.s:731    .text._unlink:0000000000000000 _unlink
-     /tmp/ccwaObhj.s:770    .text._times:0000000000000000 $t
-     /tmp/ccwaObhj.s:775    .text._times:0000000000000000 _times
-     /tmp/ccwaObhj.s:813    .text._stat:0000000000000000 $t
-     /tmp/ccwaObhj.s:818    .text._stat:0000000000000000 _stat
-     /tmp/ccwaObhj.s:861    .text._link:0000000000000000 $t
-     /tmp/ccwaObhj.s:866    .text._link:0000000000000000 _link
-     /tmp/ccwaObhj.s:906    .text._fork:0000000000000000 $t
-     /tmp/ccwaObhj.s:911    .text._fork:0000000000000000 _fork
-     /tmp/ccwaObhj.s:939    .text._execve:0000000000000000 $t
-     /tmp/ccwaObhj.s:944    .text._execve:0000000000000000 _execve
-     /tmp/ccwaObhj.s:985    .bss.heap_end.5710:0000000000000000 $d
+     /tmp/ccGvW0TZ.s:21     .text._sbrk:0000000000000000 $t
+     /tmp/ccGvW0TZ.s:26     .text._sbrk:0000000000000000 _sbrk
+     /tmp/ccGvW0TZ.s:108    .text._sbrk:0000000000000060 $d
+     /tmp/ccGvW0TZ.s:988    .bss.heap_end.5262:0000000000000000 heap_end.5262
+     /tmp/ccGvW0TZ.s:115    .text._gettimeofday:0000000000000000 $t
+     /tmp/ccGvW0TZ.s:120    .text._gettimeofday:0000000000000000 _gettimeofday
+     /tmp/ccGvW0TZ.s:172    .text.initialise_monitor_handles:0000000000000000 $t
+     /tmp/ccGvW0TZ.s:177    .text.initialise_monitor_handles:0000000000000000 initialise_monitor_handles
+     /tmp/ccGvW0TZ.s:205    .text._getpid:0000000000000000 $t
+     /tmp/ccGvW0TZ.s:210    .text._getpid:0000000000000000 _getpid
+     /tmp/ccGvW0TZ.s:241    .text._kill:0000000000000000 $t
+     /tmp/ccGvW0TZ.s:246    .text._kill:0000000000000000 _kill
+     /tmp/ccGvW0TZ.s:286    .text._exit:0000000000000000 $t
+     /tmp/ccGvW0TZ.s:291    .text._exit:0000000000000000 _exit
+     /tmp/ccGvW0TZ.s:320    .text._write:0000000000000000 $t
+     /tmp/ccGvW0TZ.s:325    .text._write:0000000000000000 _write
+     /tmp/ccGvW0TZ.s:383    .text._close:0000000000000000 $t
+     /tmp/ccGvW0TZ.s:388    .text._close:0000000000000000 _close
+     /tmp/ccGvW0TZ.s:426    .text._fstat:0000000000000000 $t
+     /tmp/ccGvW0TZ.s:431    .text._fstat:0000000000000000 _fstat
+     /tmp/ccGvW0TZ.s:474    .text._isatty:0000000000000000 $t
+     /tmp/ccGvW0TZ.s:479    .text._isatty:0000000000000000 _isatty
+     /tmp/ccGvW0TZ.s:517    .text._lseek:0000000000000000 $t
+     /tmp/ccGvW0TZ.s:522    .text._lseek:0000000000000000 _lseek
+     /tmp/ccGvW0TZ.s:562    .text._read:0000000000000000 $t
+     /tmp/ccGvW0TZ.s:567    .text._read:0000000000000000 _read
+     /tmp/ccGvW0TZ.s:627    .text._open:0000000000000000 $t
+     /tmp/ccGvW0TZ.s:632    .text._open:0000000000000000 _open
+     /tmp/ccGvW0TZ.s:682    .text._wait:0000000000000000 $t
+     /tmp/ccGvW0TZ.s:687    .text._wait:0000000000000000 _wait
+     /tmp/ccGvW0TZ.s:726    .text._unlink:0000000000000000 $t
+     /tmp/ccGvW0TZ.s:731    .text._unlink:0000000000000000 _unlink
+     /tmp/ccGvW0TZ.s:770    .text._times:0000000000000000 $t
+     /tmp/ccGvW0TZ.s:775    .text._times:0000000000000000 _times
+     /tmp/ccGvW0TZ.s:813    .text._stat:0000000000000000 $t
+     /tmp/ccGvW0TZ.s:818    .text._stat:0000000000000000 _stat
+     /tmp/ccGvW0TZ.s:861    .text._link:0000000000000000 $t
+     /tmp/ccGvW0TZ.s:866    .text._link:0000000000000000 _link
+     /tmp/ccGvW0TZ.s:906    .text._fork:0000000000000000 $t
+     /tmp/ccGvW0TZ.s:911    .text._fork:0000000000000000 _fork
+     /tmp/ccGvW0TZ.s:939    .text._execve:0000000000000000 $t
+     /tmp/ccGvW0TZ.s:944    .text._execve:0000000000000000 _execve
+     /tmp/ccGvW0TZ.s:985    .bss.heap_end.5262:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccOMYIAC.s 			page 1
+ARM GAS  /tmp/cctjoR32.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
   28:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****        off, the VBAT pin powers the following blocks:
   29:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     (#) The RTC
   30:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     (#) The LSE oscillator
-ARM GAS  /tmp/ccOMYIAC.s 			page 2
+ARM GAS  /tmp/cctjoR32.s 			page 2
 
 
   31:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     (#) The backup SRAM when the low power backup regulator is enabled
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
   85:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   *** Alarm configuration ***
   86:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   ===========================
   87:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   [..]
-ARM GAS  /tmp/ccOMYIAC.s 			page 3
+ARM GAS  /tmp/cctjoR32.s 			page 3
 
 
   88:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     (+) To configure the RTC Alarm use the HAL_RTC_SetAlarm() function. 
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  142:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c **** /** @addtogroup STM32F7xx_HAL_Driver
  143:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   * @{
  144:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   */
-ARM GAS  /tmp/ccOMYIAC.s 			page 4
+ARM GAS  /tmp/cctjoR32.s 			page 4
 
 
  145:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c **** 
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  199:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   * @brief  Initializes the RTC peripheral 
  200:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   * @param  hrtc: pointer to a RTC_HandleTypeDef structure that contains
  201:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   *                the configuration information for RTC.
-ARM GAS  /tmp/ccOMYIAC.s 			page 5
+ARM GAS  /tmp/cctjoR32.s 			page 5
 
 
  202:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   * @retval HAL status
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
   60 001c 7B68     		ldr	r3, [r7, #4]
   61 001e 0022     		movs	r2, #0
   62 0020 1A77     		strb	r2, [r3, #28]
-ARM GAS  /tmp/ccOMYIAC.s 			page 6
+ARM GAS  /tmp/cctjoR32.s 			page 6
 
 
  225:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     /* Initialize RTC MSP */
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
   97 005a 46E0     		b	.L3
   98              	.L5:
  245:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   } 
-ARM GAS  /tmp/ccOMYIAC.s 			page 7
+ARM GAS  /tmp/cctjoR32.s 			page 7
 
 
  246:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   else
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  258:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     hrtc->Instance->ISR &= (uint32_t)~RTC_ISR_INIT; 
  141              		.loc 1 258 0
  142 00a8 7B68     		ldr	r3, [r7, #4]
-ARM GAS  /tmp/ccOMYIAC.s 			page 8
+ARM GAS  /tmp/cctjoR32.s 			page 8
 
 
  143 00aa 1B68     		ldr	r3, [r3]
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  184 00ee BD46     		mov	sp, r7
  185              	.LCFI4:
  186              		.cfi_def_cfa_register 13
-ARM GAS  /tmp/ccOMYIAC.s 			page 9
+ARM GAS  /tmp/cctjoR32.s 			page 9
 
 
  187              		@ sp needed
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  226 0010 5A77     		strb	r2, [r3, #29]
  289:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   
  290:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   /* Disable the write protection for RTC registers */
-ARM GAS  /tmp/ccOMYIAC.s 			page 10
+ARM GAS  /tmp/cctjoR32.s 			page 10
 
 
  291:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   __HAL_RTC_WRITEPROTECTION_DISABLE(hrtc);
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  263 004c 42F20112 		movw	r2, #8449
  264 0050 5A60     		str	r2, [r3, #4]
  309:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     /* Reset All CR bits except CR[2:0] */
-ARM GAS  /tmp/ccOMYIAC.s 			page 11
+ARM GAS  /tmp/cctjoR32.s 			page 11
 
 
  310:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     hrtc->Instance->CR &= (uint32_t)0x00000007;
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  301 008e 1B68     		ldr	r3, [r3]
  302 0090 DB68     		ldr	r3, [r3, #12]
  303 0092 03F00403 		and	r3, r3, #4
-ARM GAS  /tmp/ccOMYIAC.s 			page 12
+ARM GAS  /tmp/cctjoR32.s 			page 12
 
 
  304 0096 002B     		cmp	r3, #0
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  346 00dc 1B68     		ldr	r3, [r3]
  347 00de 0022     		movs	r2, #0
  348 00e0 5A64     		str	r2, [r3, #68]
-ARM GAS  /tmp/ccOMYIAC.s 			page 13
+ARM GAS  /tmp/cctjoR32.s 			page 13
 
 
  339:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     hrtc->Instance->ALRMBSSR = (uint32_t)0x00000000;
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  385 0120 FF22     		movs	r2, #255
  386 0122 5A62     		str	r2, [r3, #36]
  357:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****         
-ARM GAS  /tmp/ccOMYIAC.s 			page 14
+ARM GAS  /tmp/cctjoR32.s 			page 14
 
 
  358:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****         hrtc->State = HAL_RTC_STATE_ERROR;
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  421              		.cfi_def_cfa_register 13
  422              		@ sp needed
  423 0150 80BD     		pop	{r7, pc}
-ARM GAS  /tmp/ccOMYIAC.s 			page 15
+ARM GAS  /tmp/cctjoR32.s 			page 15
 
 
  424              	.L15:
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  464              	.LCFI15:
  465              		.cfi_restore 7
  466              		.cfi_def_cfa_offset 0
-ARM GAS  /tmp/ccOMYIAC.s 			page 16
+ARM GAS  /tmp/cctjoR32.s 			page 16
 
 
  467 0010 7047     		bx	lr
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  507 0010 7047     		bx	lr
  508              		.cfi_endproc
  509              	.LFE138:
-ARM GAS  /tmp/ccOMYIAC.s 			page 17
+ARM GAS  /tmp/cctjoR32.s 			page 17
 
 
  511 0012 00BF     		.section	.text.HAL_RTC_SetTime,"ax",%progbits
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  534              		.cfi_def_cfa_register 7
  535 0006 F860     		str	r0, [r7, #12]
  536 0008 B960     		str	r1, [r7, #8]
-ARM GAS  /tmp/ccOMYIAC.s 			page 18
+ARM GAS  /tmp/cctjoR32.s 			page 18
 
 
  537 000a 7A60     		str	r2, [r7, #4]
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  569              		.loc 1 463 0
  570 003c BB68     		ldr	r3, [r7, #8]
  571 003e 0022     		movs	r2, #0
-ARM GAS  /tmp/ccOMYIAC.s 			page 19
+ARM GAS  /tmp/cctjoR32.s 			page 19
 
 
  572 0040 1A73     		strb	r2, [r3, #12]
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  610 0080 9B68     		ldr	r3, [r3, #8]
  611 0082 03F04003 		and	r3, r3, #64
  612 0086 002B     		cmp	r3, #0
-ARM GAS  /tmp/ccOMYIAC.s 			page 20
+ARM GAS  /tmp/cctjoR32.s 			page 20
 
 
  613 0088 07D0     		beq	.L24
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  648 00ba 1343     		orrs	r3, r3, r2
  649 00bc 7B61     		str	r3, [r7, #20]
  650              	.L23:
-ARM GAS  /tmp/ccOMYIAC.s 			page 21
+ARM GAS  /tmp/cctjoR32.s 			page 21
 
 
  493:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   }
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  515:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     hrtc->Instance->TR = (uint32_t)(tmpreg & RTC_TR_RESERVED_MASK);
  683              		.loc 1 515 0
  684 00f2 FB68     		ldr	r3, [r7, #12]
-ARM GAS  /tmp/ccOMYIAC.s 			page 22
+ARM GAS  /tmp/cctjoR32.s 			page 22
 
 
  685 00f4 1A68     		ldr	r2, [r3]
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  529:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****       if(HAL_RTC_WaitForSynchro(hrtc) != HAL_OK)
  726              		.loc 1 529 0
  727 0144 F868     		ldr	r0, [r7, #12]
-ARM GAS  /tmp/ccOMYIAC.s 			page 23
+ARM GAS  /tmp/cctjoR32.s 			page 23
 
 
  728 0146 FFF7FEFF 		bl	HAL_RTC_WaitForSynchro
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  550:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****    return HAL_OK;
  762              		.loc 1 550 0
  763 017c 0023     		movs	r3, #0
-ARM GAS  /tmp/ccOMYIAC.s 			page 24
+ARM GAS  /tmp/cctjoR32.s 			page 24
 
 
  764              	.L20:
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  794 0000 80B5     		push	{r7, lr}
  795              	.LCFI27:
  796              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/ccOMYIAC.s 			page 25
+ARM GAS  /tmp/cctjoR32.s 			page 25
 
 
  797              		.cfi_offset 7, -8
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  835 003c DAB2     		uxtb	r2, r3
  836 003e BB68     		ldr	r3, [r7, #8]
  837 0040 1A70     		strb	r2, [r3]
-ARM GAS  /tmp/ccOMYIAC.s 			page 26
+ARM GAS  /tmp/cctjoR32.s 			page 26
 
 
  593:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   sTime->Minutes = (uint8_t)((tmpreg & (RTC_TR_MNT | RTC_TR_MNU)) >>8);
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  881              		.loc 1 603 0
  882 0096 BB68     		ldr	r3, [r7, #8]
  883 0098 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
-ARM GAS  /tmp/ccOMYIAC.s 			page 27
+ARM GAS  /tmp/cctjoR32.s 			page 27
 
 
  884 009a 1846     		mov	r0, r3
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  922 0000 90B5     		push	{r4, r7, lr}
  923              	.LCFI32:
  924              		.cfi_def_cfa_offset 12
-ARM GAS  /tmp/ccOMYIAC.s 			page 28
+ARM GAS  /tmp/cctjoR32.s 			page 28
 
 
  925              		.cfi_offset 4, -12
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  634:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     sDate->Month = (uint8_t)((sDate->Month & (uint8_t)~(0x10U)) + (uint8_t)0x0AU);
  967              		.loc 1 634 0 is_stmt 1
  968 003a BB68     		ldr	r3, [r7, #8]
-ARM GAS  /tmp/ccOMYIAC.s 			page 29
+ARM GAS  /tmp/cctjoR32.s 			page 29
 
 
  969 003c 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  1007 0082 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
  1008 0084 5B03     		lsls	r3, r3, #13
  645:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****                  ((uint32_t)RTC_ByteToBcd2(sDate->Month) << 8) | \
-ARM GAS  /tmp/ccOMYIAC.s 			page 30
+ARM GAS  /tmp/cctjoR32.s 			page 30
 
 
  1009              		.loc 1 645 0
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  1047              		.loc 1 658 0
  1048 00c2 1343     		orrs	r3, r3, r2
  1049 00c4 7B61     		str	r3, [r7, #20]
-ARM GAS  /tmp/ccOMYIAC.s 			page 31
+ARM GAS  /tmp/cctjoR32.s 			page 31
 
 
  1050              	.L40:
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  683:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     /* Set the RTC_DR register */
  684:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     hrtc->Instance->DR = (uint32_t)(datetmpreg & RTC_DR_RESERVED_MASK);
  1083              		.loc 1 684 0
-ARM GAS  /tmp/ccOMYIAC.s 			page 32
+ARM GAS  /tmp/cctjoR32.s 			page 32
 
 
  1084 00fa FB68     		ldr	r3, [r7, #12]
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  1122 0140 0022     		movs	r2, #0
  1123 0142 1A77     		strb	r2, [r3, #28]
  701:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****         
-ARM GAS  /tmp/ccOMYIAC.s 			page 33
+ARM GAS  /tmp/cctjoR32.s 			page 33
 
 
  702:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****         return HAL_ERROR;
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  1164              		.thumb
  1165              		.thumb_func
  1167              	HAL_RTC_GetDate:
-ARM GAS  /tmp/ccOMYIAC.s 			page 34
+ARM GAS  /tmp/cctjoR32.s 			page 34
 
 
  1168              	.LFB142:
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  742:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   /* Fill the structure fields with the read parameters */
  743:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   sDate->Year = (uint8_t)((datetmpreg & (RTC_DR_YT | RTC_DR_YU)) >> 16);
  1197              		.loc 1 743 0
-ARM GAS  /tmp/ccOMYIAC.s 			page 35
+ARM GAS  /tmp/cctjoR32.s 			page 35
 
 
  1198 001c 7B69     		ldr	r3, [r7, #20]
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  1242 0072 FFF7FEFF 		bl	RTC_Bcd2ToByte
  1243 0076 0346     		mov	r3, r0
  1244 0078 1A46     		mov	r2, r3
-ARM GAS  /tmp/ccOMYIAC.s 			page 36
+ARM GAS  /tmp/cctjoR32.s 			page 36
 
 
  1245 007a BB68     		ldr	r3, [r7, #8]
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  771:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****  [..] This section provides functions allowing to configure Alarm feature
  772:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c **** 
  773:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c **** @endverbatim
-ARM GAS  /tmp/ccOMYIAC.s 			page 37
+ARM GAS  /tmp/cctjoR32.s 			page 37
 
 
  774:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   * @{
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  801:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   __HAL_LOCK(hrtc);
  1311              		.loc 1 801 0
  1312 0018 FB68     		ldr	r3, [r7, #12]
-ARM GAS  /tmp/ccOMYIAC.s 			page 38
+ARM GAS  /tmp/cctjoR32.s 			page 38
 
 
  1313 001a 1B7F     		ldrb	r3, [r3, #28]	@ zero_extendqisi2
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  825:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     {
  826:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****       assert_param(IS_RTC_ALARM_DATE_WEEKDAY_WEEKDAY(sAlarm->AlarmDateWeekDay));
  827:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     }
-ARM GAS  /tmp/ccOMYIAC.s 			page 39
+ARM GAS  /tmp/cctjoR32.s 			page 39
 
 
  828:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  1386              		.loc 1 833 0
  1387 009a 1A43     		orrs	r2, r2, r3
  835:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****               ((uint32_t)sAlarm->AlarmMask)); 
-ARM GAS  /tmp/ccOMYIAC.s 			page 40
+ARM GAS  /tmp/cctjoR32.s 			page 40
 
 
  1388              		.loc 1 835 0
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  855:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     {
  856:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****       tmpreg = RTC_Bcd2ToByte(sAlarm->AlarmDateWeekDay);
  1422              		.loc 1 856 0
-ARM GAS  /tmp/ccOMYIAC.s 			page 41
+ARM GAS  /tmp/cctjoR32.s 			page 41
 
 
  1423 00d2 BB68     		ldr	r3, [r7, #8]
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  1461 0110 BB68     		ldr	r3, [r7, #8]
  1462 0112 93F82430 		ldrb	r3, [r3, #36]	@ zero_extendqisi2
  1463 0116 1B06     		lsls	r3, r3, #24
-ARM GAS  /tmp/ccOMYIAC.s 			page 42
+ARM GAS  /tmp/cctjoR32.s 			page 42
 
 
  868:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****               ((uint32_t)(sAlarm->AlarmTime.TimeFormat) << 16) | \
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  1500 014e FB68     		ldr	r3, [r7, #12]
  1501 0150 1B68     		ldr	r3, [r3]
  1502 0152 FA68     		ldr	r2, [r7, #12]
-ARM GAS  /tmp/ccOMYIAC.s 			page 43
+ARM GAS  /tmp/cctjoR32.s 			page 43
 
 
  1503 0154 1268     		ldr	r2, [r2]
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  1538 0194 FB68     		ldr	r3, [r7, #12]
  1539 0196 0022     		movs	r2, #0
  1540 0198 1A77     		strb	r2, [r3, #28]
-ARM GAS  /tmp/ccOMYIAC.s 			page 44
+ARM GAS  /tmp/cctjoR32.s 			page 44
 
 
  904:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****         
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  1579 01dc 9A60     		str	r2, [r3, #8]
  919:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     
  920:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     /* In case of interrupt mode is used, the interrupt source must disabled */ 
-ARM GAS  /tmp/ccOMYIAC.s 			page 45
+ARM GAS  /tmp/cctjoR32.s 			page 45
 
 
  921:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     __HAL_RTC_ALARM_DISABLE_IT(hrtc, RTC_IT_ALRB);
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  1615 021a 0323     		movs	r3, #3
  1616 021c 21E0     		b	.L52
  1617              	.L64:
-ARM GAS  /tmp/ccOMYIAC.s 			page 46
+ARM GAS  /tmp/cctjoR32.s 			page 46
 
 
  927:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     {
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  1653              		.loc 1 957 0
  1654 025a FB68     		ldr	r3, [r7, #12]
  1655 025c 0022     		movs	r2, #0
-ARM GAS  /tmp/ccOMYIAC.s 			page 47
+ARM GAS  /tmp/cctjoR32.s 			page 47
 
 
  1656 025e 1A77     		strb	r2, [r3, #28]
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  1692              	.LCFI48:
  1693              		.cfi_def_cfa_offset 48
  1694 0004 00AF     		add	r7, sp, #0
-ARM GAS  /tmp/ccOMYIAC.s 			page 48
+ARM GAS  /tmp/cctjoR32.s 			page 48
 
 
  1695              	.LCFI49:
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  1730 0036 FB68     		ldr	r3, [r7, #12]
  1731 0038 1B68     		ldr	r3, [r3]
  1732 003a 9B68     		ldr	r3, [r3, #8]
-ARM GAS  /tmp/ccOMYIAC.s 			page 49
+ARM GAS  /tmp/cctjoR32.s 			page 49
 
 
  1733 003c 03F04003 		and	r3, r3, #64
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
 1018:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****               ((uint32_t)RTC_ByteToBcd2(sAlarm->AlarmTime.Minutes) << 8) | \
  1763              		.loc 1 1018 0
  1764 0074 44EA0302 		orr	r2, r4, r3
-ARM GAS  /tmp/ccOMYIAC.s 			page 50
+ARM GAS  /tmp/cctjoR32.s 			page 50
 
 
 1020:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****               ((uint32_t)(sAlarm->AlarmTime.TimeFormat) << 16) | \
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  1805 00be 0346     		mov	r3, r0
  1806 00c0 FB61     		str	r3, [r7, #28]
  1807 00c2 02E0     		b	.L73
-ARM GAS  /tmp/ccOMYIAC.s 			page 51
+ARM GAS  /tmp/cctjoR32.s 			page 51
 
 
  1808              	.L72:
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  1839 00f8 1A04     		lsls	r2, r3, #16
 1053:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****               ((uint32_t)(sAlarm->AlarmTime.Minutes) << 8) | \
  1840              		.loc 1 1053 0
-ARM GAS  /tmp/ccOMYIAC.s 			page 52
+ARM GAS  /tmp/cctjoR32.s 			page 52
 
 
  1841 00fa BB68     		ldr	r3, [r7, #8]
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  1881 0132 7B61     		str	r3, [r7, #20]
 1062:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   
 1063:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   /* Disable the write protection for RTC registers */
-ARM GAS  /tmp/ccOMYIAC.s 			page 53
+ARM GAS  /tmp/cctjoR32.s 			page 53
 
 
 1064:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   __HAL_RTC_WRITEPROTECTION_DISABLE(hrtc);
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
 1081:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****       if((HAL_GetTick() - tickstart ) > RTC_TIMEOUT_VALUE)
  1919              		.loc 1 1081 0
  1920 0178 FFF7FEFF 		bl	HAL_GetTick
-ARM GAS  /tmp/ccOMYIAC.s 			page 54
+ARM GAS  /tmp/cctjoR32.s 			page 54
 
 
  1921 017c 0246     		mov	r2, r0
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  1958 01ba 7A69     		ldr	r2, [r7, #20]
  1959 01bc 5A64     		str	r2, [r3, #68]
 1098:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     /* Configure the Alarm state: Enable Alarm */
-ARM GAS  /tmp/ccOMYIAC.s 			page 55
+ARM GAS  /tmp/cctjoR32.s 			page 55
 
 
 1099:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     __HAL_RTC_ALARMA_ENABLE(hrtc);
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
 1115:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     while(__HAL_RTC_ALARM_GET_FLAG(hrtc, RTC_FLAG_ALRBWF) == RESET)
  1998              		.loc 1 1115 0
  1999 0208 13E0     		b	.L80
-ARM GAS  /tmp/ccOMYIAC.s 			page 56
+ARM GAS  /tmp/cctjoR32.s 			page 56
 
 
  2000              	.L81:
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
 1132:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     /* Configure the Alarm B Sub Second register */
 1133:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     hrtc->Instance->ALRMBSSR = subsecondtmpreg;
  2037              		.loc 1 1133 0
-ARM GAS  /tmp/ccOMYIAC.s 			page 57
+ARM GAS  /tmp/cctjoR32.s 			page 57
 
 
  2038 0248 FB68     		ldr	r3, [r7, #12]
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  2077 0290 FB68     		ldr	r3, [r7, #12]
  2078 0292 0122     		movs	r2, #1
  2079 0294 5A77     		strb	r2, [r3, #29]
-ARM GAS  /tmp/ccOMYIAC.s 			page 58
+ARM GAS  /tmp/cctjoR32.s 			page 58
 
 
 1149:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  2117              	.LCFI52:
  2118              		.cfi_def_cfa_offset 8
  2119              		.cfi_offset 7, -8
-ARM GAS  /tmp/ccOMYIAC.s 			page 59
+ARM GAS  /tmp/cctjoR32.s 			page 59
 
 
  2120              		.cfi_offset 14, -4
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  2160 0038 B3F5807F 		cmp	r3, #256
  2161 003c 2FD1     		bne	.L87
 1182:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   {
-ARM GAS  /tmp/ccOMYIAC.s 			page 60
+ARM GAS  /tmp/cctjoR32.s 			page 60
 
 
 1183:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     /* AlarmA */
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  2198 0080 0322     		movs	r2, #3
  2199 0082 5A77     		strb	r2, [r3, #29]
 1201:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****         
-ARM GAS  /tmp/ccOMYIAC.s 			page 61
+ARM GAS  /tmp/cctjoR32.s 			page 61
 
 
 1202:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****         /* Process Unlocked */ 
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
 1219:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c **** 
 1220:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     /* Wait till RTC ALRxWF flag is set and if Time out is reached exit */
 1221:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     while(__HAL_RTC_ALARM_GET_FLAG(hrtc, RTC_FLAG_ALRBWF) == RESET)
-ARM GAS  /tmp/ccOMYIAC.s 			page 62
+ARM GAS  /tmp/cctjoR32.s 			page 62
 
 
  2236              		.loc 1 1221 0
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  2272 00fc 7B68     		ldr	r3, [r7, #4]
  2273 00fe 1B68     		ldr	r3, [r3]
  2274 0100 FF22     		movs	r2, #255
-ARM GAS  /tmp/ccOMYIAC.s 			page 63
+ARM GAS  /tmp/cctjoR32.s 			page 63
 
 
  2275 0102 5A62     		str	r2, [r3, #36]
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
 1262:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   */
 1263:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c **** HAL_StatusTypeDef HAL_RTC_GetAlarm(RTC_HandleTypeDef *hrtc, RTC_AlarmTypeDef *sAlarm, uint32_t Alar
 1264:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c **** {
-ARM GAS  /tmp/ccOMYIAC.s 			page 64
+ARM GAS  /tmp/cctjoR32.s 			page 64
 
 
  2308              		.loc 1 1264 0
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  2349 0034 C3F30E03 		ubfx	r3, r3, #0, #15
  2350 0038 3B61     		str	r3, [r7, #16]
  2351 003a 0DE0     		b	.L95
-ARM GAS  /tmp/ccOMYIAC.s 			page 65
+ARM GAS  /tmp/cctjoR32.s 			page 65
 
 
  2352              	.L94:
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  2392 0084 03F48003 		and	r3, r3, #4194304
  2393 0088 1B0C     		lsrs	r3, r3, #16
  2394 008a DAB2     		uxtb	r2, r3
-ARM GAS  /tmp/ccOMYIAC.s 			page 66
+ARM GAS  /tmp/cctjoR32.s 			page 66
 
 
  2395 008c BB68     		ldr	r3, [r7, #8]
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
 1301:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     sAlarm->AlarmTime.Seconds = RTC_Bcd2ToByte(sAlarm->AlarmTime.Seconds);
  2440              		.loc 1 1301 0
  2441 00e4 BB68     		ldr	r3, [r7, #8]
-ARM GAS  /tmp/ccOMYIAC.s 			page 67
+ARM GAS  /tmp/cctjoR32.s 			page 67
 
 
  2442 00e6 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  2484              		@ args = 0, pretend = 0, frame = 8
  2485              		@ frame_needed = 1, uses_anonymous_args = 0
  2486 0000 80B5     		push	{r7, lr}
-ARM GAS  /tmp/ccOMYIAC.s 			page 68
+ARM GAS  /tmp/cctjoR32.s 			page 68
 
 
  2487              	.LCFI62:
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  2527 003e 1B68     		ldr	r3, [r3]
  2528 0040 DB68     		ldr	r3, [r3, #12]
  2529 0042 03F40073 		and	r3, r3, #512
-ARM GAS  /tmp/ccOMYIAC.s 			page 69
+ARM GAS  /tmp/cctjoR32.s 			page 69
 
 
  2530 0046 002B     		cmp	r3, #0
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  2566              		.cfi_def_cfa_register 13
  2567              		@ sp needed
  2568 0082 80BD     		pop	{r7, pc}
-ARM GAS  /tmp/ccOMYIAC.s 			page 70
+ARM GAS  /tmp/cctjoR32.s 			page 70
 
 
  2569              	.L102:
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  2609              	.LCFI72:
  2610              		.cfi_restore 7
  2611              		.cfi_def_cfa_offset 0
-ARM GAS  /tmp/ccOMYIAC.s 			page 71
+ARM GAS  /tmp/cctjoR32.s 			page 71
 
 
  2612 0010 7047     		bx	lr
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  2650              		.loc 1 1381 0
  2651 0016 3B68     		ldr	r3, [r7]
  2652 0018 B3F1FF3F 		cmp	r3, #-1
-ARM GAS  /tmp/ccOMYIAC.s 			page 72
+ARM GAS  /tmp/cctjoR32.s 			page 72
 
 
  2653 001c 0FD0     		beq	.L105
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  2692 005e 7B68     		ldr	r3, [r7, #4]
  2693 0060 0122     		movs	r2, #1
  2694 0062 5A77     		strb	r2, [r3, #29]
-ARM GAS  /tmp/ccOMYIAC.s 			page 73
+ARM GAS  /tmp/cctjoR32.s 			page 73
 
 
 1396:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
 1428:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   *         the calendar, which means that the calendar registers have been 
 1429:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   *         correctly copied into the RTC_TR and RTC_DR shadow registers.   
 1430:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   * @param  hrtc: pointer to a RTC_HandleTypeDef structure that contains
-ARM GAS  /tmp/ccOMYIAC.s 			page 74
+ARM GAS  /tmp/cctjoR32.s 			page 74
 
 
 1431:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   *                the configuration information for RTC.
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  2756 002c D31A     		subs	r3, r2, r3
  2757 002e B3F57A7F 		cmp	r3, #1000
  2758 0032 01D9     		bls	.L110
-ARM GAS  /tmp/ccOMYIAC.s 			page 75
+ARM GAS  /tmp/cctjoR32.s 			page 75
 
 
 1448:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     {       
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
 1468:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     This subsection provides functions allowing to
 1469:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****       (+) Get RTC state
 1470:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c **** 
-ARM GAS  /tmp/ccOMYIAC.s 			page 76
+ARM GAS  /tmp/cctjoR32.s 			page 76
 
 
 1471:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c **** @endverbatim
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  2837              	RTC_EnterInitMode:
  2838              	.LFB152:
 1484:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c **** 
-ARM GAS  /tmp/ccOMYIAC.s 			page 77
+ARM GAS  /tmp/cctjoR32.s 			page 77
 
 
 1485:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c **** /**
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
 1508:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****     tickstart = HAL_GetTick();
  2870              		.loc 1 1508 0
  2871 0024 FFF7FEFF 		bl	HAL_GetTick
-ARM GAS  /tmp/ccOMYIAC.s 			page 78
+ARM GAS  /tmp/cctjoR32.s 			page 78
 
 
  2872 0028 F860     		str	r0, [r7, #12]
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  2913              		.global	RTC_ByteToBcd2
  2914              		.thumb
  2915              		.thumb_func
-ARM GAS  /tmp/ccOMYIAC.s 			page 79
+ARM GAS  /tmp/cctjoR32.s 			page 79
 
 
  2917              	RTC_ByteToBcd2:
@@ -4738,7 +4738,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
 1537:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   }
 1538:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   
 1539:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   return  ((uint8_t)(bcdhigh << 4) | Value);
-ARM GAS  /tmp/ccOMYIAC.s 			page 80
+ARM GAS  /tmp/cctjoR32.s 			page 80
 
 
  2955              		.loc 1 1539 0
@@ -4798,7 +4798,7 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  3002              		.cfi_def_cfa_register 7
  3003 0006 0346     		mov	r3, r0
  3004 0008 FB71     		strb	r3, [r7, #7]
-ARM GAS  /tmp/ccOMYIAC.s 			page 81
+ARM GAS  /tmp/cctjoR32.s 			page 81
 
 
 1549:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c ****   uint32_t tmp = 0;
@@ -4851,59 +4851,59 @@ ARM GAS  /tmp/ccOMYIAC.s 			page 1
  3049              		.file 6 "../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
  3050              		.file 7 "../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rtc.h"
  3051              		.file 8 "../../Drivers/CMSIS/Include/core_cm7.h"
-ARM GAS  /tmp/ccOMYIAC.s 			page 82
+ARM GAS  /tmp/cctjoR32.s 			page 82
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f7xx_hal_rtc.c
-     /tmp/ccOMYIAC.s:21     .text.HAL_RTC_Init:0000000000000000 $t
-     /tmp/ccOMYIAC.s:26     .text.HAL_RTC_Init:0000000000000000 HAL_RTC_Init
-     /tmp/ccOMYIAC.s:437    .text.HAL_RTC_MspInit:0000000000000000 HAL_RTC_MspInit
-     /tmp/ccOMYIAC.s:2837   .text.RTC_EnterInitMode:0000000000000000 RTC_EnterInitMode
-     /tmp/ccOMYIAC.s:192    .text.HAL_RTC_Init:00000000000000f4 $d
-     /tmp/ccOMYIAC.s:197    .text.HAL_RTC_DeInit:0000000000000000 $t
-     /tmp/ccOMYIAC.s:202    .text.HAL_RTC_DeInit:0000000000000000 HAL_RTC_DeInit
-     /tmp/ccOMYIAC.s:2717   .text.HAL_RTC_WaitForSynchro:0000000000000000 HAL_RTC_WaitForSynchro
-     /tmp/ccOMYIAC.s:477    .text.HAL_RTC_MspDeInit:0000000000000000 HAL_RTC_MspDeInit
-     /tmp/ccOMYIAC.s:427    .text.HAL_RTC_DeInit:0000000000000154 $d
-     /tmp/ccOMYIAC.s:432    .text.HAL_RTC_MspInit:0000000000000000 $t
-     /tmp/ccOMYIAC.s:472    .text.HAL_RTC_MspDeInit:0000000000000000 $t
-     /tmp/ccOMYIAC.s:512    .text.HAL_RTC_SetTime:0000000000000000 $t
-     /tmp/ccOMYIAC.s:517    .text.HAL_RTC_SetTime:0000000000000000 HAL_RTC_SetTime
-     /tmp/ccOMYIAC.s:2917   .text.RTC_ByteToBcd2:0000000000000000 RTC_ByteToBcd2
-     /tmp/ccOMYIAC.s:2986   .text.RTC_Bcd2ToByte:0000000000000000 RTC_Bcd2ToByte
-     /tmp/ccOMYIAC.s:778    .text.HAL_RTC_SetTime:0000000000000188 $d
-     /tmp/ccOMYIAC.s:783    .text.HAL_RTC_GetTime:0000000000000000 $t
-     /tmp/ccOMYIAC.s:788    .text.HAL_RTC_GetTime:0000000000000000 HAL_RTC_GetTime
-     /tmp/ccOMYIAC.s:906    .text.HAL_RTC_GetTime:00000000000000b4 $d
-     /tmp/ccOMYIAC.s:911    .text.HAL_RTC_SetDate:0000000000000000 $t
-     /tmp/ccOMYIAC.s:916    .text.HAL_RTC_SetDate:0000000000000000 HAL_RTC_SetDate
-     /tmp/ccOMYIAC.s:1157   .text.HAL_RTC_SetDate:0000000000000168 $d
-     /tmp/ccOMYIAC.s:1162   .text.HAL_RTC_GetDate:0000000000000000 $t
-     /tmp/ccOMYIAC.s:1167   .text.HAL_RTC_GetDate:0000000000000000 HAL_RTC_GetDate
-     /tmp/ccOMYIAC.s:1272   .text.HAL_RTC_GetDate:000000000000009c $d
-     /tmp/ccOMYIAC.s:1277   .text.HAL_RTC_SetAlarm:0000000000000000 $t
-     /tmp/ccOMYIAC.s:1282   .text.HAL_RTC_SetAlarm:0000000000000000 HAL_RTC_SetAlarm
-     /tmp/ccOMYIAC.s:1674   .text.HAL_RTC_SetAlarm_IT:0000000000000000 $t
-     /tmp/ccOMYIAC.s:1679   .text.HAL_RTC_SetAlarm_IT:0000000000000000 HAL_RTC_SetAlarm_IT
-     /tmp/ccOMYIAC.s:2100   .text.HAL_RTC_SetAlarm_IT:00000000000002a8 $d
-     /tmp/ccOMYIAC.s:2105   .text.HAL_RTC_DeactivateAlarm:0000000000000000 $t
-     /tmp/ccOMYIAC.s:2110   .text.HAL_RTC_DeactivateAlarm:0000000000000000 HAL_RTC_DeactivateAlarm
-     /tmp/ccOMYIAC.s:2301   .text.HAL_RTC_GetAlarm:0000000000000000 $t
-     /tmp/ccOMYIAC.s:2306   .text.HAL_RTC_GetAlarm:0000000000000000 HAL_RTC_GetAlarm
-     /tmp/ccOMYIAC.s:2475   .text.HAL_RTC_AlarmIRQHandler:0000000000000000 $t
-     /tmp/ccOMYIAC.s:2480   .text.HAL_RTC_AlarmIRQHandler:0000000000000000 HAL_RTC_AlarmIRQHandler
-     /tmp/ccOMYIAC.s:2582   .text.HAL_RTC_AlarmAEventCallback:0000000000000000 HAL_RTC_AlarmAEventCallback
-     /tmp/ccOMYIAC.s:2572   .text.HAL_RTC_AlarmIRQHandler:0000000000000084 $d
-     /tmp/ccOMYIAC.s:2577   .text.HAL_RTC_AlarmAEventCallback:0000000000000000 $t
-     /tmp/ccOMYIAC.s:2617   .text.HAL_RTC_PollForAlarmAEvent:0000000000000000 $t
-     /tmp/ccOMYIAC.s:2622   .text.HAL_RTC_PollForAlarmAEvent:0000000000000000 HAL_RTC_PollForAlarmAEvent
-     /tmp/ccOMYIAC.s:2712   .text.HAL_RTC_WaitForSynchro:0000000000000000 $t
-     /tmp/ccOMYIAC.s:2787   .text.HAL_RTC_GetState:0000000000000000 $t
-     /tmp/ccOMYIAC.s:2792   .text.HAL_RTC_GetState:0000000000000000 HAL_RTC_GetState
-     /tmp/ccOMYIAC.s:2832   .text.RTC_EnterInitMode:0000000000000000 $t
-     /tmp/ccOMYIAC.s:2912   .text.RTC_ByteToBcd2:0000000000000000 $t
-     /tmp/ccOMYIAC.s:2981   .text.RTC_Bcd2ToByte:0000000000000000 $t
+     /tmp/cctjoR32.s:21     .text.HAL_RTC_Init:0000000000000000 $t
+     /tmp/cctjoR32.s:26     .text.HAL_RTC_Init:0000000000000000 HAL_RTC_Init
+     /tmp/cctjoR32.s:437    .text.HAL_RTC_MspInit:0000000000000000 HAL_RTC_MspInit
+     /tmp/cctjoR32.s:2837   .text.RTC_EnterInitMode:0000000000000000 RTC_EnterInitMode
+     /tmp/cctjoR32.s:192    .text.HAL_RTC_Init:00000000000000f4 $d
+     /tmp/cctjoR32.s:197    .text.HAL_RTC_DeInit:0000000000000000 $t
+     /tmp/cctjoR32.s:202    .text.HAL_RTC_DeInit:0000000000000000 HAL_RTC_DeInit
+     /tmp/cctjoR32.s:2717   .text.HAL_RTC_WaitForSynchro:0000000000000000 HAL_RTC_WaitForSynchro
+     /tmp/cctjoR32.s:477    .text.HAL_RTC_MspDeInit:0000000000000000 HAL_RTC_MspDeInit
+     /tmp/cctjoR32.s:427    .text.HAL_RTC_DeInit:0000000000000154 $d
+     /tmp/cctjoR32.s:432    .text.HAL_RTC_MspInit:0000000000000000 $t
+     /tmp/cctjoR32.s:472    .text.HAL_RTC_MspDeInit:0000000000000000 $t
+     /tmp/cctjoR32.s:512    .text.HAL_RTC_SetTime:0000000000000000 $t
+     /tmp/cctjoR32.s:517    .text.HAL_RTC_SetTime:0000000000000000 HAL_RTC_SetTime
+     /tmp/cctjoR32.s:2917   .text.RTC_ByteToBcd2:0000000000000000 RTC_ByteToBcd2
+     /tmp/cctjoR32.s:2986   .text.RTC_Bcd2ToByte:0000000000000000 RTC_Bcd2ToByte
+     /tmp/cctjoR32.s:778    .text.HAL_RTC_SetTime:0000000000000188 $d
+     /tmp/cctjoR32.s:783    .text.HAL_RTC_GetTime:0000000000000000 $t
+     /tmp/cctjoR32.s:788    .text.HAL_RTC_GetTime:0000000000000000 HAL_RTC_GetTime
+     /tmp/cctjoR32.s:906    .text.HAL_RTC_GetTime:00000000000000b4 $d
+     /tmp/cctjoR32.s:911    .text.HAL_RTC_SetDate:0000000000000000 $t
+     /tmp/cctjoR32.s:916    .text.HAL_RTC_SetDate:0000000000000000 HAL_RTC_SetDate
+     /tmp/cctjoR32.s:1157   .text.HAL_RTC_SetDate:0000000000000168 $d
+     /tmp/cctjoR32.s:1162   .text.HAL_RTC_GetDate:0000000000000000 $t
+     /tmp/cctjoR32.s:1167   .text.HAL_RTC_GetDate:0000000000000000 HAL_RTC_GetDate
+     /tmp/cctjoR32.s:1272   .text.HAL_RTC_GetDate:000000000000009c $d
+     /tmp/cctjoR32.s:1277   .text.HAL_RTC_SetAlarm:0000000000000000 $t
+     /tmp/cctjoR32.s:1282   .text.HAL_RTC_SetAlarm:0000000000000000 HAL_RTC_SetAlarm
+     /tmp/cctjoR32.s:1674   .text.HAL_RTC_SetAlarm_IT:0000000000000000 $t
+     /tmp/cctjoR32.s:1679   .text.HAL_RTC_SetAlarm_IT:0000000000000000 HAL_RTC_SetAlarm_IT
+     /tmp/cctjoR32.s:2100   .text.HAL_RTC_SetAlarm_IT:00000000000002a8 $d
+     /tmp/cctjoR32.s:2105   .text.HAL_RTC_DeactivateAlarm:0000000000000000 $t
+     /tmp/cctjoR32.s:2110   .text.HAL_RTC_DeactivateAlarm:0000000000000000 HAL_RTC_DeactivateAlarm
+     /tmp/cctjoR32.s:2301   .text.HAL_RTC_GetAlarm:0000000000000000 $t
+     /tmp/cctjoR32.s:2306   .text.HAL_RTC_GetAlarm:0000000000000000 HAL_RTC_GetAlarm
+     /tmp/cctjoR32.s:2475   .text.HAL_RTC_AlarmIRQHandler:0000000000000000 $t
+     /tmp/cctjoR32.s:2480   .text.HAL_RTC_AlarmIRQHandler:0000000000000000 HAL_RTC_AlarmIRQHandler
+     /tmp/cctjoR32.s:2582   .text.HAL_RTC_AlarmAEventCallback:0000000000000000 HAL_RTC_AlarmAEventCallback
+     /tmp/cctjoR32.s:2572   .text.HAL_RTC_AlarmIRQHandler:0000000000000084 $d
+     /tmp/cctjoR32.s:2577   .text.HAL_RTC_AlarmAEventCallback:0000000000000000 $t
+     /tmp/cctjoR32.s:2617   .text.HAL_RTC_PollForAlarmAEvent:0000000000000000 $t
+     /tmp/cctjoR32.s:2622   .text.HAL_RTC_PollForAlarmAEvent:0000000000000000 HAL_RTC_PollForAlarmAEvent
+     /tmp/cctjoR32.s:2712   .text.HAL_RTC_WaitForSynchro:0000000000000000 $t
+     /tmp/cctjoR32.s:2787   .text.HAL_RTC_GetState:0000000000000000 $t
+     /tmp/cctjoR32.s:2792   .text.HAL_RTC_GetState:0000000000000000 HAL_RTC_GetState
+     /tmp/cctjoR32.s:2832   .text.RTC_EnterInitMode:0000000000000000 $t
+     /tmp/cctjoR32.s:2912   .text.RTC_ByteToBcd2:0000000000000000 $t
+     /tmp/cctjoR32.s:2981   .text.RTC_Bcd2ToByte:0000000000000000 $t
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

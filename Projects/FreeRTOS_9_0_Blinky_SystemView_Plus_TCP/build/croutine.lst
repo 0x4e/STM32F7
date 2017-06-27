@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccgx2qhX.s 			page 1
+ARM GAS  /tmp/ccv2f52s.s 			page 1
 
 
    1              		.syntax unified
@@ -21,7 +21,7 @@ ARM GAS  /tmp/ccgx2qhX.s 			page 1
   18              	.Ltext0:
   19              		.cfi_sections	.debug_frame
   20              	.Letext0:
-ARM GAS  /tmp/ccgx2qhX.s 			page 2
+ARM GAS  /tmp/ccv2f52s.s 			page 2
 
 
 DEFINED SYMBOLS

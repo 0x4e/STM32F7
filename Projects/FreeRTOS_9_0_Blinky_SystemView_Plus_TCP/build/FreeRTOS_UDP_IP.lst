@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccDTGRdp.s 			page 1
+ARM GAS  /tmp/ccMLcRlZ.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccDTGRdp.s 			page 1
   58              		.file 1 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c"
    1:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** /*
    2:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c ****  * FreeRTOS+TCP Labs Build 160919 (C) 2016 Real Time Engineers ltd.
-ARM GAS  /tmp/ccDTGRdp.s 			page 2
+ARM GAS  /tmp/ccMLcRlZ.s 			page 2
 
 
    3:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c ****  * Authors include Hein Tibosch and Richard Barry
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccDTGRdp.s 			page 1
   57:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
   58:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** /* Standard includes. */
   59:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** #include <stdint.h>
-ARM GAS  /tmp/ccDTGRdp.s 			page 3
+ARM GAS  /tmp/ccMLcRlZ.s 			page 3
 
 
   60:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** #include <stdio.h>
@@ -174,61 +174,59 @@ ARM GAS  /tmp/ccDTGRdp.s 			page 1
   60              		.cfi_startproc
   61              		@ args = 0, pretend = 0, frame = 32
   62              		@ frame_needed = 1, uses_anonymous_args = 0
-  63 0000 B0B5     		push	{r4, r5, r7, lr}
+  63 0000 80B5     		push	{r7, lr}
   64              	.LCFI0:
-  65              		.cfi_def_cfa_offset 16
-  66              		.cfi_offset 4, -16
-ARM GAS  /tmp/ccDTGRdp.s 			page 4
+  65              		.cfi_def_cfa_offset 8
+  66              		.cfi_offset 7, -8
+ARM GAS  /tmp/ccMLcRlZ.s 			page 4
 
 
-  67              		.cfi_offset 5, -12
-  68              		.cfi_offset 7, -8
-  69              		.cfi_offset 14, -4
-  70 0002 88B0     		sub	sp, sp, #32
-  71              	.LCFI1:
-  72              		.cfi_def_cfa_offset 48
-  73 0004 00AF     		add	r7, sp, #0
-  74              	.LCFI2:
-  75              		.cfi_def_cfa_register 7
-  76 0006 7860     		str	r0, [r7, #4]
+  67              		.cfi_offset 14, -4
+  68 0002 88B0     		sub	sp, sp, #32
+  69              	.LCFI1:
+  70              		.cfi_def_cfa_offset 40
+  71 0004 00AF     		add	r7, sp, #0
+  72              	.LCFI2:
+  73              		.cfi_def_cfa_register 7
+  74 0006 7860     		str	r0, [r7, #4]
  109:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** UDPPacket_t *pxUDPPacket;
  110:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** IPHeader_t *pxIPHeader;
  111:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** eARPLookupResult_t eReturned;
  112:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** uint32_t ulIPAddress = pxNetworkBuffer->ulIPAddress;
-  77              		.loc 1 112 0
-  78 0008 7B68     		ldr	r3, [r7, #4]
-  79 000a 5B69     		ldr	r3, [r3, #20]
-  80 000c FB60     		str	r3, [r7, #12]
+  75              		.loc 1 112 0
+  76 0008 7B68     		ldr	r3, [r7, #4]
+  77 000a 5B69     		ldr	r3, [r3, #20]
+  78 000c FB60     		str	r3, [r7, #12]
  113:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  114:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 	/* Map the UDP packet onto the start of the frame. */
  115:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 	pxUDPPacket = ( UDPPacket_t * ) pxNetworkBuffer->pucEthernetBuffer;
-  81              		.loc 1 115 0
-  82 000e 7B68     		ldr	r3, [r7, #4]
-  83 0010 9B69     		ldr	r3, [r3, #24]
-  84 0012 BB61     		str	r3, [r7, #24]
+  79              		.loc 1 115 0
+  80 000e 7B68     		ldr	r3, [r7, #4]
+  81 0010 9B69     		ldr	r3, [r3, #24]
+  82 0012 BB61     		str	r3, [r7, #24]
  116:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  117:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 	/* Determine the ARP cache status for the requested IP address. */
  118:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 	eReturned = eARPGetCacheEntry( &( ulIPAddress ), &( pxUDPPacket->xEthernetHeader.xDestinationAddre
-  85              		.loc 1 118 0
-  86 0014 BB69     		ldr	r3, [r7, #24]
-  87 0016 07F10C02 		add	r2, r7, #12
-  88 001a 1046     		mov	r0, r2
-  89 001c 1946     		mov	r1, r3
-  90 001e FFF7FEFF 		bl	eARPGetCacheEntry
-  91 0022 0346     		mov	r3, r0
-  92 0024 FB77     		strb	r3, [r7, #31]
+  83              		.loc 1 118 0
+  84 0014 BB69     		ldr	r3, [r7, #24]
+  85 0016 07F10C02 		add	r2, r7, #12
+  86 001a 1046     		mov	r0, r2
+  87 001c 1946     		mov	r1, r3
+  88 001e FFF7FEFF 		bl	eARPGetCacheEntry
+  89 0022 0346     		mov	r3, r0
+  90 0024 FB77     		strb	r3, [r7, #31]
  119:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  120:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 	if( eReturned != eCantSendPacket )
-  93              		.loc 1 120 0
-  94 0026 FB7F     		ldrb	r3, [r7, #31]	@ zero_extendqisi2
-  95 0028 022B     		cmp	r3, #2
-  96 002a 00F08980 		beq	.L2
+  91              		.loc 1 120 0
+  92 0026 FB7F     		ldrb	r3, [r7, #31]	@ zero_extendqisi2
+  93 0028 022B     		cmp	r3, #2
+  94 002a 00F08380 		beq	.L2
  121:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 	{
  122:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		if( eReturned == eARPCacheHit )
-  97              		.loc 1 122 0
-  98 002e FB7F     		ldrb	r3, [r7, #31]	@ zero_extendqisi2
-  99 0030 012B     		cmp	r3, #1
- 100 0032 74D1     		bne	.L3
+  95              		.loc 1 122 0
+  96 002e FB7F     		ldrb	r3, [r7, #31]	@ zero_extendqisi2
+  97 0030 012B     		cmp	r3, #1
+  98 0032 6ED1     		bne	.L3
  123:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		{
  124:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			#if( ipconfigDRIVER_INCLUDED_TX_IP_CHECKSUM == 0 )
  125:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				uint8_t ucSocketOptions;
@@ -237,85 +235,85 @@ ARM GAS  /tmp/ccDTGRdp.s 			page 1
  128:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  129:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			/* Create short cuts to the data within the packet. */
  130:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			pxIPHeader = &( pxUDPPacket->xIPHeader );
- 101              		.loc 1 130 0
-ARM GAS  /tmp/ccDTGRdp.s 			page 5
+  99              		.loc 1 130 0
+ 100 0034 BB69     		ldr	r3, [r7, #24]
+ 101 0036 0E33     		adds	r3, r3, #14
+ARM GAS  /tmp/ccMLcRlZ.s 			page 5
 
 
- 102 0034 BB69     		ldr	r3, [r7, #24]
- 103 0036 0E33     		adds	r3, r3, #14
- 104 0038 7B61     		str	r3, [r7, #20]
+ 102 0038 7B61     		str	r3, [r7, #20]
  131:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  132:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		#if ( ipconfigSUPPORT_OUTGOING_PINGS == 1 )
  133:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			/* Is it possible that the packet is not actually a UDP packet
  134:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			after all, but an ICMP packet. */
  135:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			if( pxNetworkBuffer->usPort != ipPACKET_CONTAINS_ICMP_DATA )
- 105              		.loc 1 135 0
- 106 003a 7B68     		ldr	r3, [r7, #4]
- 107 003c 1B8C     		ldrh	r3, [r3, #32]
- 108 003e 002B     		cmp	r3, #0
- 109 0040 26D0     		beq	.L4
- 110              	.LBB2:
+ 103              		.loc 1 135 0
+ 104 003a 7B68     		ldr	r3, [r7, #4]
+ 105 003c 1B8C     		ldrh	r3, [r3, #32]
+ 106 003e 002B     		cmp	r3, #0
+ 107 0040 26D0     		beq	.L4
+ 108              	.LBB2:
  136:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		#endif /* ipconfigSUPPORT_OUTGOING_PINGS */
  137:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			{
  138:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			UDPHeader_t *pxUDPHeader;
  139:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  140:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				pxUDPHeader = &( pxUDPPacket->xUDPHeader );
- 111              		.loc 1 140 0
- 112 0042 BB69     		ldr	r3, [r7, #24]
- 113 0044 2233     		adds	r3, r3, #34
- 114 0046 3B61     		str	r3, [r7, #16]
+ 109              		.loc 1 140 0
+ 110 0042 BB69     		ldr	r3, [r7, #24]
+ 111 0044 2233     		adds	r3, r3, #34
+ 112 0046 3B61     		str	r3, [r7, #16]
  141:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  142:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				pxUDPHeader->usDestinationPort = pxNetworkBuffer->usPort;
- 115              		.loc 1 142 0
- 116 0048 7B68     		ldr	r3, [r7, #4]
- 117 004a 1A8C     		ldrh	r2, [r3, #32]
- 118 004c 3B69     		ldr	r3, [r7, #16]
- 119 004e 5A80     		strh	r2, [r3, #2]	@ unaligned
+ 113              		.loc 1 142 0
+ 114 0048 7B68     		ldr	r3, [r7, #4]
+ 115 004a 1A8C     		ldrh	r2, [r3, #32]
+ 116 004c 3B69     		ldr	r3, [r7, #16]
+ 117 004e 5A80     		strh	r2, [r3, #2]	@ unaligned
  143:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				pxUDPHeader->usSourcePort = pxNetworkBuffer->usBoundPort;
- 120              		.loc 1 143 0
- 121 0050 7B68     		ldr	r3, [r7, #4]
- 122 0052 5A8C     		ldrh	r2, [r3, #34]
- 123 0054 3B69     		ldr	r3, [r7, #16]
- 124 0056 1A80     		strh	r2, [r3]	@ unaligned
+ 118              		.loc 1 143 0
+ 119 0050 7B68     		ldr	r3, [r7, #4]
+ 120 0052 5A8C     		ldrh	r2, [r3, #34]
+ 121 0054 3B69     		ldr	r3, [r7, #16]
+ 122 0056 1A80     		strh	r2, [r3]	@ unaligned
  144:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				pxUDPHeader->usLength = ( uint16_t ) ( pxNetworkBuffer->xDataLength + sizeof( UDPHeader_t ) );
- 125              		.loc 1 144 0
- 126 0058 7B68     		ldr	r3, [r7, #4]
- 127 005a DB69     		ldr	r3, [r3, #28]
- 128 005c 9BB2     		uxth	r3, r3
- 129 005e 0833     		adds	r3, r3, #8
- 130 0060 9AB2     		uxth	r2, r3
- 131 0062 3B69     		ldr	r3, [r7, #16]
- 132 0064 9A80     		strh	r2, [r3, #4]	@ unaligned
+ 123              		.loc 1 144 0
+ 124 0058 7B68     		ldr	r3, [r7, #4]
+ 125 005a DB69     		ldr	r3, [r3, #28]
+ 126 005c 9BB2     		uxth	r3, r3
+ 127 005e 0833     		adds	r3, r3, #8
+ 128 0060 9AB2     		uxth	r2, r3
+ 129 0062 3B69     		ldr	r3, [r7, #16]
+ 130 0064 9A80     		strh	r2, [r3, #4]	@ unaligned
  145:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				pxUDPHeader->usLength = FreeRTOS_htons( pxUDPHeader->usLength );
- 133              		.loc 1 145 0
- 134 0066 3B69     		ldr	r3, [r7, #16]
- 135 0068 9B88     		ldrh	r3, [r3, #4]	@ unaligned
- 136 006a 9BB2     		uxth	r3, r3
- 137 006c 1B02     		lsls	r3, r3, #8
- 138 006e 9AB2     		uxth	r2, r3
- 139 0070 3B69     		ldr	r3, [r7, #16]
- 140 0072 9B88     		ldrh	r3, [r3, #4]	@ unaligned
- 141 0074 9BB2     		uxth	r3, r3
- 142 0076 1B0A     		lsrs	r3, r3, #8
- 143 0078 9BB2     		uxth	r3, r3
-ARM GAS  /tmp/ccDTGRdp.s 			page 6
+ 131              		.loc 1 145 0
+ 132 0066 3B69     		ldr	r3, [r7, #16]
+ 133 0068 9B88     		ldrh	r3, [r3, #4]	@ unaligned
+ 134 006a 9BB2     		uxth	r3, r3
+ 135 006c 1B02     		lsls	r3, r3, #8
+ 136 006e 9AB2     		uxth	r2, r3
+ 137 0070 3B69     		ldr	r3, [r7, #16]
+ 138 0072 9B88     		ldrh	r3, [r3, #4]	@ unaligned
+ 139 0074 9BB2     		uxth	r3, r3
+ 140 0076 1B0A     		lsrs	r3, r3, #8
+ 141 0078 9BB2     		uxth	r3, r3
+ 142 007a 9BB2     		uxth	r3, r3
+ 143 007c 1343     		orrs	r3, r3, r2
+ARM GAS  /tmp/ccMLcRlZ.s 			page 6
 
 
- 144 007a 9BB2     		uxth	r3, r3
- 145 007c 1343     		orrs	r3, r3, r2
- 146 007e 9BB2     		uxth	r3, r3
- 147 0080 9AB2     		uxth	r2, r3
- 148 0082 3B69     		ldr	r3, [r7, #16]
- 149 0084 9A80     		strh	r2, [r3, #4]	@ unaligned
+ 144 007e 9BB2     		uxth	r3, r3
+ 145 0080 9AB2     		uxth	r2, r3
+ 146 0082 3B69     		ldr	r3, [r7, #16]
+ 147 0084 9A80     		strh	r2, [r3, #4]	@ unaligned
  146:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				pxUDPHeader->usChecksum = 0u;
- 150              		.loc 1 146 0
- 151 0086 3B69     		ldr	r3, [r7, #16]
- 152 0088 0022     		movs	r2, #0
- 153 008a 9A71     		strb	r2, [r3, #6]
- 154 008c 0022     		movs	r2, #0
- 155 008e DA71     		strb	r2, [r3, #7]
- 156              	.L4:
- 157              	.LBE2:
+ 148              		.loc 1 146 0
+ 149 0086 3B69     		ldr	r3, [r7, #16]
+ 150 0088 0022     		movs	r2, #0
+ 151 008a 9A71     		strb	r2, [r3, #6]
+ 152 008c 0022     		movs	r2, #0
+ 153 008e DA71     		strb	r2, [r3, #7]
+ 154              	.L4:
+ 155              	.LBE2:
  147:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			}
  148:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  149:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			/* memcpy() the constant parts of the header information into
@@ -337,121 +335,114 @@ ARM GAS  /tmp/ccDTGRdp.s 			page 1
  165:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				ucSocketOptions = pxNetworkBuffer->pucEthernetBuffer[ ipSOCKET_OPTIONS_OFFSET ];
  166:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			#endif
  167:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			memcpy( ( void *) &( pxUDPPacket->xEthernetHeader.xSourceAddress ), ( void * ) xDefaultPartUDPPa
- 158              		.loc 1 167 0
- 159 0090 BB69     		ldr	r3, [r7, #24]
- 160 0092 0633     		adds	r3, r3, #6
- 161 0094 314A     		ldr	r2, .L11
- 162 0096 1D46     		mov	r5, r3
- 163 0098 1446     		mov	r4, r2
- 164 009a 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
- 165 009c 2860     		str	r0, [r5]	@ unaligned
- 166 009e 6960     		str	r1, [r5, #4]	@ unaligned
- 167 00a0 AA60     		str	r2, [r5, #8]	@ unaligned
- 168 00a2 EB60     		str	r3, [r5, #12]	@ unaligned
- 169 00a4 03CC     		ldmia	r4!, {r0, r1}
- 170 00a6 2861     		str	r0, [r5, #16]	@ unaligned
- 171 00a8 6961     		str	r1, [r5, #20]	@ unaligned
+ 156              		.loc 1 167 0
+ 157 0090 BB69     		ldr	r3, [r7, #24]
+ 158 0092 0633     		adds	r3, r3, #6
+ 159 0094 1846     		mov	r0, r3
+ 160 0096 2E49     		ldr	r1, .L11
+ 161 0098 1822     		movs	r2, #24
+ 162 009a FFF7FEFF 		bl	memcpy
  168:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  169:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		#if ipconfigSUPPORT_OUTGOING_PINGS == 1
  170:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			if( pxNetworkBuffer->usPort == ipPACKET_CONTAINS_ICMP_DATA )
- 172              		.loc 1 170 0
- 173 00aa 7B68     		ldr	r3, [r7, #4]
- 174 00ac 1B8C     		ldrh	r3, [r3, #32]
- 175 00ae 002B     		cmp	r3, #0
-ARM GAS  /tmp/ccDTGRdp.s 			page 7
-
-
- 176 00b0 0AD1     		bne	.L5
+ 163              		.loc 1 170 0
+ 164 009e 7B68     		ldr	r3, [r7, #4]
+ 165 00a0 1B8C     		ldrh	r3, [r3, #32]
+ 166 00a2 002B     		cmp	r3, #0
+ 167 00a4 0AD1     		bne	.L5
  171:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			{
  172:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				pxIPHeader->ucProtocol = ipPROTOCOL_ICMP;
- 177              		.loc 1 172 0
- 178 00b2 7B69     		ldr	r3, [r7, #20]
- 179 00b4 0122     		movs	r2, #1
- 180 00b6 5A72     		strb	r2, [r3, #9]
+ 168              		.loc 1 172 0
+ 169 00a6 7B69     		ldr	r3, [r7, #20]
+ 170 00a8 0122     		movs	r2, #1
+ 171 00aa 5A72     		strb	r2, [r3, #9]
  173:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				pxIPHeader->usLength = ( uint16_t ) ( pxNetworkBuffer->xDataLength + sizeof( IPHeader_t ) );
- 181              		.loc 1 173 0
- 182 00b8 7B68     		ldr	r3, [r7, #4]
- 183 00ba DB69     		ldr	r3, [r3, #28]
- 184 00bc 9BB2     		uxth	r3, r3
- 185 00be 1433     		adds	r3, r3, #20
- 186 00c0 9AB2     		uxth	r2, r3
- 187 00c2 7B69     		ldr	r3, [r7, #20]
- 188 00c4 5A80     		strh	r2, [r3, #2]	@ unaligned
- 189 00c6 06E0     		b	.L6
- 190              	.L5:
+ 172              		.loc 1 173 0
+ARM GAS  /tmp/ccMLcRlZ.s 			page 7
+
+
+ 173 00ac 7B68     		ldr	r3, [r7, #4]
+ 174 00ae DB69     		ldr	r3, [r3, #28]
+ 175 00b0 9BB2     		uxth	r3, r3
+ 176 00b2 1433     		adds	r3, r3, #20
+ 177 00b4 9AB2     		uxth	r2, r3
+ 178 00b6 7B69     		ldr	r3, [r7, #20]
+ 179 00b8 5A80     		strh	r2, [r3, #2]	@ unaligned
+ 180 00ba 06E0     		b	.L6
+ 181              	.L5:
  174:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			}
  175:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			else
  176:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		#endif /* ipconfigSUPPORT_OUTGOING_PINGS */
  177:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			{
  178:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				pxIPHeader->usLength = ( uint16_t ) ( pxNetworkBuffer->xDataLength + sizeof( IPHeader_t ) + siz
- 191              		.loc 1 178 0
- 192 00c8 7B68     		ldr	r3, [r7, #4]
- 193 00ca DB69     		ldr	r3, [r3, #28]
- 194 00cc 9BB2     		uxth	r3, r3
- 195 00ce 1C33     		adds	r3, r3, #28
- 196 00d0 9AB2     		uxth	r2, r3
- 197 00d2 7B69     		ldr	r3, [r7, #20]
- 198 00d4 5A80     		strh	r2, [r3, #2]	@ unaligned
- 199              	.L6:
+ 182              		.loc 1 178 0
+ 183 00bc 7B68     		ldr	r3, [r7, #4]
+ 184 00be DB69     		ldr	r3, [r3, #28]
+ 185 00c0 9BB2     		uxth	r3, r3
+ 186 00c2 1C33     		adds	r3, r3, #28
+ 187 00c4 9AB2     		uxth	r2, r3
+ 188 00c6 7B69     		ldr	r3, [r7, #20]
+ 189 00c8 5A80     		strh	r2, [r3, #2]	@ unaligned
+ 190              	.L6:
  179:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			}
  180:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  181:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			/* The total transmit size adds on the Ethernet header. */
  182:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			pxNetworkBuffer->xDataLength = pxIPHeader->usLength + sizeof( EthernetHeader_t );
- 200              		.loc 1 182 0
- 201 00d6 7B69     		ldr	r3, [r7, #20]
- 202 00d8 5B88     		ldrh	r3, [r3, #2]	@ unaligned
- 203 00da 9BB2     		uxth	r3, r3
- 204 00dc 03F10E02 		add	r2, r3, #14
- 205 00e0 7B68     		ldr	r3, [r7, #4]
- 206 00e2 DA61     		str	r2, [r3, #28]
+ 191              		.loc 1 182 0
+ 192 00ca 7B69     		ldr	r3, [r7, #20]
+ 193 00cc 5B88     		ldrh	r3, [r3, #2]	@ unaligned
+ 194 00ce 9BB2     		uxth	r3, r3
+ 195 00d0 03F10E02 		add	r2, r3, #14
+ 196 00d4 7B68     		ldr	r3, [r7, #4]
+ 197 00d6 DA61     		str	r2, [r3, #28]
  183:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			pxIPHeader->usLength = FreeRTOS_htons( pxIPHeader->usLength );
- 207              		.loc 1 183 0
- 208 00e4 7B69     		ldr	r3, [r7, #20]
- 209 00e6 5B88     		ldrh	r3, [r3, #2]	@ unaligned
- 210 00e8 9BB2     		uxth	r3, r3
- 211 00ea 1B02     		lsls	r3, r3, #8
- 212 00ec 9AB2     		uxth	r2, r3
- 213 00ee 7B69     		ldr	r3, [r7, #20]
- 214 00f0 5B88     		ldrh	r3, [r3, #2]	@ unaligned
- 215 00f2 9BB2     		uxth	r3, r3
- 216 00f4 1B0A     		lsrs	r3, r3, #8
- 217 00f6 9BB2     		uxth	r3, r3
- 218 00f8 9BB2     		uxth	r3, r3
- 219 00fa 1343     		orrs	r3, r3, r2
-ARM GAS  /tmp/ccDTGRdp.s 			page 8
-
-
- 220 00fc 9BB2     		uxth	r3, r3
- 221 00fe 9AB2     		uxth	r2, r3
- 222 0100 7B69     		ldr	r3, [r7, #20]
- 223 0102 5A80     		strh	r2, [r3, #2]	@ unaligned
+ 198              		.loc 1 183 0
+ 199 00d8 7B69     		ldr	r3, [r7, #20]
+ 200 00da 5B88     		ldrh	r3, [r3, #2]	@ unaligned
+ 201 00dc 9BB2     		uxth	r3, r3
+ 202 00de 1B02     		lsls	r3, r3, #8
+ 203 00e0 9AB2     		uxth	r2, r3
+ 204 00e2 7B69     		ldr	r3, [r7, #20]
+ 205 00e4 5B88     		ldrh	r3, [r3, #2]	@ unaligned
+ 206 00e6 9BB2     		uxth	r3, r3
+ 207 00e8 1B0A     		lsrs	r3, r3, #8
+ 208 00ea 9BB2     		uxth	r3, r3
+ 209 00ec 9BB2     		uxth	r3, r3
+ 210 00ee 1343     		orrs	r3, r3, r2
+ 211 00f0 9BB2     		uxth	r3, r3
+ 212 00f2 9AB2     		uxth	r2, r3
+ 213 00f4 7B69     		ldr	r3, [r7, #20]
+ 214 00f6 5A80     		strh	r2, [r3, #2]	@ unaligned
  184:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			/* HT:endian: changed back to network endian */
  185:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			pxIPHeader->ulDestinationIPAddress = pxNetworkBuffer->ulIPAddress;
- 224              		.loc 1 185 0
- 225 0104 7B68     		ldr	r3, [r7, #4]
- 226 0106 5A69     		ldr	r2, [r3, #20]
- 227 0108 7B69     		ldr	r3, [r7, #20]
- 228 010a 1A61     		str	r2, [r3, #16]	@ unaligned
+ 215              		.loc 1 185 0
+ 216 00f8 7B68     		ldr	r3, [r7, #4]
+ 217 00fa 5A69     		ldr	r2, [r3, #20]
+ARM GAS  /tmp/ccMLcRlZ.s 			page 8
+
+
+ 218 00fc 7B69     		ldr	r3, [r7, #20]
+ 219 00fe 1A61     		str	r2, [r3, #16]	@ unaligned
  186:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  187:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			#if( ipconfigUSE_LLMNR == 1 )
  188:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			{
  189:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				/* LLMNR messages are typically used on a LAN and they're
  190:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				 * not supposed to cross routers */
  191:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				if( pxNetworkBuffer->ulIPAddress == ipLLMNR_IP_ADDR )
- 229              		.loc 1 191 0
- 230 010c 7B68     		ldr	r3, [r7, #4]
- 231 010e 5B69     		ldr	r3, [r3, #20]
- 232 0110 134A     		ldr	r2, .L11+4
- 233 0112 9342     		cmp	r3, r2
- 234 0114 14D1     		bne	.L2
+ 220              		.loc 1 191 0
+ 221 0100 7B68     		ldr	r3, [r7, #4]
+ 222 0102 5B69     		ldr	r3, [r3, #20]
+ 223 0104 134A     		ldr	r2, .L11+4
+ 224 0106 9342     		cmp	r3, r2
+ 225 0108 14D1     		bne	.L2
  192:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				{
  193:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 					pxIPHeader->ucTimeToLive = 0x01;
- 235              		.loc 1 193 0
- 236 0116 7B69     		ldr	r3, [r7, #20]
- 237 0118 0122     		movs	r2, #1
- 238 011a 1A72     		strb	r2, [r3, #8]
- 239 011c 10E0     		b	.L2
- 240              	.L3:
+ 226              		.loc 1 193 0
+ 227 010a 7B69     		ldr	r3, [r7, #20]
+ 228 010c 0122     		movs	r2, #1
+ 229 010e 1A72     		strb	r2, [r3, #8]
+ 230 0110 10E0     		b	.L2
+ 231              	.L3:
  194:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				}
  195:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			}
  196:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			#endif
@@ -474,55 +465,55 @@ ARM GAS  /tmp/ccDTGRdp.s 			page 1
  213:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			#endif
  214:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		}
  215:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		else if( eReturned == eARPCacheMiss )
- 241              		.loc 1 215 0
- 242 011e FB7F     		ldrb	r3, [r7, #31]	@ zero_extendqisi2
- 243 0120 002B     		cmp	r3, #0
- 244 0122 0BD1     		bne	.L8
-ARM GAS  /tmp/ccDTGRdp.s 			page 9
-
-
+ 232              		.loc 1 215 0
+ 233 0112 FB7F     		ldrb	r3, [r7, #31]	@ zero_extendqisi2
+ 234 0114 002B     		cmp	r3, #0
+ 235 0116 0BD1     		bne	.L8
  216:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		{
  217:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			/* Add an entry to the ARP table with a null hardware address.
  218:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			This allows the ARP timer to know that an ARP reply is
  219:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			outstanding, and perform retransmissions if necessary. */
  220:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			vARPRefreshCacheEntry( NULL, ulIPAddress );
- 245              		.loc 1 220 0
- 246 0124 FB68     		ldr	r3, [r7, #12]
- 247 0126 0020     		movs	r0, #0
- 248 0128 1946     		mov	r1, r3
- 249 012a FFF7FEFF 		bl	vARPRefreshCacheEntry
+ 236              		.loc 1 220 0
+ 237 0118 FB68     		ldr	r3, [r7, #12]
+ 238 011a 0020     		movs	r0, #0
+ 239 011c 1946     		mov	r1, r3
+ARM GAS  /tmp/ccMLcRlZ.s 			page 9
+
+
+ 240 011e FFF7FEFF 		bl	vARPRefreshCacheEntry
  221:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  222:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			/* Generate an ARP for the required IP address. */
  223:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			iptracePACKET_DROPPED_TO_GENERATE_ARP( pxNetworkBuffer->ulIPAddress );
  224:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			pxNetworkBuffer->ulIPAddress = ulIPAddress;
- 250              		.loc 1 224 0
- 251 012e FA68     		ldr	r2, [r7, #12]
- 252 0130 7B68     		ldr	r3, [r7, #4]
- 253 0132 5A61     		str	r2, [r3, #20]
+ 241              		.loc 1 224 0
+ 242 0122 FA68     		ldr	r2, [r7, #12]
+ 243 0124 7B68     		ldr	r3, [r7, #4]
+ 244 0126 5A61     		str	r2, [r3, #20]
  225:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			vARPGenerateRequestPacket( pxNetworkBuffer );
- 254              		.loc 1 225 0
- 255 0134 7868     		ldr	r0, [r7, #4]
- 256 0136 FFF7FEFF 		bl	vARPGenerateRequestPacket
- 257 013a 01E0     		b	.L2
- 258              	.L8:
+ 245              		.loc 1 225 0
+ 246 0128 7868     		ldr	r0, [r7, #4]
+ 247 012a FFF7FEFF 		bl	vARPGenerateRequestPacket
+ 248 012e 01E0     		b	.L2
+ 249              	.L8:
  226:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		}
  227:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		else
  228:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		{
  229:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			/* The lookup indicated that an ARP request has already been
  230:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			sent out for the queried IP address. */
  231:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			eReturned = eCantSendPacket;
- 259              		.loc 1 231 0
- 260 013c 0223     		movs	r3, #2
- 261 013e FB77     		strb	r3, [r7, #31]
- 262              	.L2:
+ 250              		.loc 1 231 0
+ 251 0130 0223     		movs	r3, #2
+ 252 0132 FB77     		strb	r3, [r7, #31]
+ 253              	.L2:
  232:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		}
  233:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 	}
  234:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  235:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 	if( eReturned != eCantSendPacket )
- 263              		.loc 1 235 0
- 264 0140 FB7F     		ldrb	r3, [r7, #31]	@ zero_extendqisi2
- 265 0142 022B     		cmp	r3, #2
- 266 0144 04D0     		beq	.L9
+ 254              		.loc 1 235 0
+ 255 0134 FB7F     		ldrb	r3, [r7, #31]	@ zero_extendqisi2
+ 256 0136 022B     		cmp	r3, #2
+ 257 0138 04D0     		beq	.L9
  236:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 	{
  237:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		/* The network driver is responsible for freeing the network buffer
  238:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		after the packet has been sent. */
@@ -538,119 +529,119 @@ ARM GAS  /tmp/ccDTGRdp.s 			page 1
  248:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				{
  249:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 					pxNetworkBuffer->pucEthernetBuffer[ xIndex ] = 0u;
  250:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				}
-ARM GAS  /tmp/ccDTGRdp.s 			page 10
-
-
  251:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				pxNetworkBuffer->xDataLength = ( size_t ) ipconfigETHERNET_MINIMUM_PACKET_BYTES;
  252:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			}
  253:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		}
  254:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		#endif
  255:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  256:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		xNetworkInterfaceOutput( pxNetworkBuffer, pdTRUE );
- 267              		.loc 1 256 0
- 268 0146 7868     		ldr	r0, [r7, #4]
- 269 0148 0121     		movs	r1, #1
- 270 014a FFF7FEFF 		bl	xNetworkInterfaceOutput
- 271 014e 02E0     		b	.L1
- 272              	.L9:
+ 258              		.loc 1 256 0
+ 259 013a 7868     		ldr	r0, [r7, #4]
+ 260 013c 0121     		movs	r1, #1
+ARM GAS  /tmp/ccMLcRlZ.s 			page 10
+
+
+ 261 013e FFF7FEFF 		bl	xNetworkInterfaceOutput
+ 262 0142 02E0     		b	.L1
+ 263              	.L9:
  257:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 	}
  258:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 	else
  259:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 	{
  260:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		/* The packet can't be sent (DHCP not completed?).  Just drop the
  261:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		packet. */
  262:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		vReleaseNetworkBufferAndDescriptor( pxNetworkBuffer );
- 273              		.loc 1 262 0
- 274 0150 7868     		ldr	r0, [r7, #4]
- 275 0152 FFF7FEFF 		bl	vReleaseNetworkBufferAndDescriptor
- 276              	.L1:
+ 264              		.loc 1 262 0
+ 265 0144 7868     		ldr	r0, [r7, #4]
+ 266 0146 FFF7FEFF 		bl	vReleaseNetworkBufferAndDescriptor
+ 267              	.L1:
  263:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 	}
  264:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** }
- 277              		.loc 1 264 0
- 278 0156 2037     		adds	r7, r7, #32
- 279              	.LCFI3:
- 280              		.cfi_def_cfa_offset 16
- 281 0158 BD46     		mov	sp, r7
- 282              	.LCFI4:
- 283              		.cfi_def_cfa_register 13
- 284              		@ sp needed
- 285 015a B0BD     		pop	{r4, r5, r7, pc}
- 286              	.L12:
- 287              		.align	2
- 288              	.L11:
- 289 015c 00000000 		.word	xDefaultPartUDPPacketHeader
- 290 0160 E00000FC 		.word	-67108640
- 291              		.cfi_endproc
- 292              	.LFE29:
- 294              		.section	.text.xProcessReceivedUDPPacket,"ax",%progbits
- 295              		.align	2
- 296              		.global	xProcessReceivedUDPPacket
- 297              		.thumb
- 298              		.thumb_func
- 300              	xProcessReceivedUDPPacket:
- 301              	.LFB30:
+ 268              		.loc 1 264 0
+ 269 014a 2037     		adds	r7, r7, #32
+ 270              	.LCFI3:
+ 271              		.cfi_def_cfa_offset 8
+ 272 014c BD46     		mov	sp, r7
+ 273              	.LCFI4:
+ 274              		.cfi_def_cfa_register 13
+ 275              		@ sp needed
+ 276 014e 80BD     		pop	{r7, pc}
+ 277              	.L12:
+ 278              		.align	2
+ 279              	.L11:
+ 280 0150 00000000 		.word	xDefaultPartUDPPacketHeader
+ 281 0154 E00000FC 		.word	-67108640
+ 282              		.cfi_endproc
+ 283              	.LFE29:
+ 285              		.section	.text.xProcessReceivedUDPPacket,"ax",%progbits
+ 286              		.align	2
+ 287              		.global	xProcessReceivedUDPPacket
+ 288              		.thumb
+ 289              		.thumb_func
+ 291              	xProcessReceivedUDPPacket:
+ 292              	.LFB30:
  265:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** /*-----------------------------------------------------------*/
  266:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  267:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** BaseType_t xProcessReceivedUDPPacket( NetworkBufferDescriptor_t *pxNetworkBuffer, uint16_t usPort )
  268:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** {
- 302              		.loc 1 268 0
- 303              		.cfi_startproc
- 304              		@ args = 0, pretend = 0, frame = 24
- 305              		@ frame_needed = 1, uses_anonymous_args = 0
- 306 0000 80B5     		push	{r7, lr}
- 307              	.LCFI5:
-ARM GAS  /tmp/ccDTGRdp.s 			page 11
+ 293              		.loc 1 268 0
+ 294              		.cfi_startproc
+ 295              		@ args = 0, pretend = 0, frame = 24
+ 296              		@ frame_needed = 1, uses_anonymous_args = 0
+ 297 0000 80B5     		push	{r7, lr}
+ 298              	.LCFI5:
+ 299              		.cfi_def_cfa_offset 8
+ 300              		.cfi_offset 7, -8
+ 301              		.cfi_offset 14, -4
+ 302 0002 86B0     		sub	sp, sp, #24
+ 303              	.LCFI6:
+ 304              		.cfi_def_cfa_offset 32
+ 305 0004 00AF     		add	r7, sp, #0
+ 306              	.LCFI7:
+ 307              		.cfi_def_cfa_register 7
+ARM GAS  /tmp/ccMLcRlZ.s 			page 11
 
 
- 308              		.cfi_def_cfa_offset 8
- 309              		.cfi_offset 7, -8
- 310              		.cfi_offset 14, -4
- 311 0002 86B0     		sub	sp, sp, #24
- 312              	.LCFI6:
- 313              		.cfi_def_cfa_offset 32
- 314 0004 00AF     		add	r7, sp, #0
- 315              	.LCFI7:
- 316              		.cfi_def_cfa_register 7
- 317 0006 7860     		str	r0, [r7, #4]
- 318 0008 0B46     		mov	r3, r1
- 319 000a 7B80     		strh	r3, [r7, #2]	@ movhi
+ 308 0006 7860     		str	r0, [r7, #4]
+ 309 0008 0B46     		mov	r3, r1
+ 310 000a 7B80     		strh	r3, [r7, #2]	@ movhi
  269:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** BaseType_t xReturn = pdPASS;
- 320              		.loc 1 269 0
- 321 000c 0123     		movs	r3, #1
- 322 000e 7B61     		str	r3, [r7, #20]
+ 311              		.loc 1 269 0
+ 312 000c 0123     		movs	r3, #1
+ 313 000e 7B61     		str	r3, [r7, #20]
  270:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** FreeRTOS_Socket_t *pxSocket;
  271:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  272:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** UDPPacket_t *pxUDPPacket = (UDPPacket_t *) pxNetworkBuffer->pucEthernetBuffer;
- 323              		.loc 1 272 0
- 324 0010 7B68     		ldr	r3, [r7, #4]
- 325 0012 9B69     		ldr	r3, [r3, #24]
- 326 0014 3B61     		str	r3, [r7, #16]
+ 314              		.loc 1 272 0
+ 315 0010 7B68     		ldr	r3, [r7, #4]
+ 316 0012 9B69     		ldr	r3, [r3, #24]
+ 317 0014 3B61     		str	r3, [r7, #16]
  273:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  274:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 	pxSocket = pxUDPSocketLookup( usPort );
- 327              		.loc 1 274 0
- 328 0016 7B88     		ldrh	r3, [r7, #2]
- 329 0018 1846     		mov	r0, r3
- 330 001a FFF7FEFF 		bl	pxUDPSocketLookup
- 331 001e F860     		str	r0, [r7, #12]
+ 318              		.loc 1 274 0
+ 319 0016 7B88     		ldrh	r3, [r7, #2]
+ 320 0018 1846     		mov	r0, r3
+ 321 001a FFF7FEFF 		bl	pxUDPSocketLookup
+ 322 001e F860     		str	r0, [r7, #12]
  275:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  276:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 	if( pxSocket )
- 332              		.loc 1 276 0
- 333 0020 FB68     		ldr	r3, [r7, #12]
- 334 0022 002B     		cmp	r3, #0
- 335 0024 43D0     		beq	.L14
+ 323              		.loc 1 276 0
+ 324 0020 FB68     		ldr	r3, [r7, #12]
+ 325 0022 002B     		cmp	r3, #0
+ 326 0024 3AD0     		beq	.L14
  277:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 	{
  278:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  279:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		/* When refreshing the ARP cache with received UDP packets we must be
  280:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		careful;  hundreds of broadcast messages may pass and if we're not
  281:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		handling them, no use to fill the ARP cache with those IP addresses. */
  282:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		vARPRefreshCacheEntry( &( pxUDPPacket->xEthernetHeader.xSourceAddress ), pxUDPPacket->xIPHeader.u
- 336              		.loc 1 282 0
- 337 0026 3B69     		ldr	r3, [r7, #16]
- 338 0028 9A1D     		adds	r2, r3, #6
- 339 002a 3B69     		ldr	r3, [r7, #16]
- 340 002c D3F81A30 		ldr	r3, [r3, #26]	@ unaligned
- 341 0030 1046     		mov	r0, r2
- 342 0032 1946     		mov	r1, r3
- 343 0034 FFF7FEFF 		bl	vARPRefreshCacheEntry
+ 327              		.loc 1 282 0
+ 328 0026 3B69     		ldr	r3, [r7, #16]
+ 329 0028 9A1D     		adds	r2, r3, #6
+ 330 002a 3B69     		ldr	r3, [r7, #16]
+ 331 002c D3F81A30 		ldr	r3, [r3, #26]	@ unaligned
+ 332 0030 1046     		mov	r0, r2
+ 333 0032 1946     		mov	r1, r3
+ 334 0034 FFF7FEFF 		bl	vARPRefreshCacheEntry
  283:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  284:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		#if( ipconfigUSE_CALLBACKS == 1 )
  285:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		{
@@ -658,9 +649,6 @@ ARM GAS  /tmp/ccDTGRdp.s 			page 1
  287:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			if( ipconfigIS_VALID_PROG_ADDRESS( pxSocket->u.xUDP.pxHandleReceive ) )
  288:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			{
  289:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				struct freertos_sockaddr xSourceAddress, destinationAddress;
-ARM GAS  /tmp/ccDTGRdp.s 			page 12
-
-
  290:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				void *pcData = ( void * ) &( pxNetworkBuffer->pucEthernetBuffer[ ipUDP_PAYLOAD_OFFSET_IPv4 ] );
  291:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				FOnUDPReceive_t xHandler = ( FOnUDPReceive_t ) pxSocket->u.xUDP.pxHandleReceive;
  292:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				xSourceAddress.sin_port = pxNetworkBuffer->usPort;
@@ -670,6 +658,9 @@ ARM GAS  /tmp/ccDTGRdp.s 			page 1
  296:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  297:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				if( xHandler( ( Socket_t * ) pxSocket, ( void* ) pcData, ( size_t ) pxNetworkBuffer->xDataLengt
  298:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 					&xSourceAddress, &destinationAddress ) )
+ARM GAS  /tmp/ccMLcRlZ.s 			page 12
+
+
  299:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				{
  300:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 					xReturn = pdFAIL; /* FAIL means that we did not consume or release the buffer */
  301:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				}
@@ -693,94 +684,92 @@ ARM GAS  /tmp/ccDTGRdp.s 			page 1
  319:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		#endif
  320:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  321:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		if( xReturn == pdPASS )
- 344              		.loc 1 321 0
- 345 0038 7B69     		ldr	r3, [r7, #20]
- 346 003a 012B     		cmp	r3, #1
- 347 003c 73D1     		bne	.L19
+ 335              		.loc 1 321 0
+ 336 0038 7B69     		ldr	r3, [r7, #20]
+ 337 003a 012B     		cmp	r3, #1
+ 338 003c 6AD1     		bne	.L18
  322:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		{
  323:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			vTaskSuspendAll();
- 348              		.loc 1 323 0
- 349 003e FFF7FEFF 		bl	vTaskSuspendAll
+ 339              		.loc 1 323 0
+ 340 003e FFF7FEFF 		bl	vTaskSuspendAll
  324:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			{
  325:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				if( xReturn == pdPASS )
- 350              		.loc 1 325 0
- 351 0042 7B69     		ldr	r3, [r7, #20]
- 352 0044 012B     		cmp	r3, #1
- 353 0046 0BD1     		bne	.L16
+ 341              		.loc 1 325 0
+ 342 0042 7B69     		ldr	r3, [r7, #20]
+ 343 0044 012B     		cmp	r3, #1
+ 344 0046 0BD1     		bne	.L16
  326:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				{
  327:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 					taskENTER_CRITICAL();
- 354              		.loc 1 327 0
- 355 0048 FFF7FEFF 		bl	vPortEnterCritical
+ 345              		.loc 1 327 0
+ 346 0048 FFF7FEFF 		bl	vPortEnterCritical
  328:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 					{
  329:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 						/* Add the network packet to the list of packets to be
  330:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 						processed by the socket. */
  331:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 						vListInsertEnd( &( pxSocket->u.xUDP.xWaitingPacketsList ), &( pxNetworkBuffer->xBufferListIte
- 356              		.loc 1 331 0
- 357 004c FB68     		ldr	r3, [r7, #12]
- 358 004e 03F13802 		add	r2, r3, #56
-ARM GAS  /tmp/ccDTGRdp.s 			page 13
-
-
- 359 0052 7B68     		ldr	r3, [r7, #4]
- 360 0054 1046     		mov	r0, r2
- 361 0056 1946     		mov	r1, r3
- 362 0058 FFF7FEFF 		bl	vListInsertEnd
+ 347              		.loc 1 331 0
+ 348 004c FB68     		ldr	r3, [r7, #12]
+ 349 004e 03F13802 		add	r2, r3, #56
+ 350 0052 7B68     		ldr	r3, [r7, #4]
+ 351 0054 1046     		mov	r0, r2
+ 352 0056 1946     		mov	r1, r3
+ 353 0058 FFF7FEFF 		bl	vListInsertEnd
  332:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 					}
  333:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 					taskEXIT_CRITICAL();
- 363              		.loc 1 333 0
- 364 005c FFF7FEFF 		bl	vPortExitCritical
- 365              	.L16:
+ 354              		.loc 1 333 0
+ 355 005c FFF7FEFF 		bl	vPortExitCritical
+ 356              	.L16:
+ARM GAS  /tmp/ccMLcRlZ.s 			page 13
+
+
  334:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				}
  335:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			}
  336:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			xTaskResumeAll();
- 366              		.loc 1 336 0
- 367 0060 FFF7FEFF 		bl	xTaskResumeAll
+ 357              		.loc 1 336 0
+ 358 0060 FFF7FEFF 		bl	xTaskResumeAll
  337:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  338:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			/* Set the socket's receive event */
  339:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			if( pxSocket->xEventGroup != NULL )
- 368              		.loc 1 339 0
- 369 0064 FB68     		ldr	r3, [r7, #12]
- 370 0066 5B68     		ldr	r3, [r3, #4]
- 371 0068 002B     		cmp	r3, #0
- 372 006a 05D0     		beq	.L17
+ 359              		.loc 1 339 0
+ 360 0064 FB68     		ldr	r3, [r7, #12]
+ 361 0066 5B68     		ldr	r3, [r3, #4]
+ 362 0068 002B     		cmp	r3, #0
+ 363 006a 05D0     		beq	.L17
  340:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			{
  341:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				xEventGroupSetBits( pxSocket->xEventGroup, eSOCKET_RECEIVE );
- 373              		.loc 1 341 0
- 374 006c FB68     		ldr	r3, [r7, #12]
- 375 006e 5B68     		ldr	r3, [r3, #4]
- 376 0070 1846     		mov	r0, r3
- 377 0072 0121     		movs	r1, #1
- 378 0074 FFF7FEFF 		bl	xEventGroupSetBits
- 379              	.L17:
+ 364              		.loc 1 341 0
+ 365 006c FB68     		ldr	r3, [r7, #12]
+ 366 006e 5B68     		ldr	r3, [r3, #4]
+ 367 0070 1846     		mov	r0, r3
+ 368 0072 0121     		movs	r1, #1
+ 369 0074 FFF7FEFF 		bl	xEventGroupSetBits
+ 370              	.L17:
  342:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			}
  343:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  344:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			#if( ipconfigSUPPORT_SELECT_FUNCTION == 1 )
  345:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			{
  346:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				if( ( pxSocket->pxSocketSet != NULL ) && ( ( pxSocket->xSelectBits & eSELECT_READ ) != 0 ) )
- 380              		.loc 1 346 0
- 381 0078 FB68     		ldr	r3, [r7, #12]
- 382 007a 9B6A     		ldr	r3, [r3, #40]
- 383 007c 002B     		cmp	r3, #0
- 384 007e 0CD0     		beq	.L18
- 385              		.loc 1 346 0 is_stmt 0 discriminator 1
- 386 0080 FB68     		ldr	r3, [r7, #12]
- 387 0082 DB6A     		ldr	r3, [r3, #44]
- 388 0084 03F00103 		and	r3, r3, #1
- 389 0088 002B     		cmp	r3, #0
- 390 008a 06D0     		beq	.L18
+ 371              		.loc 1 346 0
+ 372 0078 FB68     		ldr	r3, [r7, #12]
+ 373 007a 9B6A     		ldr	r3, [r3, #40]
+ 374 007c 002B     		cmp	r3, #0
+ 375 007e 49D0     		beq	.L18
+ 376              		.loc 1 346 0 is_stmt 0 discriminator 1
+ 377 0080 FB68     		ldr	r3, [r7, #12]
+ 378 0082 DB6A     		ldr	r3, [r3, #44]
+ 379 0084 03F00103 		and	r3, r3, #1
+ 380 0088 002B     		cmp	r3, #0
+ 381 008a 43D0     		beq	.L18
  347:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				{
  348:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 					xEventGroupSetBits( pxSocket->pxSocketSet->xSelectGroup, eSELECT_READ );
- 391              		.loc 1 348 0 is_stmt 1
- 392 008c FB68     		ldr	r3, [r7, #12]
- 393 008e 9B6A     		ldr	r3, [r3, #40]
- 394 0090 1B68     		ldr	r3, [r3]
- 395 0092 1846     		mov	r0, r3
- 396 0094 0121     		movs	r1, #1
- 397 0096 FFF7FEFF 		bl	xEventGroupSetBits
- 398              	.L18:
-ARM GAS  /tmp/ccDTGRdp.s 			page 14
-
-
+ 382              		.loc 1 348 0 is_stmt 1
+ 383 008c FB68     		ldr	r3, [r7, #12]
+ 384 008e 9B6A     		ldr	r3, [r3, #40]
+ 385 0090 1B68     		ldr	r3, [r3]
+ 386 0092 1846     		mov	r0, r3
+ 387 0094 0121     		movs	r1, #1
+ 388 0096 FFF7FEFF 		bl	xEventGroupSetBits
+ 389 009a 3BE0     		b	.L18
+ 390              	.L14:
  349:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				}
  350:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			}
  351:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			#endif
@@ -789,6 +778,9 @@ ARM GAS  /tmp/ccDTGRdp.s 			page 1
  354:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			{
  355:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				if( pxSocket->pxUserSemaphore != NULL )
  356:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				{
+ARM GAS  /tmp/ccMLcRlZ.s 			page 14
+
+
  357:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 					xSemaphoreGive( pxSocket->pxUserSemaphore );
  358:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				}
  359:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			}
@@ -797,19 +789,8 @@ ARM GAS  /tmp/ccDTGRdp.s 			page 1
  362:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			#if( ipconfigUSE_DHCP == 1 )
  363:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			{
  364:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				if( xIsDHCPSocket( pxSocket ) )
- 399              		.loc 1 364 0
- 400 009a F868     		ldr	r0, [r7, #12]
- 401 009c FFF7FEFF 		bl	xIsDHCPSocket
- 402 00a0 0346     		mov	r3, r0
- 403 00a2 002B     		cmp	r3, #0
- 404 00a4 3FD0     		beq	.L19
  365:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				{
  366:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 					xSendEventToIPTask( eDHCPEvent );
- 405              		.loc 1 366 0
- 406 00a6 0420     		movs	r0, #4
- 407 00a8 FFF7FEFF 		bl	xSendEventToIPTask
- 408 00ac 3BE0     		b	.L19
- 409              	.L14:
  367:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				}
  368:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			}
  369:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			#endif
@@ -826,44 +807,44 @@ ARM GAS  /tmp/ccDTGRdp.s 			page 1
  380:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			closed after a short timeout.  Messages that come late (after the
  381:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			socket is closed) will be treated here. */
  382:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			if( FreeRTOS_ntohs( pxUDPPacket->xUDPHeader.usSourcePort ) == ipDNS_PORT )
- 410              		.loc 1 382 0
- 411 00ae 3B69     		ldr	r3, [r7, #16]
- 412 00b0 5B8C     		ldrh	r3, [r3, #34]	@ unaligned
- 413 00b2 9BB2     		uxth	r3, r3
- 414 00b4 1B02     		lsls	r3, r3, #8
- 415 00b6 9AB2     		uxth	r2, r3
- 416 00b8 3B69     		ldr	r3, [r7, #16]
- 417 00ba 5B8C     		ldrh	r3, [r3, #34]	@ unaligned
- 418 00bc 9BB2     		uxth	r3, r3
- 419 00be 1B0A     		lsrs	r3, r3, #8
- 420 00c0 9BB2     		uxth	r3, r3
- 421 00c2 9BB2     		uxth	r3, r3
-ARM GAS  /tmp/ccDTGRdp.s 			page 15
-
-
- 422 00c4 1343     		orrs	r3, r3, r2
- 423 00c6 9BB2     		uxth	r3, r3
- 424 00c8 1BB2     		sxth	r3, r3
- 425 00ca 352B     		cmp	r3, #53
- 426 00cc 0ED1     		bne	.L20
+ 391              		.loc 1 382 0
+ 392 009c 3B69     		ldr	r3, [r7, #16]
+ 393 009e 5B8C     		ldrh	r3, [r3, #34]	@ unaligned
+ 394 00a0 9BB2     		uxth	r3, r3
+ 395 00a2 1B02     		lsls	r3, r3, #8
+ 396 00a4 9AB2     		uxth	r2, r3
+ 397 00a6 3B69     		ldr	r3, [r7, #16]
+ 398 00a8 5B8C     		ldrh	r3, [r3, #34]	@ unaligned
+ 399 00aa 9BB2     		uxth	r3, r3
+ 400 00ac 1B0A     		lsrs	r3, r3, #8
+ 401 00ae 9BB2     		uxth	r3, r3
+ 402 00b0 9BB2     		uxth	r3, r3
+ 403 00b2 1343     		orrs	r3, r3, r2
+ 404 00b4 9BB2     		uxth	r3, r3
+ 405 00b6 1BB2     		sxth	r3, r3
+ 406 00b8 352B     		cmp	r3, #53
+ 407 00ba 0ED1     		bne	.L19
  383:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			{
  384:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				vARPRefreshCacheEntry( &( pxUDPPacket->xEthernetHeader.xSourceAddress ), pxUDPPacket->xIPHeader
- 427              		.loc 1 384 0
- 428 00ce 3B69     		ldr	r3, [r7, #16]
- 429 00d0 9A1D     		adds	r2, r3, #6
- 430 00d2 3B69     		ldr	r3, [r7, #16]
- 431 00d4 D3F81A30 		ldr	r3, [r3, #26]	@ unaligned
- 432 00d8 1046     		mov	r0, r2
- 433 00da 1946     		mov	r1, r3
- 434 00dc FFF7FEFF 		bl	vARPRefreshCacheEntry
+ 408              		.loc 1 384 0
+ 409 00bc 3B69     		ldr	r3, [r7, #16]
+ 410 00be 9A1D     		adds	r2, r3, #6
+ 411 00c0 3B69     		ldr	r3, [r7, #16]
+ 412 00c2 D3F81A30 		ldr	r3, [r3, #26]	@ unaligned
+ 413 00c6 1046     		mov	r0, r2
+ 414 00c8 1946     		mov	r1, r3
+ 415 00ca FFF7FEFF 		bl	vARPRefreshCacheEntry
  385:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				xReturn = ( BaseType_t )ulDNSHandlePacket( pxNetworkBuffer );
- 435              		.loc 1 385 0
- 436 00e0 7868     		ldr	r0, [r7, #4]
- 437 00e2 FFF7FEFF 		bl	ulDNSHandlePacket
- 438 00e6 0346     		mov	r3, r0
- 439 00e8 7B61     		str	r3, [r7, #20]
- 440 00ea 1CE0     		b	.L19
- 441              	.L20:
+ 416              		.loc 1 385 0
+ 417 00ce 7868     		ldr	r0, [r7, #4]
+ 418 00d0 FFF7FEFF 		bl	ulDNSHandlePacket
+ARM GAS  /tmp/ccMLcRlZ.s 			page 15
+
+
+ 419 00d4 0346     		mov	r3, r0
+ 420 00d6 7B61     		str	r3, [r7, #20]
+ 421 00d8 1CE0     		b	.L18
+ 422              	.L19:
  386:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			}
  387:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			else
  388:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		#endif
@@ -871,43 +852,40 @@ ARM GAS  /tmp/ccDTGRdp.s 			page 1
  390:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		#if( ipconfigUSE_LLMNR == 1 )
  391:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			/* a LLMNR request, check for the destination port. */
  392:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			if( ( usPort == FreeRTOS_ntohs( ipLLMNR_PORT ) ) ||
- 442              		.loc 1 392 0
- 443 00ec 7B88     		ldrh	r3, [r7, #2]
- 444 00ee 4EF61432 		movw	r2, #60180
- 445 00f2 9342     		cmp	r3, r2
- 446 00f4 06D0     		beq	.L21
+ 423              		.loc 1 392 0
+ 424 00da 7B88     		ldrh	r3, [r7, #2]
+ 425 00dc 4EF61432 		movw	r2, #60180
+ 426 00e0 9342     		cmp	r3, r2
+ 427 00e2 06D0     		beq	.L20
  393:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				( pxUDPPacket->xUDPHeader.usSourcePort == FreeRTOS_ntohs( ipLLMNR_PORT ) ) )
- 447              		.loc 1 393 0 discriminator 1
- 448 00f6 3B69     		ldr	r3, [r7, #16]
- 449 00f8 5B8C     		ldrh	r3, [r3, #34]	@ unaligned
- 450 00fa 9BB2     		uxth	r3, r3
+ 428              		.loc 1 393 0 discriminator 1
+ 429 00e4 3B69     		ldr	r3, [r7, #16]
+ 430 00e6 5B8C     		ldrh	r3, [r3, #34]	@ unaligned
+ 431 00e8 9BB2     		uxth	r3, r3
  392:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				( pxUDPPacket->xUDPHeader.usSourcePort == FreeRTOS_ntohs( ipLLMNR_PORT ) ) )
- 451              		.loc 1 392 0 discriminator 1
- 452 00fc 4EF61432 		movw	r2, #60180
- 453 0100 9342     		cmp	r3, r2
- 454 0102 0ED1     		bne	.L22
- 455              	.L21:
+ 432              		.loc 1 392 0 discriminator 1
+ 433 00ea 4EF61432 		movw	r2, #60180
+ 434 00ee 9342     		cmp	r3, r2
+ 435 00f0 0ED1     		bne	.L21
+ 436              	.L20:
  394:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			{
  395:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				vARPRefreshCacheEntry( &( pxUDPPacket->xEthernetHeader.xSourceAddress ), pxUDPPacket->xIPHeader
- 456              		.loc 1 395 0
- 457 0104 3B69     		ldr	r3, [r7, #16]
- 458 0106 9A1D     		adds	r2, r3, #6
- 459 0108 3B69     		ldr	r3, [r7, #16]
- 460 010a D3F81A30 		ldr	r3, [r3, #26]	@ unaligned
- 461 010e 1046     		mov	r0, r2
- 462 0110 1946     		mov	r1, r3
- 463 0112 FFF7FEFF 		bl	vARPRefreshCacheEntry
+ 437              		.loc 1 395 0
+ 438 00f2 3B69     		ldr	r3, [r7, #16]
+ 439 00f4 9A1D     		adds	r2, r3, #6
+ 440 00f6 3B69     		ldr	r3, [r7, #16]
+ 441 00f8 D3F81A30 		ldr	r3, [r3, #26]	@ unaligned
+ 442 00fc 1046     		mov	r0, r2
+ 443 00fe 1946     		mov	r1, r3
+ 444 0100 FFF7FEFF 		bl	vARPRefreshCacheEntry
  396:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				xReturn = ( BaseType_t )ulDNSHandlePacket( pxNetworkBuffer );
-ARM GAS  /tmp/ccDTGRdp.s 			page 16
-
-
- 464              		.loc 1 396 0
- 465 0116 7868     		ldr	r0, [r7, #4]
- 466 0118 FFF7FEFF 		bl	ulDNSHandlePacket
- 467 011c 0346     		mov	r3, r0
- 468 011e 7B61     		str	r3, [r7, #20]
- 469 0120 01E0     		b	.L19
- 470              	.L22:
+ 445              		.loc 1 396 0
+ 446 0104 7868     		ldr	r0, [r7, #4]
+ 447 0106 FFF7FEFF 		bl	ulDNSHandlePacket
+ 448 010a 0346     		mov	r3, r0
+ 449 010c 7B61     		str	r3, [r7, #20]
+ 450 010e 01E0     		b	.L18
+ 451              	.L21:
  397:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			}
  398:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			else
  399:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		#endif /* ipconfigUSE_LLMNR */
@@ -920,66 +898,67 @@ ARM GAS  /tmp/ccDTGRdp.s 			page 1
  406:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				vARPRefreshCacheEntry( &( pxUDPPacket->xEthernetHeader.xSourceAddress ), pxUDPPacket->xIPHeader
  407:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 				xReturn = ( BaseType_t )ulNBNSHandlePacket( pxNetworkBuffer );
  408:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			}
+ARM GAS  /tmp/ccMLcRlZ.s 			page 16
+
+
  409:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			else
  410:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		#endif /* ipconfigUSE_NBNS */
  411:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		{
  412:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 			xReturn = pdFAIL;
- 471              		.loc 1 412 0
- 472 0122 0023     		movs	r3, #0
- 473 0124 7B61     		str	r3, [r7, #20]
- 474              	.L19:
+ 452              		.loc 1 412 0
+ 453 0110 0023     		movs	r3, #0
+ 454 0112 7B61     		str	r3, [r7, #20]
+ 455              	.L18:
  413:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 		}
  414:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 	}
  415:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 
  416:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** 	return xReturn;
- 475              		.loc 1 416 0
- 476 0126 7B69     		ldr	r3, [r7, #20]
+ 456              		.loc 1 416 0
+ 457 0114 7B69     		ldr	r3, [r7, #20]
  417:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_UDP_IP.c **** }
- 477              		.loc 1 417 0
- 478 0128 1846     		mov	r0, r3
- 479 012a 1837     		adds	r7, r7, #24
- 480              	.LCFI8:
- 481              		.cfi_def_cfa_offset 8
- 482 012c BD46     		mov	sp, r7
- 483              	.LCFI9:
- 484              		.cfi_def_cfa_register 13
- 485              		@ sp needed
- 486 012e 80BD     		pop	{r7, pc}
- 487              		.cfi_endproc
- 488              	.LFE30:
- 490              		.text
- 491              	.Letext0:
- 492              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 493              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 494              		.file 4 "/usr/lib/gcc/arm-none-eabi/4.9.3/include/stddef.h"
- 495              		.file 5 "../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h"
- 496              		.file 6 "../../../FreeRTOS_9_0/Source/include/list.h"
- 497              		.file 7 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h"
- 498              		.file 8 "../../../FreeRTOS_9_0/Source/include/event_groups.h"
- 499              		.file 9 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h"
- 500              		.file 10 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_TCP_WIN.h"
-ARM GAS  /tmp/ccDTGRdp.s 			page 17
-
-
- 501              		.file 11 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h"
- 502              		.file 12 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Sockets.h"
- 503              		.file 13 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_ARP.h"
-ARM GAS  /tmp/ccDTGRdp.s 			page 18
+ 458              		.loc 1 417 0
+ 459 0116 1846     		mov	r0, r3
+ 460 0118 1837     		adds	r7, r7, #24
+ 461              	.LCFI8:
+ 462              		.cfi_def_cfa_offset 8
+ 463 011a BD46     		mov	sp, r7
+ 464              	.LCFI9:
+ 465              		.cfi_def_cfa_register 13
+ 466              		@ sp needed
+ 467 011c 80BD     		pop	{r7, pc}
+ 468              		.cfi_endproc
+ 469              	.LFE30:
+ 471 011e 00BF     		.text
+ 472              	.Letext0:
+ 473              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 474              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 475              		.file 4 "/usr/lib/gcc/arm-none-eabi/4.9.3/include/stddef.h"
+ 476              		.file 5 "../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ 477              		.file 6 "../../../FreeRTOS_9_0/Source/include/list.h"
+ 478              		.file 7 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h"
+ 479              		.file 8 "../../../FreeRTOS_9_0/Source/include/event_groups.h"
+ 480              		.file 9 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h"
+ 481              		.file 10 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_TCP_WIN.h"
+ 482              		.file 11 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h"
+ 483              		.file 12 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Sockets.h"
+ 484              		.file 13 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_ARP.h"
+ARM GAS  /tmp/ccMLcRlZ.s 			page 17
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 FreeRTOS_UDP_IP.c
-     /tmp/ccDTGRdp.s:25     .data.xDefaultPartUDPPacketHeader:0000000000000000 xDefaultPartUDPPacketHeader
-     /tmp/ccDTGRdp.s:22     .data.xDefaultPartUDPPacketHeader:0000000000000000 $d
-     /tmp/ccDTGRdp.s:51     .text.vProcessGeneratedUDPPacket:0000000000000000 $t
-     /tmp/ccDTGRdp.s:56     .text.vProcessGeneratedUDPPacket:0000000000000000 vProcessGeneratedUDPPacket
-     /tmp/ccDTGRdp.s:289    .text.vProcessGeneratedUDPPacket:000000000000015c $d
-     /tmp/ccDTGRdp.s:295    .text.xProcessReceivedUDPPacket:0000000000000000 $t
-     /tmp/ccDTGRdp.s:300    .text.xProcessReceivedUDPPacket:0000000000000000 xProcessReceivedUDPPacket
+     /tmp/ccMLcRlZ.s:25     .data.xDefaultPartUDPPacketHeader:0000000000000000 xDefaultPartUDPPacketHeader
+     /tmp/ccMLcRlZ.s:22     .data.xDefaultPartUDPPacketHeader:0000000000000000 $d
+     /tmp/ccMLcRlZ.s:51     .text.vProcessGeneratedUDPPacket:0000000000000000 $t
+     /tmp/ccMLcRlZ.s:56     .text.vProcessGeneratedUDPPacket:0000000000000000 vProcessGeneratedUDPPacket
+     /tmp/ccMLcRlZ.s:280    .text.vProcessGeneratedUDPPacket:0000000000000150 $d
+     /tmp/ccMLcRlZ.s:286    .text.xProcessReceivedUDPPacket:0000000000000000 $t
+     /tmp/ccMLcRlZ.s:291    .text.xProcessReceivedUDPPacket:0000000000000000 xProcessReceivedUDPPacket
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
 eARPGetCacheEntry
+memcpy
 vARPRefreshCacheEntry
 vARPGenerateRequestPacket
 xNetworkInterfaceOutput
@@ -991,6 +970,4 @@ vListInsertEnd
 vPortExitCritical
 xTaskResumeAll
 xEventGroupSetBits
-xIsDHCPSocket
-xSendEventToIPTask
 ulDNSHandlePacket

@@ -1,0 +1,885 @@
+ARM GAS  /tmp/ccq5izIv.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m7
+   3              		.eabi_attribute 27, 1
+   4              		.eabi_attribute 28, 1
+   5              		.fpu fpv5-sp-d16
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 6
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.thumb
+  16              		.file	"memcpy.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              		.section	.text.memcpy,"ax",%progbits
+  21              		.align	2
+  22              		.global	memcpy
+  23              		.thumb
+  24              		.thumb_func
+  26              	memcpy:
+  27              	.LFB0:
+  28              		.file 1 "Src/memcpy.c"
+   1:Src/memcpy.c  **** /*
+   2:Src/memcpy.c  ****  * An memcpy() in C which does not use the FPU registers, as the default does.
+   3:Src/memcpy.c  ****  */
+   4:Src/memcpy.c  **** 
+   5:Src/memcpy.c  **** #include <string.h>
+   6:Src/memcpy.c  **** #include <stdint.h>
+   7:Src/memcpy.c  **** 
+   8:Src/memcpy.c  **** #ifndef SIMPLE_MEMCPY
+   9:Src/memcpy.c  **** 	#define SIMPLE_MEMCPY	( 0 )
+  10:Src/memcpy.c  **** #endif
+  11:Src/memcpy.c  **** 
+  12:Src/memcpy.c  **** #ifndef SIMPLE_MEMSET
+  13:Src/memcpy.c  **** 	#define SIMPLE_MEMSET	( 0 )
+  14:Src/memcpy.c  **** #endif
+  15:Src/memcpy.c  **** 
+  16:Src/memcpy.c  **** #if( SIMPLE_MEMCPY != 0 )
+  17:Src/memcpy.c  **** void *memcpy( void *pvDest, const void *pvSource, size_t ulBytes )
+  18:Src/memcpy.c  **** {
+  19:Src/memcpy.c  **** unsigned char *pcDest = ( unsigned char * ) pvDest, *pcSource = ( unsigned char * ) pvSource;
+  20:Src/memcpy.c  **** size_t x;
+  21:Src/memcpy.c  **** 
+  22:Src/memcpy.c  **** 	for( x = 0; x < ulBytes; x++ )
+  23:Src/memcpy.c  **** 	{
+  24:Src/memcpy.c  **** 		*pcDest = *pcSource;
+  25:Src/memcpy.c  **** 		pcDest++;
+  26:Src/memcpy.c  **** 		pcSource++;
+  27:Src/memcpy.c  **** 	}
+  28:Src/memcpy.c  **** 
+  29:Src/memcpy.c  **** 	return pvDest;
+  30:Src/memcpy.c  **** }
+ARM GAS  /tmp/ccq5izIv.s 			page 2
+
+
+  31:Src/memcpy.c  **** /*-----------------------------------------------------------*/
+  32:Src/memcpy.c  **** #endif /* SIMPLE_MEMCPY */
+  33:Src/memcpy.c  **** 
+  34:Src/memcpy.c  **** union xPointer {
+  35:Src/memcpy.c  **** 	uint8_t *u8;
+  36:Src/memcpy.c  **** 	uint16_t *u16;
+  37:Src/memcpy.c  **** 	uint32_t *u32;
+  38:Src/memcpy.c  **** 	uint32_t uint32;
+  39:Src/memcpy.c  **** };
+  40:Src/memcpy.c  **** 
+  41:Src/memcpy.c  **** 
+  42:Src/memcpy.c  **** #if( SIMPLE_MEMCPY == 0 )
+  43:Src/memcpy.c  **** void *memcpy( void *pvDest, const void *pvSource, size_t ulBytes )
+  44:Src/memcpy.c  **** {
+  29              		.loc 1 44 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 48
+  32              		@ frame_needed = 1, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34 0000 80B4     		push	{r7}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 4
+  37              		.cfi_offset 7, -4
+  38 0002 8DB0     		sub	sp, sp, #52
+  39              	.LCFI1:
+  40              		.cfi_def_cfa_offset 56
+  41 0004 00AF     		add	r7, sp, #0
+  42              	.LCFI2:
+  43              		.cfi_def_cfa_register 7
+  44 0006 F860     		str	r0, [r7, #12]
+  45 0008 B960     		str	r1, [r7, #8]
+  46 000a 7A60     		str	r2, [r7, #4]
+  45:Src/memcpy.c  **** union xPointer pxDestination;
+  46:Src/memcpy.c  **** union xPointer pxSource;
+  47:Src/memcpy.c  **** union xPointer pxLastSource;
+  48:Src/memcpy.c  **** uint32_t ulAlignBits;
+  49:Src/memcpy.c  **** 
+  50:Src/memcpy.c  **** 	pxDestination.u8 = ( uint8_t * ) pvDest;
+  47              		.loc 1 50 0
+  48 000c FB68     		ldr	r3, [r7, #12]
+  49 000e BB61     		str	r3, [r7, #24]
+  51:Src/memcpy.c  **** 	pxSource.u8 = ( uint8_t * ) pvSource;
+  50              		.loc 1 51 0
+  51 0010 BB68     		ldr	r3, [r7, #8]
+  52 0012 7B61     		str	r3, [r7, #20]
+  52:Src/memcpy.c  **** 	pxLastSource.u8 = pxSource.u8 + ulBytes;
+  53              		.loc 1 52 0
+  54 0014 7A69     		ldr	r2, [r7, #20]
+  55 0016 7B68     		ldr	r3, [r7, #4]
+  56 0018 1344     		add	r3, r3, r2
+  57 001a 3B61     		str	r3, [r7, #16]
+  53:Src/memcpy.c  **** 
+  54:Src/memcpy.c  **** 	ulAlignBits = ( pxDestination.uint32 & 0x03 ) ^ ( pxSource.uint32 & 0x03 );
+  58              		.loc 1 54 0
+  59 001c BB69     		ldr	r3, [r7, #24]
+  60 001e 03F00302 		and	r2, r3, #3
+  61 0022 7B69     		ldr	r3, [r7, #20]
+ARM GAS  /tmp/ccq5izIv.s 			page 3
+
+
+  62 0024 03F00303 		and	r3, r3, #3
+  63 0028 5340     		eors	r3, r3, r2
+  64 002a 7B62     		str	r3, [r7, #36]
+  55:Src/memcpy.c  **** 
+  56:Src/memcpy.c  **** 	if( ( ulAlignBits & 0x01 ) == 0 )
+  65              		.loc 1 56 0
+  66 002c 7B6A     		ldr	r3, [r7, #36]
+  67 002e 03F00103 		and	r3, r3, #1
+  68 0032 002B     		cmp	r3, #0
+  69 0034 40F09680 		bne	.L2
+  57:Src/memcpy.c  **** 	{
+  58:Src/memcpy.c  **** 		if( ( ( pxSource.uint32 & 1 ) != 0 ) && ( pxSource.u8 < pxLastSource.u8 ) )
+  70              		.loc 1 58 0
+  71 0038 7B69     		ldr	r3, [r7, #20]
+  72 003a 03F00103 		and	r3, r3, #1
+  73 003e 002B     		cmp	r3, #0
+  74 0040 0BD0     		beq	.L3
+  75              		.loc 1 58 0 is_stmt 0 discriminator 1
+  76 0042 7A69     		ldr	r2, [r7, #20]
+  77 0044 3B69     		ldr	r3, [r7, #16]
+  78 0046 9A42     		cmp	r2, r3
+  79 0048 07D2     		bcs	.L3
+  59:Src/memcpy.c  **** 		{
+  60:Src/memcpy.c  **** 			*( pxDestination.u8++ ) = *( pxSource.u8++) ;
+  80              		.loc 1 60 0 is_stmt 1
+  81 004a BB69     		ldr	r3, [r7, #24]
+  82 004c 5A1C     		adds	r2, r3, #1
+  83 004e BA61     		str	r2, [r7, #24]
+  84 0050 7A69     		ldr	r2, [r7, #20]
+  85 0052 511C     		adds	r1, r2, #1
+  86 0054 7961     		str	r1, [r7, #20]
+  87 0056 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+  88 0058 1A70     		strb	r2, [r3]
+  89              	.L3:
+  61:Src/memcpy.c  **** 		}
+  62:Src/memcpy.c  **** 		/* 16-bit aligned here */
+  63:Src/memcpy.c  **** 		if( ( ulAlignBits & 0x02 ) != 0 )
+  90              		.loc 1 63 0
+  91 005a 7B6A     		ldr	r3, [r7, #36]
+  92 005c 03F00203 		and	r3, r3, #2
+  93 0060 002B     		cmp	r3, #0
+  94 0062 19D0     		beq	.L4
+  95              	.LBB2:
+  64:Src/memcpy.c  **** 		{
+  65:Src/memcpy.c  **** 			uint32_t extra = pxLastSource.uint32 & 0x01ul;
+  96              		.loc 1 65 0
+  97 0064 3B69     		ldr	r3, [r7, #16]
+  98 0066 03F00103 		and	r3, r3, #1
+  99 006a 3B62     		str	r3, [r7, #32]
+  66:Src/memcpy.c  **** 
+  67:Src/memcpy.c  **** 			pxLastSource.uint32 &= ~0x01ul;
+ 100              		.loc 1 67 0
+ 101 006c 3B69     		ldr	r3, [r7, #16]
+ 102 006e 23F00103 		bic	r3, r3, #1
+ 103 0072 3B61     		str	r3, [r7, #16]
+  68:Src/memcpy.c  **** 
+  69:Src/memcpy.c  **** 			while( pxSource.u16 < pxLastSource.u16 )
+ARM GAS  /tmp/ccq5izIv.s 			page 4
+
+
+ 104              		.loc 1 69 0
+ 105 0074 07E0     		b	.L5
+ 106              	.L6:
+  70:Src/memcpy.c  **** 			{
+  71:Src/memcpy.c  **** 				*( pxDestination.u16++ ) = *( pxSource.u16++) ;
+ 107              		.loc 1 71 0
+ 108 0076 BB69     		ldr	r3, [r7, #24]
+ 109 0078 9A1C     		adds	r2, r3, #2
+ 110 007a BA61     		str	r2, [r7, #24]
+ 111 007c 7A69     		ldr	r2, [r7, #20]
+ 112 007e 911C     		adds	r1, r2, #2
+ 113 0080 7961     		str	r1, [r7, #20]
+ 114 0082 1288     		ldrh	r2, [r2]
+ 115 0084 1A80     		strh	r2, [r3]	@ movhi
+ 116              	.L5:
+  69:Src/memcpy.c  **** 			{
+ 117              		.loc 1 69 0
+ 118 0086 7A69     		ldr	r2, [r7, #20]
+ 119 0088 3B69     		ldr	r3, [r7, #16]
+ 120 008a 9A42     		cmp	r2, r3
+ 121 008c F3D3     		bcc	.L6
+  72:Src/memcpy.c  **** 			}
+  73:Src/memcpy.c  **** 
+  74:Src/memcpy.c  **** 			pxLastSource.uint32 |= extra;
+ 122              		.loc 1 74 0
+ 123 008e 3A69     		ldr	r2, [r7, #16]
+ 124 0090 3B6A     		ldr	r3, [r7, #32]
+ 125 0092 1343     		orrs	r3, r3, r2
+ 126 0094 3B61     		str	r3, [r7, #16]
+ 127              	.LBE2:
+ 128 0096 9EE0     		b	.L13
+ 129              	.L4:
+ 130              	.LBB3:
+  75:Src/memcpy.c  **** 		}
+  76:Src/memcpy.c  **** 		else
+  77:Src/memcpy.c  **** 		{
+  78:Src/memcpy.c  **** 			int iCount;
+  79:Src/memcpy.c  **** 			uint32_t extra;
+  80:Src/memcpy.c  **** 
+  81:Src/memcpy.c  **** 			if( ( ( pxSource.uint32 & 2 ) != 0 ) && ( pxSource.u8 < pxLastSource.u8 - 1 ) )
+ 131              		.loc 1 81 0
+ 132 0098 7B69     		ldr	r3, [r7, #20]
+ 133 009a 03F00203 		and	r3, r3, #2
+ 134 009e 002B     		cmp	r3, #0
+ 135 00a0 0CD0     		beq	.L8
+ 136              		.loc 1 81 0 is_stmt 0 discriminator 1
+ 137 00a2 7A69     		ldr	r2, [r7, #20]
+ 138 00a4 3B69     		ldr	r3, [r7, #16]
+ 139 00a6 013B     		subs	r3, r3, #1
+ 140 00a8 9A42     		cmp	r2, r3
+ 141 00aa 07D2     		bcs	.L8
+  82:Src/memcpy.c  **** 			{
+  83:Src/memcpy.c  **** 				*( pxDestination.u16++ ) = *( pxSource.u16++) ;
+ 142              		.loc 1 83 0 is_stmt 1
+ 143 00ac BB69     		ldr	r3, [r7, #24]
+ 144 00ae 9A1C     		adds	r2, r3, #2
+ 145 00b0 BA61     		str	r2, [r7, #24]
+ARM GAS  /tmp/ccq5izIv.s 			page 5
+
+
+ 146 00b2 7A69     		ldr	r2, [r7, #20]
+ 147 00b4 911C     		adds	r1, r2, #2
+ 148 00b6 7961     		str	r1, [r7, #20]
+ 149 00b8 1288     		ldrh	r2, [r2]
+ 150 00ba 1A80     		strh	r2, [r3]	@ movhi
+ 151              	.L8:
+  84:Src/memcpy.c  **** 			}
+  85:Src/memcpy.c  **** 			// 32-bit aligned
+  86:Src/memcpy.c  **** 			extra = pxLastSource.uint32 & 0x03ul;
+ 152              		.loc 1 86 0
+ 153 00bc 3B69     		ldr	r3, [r7, #16]
+ 154 00be 03F00303 		and	r3, r3, #3
+ 155 00c2 FB61     		str	r3, [r7, #28]
+  87:Src/memcpy.c  **** 
+  88:Src/memcpy.c  **** 			pxLastSource.uint32 &= ~0x03ul;
+ 156              		.loc 1 88 0
+ 157 00c4 3B69     		ldr	r3, [r7, #16]
+ 158 00c6 23F00303 		bic	r3, r3, #3
+ 159 00ca 3B61     		str	r3, [r7, #16]
+  89:Src/memcpy.c  **** 			iCount = pxLastSource.u32 - pxSource.u32;
+ 160              		.loc 1 89 0
+ 161 00cc 3B69     		ldr	r3, [r7, #16]
+ 162 00ce 1A46     		mov	r2, r3
+ 163 00d0 7B69     		ldr	r3, [r7, #20]
+ 164 00d2 D31A     		subs	r3, r2, r3
+ 165 00d4 9B10     		asrs	r3, r3, #2
+ 166 00d6 FB62     		str	r3, [r7, #44]
+  90:Src/memcpy.c  **** 			while( iCount > 8 )
+ 167              		.loc 1 90 0
+ 168 00d8 2FE0     		b	.L9
+ 169              	.L10:
+  91:Src/memcpy.c  **** 			{
+  92:Src/memcpy.c  **** 				/* Copy 32 bytes */
+  93:Src/memcpy.c  **** 				/* Normally it doesn't make sense to make this list much longer because
+  94:Src/memcpy.c  **** 				the indexes will get too big, and therefore longer instructions are needed. */
+  95:Src/memcpy.c  **** 				pxDestination.u32[ 0 ] = pxSource.u32[ 0 ];
+ 170              		.loc 1 95 0
+ 171 00da BB69     		ldr	r3, [r7, #24]
+ 172 00dc 7A69     		ldr	r2, [r7, #20]
+ 173 00de 1268     		ldr	r2, [r2]
+ 174 00e0 1A60     		str	r2, [r3]
+  96:Src/memcpy.c  **** 				pxDestination.u32[ 1 ] = pxSource.u32[ 1 ];
+ 175              		.loc 1 96 0
+ 176 00e2 BB69     		ldr	r3, [r7, #24]
+ 177 00e4 0433     		adds	r3, r3, #4
+ 178 00e6 7A69     		ldr	r2, [r7, #20]
+ 179 00e8 5268     		ldr	r2, [r2, #4]
+ 180 00ea 1A60     		str	r2, [r3]
+  97:Src/memcpy.c  **** 				pxDestination.u32[ 2 ] = pxSource.u32[ 2 ];
+ 181              		.loc 1 97 0
+ 182 00ec BB69     		ldr	r3, [r7, #24]
+ 183 00ee 0833     		adds	r3, r3, #8
+ 184 00f0 7A69     		ldr	r2, [r7, #20]
+ 185 00f2 9268     		ldr	r2, [r2, #8]
+ 186 00f4 1A60     		str	r2, [r3]
+  98:Src/memcpy.c  **** 				pxDestination.u32[ 3 ] = pxSource.u32[ 3 ];
+ 187              		.loc 1 98 0
+ARM GAS  /tmp/ccq5izIv.s 			page 6
+
+
+ 188 00f6 BB69     		ldr	r3, [r7, #24]
+ 189 00f8 0C33     		adds	r3, r3, #12
+ 190 00fa 7A69     		ldr	r2, [r7, #20]
+ 191 00fc D268     		ldr	r2, [r2, #12]
+ 192 00fe 1A60     		str	r2, [r3]
+  99:Src/memcpy.c  **** 				pxDestination.u32[ 4 ] = pxSource.u32[ 4 ];
+ 193              		.loc 1 99 0
+ 194 0100 BB69     		ldr	r3, [r7, #24]
+ 195 0102 1033     		adds	r3, r3, #16
+ 196 0104 7A69     		ldr	r2, [r7, #20]
+ 197 0106 1269     		ldr	r2, [r2, #16]
+ 198 0108 1A60     		str	r2, [r3]
+ 100:Src/memcpy.c  **** 				pxDestination.u32[ 5 ] = pxSource.u32[ 5 ];
+ 199              		.loc 1 100 0
+ 200 010a BB69     		ldr	r3, [r7, #24]
+ 201 010c 1433     		adds	r3, r3, #20
+ 202 010e 7A69     		ldr	r2, [r7, #20]
+ 203 0110 5269     		ldr	r2, [r2, #20]
+ 204 0112 1A60     		str	r2, [r3]
+ 101:Src/memcpy.c  **** 				pxDestination.u32[ 6 ] = pxSource.u32[ 6 ];
+ 205              		.loc 1 101 0
+ 206 0114 BB69     		ldr	r3, [r7, #24]
+ 207 0116 1833     		adds	r3, r3, #24
+ 208 0118 7A69     		ldr	r2, [r7, #20]
+ 209 011a 9269     		ldr	r2, [r2, #24]
+ 210 011c 1A60     		str	r2, [r3]
+ 102:Src/memcpy.c  **** 				pxDestination.u32[ 7 ] = pxSource.u32[ 7 ];
+ 211              		.loc 1 102 0
+ 212 011e BB69     		ldr	r3, [r7, #24]
+ 213 0120 1C33     		adds	r3, r3, #28
+ 214 0122 7A69     		ldr	r2, [r7, #20]
+ 215 0124 D269     		ldr	r2, [r2, #28]
+ 216 0126 1A60     		str	r2, [r3]
+ 103:Src/memcpy.c  **** 				pxDestination.u32 += 8;
+ 217              		.loc 1 103 0
+ 218 0128 BB69     		ldr	r3, [r7, #24]
+ 219 012a 2033     		adds	r3, r3, #32
+ 220 012c BB61     		str	r3, [r7, #24]
+ 104:Src/memcpy.c  **** 				pxSource.u32 += 8;
+ 221              		.loc 1 104 0
+ 222 012e 7B69     		ldr	r3, [r7, #20]
+ 223 0130 2033     		adds	r3, r3, #32
+ 224 0132 7B61     		str	r3, [r7, #20]
+ 105:Src/memcpy.c  **** 				iCount -= 8;
+ 225              		.loc 1 105 0
+ 226 0134 FB6A     		ldr	r3, [r7, #44]
+ 227 0136 083B     		subs	r3, r3, #8
+ 228 0138 FB62     		str	r3, [r7, #44]
+ 229              	.L9:
+  90:Src/memcpy.c  **** 			{
+ 230              		.loc 1 90 0
+ 231 013a FB6A     		ldr	r3, [r7, #44]
+ 232 013c 082B     		cmp	r3, #8
+ 233 013e CCDC     		bgt	.L10
+ 106:Src/memcpy.c  **** 			}
+ 107:Src/memcpy.c  **** 
+ 108:Src/memcpy.c  **** 			while( pxSource.u32 < pxLastSource.u32 )
+ARM GAS  /tmp/ccq5izIv.s 			page 7
+
+
+ 234              		.loc 1 108 0
+ 235 0140 07E0     		b	.L11
+ 236              	.L12:
+ 109:Src/memcpy.c  **** 			{
+ 110:Src/memcpy.c  **** 				*( pxDestination.u32++ ) = *( pxSource.u32++) ;
+ 237              		.loc 1 110 0
+ 238 0142 BB69     		ldr	r3, [r7, #24]
+ 239 0144 1A1D     		adds	r2, r3, #4
+ 240 0146 BA61     		str	r2, [r7, #24]
+ 241 0148 7A69     		ldr	r2, [r7, #20]
+ 242 014a 111D     		adds	r1, r2, #4
+ 243 014c 7961     		str	r1, [r7, #20]
+ 244 014e 1268     		ldr	r2, [r2]
+ 245 0150 1A60     		str	r2, [r3]
+ 246              	.L11:
+ 108:Src/memcpy.c  **** 			{
+ 247              		.loc 1 108 0
+ 248 0152 7A69     		ldr	r2, [r7, #20]
+ 249 0154 3B69     		ldr	r3, [r7, #16]
+ 250 0156 9A42     		cmp	r2, r3
+ 251 0158 F3D3     		bcc	.L12
+ 111:Src/memcpy.c  **** 			}
+ 112:Src/memcpy.c  **** 
+ 113:Src/memcpy.c  **** 			pxLastSource.uint32 |= extra;
+ 252              		.loc 1 113 0
+ 253 015a 3A69     		ldr	r2, [r7, #16]
+ 254 015c FB69     		ldr	r3, [r7, #28]
+ 255 015e 1343     		orrs	r3, r3, r2
+ 256 0160 3B61     		str	r3, [r7, #16]
+ 257 0162 41E0     		b	.L16
+ 258              	.L2:
+ 259              	.LBE3:
+ 260              	.LBB4:
+ 114:Src/memcpy.c  **** 		}
+ 115:Src/memcpy.c  **** 	}
+ 116:Src/memcpy.c  **** 	else
+ 117:Src/memcpy.c  **** 	{
+ 118:Src/memcpy.c  **** 		/* This it the worst alignment, e.g. 0x80000 and 0xA0001,
+ 119:Src/memcpy.c  **** 		only 8-bits copying is possible. */
+ 120:Src/memcpy.c  **** 		int iCount = pxLastSource.u8 - pxSource.u8;
+ 261              		.loc 1 120 0
+ 262 0164 3B69     		ldr	r3, [r7, #16]
+ 263 0166 1A46     		mov	r2, r3
+ 264 0168 7B69     		ldr	r3, [r7, #20]
+ 265 016a D31A     		subs	r3, r2, r3
+ 266 016c BB62     		str	r3, [r7, #40]
+ 121:Src/memcpy.c  **** 		while( iCount > 8 )
+ 267              		.loc 1 121 0
+ 268 016e 2FE0     		b	.L14
+ 269              	.L15:
+ 122:Src/memcpy.c  **** 		{
+ 123:Src/memcpy.c  **** 			/* Copy 8 bytes the hard way */
+ 124:Src/memcpy.c  **** 			pxDestination.u8[ 0 ] = pxSource.u8[ 0 ];
+ 270              		.loc 1 124 0
+ 271 0170 BB69     		ldr	r3, [r7, #24]
+ 272 0172 7A69     		ldr	r2, [r7, #20]
+ 273 0174 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ARM GAS  /tmp/ccq5izIv.s 			page 8
+
+
+ 274 0176 1A70     		strb	r2, [r3]
+ 125:Src/memcpy.c  **** 			pxDestination.u8[ 1 ] = pxSource.u8[ 1 ];
+ 275              		.loc 1 125 0
+ 276 0178 BB69     		ldr	r3, [r7, #24]
+ 277 017a 0133     		adds	r3, r3, #1
+ 278 017c 7A69     		ldr	r2, [r7, #20]
+ 279 017e 5278     		ldrb	r2, [r2, #1]	@ zero_extendqisi2
+ 280 0180 1A70     		strb	r2, [r3]
+ 126:Src/memcpy.c  **** 			pxDestination.u8[ 2 ] = pxSource.u8[ 2 ];
+ 281              		.loc 1 126 0
+ 282 0182 BB69     		ldr	r3, [r7, #24]
+ 283 0184 0233     		adds	r3, r3, #2
+ 284 0186 7A69     		ldr	r2, [r7, #20]
+ 285 0188 9278     		ldrb	r2, [r2, #2]	@ zero_extendqisi2
+ 286 018a 1A70     		strb	r2, [r3]
+ 127:Src/memcpy.c  **** 			pxDestination.u8[ 3 ] = pxSource.u8[ 3 ];
+ 287              		.loc 1 127 0
+ 288 018c BB69     		ldr	r3, [r7, #24]
+ 289 018e 0333     		adds	r3, r3, #3
+ 290 0190 7A69     		ldr	r2, [r7, #20]
+ 291 0192 D278     		ldrb	r2, [r2, #3]	@ zero_extendqisi2
+ 292 0194 1A70     		strb	r2, [r3]
+ 128:Src/memcpy.c  **** 			pxDestination.u8[ 4 ] = pxSource.u8[ 4 ];
+ 293              		.loc 1 128 0
+ 294 0196 BB69     		ldr	r3, [r7, #24]
+ 295 0198 0433     		adds	r3, r3, #4
+ 296 019a 7A69     		ldr	r2, [r7, #20]
+ 297 019c 1279     		ldrb	r2, [r2, #4]	@ zero_extendqisi2
+ 298 019e 1A70     		strb	r2, [r3]
+ 129:Src/memcpy.c  **** 			pxDestination.u8[ 5 ] = pxSource.u8[ 5 ];
+ 299              		.loc 1 129 0
+ 300 01a0 BB69     		ldr	r3, [r7, #24]
+ 301 01a2 0533     		adds	r3, r3, #5
+ 302 01a4 7A69     		ldr	r2, [r7, #20]
+ 303 01a6 5279     		ldrb	r2, [r2, #5]	@ zero_extendqisi2
+ 304 01a8 1A70     		strb	r2, [r3]
+ 130:Src/memcpy.c  **** 			pxDestination.u8[ 6 ] = pxSource.u8[ 6 ];
+ 305              		.loc 1 130 0
+ 306 01aa BB69     		ldr	r3, [r7, #24]
+ 307 01ac 0633     		adds	r3, r3, #6
+ 308 01ae 7A69     		ldr	r2, [r7, #20]
+ 309 01b0 9279     		ldrb	r2, [r2, #6]	@ zero_extendqisi2
+ 310 01b2 1A70     		strb	r2, [r3]
+ 131:Src/memcpy.c  **** 			pxDestination.u8[ 7 ] = pxSource.u8[ 7 ];
+ 311              		.loc 1 131 0
+ 312 01b4 BB69     		ldr	r3, [r7, #24]
+ 313 01b6 0733     		adds	r3, r3, #7
+ 314 01b8 7A69     		ldr	r2, [r7, #20]
+ 315 01ba D279     		ldrb	r2, [r2, #7]	@ zero_extendqisi2
+ 316 01bc 1A70     		strb	r2, [r3]
+ 132:Src/memcpy.c  **** 			pxDestination.u8 += 8;
+ 317              		.loc 1 132 0
+ 318 01be BB69     		ldr	r3, [r7, #24]
+ 319 01c0 0833     		adds	r3, r3, #8
+ 320 01c2 BB61     		str	r3, [r7, #24]
+ 133:Src/memcpy.c  **** 			pxSource.u8 += 8;
+ 321              		.loc 1 133 0
+ARM GAS  /tmp/ccq5izIv.s 			page 9
+
+
+ 322 01c4 7B69     		ldr	r3, [r7, #20]
+ 323 01c6 0833     		adds	r3, r3, #8
+ 324 01c8 7B61     		str	r3, [r7, #20]
+ 134:Src/memcpy.c  **** 			iCount -= 8;
+ 325              		.loc 1 134 0
+ 326 01ca BB6A     		ldr	r3, [r7, #40]
+ 327 01cc 083B     		subs	r3, r3, #8
+ 328 01ce BB62     		str	r3, [r7, #40]
+ 329              	.L14:
+ 121:Src/memcpy.c  **** 		{
+ 330              		.loc 1 121 0
+ 331 01d0 BB6A     		ldr	r3, [r7, #40]
+ 332 01d2 082B     		cmp	r3, #8
+ 333 01d4 CCDC     		bgt	.L15
+ 334              	.L13:
+ 335              	.LBE4:
+ 135:Src/memcpy.c  **** 		}
+ 136:Src/memcpy.c  **** 	}
+ 137:Src/memcpy.c  **** 	while( pxSource.u8 < pxLastSource.u8 )
+ 336              		.loc 1 137 0 discriminator 1
+ 337 01d6 07E0     		b	.L16
+ 338              	.L17:
+ 138:Src/memcpy.c  **** 	{
+ 139:Src/memcpy.c  **** 		*( pxDestination.u8++ ) = *( pxSource.u8++ );
+ 339              		.loc 1 139 0
+ 340 01d8 BB69     		ldr	r3, [r7, #24]
+ 341 01da 5A1C     		adds	r2, r3, #1
+ 342 01dc BA61     		str	r2, [r7, #24]
+ 343 01de 7A69     		ldr	r2, [r7, #20]
+ 344 01e0 511C     		adds	r1, r2, #1
+ 345 01e2 7961     		str	r1, [r7, #20]
+ 346 01e4 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
+ 347 01e6 1A70     		strb	r2, [r3]
+ 348              	.L16:
+ 137:Src/memcpy.c  **** 	{
+ 349              		.loc 1 137 0
+ 350 01e8 7A69     		ldr	r2, [r7, #20]
+ 351 01ea 3B69     		ldr	r3, [r7, #16]
+ 352 01ec 9A42     		cmp	r2, r3
+ 353 01ee F3D3     		bcc	.L17
+ 140:Src/memcpy.c  **** 	}
+ 141:Src/memcpy.c  **** 	return pvDest;
+ 354              		.loc 1 141 0
+ 355 01f0 FB68     		ldr	r3, [r7, #12]
+ 142:Src/memcpy.c  **** }
+ 356              		.loc 1 142 0
+ 357 01f2 1846     		mov	r0, r3
+ 358 01f4 3437     		adds	r7, r7, #52
+ 359              	.LCFI3:
+ 360              		.cfi_def_cfa_offset 4
+ 361 01f6 BD46     		mov	sp, r7
+ 362              	.LCFI4:
+ 363              		.cfi_def_cfa_register 13
+ 364              		@ sp needed
+ 365 01f8 5DF8047B 		ldr	r7, [sp], #4
+ 366              	.LCFI5:
+ 367              		.cfi_restore 7
+ARM GAS  /tmp/ccq5izIv.s 			page 10
+
+
+ 368              		.cfi_def_cfa_offset 0
+ 369 01fc 7047     		bx	lr
+ 370              		.cfi_endproc
+ 371              	.LFE0:
+ 373 01fe 00BF     		.section	.text.memset,"ax",%progbits
+ 374              		.align	2
+ 375              		.global	memset
+ 376              		.thumb
+ 377              		.thumb_func
+ 379              	memset:
+ 380              	.LFB1:
+ 143:Src/memcpy.c  **** #endif /* SIMPLE_MEMCPY == 0 */
+ 144:Src/memcpy.c  **** /*-----------------------------------------------------------*/
+ 145:Src/memcpy.c  **** 
+ 146:Src/memcpy.c  **** #if( SIMPLE_MEMSET != 0 )
+ 147:Src/memcpy.c  **** void *memset( void *pvDest, int iValue, size_t ulBytes )
+ 148:Src/memcpy.c  **** {
+ 149:Src/memcpy.c  **** unsigned char *pcDest = ( unsigned char * ) pvDest;
+ 150:Src/memcpy.c  **** size_t x;
+ 151:Src/memcpy.c  **** 
+ 152:Src/memcpy.c  **** 	for( x = 0; x < ulBytes; x++ )
+ 153:Src/memcpy.c  **** 	{
+ 154:Src/memcpy.c  **** 		*pcDest = ( unsigned char ) iValue;
+ 155:Src/memcpy.c  **** 		pcDest++;
+ 156:Src/memcpy.c  **** 	}
+ 157:Src/memcpy.c  **** 
+ 158:Src/memcpy.c  **** 	return pvDest;
+ 159:Src/memcpy.c  **** }
+ 160:Src/memcpy.c  **** #endif /* SIMPLE_MEMSET != 0 */
+ 161:Src/memcpy.c  **** /*-----------------------------------------------------------*/
+ 162:Src/memcpy.c  **** 
+ 163:Src/memcpy.c  **** 
+ 164:Src/memcpy.c  **** #if( SIMPLE_MEMSET == 0 )
+ 165:Src/memcpy.c  **** void *memset(void *pvDest, int iValue, size_t ulBytes)
+ 166:Src/memcpy.c  **** {
+ 381              		.loc 1 166 0
+ 382              		.cfi_startproc
+ 383              		@ args = 0, pretend = 0, frame = 40
+ 384              		@ frame_needed = 1, uses_anonymous_args = 0
+ 385              		@ link register save eliminated.
+ 386 0000 80B4     		push	{r7}
+ 387              	.LCFI6:
+ 388              		.cfi_def_cfa_offset 4
+ 389              		.cfi_offset 7, -4
+ 390 0002 8BB0     		sub	sp, sp, #44
+ 391              	.LCFI7:
+ 392              		.cfi_def_cfa_offset 48
+ 393 0004 00AF     		add	r7, sp, #0
+ 394              	.LCFI8:
+ 395              		.cfi_def_cfa_register 7
+ 396 0006 F860     		str	r0, [r7, #12]
+ 397 0008 B960     		str	r1, [r7, #8]
+ 398 000a 7A60     		str	r2, [r7, #4]
+ 167:Src/memcpy.c  **** union xPointer pxDestination;
+ 168:Src/memcpy.c  **** union xPointer pxLast;
+ 169:Src/memcpy.c  **** uint32_t ulPattern;
+ 170:Src/memcpy.c  **** 
+ARM GAS  /tmp/ccq5izIv.s 			page 11
+
+
+ 171:Src/memcpy.c  **** 	pxDestination.u8 = ( unsigned char * ) pvDest;
+ 399              		.loc 1 171 0
+ 400 000c FB68     		ldr	r3, [r7, #12]
+ 401 000e 7B61     		str	r3, [r7, #20]
+ 172:Src/memcpy.c  **** 	pxLast.u8 = pxDestination.u8 + ulBytes;
+ 402              		.loc 1 172 0
+ 403 0010 7A69     		ldr	r2, [r7, #20]
+ 404 0012 7B68     		ldr	r3, [r7, #4]
+ 405 0014 1344     		add	r3, r3, r2
+ 406 0016 3B61     		str	r3, [r7, #16]
+ 173:Src/memcpy.c  **** 
+ 174:Src/memcpy.c  **** 	if( ulBytes >= 8 )
+ 407              		.loc 1 174 0
+ 408 0018 7B68     		ldr	r3, [r7, #4]
+ 409 001a 072B     		cmp	r3, #7
+ 410 001c 6AD9     		bls	.L20
+ 411              	.LBB5:
+ 175:Src/memcpy.c  **** 	{
+ 176:Src/memcpy.c  **** 	uint32_t ulAlignBits;
+ 177:Src/memcpy.c  **** 	uint32_t ulExtra;
+ 178:Src/memcpy.c  **** 	int iCount;
+ 179:Src/memcpy.c  **** 
+ 180:Src/memcpy.c  **** 		ulPattern = iValue & 0xff;
+ 412              		.loc 1 180 0
+ 413 001e BB68     		ldr	r3, [r7, #8]
+ 414 0020 DBB2     		uxtb	r3, r3
+ 415 0022 FB61     		str	r3, [r7, #28]
+ 181:Src/memcpy.c  **** 		ulPattern |= ( ulPattern << 8 ) | ( ulPattern << 16 ) | ( ulPattern << 24 );
+ 416              		.loc 1 181 0
+ 417 0024 FB69     		ldr	r3, [r7, #28]
+ 418 0026 1A02     		lsls	r2, r3, #8
+ 419 0028 FB69     		ldr	r3, [r7, #28]
+ 420 002a 1B04     		lsls	r3, r3, #16
+ 421 002c 1A43     		orrs	r2, r2, r3
+ 422 002e FB69     		ldr	r3, [r7, #28]
+ 423 0030 1B06     		lsls	r3, r3, #24
+ 424 0032 1343     		orrs	r3, r3, r2
+ 425 0034 FA69     		ldr	r2, [r7, #28]
+ 426 0036 1343     		orrs	r3, r3, r2
+ 427 0038 FB61     		str	r3, [r7, #28]
+ 182:Src/memcpy.c  **** 		ulAlignBits = ( pxDestination.uint32 & 0x03 );
+ 428              		.loc 1 182 0
+ 429 003a 7B69     		ldr	r3, [r7, #20]
+ 430 003c 03F00303 		and	r3, r3, #3
+ 431 0040 7B62     		str	r3, [r7, #36]
+ 183:Src/memcpy.c  **** 		if( ulAlignBits != 0 )
+ 432              		.loc 1 183 0
+ 433 0042 7B6A     		ldr	r3, [r7, #36]
+ 434 0044 002B     		cmp	r3, #0
+ 435 0046 10D0     		beq	.L21
+ 184:Src/memcpy.c  **** 		{
+ 185:Src/memcpy.c  **** 			ulAlignBits = 4 - ulAlignBits;
+ 436              		.loc 1 185 0
+ 437 0048 7B6A     		ldr	r3, [r7, #36]
+ 438 004a C3F10403 		rsb	r3, r3, #4
+ 439 004e 7B62     		str	r3, [r7, #36]
+ 186:Src/memcpy.c  **** 			while( ulAlignBits-- > 0 )
+ARM GAS  /tmp/ccq5izIv.s 			page 12
+
+
+ 440              		.loc 1 186 0
+ 441 0050 06E0     		b	.L22
+ 442              	.L23:
+ 187:Src/memcpy.c  **** 			{
+ 188:Src/memcpy.c  **** 				pxDestination.u8[ 0 ] = ( unsigned char )iValue;
+ 443              		.loc 1 188 0
+ 444 0052 7B69     		ldr	r3, [r7, #20]
+ 445 0054 BA68     		ldr	r2, [r7, #8]
+ 446 0056 D2B2     		uxtb	r2, r2
+ 447 0058 1A70     		strb	r2, [r3]
+ 189:Src/memcpy.c  **** 				pxDestination.u8++;
+ 448              		.loc 1 189 0
+ 449 005a 7B69     		ldr	r3, [r7, #20]
+ 450 005c 0133     		adds	r3, r3, #1
+ 451 005e 7B61     		str	r3, [r7, #20]
+ 452              	.L22:
+ 186:Src/memcpy.c  **** 			while( ulAlignBits-- > 0 )
+ 453              		.loc 1 186 0
+ 454 0060 7B6A     		ldr	r3, [r7, #36]
+ 455 0062 5A1E     		subs	r2, r3, #1
+ 456 0064 7A62     		str	r2, [r7, #36]
+ 457 0066 002B     		cmp	r3, #0
+ 458 0068 F3D1     		bne	.L23
+ 459              	.L21:
+ 190:Src/memcpy.c  **** 			}
+ 191:Src/memcpy.c  **** 		}
+ 192:Src/memcpy.c  **** 		/* Strip-off the last 1 up-to 3 bytes because they can not be set in a 32-bit
+ 193:Src/memcpy.c  **** 		memory instruction. */
+ 194:Src/memcpy.c  **** 		ulExtra = pxLast.uint32 & 0x03ul;
+ 460              		.loc 1 194 0
+ 461 006a 3B69     		ldr	r3, [r7, #16]
+ 462 006c 03F00303 		and	r3, r3, #3
+ 463 0070 BB61     		str	r3, [r7, #24]
+ 195:Src/memcpy.c  **** 
+ 196:Src/memcpy.c  **** 		pxLast.uint32 &= ~0x03ul;
+ 464              		.loc 1 196 0
+ 465 0072 3B69     		ldr	r3, [r7, #16]
+ 466 0074 23F00303 		bic	r3, r3, #3
+ 467 0078 3B61     		str	r3, [r7, #16]
+ 197:Src/memcpy.c  **** 		iCount = ( int ) ( pxLast.u32 - pxDestination.u32 );
+ 468              		.loc 1 197 0
+ 469 007a 3B69     		ldr	r3, [r7, #16]
+ 470 007c 1A46     		mov	r2, r3
+ 471 007e 7B69     		ldr	r3, [r7, #20]
+ 472 0080 D31A     		subs	r3, r2, r3
+ 473 0082 9B10     		asrs	r3, r3, #2
+ 474 0084 3B62     		str	r3, [r7, #32]
+ 198:Src/memcpy.c  **** 		while( iCount > 8 )
+ 475              		.loc 1 198 0
+ 476 0086 24E0     		b	.L24
+ 477              	.L25:
+ 199:Src/memcpy.c  **** 		{
+ 200:Src/memcpy.c  **** 			/* Set 8 * 4 bytes and save some increments */
+ 201:Src/memcpy.c  **** 			/* It won't make sense to make this list much longer than 8 assignments. */
+ 202:Src/memcpy.c  **** 			pxDestination.u32[ 0 ] = ulPattern;
+ 478              		.loc 1 202 0
+ 479 0088 7B69     		ldr	r3, [r7, #20]
+ARM GAS  /tmp/ccq5izIv.s 			page 13
+
+
+ 480 008a FA69     		ldr	r2, [r7, #28]
+ 481 008c 1A60     		str	r2, [r3]
+ 203:Src/memcpy.c  **** 			pxDestination.u32[ 1 ] = ulPattern;
+ 482              		.loc 1 203 0
+ 483 008e 7B69     		ldr	r3, [r7, #20]
+ 484 0090 0433     		adds	r3, r3, #4
+ 485 0092 FA69     		ldr	r2, [r7, #28]
+ 486 0094 1A60     		str	r2, [r3]
+ 204:Src/memcpy.c  **** 			pxDestination.u32[ 2 ] = ulPattern;
+ 487              		.loc 1 204 0
+ 488 0096 7B69     		ldr	r3, [r7, #20]
+ 489 0098 0833     		adds	r3, r3, #8
+ 490 009a FA69     		ldr	r2, [r7, #28]
+ 491 009c 1A60     		str	r2, [r3]
+ 205:Src/memcpy.c  **** 			pxDestination.u32[ 3 ] = ulPattern;
+ 492              		.loc 1 205 0
+ 493 009e 7B69     		ldr	r3, [r7, #20]
+ 494 00a0 0C33     		adds	r3, r3, #12
+ 495 00a2 FA69     		ldr	r2, [r7, #28]
+ 496 00a4 1A60     		str	r2, [r3]
+ 206:Src/memcpy.c  **** 			pxDestination.u32[ 4 ] = ulPattern;
+ 497              		.loc 1 206 0
+ 498 00a6 7B69     		ldr	r3, [r7, #20]
+ 499 00a8 1033     		adds	r3, r3, #16
+ 500 00aa FA69     		ldr	r2, [r7, #28]
+ 501 00ac 1A60     		str	r2, [r3]
+ 207:Src/memcpy.c  **** 			pxDestination.u32[ 5 ] = ulPattern;
+ 502              		.loc 1 207 0
+ 503 00ae 7B69     		ldr	r3, [r7, #20]
+ 504 00b0 1433     		adds	r3, r3, #20
+ 505 00b2 FA69     		ldr	r2, [r7, #28]
+ 506 00b4 1A60     		str	r2, [r3]
+ 208:Src/memcpy.c  **** 			pxDestination.u32[ 6 ] = ulPattern;
+ 507              		.loc 1 208 0
+ 508 00b6 7B69     		ldr	r3, [r7, #20]
+ 509 00b8 1833     		adds	r3, r3, #24
+ 510 00ba FA69     		ldr	r2, [r7, #28]
+ 511 00bc 1A60     		str	r2, [r3]
+ 209:Src/memcpy.c  **** 			pxDestination.u32[ 7 ] = ulPattern;
+ 512              		.loc 1 209 0
+ 513 00be 7B69     		ldr	r3, [r7, #20]
+ 514 00c0 1C33     		adds	r3, r3, #28
+ 515 00c2 FA69     		ldr	r2, [r7, #28]
+ 516 00c4 1A60     		str	r2, [r3]
+ 210:Src/memcpy.c  **** 			pxDestination.u32 += 8;
+ 517              		.loc 1 210 0
+ 518 00c6 7B69     		ldr	r3, [r7, #20]
+ 519 00c8 2033     		adds	r3, r3, #32
+ 520 00ca 7B61     		str	r3, [r7, #20]
+ 211:Src/memcpy.c  **** 			iCount -= 8;
+ 521              		.loc 1 211 0
+ 522 00cc 3B6A     		ldr	r3, [r7, #32]
+ 523 00ce 083B     		subs	r3, r3, #8
+ 524 00d0 3B62     		str	r3, [r7, #32]
+ 525              	.L24:
+ 198:Src/memcpy.c  **** 		{
+ 526              		.loc 1 198 0
+ARM GAS  /tmp/ccq5izIv.s 			page 14
+
+
+ 527 00d2 3B6A     		ldr	r3, [r7, #32]
+ 528 00d4 082B     		cmp	r3, #8
+ 529 00d6 D7DC     		bgt	.L25
+ 212:Src/memcpy.c  **** 		}
+ 213:Src/memcpy.c  **** 
+ 214:Src/memcpy.c  **** 		while( pxDestination.u32 < pxLast.u32 )
+ 530              		.loc 1 214 0
+ 531 00d8 04E0     		b	.L26
+ 532              	.L27:
+ 215:Src/memcpy.c  **** 		{
+ 216:Src/memcpy.c  **** 			*( pxDestination.u32++ ) = ulPattern;
+ 533              		.loc 1 216 0
+ 534 00da 7B69     		ldr	r3, [r7, #20]
+ 535 00dc 1A1D     		adds	r2, r3, #4
+ 536 00de 7A61     		str	r2, [r7, #20]
+ 537 00e0 FA69     		ldr	r2, [r7, #28]
+ 538 00e2 1A60     		str	r2, [r3]
+ 539              	.L26:
+ 214:Src/memcpy.c  **** 		{
+ 540              		.loc 1 214 0
+ 541 00e4 7A69     		ldr	r2, [r7, #20]
+ 542 00e6 3B69     		ldr	r3, [r7, #16]
+ 543 00e8 9A42     		cmp	r2, r3
+ 544 00ea F6D3     		bcc	.L27
+ 217:Src/memcpy.c  **** 		}
+ 218:Src/memcpy.c  **** 
+ 219:Src/memcpy.c  **** 		pxLast.uint32 |= ulExtra;
+ 545              		.loc 1 219 0
+ 546 00ec 3A69     		ldr	r2, [r7, #16]
+ 547 00ee BB69     		ldr	r3, [r7, #24]
+ 548 00f0 1343     		orrs	r3, r3, r2
+ 549 00f2 3B61     		str	r3, [r7, #16]
+ 550              	.L20:
+ 551              	.LBE5:
+ 220:Src/memcpy.c  **** 	}
+ 221:Src/memcpy.c  **** 
+ 222:Src/memcpy.c  **** 	while( pxDestination.u8 < pxLast.u8 )
+ 552              		.loc 1 222 0
+ 553 00f4 06E0     		b	.L28
+ 554              	.L29:
+ 223:Src/memcpy.c  **** 	{
+ 224:Src/memcpy.c  **** 		pxDestination.u8[ 0 ] = ( unsigned char ) iValue;
+ 555              		.loc 1 224 0
+ 556 00f6 7B69     		ldr	r3, [r7, #20]
+ 557 00f8 BA68     		ldr	r2, [r7, #8]
+ 558 00fa D2B2     		uxtb	r2, r2
+ 559 00fc 1A70     		strb	r2, [r3]
+ 225:Src/memcpy.c  **** 		pxDestination.u8++;
+ 560              		.loc 1 225 0
+ 561 00fe 7B69     		ldr	r3, [r7, #20]
+ 562 0100 0133     		adds	r3, r3, #1
+ 563 0102 7B61     		str	r3, [r7, #20]
+ 564              	.L28:
+ 222:Src/memcpy.c  **** 	{
+ 565              		.loc 1 222 0
+ 566 0104 7A69     		ldr	r2, [r7, #20]
+ 567 0106 3B69     		ldr	r3, [r7, #16]
+ARM GAS  /tmp/ccq5izIv.s 			page 15
+
+
+ 568 0108 9A42     		cmp	r2, r3
+ 569 010a F4D3     		bcc	.L29
+ 226:Src/memcpy.c  **** 	}
+ 227:Src/memcpy.c  **** 
+ 228:Src/memcpy.c  **** 	return pvDest;
+ 570              		.loc 1 228 0
+ 571 010c FB68     		ldr	r3, [r7, #12]
+ 229:Src/memcpy.c  **** }
+ 572              		.loc 1 229 0
+ 573 010e 1846     		mov	r0, r3
+ 574 0110 2C37     		adds	r7, r7, #44
+ 575              	.LCFI9:
+ 576              		.cfi_def_cfa_offset 4
+ 577 0112 BD46     		mov	sp, r7
+ 578              	.LCFI10:
+ 579              		.cfi_def_cfa_register 13
+ 580              		@ sp needed
+ 581 0114 5DF8047B 		ldr	r7, [sp], #4
+ 582              	.LCFI11:
+ 583              		.cfi_restore 7
+ 584              		.cfi_def_cfa_offset 0
+ 585 0118 7047     		bx	lr
+ 586              		.cfi_endproc
+ 587              	.LFE1:
+ 589 011a 00BF     		.text
+ 590              	.Letext0:
+ 591              		.file 2 "/usr/lib/gcc/arm-none-eabi/4.9.3/include/stddef.h"
+ 592              		.file 3 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 593              		.file 4 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 594              		.file 5 "/usr/arm-none-eabi/include/string.h"
+ARM GAS  /tmp/ccq5izIv.s 			page 16
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 memcpy.c
+     /tmp/ccq5izIv.s:21     .text.memcpy:0000000000000000 $t
+     /tmp/ccq5izIv.s:26     .text.memcpy:0000000000000000 memcpy
+     /tmp/ccq5izIv.s:374    .text.memset:0000000000000000 $t
+     /tmp/ccq5izIv.s:379    .text.memset:0000000000000000 memset
+                     .debug_frame:0000000000000010 $d
+
+NO UNDEFINED SYMBOLS

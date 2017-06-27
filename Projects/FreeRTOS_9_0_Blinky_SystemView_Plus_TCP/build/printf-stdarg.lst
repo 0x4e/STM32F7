@@ -1,0 +1,2758 @@
+ARM GAS  /tmp/ccBuMMq0.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m7
+   3              		.eabi_attribute 27, 1
+   4              		.eabi_attribute 28, 1
+   5              		.fpu fpv5-sp-d16
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 6
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.thumb
+  16              		.file	"printf-stdarg.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              		.section	.rodata.xTicksToWait,"a",%progbits
+  21              		.align	2
+  24              	xTicksToWait:
+  25 0000 14000000 		.word	20
+  26              		.section	.text.strbuf_init,"ax",%progbits
+  27              		.align	2
+  28              		.thumb
+  29              		.thumb_func
+  31              	strbuf_init:
+  32              	.LFB5:
+  33              		.file 1 "../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c"
+   1:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** /*
+   2:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	Copyright 2001, 2002 Georges Menie (www.menie.org)
+   3:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	stdarg version contributed by Christian Ettinger
+   4:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+   5:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	This program is free software; you can redistribute it and/or modify
+   6:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	it under the terms of the GNU Lesser General Public License as published by
+   7:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	the Free Software Foundation; either version 2 of the License, or
+   8:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	(at your option) any later version.
+   9:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+  10:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	Changes for the FreeRTOS ports:
+  11:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+  12:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	- The dot in "%-8.8s"
+  13:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	- The specifiers 'l' (long) and 'L' (long long)
+  14:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	- The specifier 'u' for unsigned
+  15:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	- Dot notation for IP addresses:
+  16:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	  sprintf("IP = %xip\n", 0xC0A80164);
+  17:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c ****       will produce "IP = 192.168.1.100\n"
+  18:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** */
+  19:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+  20:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** #include <stdarg.h>
+  21:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** #include <stdio.h>
+  22:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** #include <stdlib.h>
+  23:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** #include <string.h>
+  24:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+  25:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** #include "FreeRTOS.h"
+  26:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+  27:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** #define PAD_RIGHT 1
+ARM GAS  /tmp/ccBuMMq0.s 			page 2
+
+
+  28:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** #define PAD_ZERO 2
+  29:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+  30:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** /*
+  31:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c ****  * Return 1 for readable, 2 for writeable, 3 for both.
+  32:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c ****  * Function must be provided by the application.
+  33:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c ****  */
+  34:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** extern BaseType_t xApplicationMemoryPermissions( uint32_t aAddress );
+  35:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+  36:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** extern void vOutputChar( const char cChar, const TickType_t xTicksToWait  );
+  37:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** static const TickType_t xTicksToWait = pdMS_TO_TICKS( 20 );
+  38:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+  39:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** struct xPrintFlags
+  40:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** {
+  41:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	int base;
+  42:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	int width;
+  43:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	int printLimit;
+  44:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	unsigned
+  45:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		pad : 8,
+  46:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		letBase : 8,
+  47:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		isSigned : 1,
+  48:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		isNumber : 1,
+  49:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		long32 : 1,
+  50:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		long64 : 1;
+  51:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** };
+  52:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+  53:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** struct SStringBuf
+  54:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** {
+  55:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	char *str;
+  56:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	const char *orgStr;
+  57:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	const char *nulPos;
+  58:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	int curLen;
+  59:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	struct xPrintFlags flags;
+  60:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** };
+  61:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+  62:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** static void strbuf_init( struct SStringBuf *apStr, char *apBuf, const char *apMaxStr )
+  63:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** {
+  34              		.loc 1 63 0
+  35              		.cfi_startproc
+  36              		@ args = 0, pretend = 0, frame = 16
+  37              		@ frame_needed = 1, uses_anonymous_args = 0
+  38 0000 80B5     		push	{r7, lr}
+  39              	.LCFI0:
+  40              		.cfi_def_cfa_offset 8
+  41              		.cfi_offset 7, -8
+  42              		.cfi_offset 14, -4
+  43 0002 84B0     		sub	sp, sp, #16
+  44              	.LCFI1:
+  45              		.cfi_def_cfa_offset 24
+  46 0004 00AF     		add	r7, sp, #0
+  47              	.LCFI2:
+  48              		.cfi_def_cfa_register 7
+  49 0006 F860     		str	r0, [r7, #12]
+  50 0008 B960     		str	r1, [r7, #8]
+  51 000a 7A60     		str	r2, [r7, #4]
+  64:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	apStr->str = apBuf;
+  52              		.loc 1 64 0
+  53 000c FB68     		ldr	r3, [r7, #12]
+ARM GAS  /tmp/ccBuMMq0.s 			page 3
+
+
+  54 000e BA68     		ldr	r2, [r7, #8]
+  55 0010 1A60     		str	r2, [r3]
+  65:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	apStr->orgStr = apBuf;
+  56              		.loc 1 65 0
+  57 0012 FB68     		ldr	r3, [r7, #12]
+  58 0014 BA68     		ldr	r2, [r7, #8]
+  59 0016 5A60     		str	r2, [r3, #4]
+  66:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	apStr->nulPos = apMaxStr-1;
+  60              		.loc 1 66 0
+  61 0018 7B68     		ldr	r3, [r7, #4]
+  62 001a 5A1E     		subs	r2, r3, #1
+  63 001c FB68     		ldr	r3, [r7, #12]
+  64 001e 9A60     		str	r2, [r3, #8]
+  67:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	apStr->curLen = 0;
+  65              		.loc 1 67 0
+  66 0020 FB68     		ldr	r3, [r7, #12]
+  67 0022 0022     		movs	r2, #0
+  68 0024 DA60     		str	r2, [r3, #12]
+  68:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+  69:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	memset( &apStr->flags, '\0', sizeof( apStr->flags ) );
+  69              		.loc 1 69 0
+  70 0026 FB68     		ldr	r3, [r7, #12]
+  71 0028 1033     		adds	r3, r3, #16
+  72 002a 1846     		mov	r0, r3
+  73 002c 0021     		movs	r1, #0
+  74 002e 1022     		movs	r2, #16
+  75 0030 FFF7FEFF 		bl	memset
+  70:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** }
+  76              		.loc 1 70 0
+  77 0034 1037     		adds	r7, r7, #16
+  78              	.LCFI3:
+  79              		.cfi_def_cfa_offset 8
+  80 0036 BD46     		mov	sp, r7
+  81              	.LCFI4:
+  82              		.cfi_def_cfa_register 13
+  83              		@ sp needed
+  84 0038 80BD     		pop	{r7, pc}
+  85              		.cfi_endproc
+  86              	.LFE5:
+  88 003a 00BF     		.section	.text.strbuf_printchar,"ax",%progbits
+  89              		.align	2
+  90              		.thumb
+  91              		.thumb_func
+  93              	strbuf_printchar:
+  94              	.LFB6:
+  71:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** /*-----------------------------------------------------------*/
+  72:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+  73:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** static BaseType_t strbuf_printchar( struct SStringBuf *apStr, int c )
+  74:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** {
+  95              		.loc 1 74 0
+  96              		.cfi_startproc
+  97              		@ args = 0, pretend = 0, frame = 8
+  98              		@ frame_needed = 1, uses_anonymous_args = 0
+  99 0000 80B5     		push	{r7, lr}
+ 100              	.LCFI5:
+ 101              		.cfi_def_cfa_offset 8
+ 102              		.cfi_offset 7, -8
+ARM GAS  /tmp/ccBuMMq0.s 			page 4
+
+
+ 103              		.cfi_offset 14, -4
+ 104 0002 82B0     		sub	sp, sp, #8
+ 105              	.LCFI6:
+ 106              		.cfi_def_cfa_offset 16
+ 107 0004 00AF     		add	r7, sp, #0
+ 108              	.LCFI7:
+ 109              		.cfi_def_cfa_register 7
+ 110 0006 7860     		str	r0, [r7, #4]
+ 111 0008 3960     		str	r1, [r7]
+  75:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	if( apStr->str == NULL )
+ 112              		.loc 1 75 0
+ 113 000a 7B68     		ldr	r3, [r7, #4]
+ 114 000c 1B68     		ldr	r3, [r3]
+ 115 000e 002B     		cmp	r3, #0
+ 116 0010 0DD1     		bne	.L3
+  76:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+  77:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		vOutputChar( ( char ) c, xTicksToWait );
+ 117              		.loc 1 77 0
+ 118 0012 3B68     		ldr	r3, [r7]
+ 119 0014 DBB2     		uxtb	r3, r3
+ 120 0016 1422     		movs	r2, #20
+ 121 0018 1846     		mov	r0, r3
+ 122 001a 1146     		mov	r1, r2
+ 123 001c FFF7FEFF 		bl	vOutputChar
+  78:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		apStr->curLen++;
+ 124              		.loc 1 78 0
+ 125 0020 7B68     		ldr	r3, [r7, #4]
+ 126 0022 DB68     		ldr	r3, [r3, #12]
+ 127 0024 5A1C     		adds	r2, r3, #1
+ 128 0026 7B68     		ldr	r3, [r7, #4]
+ 129 0028 DA60     		str	r2, [r3, #12]
+  79:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		return pdTRUE;
+ 130              		.loc 1 79 0
+ 131 002a 0123     		movs	r3, #1
+ 132 002c 22E0     		b	.L4
+ 133              	.L3:
+  80:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+  81:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	if( apStr->str < apStr->nulPos )
+ 134              		.loc 1 81 0
+ 135 002e 7B68     		ldr	r3, [r7, #4]
+ 136 0030 1A68     		ldr	r2, [r3]
+ 137 0032 7B68     		ldr	r3, [r7, #4]
+ 138 0034 9B68     		ldr	r3, [r3, #8]
+ 139 0036 9A42     		cmp	r2, r3
+ 140 0038 0ED2     		bcs	.L5
+  82:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+  83:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		*( apStr->str++ ) = c;
+ 141              		.loc 1 83 0
+ 142 003a 7B68     		ldr	r3, [r7, #4]
+ 143 003c 1B68     		ldr	r3, [r3]
+ 144 003e 591C     		adds	r1, r3, #1
+ 145 0040 7A68     		ldr	r2, [r7, #4]
+ 146 0042 1160     		str	r1, [r2]
+ 147 0044 3A68     		ldr	r2, [r7]
+ 148 0046 D2B2     		uxtb	r2, r2
+ 149 0048 1A70     		strb	r2, [r3]
+  84:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		apStr->curLen++;
+ARM GAS  /tmp/ccBuMMq0.s 			page 5
+
+
+ 150              		.loc 1 84 0
+ 151 004a 7B68     		ldr	r3, [r7, #4]
+ 152 004c DB68     		ldr	r3, [r3, #12]
+ 153 004e 5A1C     		adds	r2, r3, #1
+ 154 0050 7B68     		ldr	r3, [r7, #4]
+ 155 0052 DA60     		str	r2, [r3, #12]
+  85:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		return pdTRUE;
+ 156              		.loc 1 85 0
+ 157 0054 0123     		movs	r3, #1
+ 158 0056 0DE0     		b	.L4
+ 159              	.L5:
+  86:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+  87:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	if( apStr->str == apStr->nulPos )
+ 160              		.loc 1 87 0
+ 161 0058 7B68     		ldr	r3, [r7, #4]
+ 162 005a 1A68     		ldr	r2, [r3]
+ 163 005c 7B68     		ldr	r3, [r7, #4]
+ 164 005e 9B68     		ldr	r3, [r3, #8]
+ 165 0060 9A42     		cmp	r2, r3
+ 166 0062 06D1     		bne	.L6
+  88:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+  89:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		*( apStr->str++ ) = '\0';
+ 167              		.loc 1 89 0
+ 168 0064 7B68     		ldr	r3, [r7, #4]
+ 169 0066 1B68     		ldr	r3, [r3]
+ 170 0068 591C     		adds	r1, r3, #1
+ 171 006a 7A68     		ldr	r2, [r7, #4]
+ 172 006c 1160     		str	r1, [r2]
+ 173 006e 0022     		movs	r2, #0
+ 174 0070 1A70     		strb	r2, [r3]
+ 175              	.L6:
+  90:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+  91:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	return pdFALSE;
+ 176              		.loc 1 91 0
+ 177 0072 0023     		movs	r3, #0
+ 178              	.L4:
+  92:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** }
+ 179              		.loc 1 92 0
+ 180 0074 1846     		mov	r0, r3
+ 181 0076 0837     		adds	r7, r7, #8
+ 182              	.LCFI8:
+ 183              		.cfi_def_cfa_offset 8
+ 184 0078 BD46     		mov	sp, r7
+ 185              	.LCFI9:
+ 186              		.cfi_def_cfa_register 13
+ 187              		@ sp needed
+ 188 007a 80BD     		pop	{r7, pc}
+ 189              		.cfi_endproc
+ 190              	.LFE6:
+ 192              		.section	.text.strbuf_printchar_inline,"ax",%progbits
+ 193              		.align	2
+ 194              		.thumb
+ 195              		.thumb_func
+ 197              	strbuf_printchar_inline:
+ 198              	.LFB7:
+  93:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** /*-----------------------------------------------------------*/
+  94:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ARM GAS  /tmp/ccBuMMq0.s 			page 6
+
+
+  95:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** static portINLINE BaseType_t strbuf_printchar_inline( struct SStringBuf *apStr, int c )
+  96:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** {
+ 199              		.loc 1 96 0
+ 200              		.cfi_startproc
+ 201              		@ args = 0, pretend = 0, frame = 8
+ 202              		@ frame_needed = 1, uses_anonymous_args = 0
+ 203 0000 80B5     		push	{r7, lr}
+ 204              	.LCFI10:
+ 205              		.cfi_def_cfa_offset 8
+ 206              		.cfi_offset 7, -8
+ 207              		.cfi_offset 14, -4
+ 208 0002 82B0     		sub	sp, sp, #8
+ 209              	.LCFI11:
+ 210              		.cfi_def_cfa_offset 16
+ 211 0004 00AF     		add	r7, sp, #0
+ 212              	.LCFI12:
+ 213              		.cfi_def_cfa_register 7
+ 214 0006 7860     		str	r0, [r7, #4]
+ 215 0008 3960     		str	r1, [r7]
+  97:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	if( apStr->str == NULL )
+ 216              		.loc 1 97 0
+ 217 000a 7B68     		ldr	r3, [r7, #4]
+ 218 000c 1B68     		ldr	r3, [r3]
+ 219 000e 002B     		cmp	r3, #0
+ 220 0010 12D1     		bne	.L8
+  98:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+  99:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		vOutputChar( ( char ) c, xTicksToWait );
+ 221              		.loc 1 99 0
+ 222 0012 3B68     		ldr	r3, [r7]
+ 223 0014 DBB2     		uxtb	r3, r3
+ 224 0016 1422     		movs	r2, #20
+ 225 0018 1846     		mov	r0, r3
+ 226 001a 1146     		mov	r1, r2
+ 227 001c FFF7FEFF 		bl	vOutputChar
+ 100:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( c == 0 )
+ 228              		.loc 1 100 0
+ 229 0020 3B68     		ldr	r3, [r7]
+ 230 0022 002B     		cmp	r3, #0
+ 231 0024 01D1     		bne	.L9
+ 101:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 102:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			return pdFALSE;
+ 232              		.loc 1 102 0
+ 233 0026 0023     		movs	r3, #0
+ 234 0028 2EE0     		b	.L10
+ 235              	.L9:
+ 103:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 104:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		apStr->curLen++;
+ 236              		.loc 1 104 0
+ 237 002a 7B68     		ldr	r3, [r7, #4]
+ 238 002c DB68     		ldr	r3, [r3, #12]
+ 239 002e 5A1C     		adds	r2, r3, #1
+ 240 0030 7B68     		ldr	r3, [r7, #4]
+ 241 0032 DA60     		str	r2, [r3, #12]
+ 105:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		return pdTRUE;
+ 242              		.loc 1 105 0
+ 243 0034 0123     		movs	r3, #1
+ 244 0036 27E0     		b	.L10
+ARM GAS  /tmp/ccBuMMq0.s 			page 7
+
+
+ 245              	.L8:
+ 106:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 107:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	if( apStr->str < apStr->nulPos )
+ 246              		.loc 1 107 0
+ 247 0038 7B68     		ldr	r3, [r7, #4]
+ 248 003a 1A68     		ldr	r2, [r3]
+ 249 003c 7B68     		ldr	r3, [r7, #4]
+ 250 003e 9B68     		ldr	r3, [r3, #8]
+ 251 0040 9A42     		cmp	r2, r3
+ 252 0042 13D2     		bcs	.L11
+ 108:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 109:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		*(apStr->str++) = c;
+ 253              		.loc 1 109 0
+ 254 0044 7B68     		ldr	r3, [r7, #4]
+ 255 0046 1B68     		ldr	r3, [r3]
+ 256 0048 591C     		adds	r1, r3, #1
+ 257 004a 7A68     		ldr	r2, [r7, #4]
+ 258 004c 1160     		str	r1, [r2]
+ 259 004e 3A68     		ldr	r2, [r7]
+ 260 0050 D2B2     		uxtb	r2, r2
+ 261 0052 1A70     		strb	r2, [r3]
+ 110:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( c == 0 )
+ 262              		.loc 1 110 0
+ 263 0054 3B68     		ldr	r3, [r7]
+ 264 0056 002B     		cmp	r3, #0
+ 265 0058 01D1     		bne	.L12
+ 111:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 112:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			return pdFALSE;
+ 266              		.loc 1 112 0
+ 267 005a 0023     		movs	r3, #0
+ 268 005c 14E0     		b	.L10
+ 269              	.L12:
+ 113:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 114:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		apStr->curLen++;
+ 270              		.loc 1 114 0
+ 271 005e 7B68     		ldr	r3, [r7, #4]
+ 272 0060 DB68     		ldr	r3, [r3, #12]
+ 273 0062 5A1C     		adds	r2, r3, #1
+ 274 0064 7B68     		ldr	r3, [r7, #4]
+ 275 0066 DA60     		str	r2, [r3, #12]
+ 115:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		return pdTRUE;
+ 276              		.loc 1 115 0
+ 277 0068 0123     		movs	r3, #1
+ 278 006a 0DE0     		b	.L10
+ 279              	.L11:
+ 116:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 117:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	if( apStr->str == apStr->nulPos )
+ 280              		.loc 1 117 0
+ 281 006c 7B68     		ldr	r3, [r7, #4]
+ 282 006e 1A68     		ldr	r2, [r3]
+ 283 0070 7B68     		ldr	r3, [r7, #4]
+ 284 0072 9B68     		ldr	r3, [r3, #8]
+ 285 0074 9A42     		cmp	r2, r3
+ 286 0076 06D1     		bne	.L13
+ 118:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 119:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		*( apStr->str++ ) = '\0';
+ 287              		.loc 1 119 0
+ARM GAS  /tmp/ccBuMMq0.s 			page 8
+
+
+ 288 0078 7B68     		ldr	r3, [r7, #4]
+ 289 007a 1B68     		ldr	r3, [r3]
+ 290 007c 591C     		adds	r1, r3, #1
+ 291 007e 7A68     		ldr	r2, [r7, #4]
+ 292 0080 1160     		str	r1, [r2]
+ 293 0082 0022     		movs	r2, #0
+ 294 0084 1A70     		strb	r2, [r3]
+ 295              	.L13:
+ 120:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 121:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	return pdFALSE;
+ 296              		.loc 1 121 0
+ 297 0086 0023     		movs	r3, #0
+ 298              	.L10:
+ 122:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** }
+ 299              		.loc 1 122 0
+ 300 0088 1846     		mov	r0, r3
+ 301 008a 0837     		adds	r7, r7, #8
+ 302              	.LCFI13:
+ 303              		.cfi_def_cfa_offset 8
+ 304 008c BD46     		mov	sp, r7
+ 305              	.LCFI14:
+ 306              		.cfi_def_cfa_register 13
+ 307              		@ sp needed
+ 308 008e 80BD     		pop	{r7, pc}
+ 309              		.cfi_endproc
+ 310              	.LFE7:
+ 312              		.section	.text.prints,"ax",%progbits
+ 313              		.align	2
+ 314              		.thumb
+ 315              		.thumb_func
+ 317              	prints:
+ 318              	.LFB9:
+ 123:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** /*-----------------------------------------------------------*/
+ 124:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 125:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** static portINLINE int i2hex( int aCh )
+ 126:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** {
+ 127:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** int iResult;
+ 128:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 129:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	if( aCh < 10 )
+ 130:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 131:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		iResult = '0' + aCh;
+ 132:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 133:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	else
+ 134:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 135:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		iResult = 'A' + aCh - 10;
+ 136:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 137:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 138:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	return iResult;
+ 139:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** }
+ 140:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** /*-----------------------------------------------------------*/
+ 141:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 142:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** static BaseType_t prints(struct SStringBuf *apBuf, const char *apString )
+ 143:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** {
+ 319              		.loc 1 143 0
+ 320              		.cfi_startproc
+ 321              		@ args = 0, pretend = 0, frame = 16
+ 322              		@ frame_needed = 1, uses_anonymous_args = 0
+ARM GAS  /tmp/ccBuMMq0.s 			page 9
+
+
+ 323 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 324              	.LCFI15:
+ 325              		.cfi_def_cfa_offset 20
+ 326              		.cfi_offset 4, -20
+ 327              		.cfi_offset 5, -16
+ 328              		.cfi_offset 6, -12
+ 329              		.cfi_offset 7, -8
+ 330              		.cfi_offset 14, -4
+ 331 0002 85B0     		sub	sp, sp, #20
+ 332              	.LCFI16:
+ 333              		.cfi_def_cfa_offset 40
+ 334 0004 00AF     		add	r7, sp, #0
+ 335              	.LCFI17:
+ 336              		.cfi_def_cfa_register 7
+ 337 0006 7860     		str	r0, [r7, #4]
+ 338 0008 3960     		str	r1, [r7]
+ 144:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	register int padchar = ' ';
+ 339              		.loc 1 144 0
+ 340 000a 2026     		movs	r6, #32
+ 145:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	int i,len;
+ 146:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 147:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	if( apBuf->flags.width > 0 )
+ 341              		.loc 1 147 0
+ 342 000c 7B68     		ldr	r3, [r7, #4]
+ 343 000e 5B69     		ldr	r3, [r3, #20]
+ 344 0010 002B     		cmp	r3, #0
+ 345 0012 1BDD     		ble	.L15
+ 346              	.LBB2:
+ 148:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 149:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		register int len = 0;
+ 347              		.loc 1 149 0
+ 348 0014 0024     		movs	r4, #0
+ 150:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		register const char *ptr;
+ 151:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		for( ptr = apString; *ptr; ++ptr )
+ 349              		.loc 1 151 0
+ 350 0016 3D68     		ldr	r5, [r7]
+ 351 0018 01E0     		b	.L16
+ 352              	.L17:
+ 152:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 153:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			++len;
+ 353              		.loc 1 153 0 discriminator 3
+ 354 001a 0134     		adds	r4, r4, #1
+ 151:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 355              		.loc 1 151 0 discriminator 3
+ 356 001c 0135     		adds	r5, r5, #1
+ 357              	.L16:
+ 151:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 358              		.loc 1 151 0 is_stmt 0 discriminator 1
+ 359 001e 2B78     		ldrb	r3, [r5]	@ zero_extendqisi2
+ 360 0020 002B     		cmp	r3, #0
+ 361 0022 FAD1     		bne	.L17
+ 154:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 155:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 156:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( len >= apBuf->flags.width )
+ 362              		.loc 1 156 0 is_stmt 1
+ 363 0024 7B68     		ldr	r3, [r7, #4]
+ 364 0026 5B69     		ldr	r3, [r3, #20]
+ARM GAS  /tmp/ccBuMMq0.s 			page 10
+
+
+ 365 0028 A342     		cmp	r3, r4
+ 366 002a 03DC     		bgt	.L18
+ 157:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 158:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			apBuf->flags.width = 0;
+ 367              		.loc 1 158 0
+ 368 002c 7B68     		ldr	r3, [r7, #4]
+ 369 002e 0022     		movs	r2, #0
+ 370 0030 5A61     		str	r2, [r3, #20]
+ 371 0032 04E0     		b	.L19
+ 372              	.L18:
+ 159:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 160:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		else
+ 161:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 162:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			apBuf->flags.width -= len;
+ 373              		.loc 1 162 0
+ 374 0034 7B68     		ldr	r3, [r7, #4]
+ 375 0036 5B69     		ldr	r3, [r3, #20]
+ 376 0038 1A1B     		subs	r2, r3, r4
+ 377 003a 7B68     		ldr	r3, [r7, #4]
+ 378 003c 5A61     		str	r2, [r3, #20]
+ 379              	.L19:
+ 163:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 164:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 165:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( apBuf->flags.pad & PAD_ZERO )
+ 380              		.loc 1 165 0
+ 381 003e 7B68     		ldr	r3, [r7, #4]
+ 382 0040 1B7F     		ldrb	r3, [r3, #28]	@ zero_extendqisi2
+ 383 0042 03F00203 		and	r3, r3, #2
+ 384 0046 002B     		cmp	r3, #0
+ 385 0048 00D0     		beq	.L15
+ 166:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 167:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			padchar = '0';
+ 386              		.loc 1 167 0
+ 387 004a 3026     		movs	r6, #48
+ 388              	.L15:
+ 389              	.LBE2:
+ 168:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 169:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 170:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	if( ( apBuf->flags.pad & PAD_RIGHT ) == 0 )
+ 390              		.loc 1 170 0
+ 391 004c 7B68     		ldr	r3, [r7, #4]
+ 392 004e 1B7F     		ldrb	r3, [r3, #28]	@ zero_extendqisi2
+ 393 0050 03F00103 		and	r3, r3, #1
+ 394 0054 002B     		cmp	r3, #0
+ 395 0056 12D1     		bne	.L20
+ 171:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 172:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		for( ; apBuf->flags.width > 0; --apBuf->flags.width )
+ 396              		.loc 1 172 0
+ 397 0058 0DE0     		b	.L21
+ 398              	.L24:
+ 173:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 174:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			if( strbuf_printchar( apBuf, padchar ) == 0 )
+ 399              		.loc 1 174 0
+ 400 005a 7868     		ldr	r0, [r7, #4]
+ 401 005c 3146     		mov	r1, r6
+ 402 005e FFF7FEFF 		bl	strbuf_printchar
+ 403 0062 0346     		mov	r3, r0
+ARM GAS  /tmp/ccBuMMq0.s 			page 11
+
+
+ 404 0064 002B     		cmp	r3, #0
+ 405 0066 01D1     		bne	.L22
+ 175:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 176:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				return pdFALSE;
+ 406              		.loc 1 176 0
+ 407 0068 0023     		movs	r3, #0
+ 408 006a 62E0     		b	.L23
+ 409              	.L22:
+ 172:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 410              		.loc 1 172 0
+ 411 006c 7B68     		ldr	r3, [r7, #4]
+ 412 006e 5B69     		ldr	r3, [r3, #20]
+ 413 0070 5A1E     		subs	r2, r3, #1
+ 414 0072 7B68     		ldr	r3, [r7, #4]
+ 415 0074 5A61     		str	r2, [r3, #20]
+ 416              	.L21:
+ 172:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 417              		.loc 1 172 0 is_stmt 0 discriminator 1
+ 418 0076 7B68     		ldr	r3, [r7, #4]
+ 419 0078 5B69     		ldr	r3, [r3, #20]
+ 420 007a 002B     		cmp	r3, #0
+ 421 007c EDDC     		bgt	.L24
+ 422              	.L20:
+ 177:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			}
+ 178:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 179:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 180:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	if( ( apBuf->flags.isNumber == pdTRUE ) && ( apBuf->flags.pad == pdTRUE ) )
+ 423              		.loc 1 180 0 is_stmt 1
+ 424 007e 7B68     		ldr	r3, [r7, #4]
+ 425 0080 9B7F     		ldrb	r3, [r3, #30]	@ zero_extendqisi2
+ 426 0082 03F00203 		and	r3, r3, #2
+ 427 0086 DBB2     		uxtb	r3, r3
+ 428 0088 002B     		cmp	r3, #0
+ 429 008a 22D0     		beq	.L25
+ 430              		.loc 1 180 0 is_stmt 0 discriminator 1
+ 431 008c 7B68     		ldr	r3, [r7, #4]
+ 432 008e 1B7F     		ldrb	r3, [r3, #28]	@ zero_extendqisi2
+ 433 0090 012B     		cmp	r3, #1
+ 434 0092 1ED1     		bne	.L25
+ 181:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 182:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		/* The string to print represents an integer number.
+ 183:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		 * In this case, printLimit is the min number of digits to print
+ 184:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		 * If the length of the number to print is less than the min nb of i
+ 185:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		 * digits to display, we add 0 before printing the number
+ 186:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		 */
+ 187:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		len = strlen( apString );
+ 435              		.loc 1 187 0 is_stmt 1
+ 436 0094 3868     		ldr	r0, [r7]
+ 437 0096 FFF7FEFF 		bl	strlen
+ 438 009a 0346     		mov	r3, r0
+ 439 009c BB60     		str	r3, [r7, #8]
+ 188:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 189:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( len < apBuf->flags.printLimit )
+ 440              		.loc 1 189 0
+ 441 009e 7B68     		ldr	r3, [r7, #4]
+ 442 00a0 9A69     		ldr	r2, [r3, #24]
+ 443 00a2 BB68     		ldr	r3, [r7, #8]
+ARM GAS  /tmp/ccBuMMq0.s 			page 12
+
+
+ 444 00a4 9A42     		cmp	r2, r3
+ 445 00a6 14DD     		ble	.L25
+ 190:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 191:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			i = apBuf->flags.printLimit - len;
+ 446              		.loc 1 191 0
+ 447 00a8 7B68     		ldr	r3, [r7, #4]
+ 448 00aa 9A69     		ldr	r2, [r3, #24]
+ 449 00ac BB68     		ldr	r3, [r7, #8]
+ 450 00ae D31A     		subs	r3, r2, r3
+ 451 00b0 FB60     		str	r3, [r7, #12]
+ 192:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			for( ; i; i-- )
+ 452              		.loc 1 192 0
+ 453 00b2 0BE0     		b	.L26
+ 454              	.L28:
+ 193:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 194:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				if( strbuf_printchar( apBuf, '0' )  == 0 )
+ 455              		.loc 1 194 0
+ 456 00b4 7868     		ldr	r0, [r7, #4]
+ 457 00b6 3021     		movs	r1, #48
+ 458 00b8 FFF7FEFF 		bl	strbuf_printchar
+ 459 00bc 0346     		mov	r3, r0
+ 460 00be 002B     		cmp	r3, #0
+ 461 00c0 01D1     		bne	.L27
+ 195:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				{
+ 196:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 					return pdFALSE;
+ 462              		.loc 1 196 0
+ 463 00c2 0023     		movs	r3, #0
+ 464 00c4 35E0     		b	.L23
+ 465              	.L27:
+ 192:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 466              		.loc 1 192 0
+ 467 00c6 FB68     		ldr	r3, [r7, #12]
+ 468 00c8 013B     		subs	r3, r3, #1
+ 469 00ca FB60     		str	r3, [r7, #12]
+ 470              	.L26:
+ 192:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 471              		.loc 1 192 0 is_stmt 0 discriminator 1
+ 472 00cc FB68     		ldr	r3, [r7, #12]
+ 473 00ce 002B     		cmp	r3, #0
+ 474 00d0 F0D1     		bne	.L28
+ 475              	.L25:
+ 197:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				}
+ 198:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			}
+ 199:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 200:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 201:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	/* The string to print is not the result of a number conversion to ascii.
+ 202:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	 * For a string, printLimit is the max number of characters to display
+ 203:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	 */
+ 204:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	for( ; apBuf->flags.printLimit && *apString ; ++apString, --apBuf->flags.printLimit )
+ 476              		.loc 1 204 0 is_stmt 1
+ 477 00d2 12E0     		b	.L29
+ 478              	.L32:
+ 205:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 206:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( !strbuf_printchar( apBuf, *apString ) )
+ 479              		.loc 1 206 0
+ 480 00d4 3B68     		ldr	r3, [r7]
+ 481 00d6 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ARM GAS  /tmp/ccBuMMq0.s 			page 13
+
+
+ 482 00d8 7868     		ldr	r0, [r7, #4]
+ 483 00da 1946     		mov	r1, r3
+ 484 00dc FFF7FEFF 		bl	strbuf_printchar
+ 485 00e0 0346     		mov	r3, r0
+ 486 00e2 002B     		cmp	r3, #0
+ 487 00e4 01D1     		bne	.L30
+ 207:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 208:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			return pdFALSE;
+ 488              		.loc 1 208 0
+ 489 00e6 0023     		movs	r3, #0
+ 490 00e8 23E0     		b	.L23
+ 491              	.L30:
+ 204:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 492              		.loc 1 204 0
+ 493 00ea 3B68     		ldr	r3, [r7]
+ 494 00ec 0133     		adds	r3, r3, #1
+ 495 00ee 3B60     		str	r3, [r7]
+ 496 00f0 7B68     		ldr	r3, [r7, #4]
+ 497 00f2 9B69     		ldr	r3, [r3, #24]
+ 498 00f4 5A1E     		subs	r2, r3, #1
+ 499 00f6 7B68     		ldr	r3, [r7, #4]
+ 500 00f8 9A61     		str	r2, [r3, #24]
+ 501              	.L29:
+ 204:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 502              		.loc 1 204 0 is_stmt 0 discriminator 1
+ 503 00fa 7B68     		ldr	r3, [r7, #4]
+ 504 00fc 9B69     		ldr	r3, [r3, #24]
+ 505 00fe 002B     		cmp	r3, #0
+ 506 0100 03D0     		beq	.L31
+ 204:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 507              		.loc 1 204 0 discriminator 2
+ 508 0102 3B68     		ldr	r3, [r7]
+ 509 0104 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 510 0106 002B     		cmp	r3, #0
+ 511 0108 E4D1     		bne	.L32
+ 512              	.L31:
+ 209:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 210:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 211:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 212:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	for( ; apBuf->flags.width > 0; --apBuf->flags.width )
+ 513              		.loc 1 212 0 is_stmt 1
+ 514 010a 0DE0     		b	.L33
+ 515              	.L35:
+ 213:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 214:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( !strbuf_printchar( apBuf, padchar ) )
+ 516              		.loc 1 214 0
+ 517 010c 7868     		ldr	r0, [r7, #4]
+ 518 010e 3146     		mov	r1, r6
+ 519 0110 FFF7FEFF 		bl	strbuf_printchar
+ 520 0114 0346     		mov	r3, r0
+ 521 0116 002B     		cmp	r3, #0
+ 522 0118 01D1     		bne	.L34
+ 215:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 216:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			return pdFALSE;
+ 523              		.loc 1 216 0
+ 524 011a 0023     		movs	r3, #0
+ 525 011c 09E0     		b	.L23
+ARM GAS  /tmp/ccBuMMq0.s 			page 14
+
+
+ 526              	.L34:
+ 212:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 527              		.loc 1 212 0
+ 528 011e 7B68     		ldr	r3, [r7, #4]
+ 529 0120 5B69     		ldr	r3, [r3, #20]
+ 530 0122 5A1E     		subs	r2, r3, #1
+ 531 0124 7B68     		ldr	r3, [r7, #4]
+ 532 0126 5A61     		str	r2, [r3, #20]
+ 533              	.L33:
+ 212:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 534              		.loc 1 212 0 is_stmt 0 discriminator 1
+ 535 0128 7B68     		ldr	r3, [r7, #4]
+ 536 012a 5B69     		ldr	r3, [r3, #20]
+ 537 012c 002B     		cmp	r3, #0
+ 538 012e EDDC     		bgt	.L35
+ 217:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 218:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 219:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 220:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	return pdTRUE;
+ 539              		.loc 1 220 0 is_stmt 1
+ 540 0130 0123     		movs	r3, #1
+ 541              	.L23:
+ 221:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** }
+ 542              		.loc 1 221 0
+ 543 0132 1846     		mov	r0, r3
+ 544 0134 1437     		adds	r7, r7, #20
+ 545              	.LCFI18:
+ 546              		.cfi_def_cfa_offset 20
+ 547 0136 BD46     		mov	sp, r7
+ 548              	.LCFI19:
+ 549              		.cfi_def_cfa_register 13
+ 550              		@ sp needed
+ 551 0138 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 552              		.cfi_endproc
+ 553              	.LFE9:
+ 555 013a 00BF     		.section	.text.printi,"ax",%progbits
+ 556              		.align	2
+ 557              		.thumb
+ 558              		.thumb_func
+ 560              	printi:
+ 561              	.LFB10:
+ 222:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** /*-----------------------------------------------------------*/
+ 223:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 224:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** /* the following should be enough for 32 bit int */
+ 225:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** #define PRINT_BUF_LEN 12	/* to print 4294967296 */
+ 226:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 227:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** #if	SPRINTF_LONG_LONG
+ 228:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** #warning 64-bit libraries will be included as well
+ 229:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** static BaseType_t printll( struct SStringBuf *apBuf, long long i )
+ 230:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** {
+ 231:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	char print_buf[ 2 * PRINT_BUF_LEN ];
+ 232:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	register char *s;
+ 233:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	register int t, neg = 0;
+ 234:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	register unsigned long long u = i;
+ 235:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	lldiv_t lldiv_result;
+ 236:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 237:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** /* typedef struct
+ARM GAS  /tmp/ccBuMMq0.s 			page 15
+
+
+ 238:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c ****  * {
+ 239:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c ****  * 	long long int quot; // quotient
+ 240:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c ****  * 	long long int rem;  // remainder
+ 241:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c ****  * } lldiv_t;
+ 242:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c ****  */
+ 243:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 244:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	apBuf->flags.isNumber = pdTRUE;	/* Parameter for prints */
+ 245:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	if( i == 0LL )
+ 246:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 247:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		print_buf[ 0 ] = '0';
+ 248:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		print_buf[ 1 ] = '\0';
+ 249:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		return prints( apBuf, print_buf );
+ 250:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 251:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 252:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	if( ( apBuf->flags.isSigned == pdTRUE ) && ( apBuf->flags.base == 10 ) && ( i < 0LL ) )
+ 253:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 254:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		neg = 1;
+ 255:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		u = -i;
+ 256:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 257:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 258:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	s = print_buf + sizeof( print_buf ) - 1;
+ 259:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 260:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	*s = '\0';
+ 261:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	/* 18446744073709551616 */
+ 262:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	while( u != 0 )
+ 263:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 264:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		lldiv_result = lldiv( u, ( unsigned long long ) apBuf->flags.base );
+ 265:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		t = lldiv_result.rem;
+ 266:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( t >= 10 )
+ 267:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 268:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			t += apBuf->flags.letBase - '0' - 10;
+ 269:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 270:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		*( --s ) = t + '0';
+ 271:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		u = lldiv_result.quot;
+ 272:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 273:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 274:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	if( neg != 0 )
+ 275:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 276:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( ( apBuf->flags.width != 0 ) && ( apBuf->flags.pad & PAD_ZERO ) )
+ 277:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 278:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			if( !strbuf_printchar( apBuf, '-' ) )
+ 279:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 280:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				return pdFALSE;
+ 281:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			}
+ 282:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			--apBuf->flags.width;
+ 283:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 284:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		else
+ 285:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 286:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			*( --s ) = '-';
+ 287:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 288:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 289:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 290:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	return prints( apBuf, s );
+ 291:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** }
+ 292:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** #endif	/* SPRINTF_LONG_LONG */
+ 293:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** /*-----------------------------------------------------------*/
+ 294:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ARM GAS  /tmp/ccBuMMq0.s 			page 16
+
+
+ 295:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** static BaseType_t printi( struct SStringBuf *apBuf, int i )
+ 296:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** {
+ 562              		.loc 1 296 0
+ 563              		.cfi_startproc
+ 564              		@ args = 0, pretend = 0, frame = 24
+ 565              		@ frame_needed = 1, uses_anonymous_args = 0
+ 566 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ 567              	.LCFI20:
+ 568              		.cfi_def_cfa_offset 28
+ 569              		.cfi_offset 4, -28
+ 570              		.cfi_offset 5, -24
+ 571              		.cfi_offset 6, -20
+ 572              		.cfi_offset 7, -16
+ 573              		.cfi_offset 8, -12
+ 574              		.cfi_offset 9, -8
+ 575              		.cfi_offset 14, -4
+ 576 0004 87B0     		sub	sp, sp, #28
+ 577              	.LCFI21:
+ 578              		.cfi_def_cfa_offset 56
+ 579 0006 00AF     		add	r7, sp, #0
+ 580              	.LCFI22:
+ 581              		.cfi_def_cfa_register 7
+ 582 0008 7860     		str	r0, [r7, #4]
+ 583 000a 3960     		str	r1, [r7]
+ 297:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	char print_buf[ PRINT_BUF_LEN ];
+ 298:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	register char *s;
+ 299:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	register int t, neg = 0;
+ 584              		.loc 1 299 0
+ 585 000c 4FF00009 		mov	r9, #0
+ 300:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	register unsigned int u = i;
+ 586              		.loc 1 300 0
+ 587 0010 3D68     		ldr	r5, [r7]
+ 301:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	register unsigned base = apBuf->flags.base;
+ 588              		.loc 1 301 0
+ 589 0012 7B68     		ldr	r3, [r7, #4]
+ 590 0014 1B69     		ldr	r3, [r3, #16]
+ 591 0016 1E46     		mov	r6, r3
+ 302:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 303:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	apBuf->flags.isNumber = pdTRUE;	/* Parameter for prints */
+ 592              		.loc 1 303 0
+ 593 0018 7A68     		ldr	r2, [r7, #4]
+ 594 001a 937F     		ldrb	r3, [r2, #30]
+ 595 001c 43F00203 		orr	r3, r3, #2
+ 596 0020 9377     		strb	r3, [r2, #30]
+ 304:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 305:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	if( i == 0 )
+ 597              		.loc 1 305 0
+ 598 0022 3B68     		ldr	r3, [r7]
+ 599 0024 002B     		cmp	r3, #0
+ 600 0026 0BD1     		bne	.L37
+ 306:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 307:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		print_buf[ 0 ] = '0';
+ 601              		.loc 1 307 0
+ 602 0028 3023     		movs	r3, #48
+ 603 002a 3B73     		strb	r3, [r7, #12]
+ 308:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		print_buf[ 1 ] = '\0';
+ 604              		.loc 1 308 0
+ARM GAS  /tmp/ccBuMMq0.s 			page 17
+
+
+ 605 002c 0023     		movs	r3, #0
+ 606 002e 7B73     		strb	r3, [r7, #13]
+ 309:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		return prints( apBuf, print_buf );
+ 607              		.loc 1 309 0
+ 608 0030 07F10C03 		add	r3, r7, #12
+ 609 0034 7868     		ldr	r0, [r7, #4]
+ 610 0036 1946     		mov	r1, r3
+ 611 0038 FFF7FEFF 		bl	prints
+ 612 003c 0346     		mov	r3, r0
+ 613 003e 65E0     		b	.L51
+ 614              	.L37:
+ 310:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 311:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 312:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	if( ( apBuf->flags.isSigned == pdTRUE ) && ( base == 10 ) && ( i < 0 ) )
+ 615              		.loc 1 312 0
+ 616 0040 7B68     		ldr	r3, [r7, #4]
+ 617 0042 9B7F     		ldrb	r3, [r3, #30]	@ zero_extendqisi2
+ 618 0044 03F00103 		and	r3, r3, #1
+ 619 0048 DBB2     		uxtb	r3, r3
+ 620 004a 002B     		cmp	r3, #0
+ 621 004c 09D0     		beq	.L39
+ 622              		.loc 1 312 0 is_stmt 0 discriminator 1
+ 623 004e 0A2E     		cmp	r6, #10
+ 624 0050 07D1     		bne	.L39
+ 625              		.loc 1 312 0 discriminator 2
+ 626 0052 3B68     		ldr	r3, [r7]
+ 627 0054 002B     		cmp	r3, #0
+ 628 0056 04DA     		bge	.L39
+ 313:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 314:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		neg = 1;
+ 629              		.loc 1 314 0 is_stmt 1
+ 630 0058 4FF00109 		mov	r9, #1
+ 315:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		u = -i;
+ 631              		.loc 1 315 0
+ 632 005c 3B68     		ldr	r3, [r7]
+ 633 005e 5B42     		negs	r3, r3
+ 634 0060 1D46     		mov	r5, r3
+ 635              	.L39:
+ 316:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 317:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 318:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	s = print_buf + sizeof( print_buf ) - 1;
+ 636              		.loc 1 318 0
+ 637 0062 07F10C04 		add	r4, r7, #12
+ 638 0066 0B34     		adds	r4, r4, #11
+ 319:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 320:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	*s = '\0';
+ 639              		.loc 1 320 0
+ 640 0068 0023     		movs	r3, #0
+ 641 006a 2370     		strb	r3, [r4]
+ 321:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	switch( base )
+ 642              		.loc 1 321 0
+ 643 006c 0A2E     		cmp	r6, #10
+ 644 006e 26D0     		beq	.L46
+ 645 0070 102E     		cmp	r6, #16
+ 646 0072 13D0     		beq	.L43
+ 647 0074 082E     		cmp	r6, #8
+ 648 0076 22D0     		beq	.L46
+ARM GAS  /tmp/ccBuMMq0.s 			page 18
+
+
+ 649 0078 24E0     		b	.L40
+ 650              	.L45:
+ 322:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 323:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	case 16:
+ 324:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		while( u != 0 )
+ 325:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 326:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			t = u & 0xF;
+ 651              		.loc 1 326 0
+ 652 007a 2B46     		mov	r3, r5
+ 653 007c 03F00F08 		and	r8, r3, #15
+ 327:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			if( t >= 10 )
+ 654              		.loc 1 327 0
+ 655 0080 B8F1090F 		cmp	r8, #9
+ 656 0084 03DD     		ble	.L44
+ 328:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 329:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				t += apBuf->flags.letBase - '0' - 10;
+ 657              		.loc 1 329 0
+ 658 0086 7B68     		ldr	r3, [r7, #4]
+ 659 0088 5B7F     		ldrb	r3, [r3, #29]	@ zero_extendqisi2
+ 660 008a 3A3B     		subs	r3, r3, #58
+ 661 008c 9844     		add	r8, r8, r3
+ 662              	.L44:
+ 330:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			}
+ 331:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			*( --s ) = t + '0';
+ 663              		.loc 1 331 0
+ 664 008e 013C     		subs	r4, r4, #1
+ 665 0090 5FFA88F3 		uxtb	r3, r8
+ 666 0094 3033     		adds	r3, r3, #48
+ 667 0096 DBB2     		uxtb	r3, r3
+ 668 0098 2370     		strb	r3, [r4]
+ 332:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			u >>= 4;
+ 669              		.loc 1 332 0
+ 670 009a 2D09     		lsrs	r5, r5, #4
+ 671              	.L43:
+ 324:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 672              		.loc 1 324 0
+ 673 009c 002D     		cmp	r5, #0
+ 674 009e ECD1     		bne	.L45
+ 333:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 334:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		break;
+ 675              		.loc 1 334 0
+ 676 00a0 10E0     		b	.L40
+ 677              	.L47:
+ 335:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 336:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	case 8:
+ 337:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	case 10:
+ 338:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		/* GCC compiles very efficient */
+ 339:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		while( u )
+ 340:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 341:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			t = u % base;
+ 678              		.loc 1 341 0
+ 679 00a2 B5FBF6F3 		udiv	r3, r5, r6
+ 680 00a6 06FB03F3 		mul	r3, r6, r3
+ 681 00aa EB1A     		subs	r3, r5, r3
+ 682 00ac 9846     		mov	r8, r3
+ 342:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			*( --s ) = t + '0';
+ 683              		.loc 1 342 0
+ARM GAS  /tmp/ccBuMMq0.s 			page 19
+
+
+ 684 00ae 013C     		subs	r4, r4, #1
+ 685 00b0 5FFA88F3 		uxtb	r3, r8
+ 686 00b4 3033     		adds	r3, r3, #48
+ 687 00b6 DBB2     		uxtb	r3, r3
+ 688 00b8 2370     		strb	r3, [r4]
+ 343:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			u /= base;
+ 689              		.loc 1 343 0
+ 690 00ba B5FBF6F5 		udiv	r5, r5, r6
+ 691              	.L46:
+ 339:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 692              		.loc 1 339 0
+ 693 00be 002D     		cmp	r5, #0
+ 694 00c0 EFD1     		bne	.L47
+ 344:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 345:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		break;
+ 695              		.loc 1 345 0
+ 696 00c2 00BF     		nop
+ 697              	.L40:
+ 346:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** /*
+ 347:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	// The generic case, not yet in use
+ 348:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	default:
+ 349:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		while( u )
+ 350:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 351:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			t = u % base;
+ 352:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			if( t >= 10)
+ 353:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 354:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				t += apBuf->flags.letBase - '0' - 10;
+ 355:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			}
+ 356:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			*( --s ) = t + '0';
+ 357:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			u /= base;
+ 358:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 359:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		break;
+ 360:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** */
+ 361:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 362:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 363:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	if( neg != 0 )
+ 698              		.loc 1 363 0
+ 699 00c4 B9F1000F 		cmp	r9, #0
+ 700 00c8 1BD0     		beq	.L48
+ 364:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 365:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( apBuf->flags.width && (apBuf->flags.pad & PAD_ZERO ) )
+ 701              		.loc 1 365 0
+ 702 00ca 7B68     		ldr	r3, [r7, #4]
+ 703 00cc 5B69     		ldr	r3, [r3, #20]
+ 704 00ce 002B     		cmp	r3, #0
+ 705 00d0 14D0     		beq	.L49
+ 706              		.loc 1 365 0 is_stmt 0 discriminator 1
+ 707 00d2 7B68     		ldr	r3, [r7, #4]
+ 708 00d4 1B7F     		ldrb	r3, [r3, #28]	@ zero_extendqisi2
+ 709 00d6 03F00203 		and	r3, r3, #2
+ 710 00da 002B     		cmp	r3, #0
+ 711 00dc 0ED0     		beq	.L49
+ 366:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 367:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			if( strbuf_printchar( apBuf, '-' ) == 0 )
+ 712              		.loc 1 367 0 is_stmt 1
+ 713 00de 7868     		ldr	r0, [r7, #4]
+ 714 00e0 2D21     		movs	r1, #45
+ARM GAS  /tmp/ccBuMMq0.s 			page 20
+
+
+ 715 00e2 FFF7FEFF 		bl	strbuf_printchar
+ 716 00e6 0346     		mov	r3, r0
+ 717 00e8 002B     		cmp	r3, #0
+ 718 00ea 01D1     		bne	.L50
+ 368:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 369:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				return pdFALSE;
+ 719              		.loc 1 369 0
+ 720 00ec 0023     		movs	r3, #0
+ 721 00ee 0DE0     		b	.L51
+ 722              	.L50:
+ 370:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			}
+ 371:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			--apBuf->flags.width;
+ 723              		.loc 1 371 0
+ 724 00f0 7B68     		ldr	r3, [r7, #4]
+ 725 00f2 5B69     		ldr	r3, [r3, #20]
+ 726 00f4 5A1E     		subs	r2, r3, #1
+ 727 00f6 7B68     		ldr	r3, [r7, #4]
+ 728 00f8 5A61     		str	r2, [r3, #20]
+ 729 00fa 02E0     		b	.L48
+ 730              	.L49:
+ 372:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 373:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		else
+ 374:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 375:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			*( --s ) = '-';
+ 731              		.loc 1 375 0
+ 732 00fc 013C     		subs	r4, r4, #1
+ 733 00fe 2D23     		movs	r3, #45
+ 734 0100 2370     		strb	r3, [r4]
+ 735              	.L48:
+ 376:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 377:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 378:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 379:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	return prints( apBuf, s );
+ 736              		.loc 1 379 0
+ 737 0102 7868     		ldr	r0, [r7, #4]
+ 738 0104 2146     		mov	r1, r4
+ 739 0106 FFF7FEFF 		bl	prints
+ 740 010a 0346     		mov	r3, r0
+ 741              	.L51:
+ 380:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** }
+ 742              		.loc 1 380 0 discriminator 1
+ 743 010c 1846     		mov	r0, r3
+ 744 010e 1C37     		adds	r7, r7, #28
+ 745              	.LCFI23:
+ 746              		.cfi_def_cfa_offset 28
+ 747 0110 BD46     		mov	sp, r7
+ 748              	.LCFI24:
+ 749              		.cfi_def_cfa_register 13
+ 750              		@ sp needed
+ 751 0112 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 752              		.cfi_endproc
+ 753              	.LFE10:
+ 755              		.section	.rodata
+ 756              		.align	2
+ 757              	.LC0:
+ 758 0000 25752E25 		.ascii	"%u.%u.%u.%u\000"
+ 758      752E2575 
+ARM GAS  /tmp/ccBuMMq0.s 			page 21
+
+
+ 758      2E257500 
+ 759              		.section	.text.printIp,"ax",%progbits
+ 760              		.align	2
+ 761              		.thumb
+ 762              		.thumb_func
+ 764              	printIp:
+ 765              	.LFB11:
+ 381:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** /*-----------------------------------------------------------*/
+ 382:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 383:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** static BaseType_t printIp(struct SStringBuf *apBuf, unsigned i )
+ 384:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** {
+ 766              		.loc 1 384 0
+ 767              		.cfi_startproc
+ 768              		@ args = 0, pretend = 0, frame = 24
+ 769              		@ frame_needed = 1, uses_anonymous_args = 0
+ 770 0000 B0B5     		push	{r4, r5, r7, lr}
+ 771              	.LCFI25:
+ 772              		.cfi_def_cfa_offset 16
+ 773              		.cfi_offset 4, -16
+ 774              		.cfi_offset 5, -12
+ 775              		.cfi_offset 7, -8
+ 776              		.cfi_offset 14, -4
+ 777 0002 88B0     		sub	sp, sp, #32
+ 778              	.LCFI26:
+ 779              		.cfi_def_cfa_offset 48
+ 780 0004 02AF     		add	r7, sp, #8
+ 781              	.LCFI27:
+ 782              		.cfi_def_cfa 7, 40
+ 783 0006 7860     		str	r0, [r7, #4]
+ 784 0008 3960     		str	r1, [r7]
+ 385:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	char print_buf[16];
+ 386:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 387:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	sprintf( print_buf, "%u.%u.%u.%u",
+ 785              		.loc 1 387 0
+ 786 000a 3B68     		ldr	r3, [r7]
+ 787 000c 1D0E     		lsrs	r5, r3, #24
+ 388:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		i >> 24,
+ 389:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		( i >> 16 ) & 0xff,
+ 788              		.loc 1 389 0
+ 789 000e 3B68     		ldr	r3, [r7]
+ 790 0010 1B0C     		lsrs	r3, r3, #16
+ 387:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		i >> 24,
+ 791              		.loc 1 387 0
+ 792 0012 DCB2     		uxtb	r4, r3
+ 390:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		( i >> 8 ) & 0xff,
+ 793              		.loc 1 390 0
+ 794 0014 3B68     		ldr	r3, [r7]
+ 795 0016 1B0A     		lsrs	r3, r3, #8
+ 387:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		i >> 24,
+ 796              		.loc 1 387 0
+ 797 0018 DAB2     		uxtb	r2, r3
+ 798 001a 3B68     		ldr	r3, [r7]
+ 799 001c DBB2     		uxtb	r3, r3
+ 800 001e 07F10801 		add	r1, r7, #8
+ 801 0022 0092     		str	r2, [sp]
+ 802 0024 0193     		str	r3, [sp, #4]
+ 803 0026 0846     		mov	r0, r1
+ARM GAS  /tmp/ccBuMMq0.s 			page 22
+
+
+ 804 0028 0A49     		ldr	r1, .L54
+ 805 002a 2A46     		mov	r2, r5
+ 806 002c 2346     		mov	r3, r4
+ 807 002e FFF7FEFF 		bl	sprintf
+ 391:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		i & 0xff );
+ 392:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	apBuf->flags.isNumber = pdTRUE;	/* Parameter for prints */
+ 808              		.loc 1 392 0
+ 809 0032 7A68     		ldr	r2, [r7, #4]
+ 810 0034 937F     		ldrb	r3, [r2, #30]
+ 811 0036 43F00203 		orr	r3, r3, #2
+ 812 003a 9377     		strb	r3, [r2, #30]
+ 393:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	prints( apBuf, print_buf );
+ 813              		.loc 1 393 0
+ 814 003c 07F10803 		add	r3, r7, #8
+ 815 0040 7868     		ldr	r0, [r7, #4]
+ 816 0042 1946     		mov	r1, r3
+ 817 0044 FFF7FEFF 		bl	prints
+ 394:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 395:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	return pdTRUE;
+ 818              		.loc 1 395 0
+ 819 0048 0123     		movs	r3, #1
+ 396:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** }
+ 820              		.loc 1 396 0
+ 821 004a 1846     		mov	r0, r3
+ 822 004c 1837     		adds	r7, r7, #24
+ 823              	.LCFI28:
+ 824              		.cfi_def_cfa_offset 16
+ 825 004e BD46     		mov	sp, r7
+ 826              	.LCFI29:
+ 827              		.cfi_def_cfa_register 13
+ 828              		@ sp needed
+ 829 0050 B0BD     		pop	{r4, r5, r7, pc}
+ 830              	.L55:
+ 831 0052 00BF     		.align	2
+ 832              	.L54:
+ 833 0054 00000000 		.word	.LC0
+ 834              		.cfi_endproc
+ 835              	.LFE11:
+ 837              		.section	.rodata
+ 838              		.align	2
+ 839              	.LC1:
+ 840 000c 286E756C 		.ascii	"(null)\000"
+ 840      6C2900
+ 841              		.section	.text.tiny_print,"ax",%progbits
+ 842              		.align	2
+ 843              		.thumb
+ 844              		.thumb_func
+ 846              	tiny_print:
+ 847              	.LFB12:
+ 397:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** /*-----------------------------------------------------------*/
+ 398:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 399:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** static void tiny_print( struct SStringBuf *apBuf, const char *format, va_list args )
+ 400:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** {
+ 848              		.loc 1 400 0
+ 849              		.cfi_startproc
+ 850              		@ args = 0, pretend = 0, frame = 24
+ 851              		@ frame_needed = 1, uses_anonymous_args = 0
+ARM GAS  /tmp/ccBuMMq0.s 			page 23
+
+
+ 852 0000 90B5     		push	{r4, r7, lr}
+ 853              	.LCFI30:
+ 854              		.cfi_def_cfa_offset 12
+ 855              		.cfi_offset 4, -12
+ 856              		.cfi_offset 7, -8
+ 857              		.cfi_offset 14, -4
+ 858 0002 87B0     		sub	sp, sp, #28
+ 859              	.LCFI31:
+ 860              		.cfi_def_cfa_offset 40
+ 861 0004 00AF     		add	r7, sp, #0
+ 862              	.LCFI32:
+ 863              		.cfi_def_cfa_register 7
+ 864 0006 F860     		str	r0, [r7, #12]
+ 865 0008 B960     		str	r1, [r7, #8]
+ 866 000a 7A60     		str	r2, [r7, #4]
+ 867              	.L95:
+ 868              	.LBB3:
+ 401:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	char scr[2];
+ 402:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 403:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	for( ; ; )
+ 404:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 405:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		int ch = *( format++ );
+ 869              		.loc 1 405 0
+ 870 000c BB68     		ldr	r3, [r7, #8]
+ 871 000e 5A1C     		adds	r2, r3, #1
+ 872 0010 BA60     		str	r2, [r7, #8]
+ 873 0012 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 874 0014 7B61     		str	r3, [r7, #20]
+ 406:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 407:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( ch != '%' )
+ 875              		.loc 1 407 0
+ 876 0016 7B69     		ldr	r3, [r7, #20]
+ 877 0018 252B     		cmp	r3, #37
+ 878 001a 0FD0     		beq	.L57
+ 879              	.L60:
+ 408:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 409:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			do
+ 410:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 411:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				/* Put the most like flow in a small loop */
+ 412:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				if( strbuf_printchar_inline( apBuf, ch ) == 0 )
+ 880              		.loc 1 412 0
+ 881 001c F868     		ldr	r0, [r7, #12]
+ 882 001e 7969     		ldr	r1, [r7, #20]
+ 883 0020 FFF7FEFF 		bl	strbuf_printchar_inline
+ 884 0024 0346     		mov	r3, r0
+ 885 0026 002B     		cmp	r3, #0
+ 886 0028 00D1     		bne	.L58
+ 413:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				{
+ 414:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 					return;
+ 887              		.loc 1 414 0
+ 888 002a 56E1     		b	.L56
+ 889              	.L58:
+ 415:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				}
+ 416:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				ch = *( format++ );
+ 890              		.loc 1 416 0
+ 891 002c BB68     		ldr	r3, [r7, #8]
+ 892 002e 5A1C     		adds	r2, r3, #1
+ARM GAS  /tmp/ccBuMMq0.s 			page 24
+
+
+ 893 0030 BA60     		str	r2, [r7, #8]
+ 894 0032 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 895 0034 7B61     		str	r3, [r7, #20]
+ 417:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			} while( ch != '%' );
+ 896              		.loc 1 417 0
+ 897 0036 7B69     		ldr	r3, [r7, #20]
+ 898 0038 252B     		cmp	r3, #37
+ 899 003a EFD1     		bne	.L60
+ 900              	.L57:
+ 418:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 419:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		ch = *( format++ );
+ 901              		.loc 1 419 0
+ 902 003c BB68     		ldr	r3, [r7, #8]
+ 903 003e 5A1C     		adds	r2, r3, #1
+ 904 0040 BA60     		str	r2, [r7, #8]
+ 905 0042 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 906 0044 7B61     		str	r3, [r7, #20]
+ 420:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		/* Now ch has character after '%', format pointing to next */
+ 421:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 422:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( ch == '\0' )
+ 907              		.loc 1 422 0
+ 908 0046 7B69     		ldr	r3, [r7, #20]
+ 909 0048 002B     		cmp	r3, #0
+ 910 004a 00D1     		bne	.L61
+ 423:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 424:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			break;
+ 911              		.loc 1 424 0
+ 912 004c 41E1     		b	.L62
+ 913              	.L61:
+ 425:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 426:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( ch == '%' )
+ 914              		.loc 1 426 0
+ 915 004e 7B69     		ldr	r3, [r7, #20]
+ 916 0050 252B     		cmp	r3, #37
+ 917 0052 08D1     		bne	.L63
+ 427:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 428:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			if( strbuf_printchar( apBuf, ch ) == 0 )
+ 918              		.loc 1 428 0
+ 919 0054 F868     		ldr	r0, [r7, #12]
+ 920 0056 7969     		ldr	r1, [r7, #20]
+ 921 0058 FFF7FEFF 		bl	strbuf_printchar
+ 922 005c 0346     		mov	r3, r0
+ 923 005e 002B     		cmp	r3, #0
+ 924 0060 00D1     		bne	.L64
+ 429:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 430:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				return;
+ 925              		.loc 1 430 0
+ 926 0062 3AE1     		b	.L56
+ 927              	.L64:
+ 431:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			}
+ 432:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			continue;
+ 928              		.loc 1 432 0
+ 929 0064 34E1     		b	.L65
+ 930              	.L63:
+ 433:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 434:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		memset( &apBuf->flags, '\0', sizeof( apBuf->flags ) );
+ 931              		.loc 1 434 0
+ARM GAS  /tmp/ccBuMMq0.s 			page 25
+
+
+ 932 0066 FB68     		ldr	r3, [r7, #12]
+ 933 0068 1033     		adds	r3, r3, #16
+ 934 006a 1846     		mov	r0, r3
+ 935 006c 0021     		movs	r1, #0
+ 936 006e 1022     		movs	r2, #16
+ 937 0070 FFF7FEFF 		bl	memset
+ 435:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 436:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( ch == '-' )
+ 938              		.loc 1 436 0
+ 939 0074 7B69     		ldr	r3, [r7, #20]
+ 940 0076 2D2B     		cmp	r3, #45
+ 941 0078 07D1     		bne	.L66
+ 437:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 438:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			ch = *( format++ );
+ 942              		.loc 1 438 0
+ 943 007a BB68     		ldr	r3, [r7, #8]
+ 944 007c 5A1C     		adds	r2, r3, #1
+ 945 007e BA60     		str	r2, [r7, #8]
+ 946 0080 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 947 0082 7B61     		str	r3, [r7, #20]
+ 439:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			apBuf->flags.pad = PAD_RIGHT;
+ 948              		.loc 1 439 0
+ 949 0084 FB68     		ldr	r3, [r7, #12]
+ 950 0086 0122     		movs	r2, #1
+ 951 0088 1A77     		strb	r2, [r3, #28]
+ 952              	.L66:
+ 440:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 441:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		while( ch == '0' )
+ 953              		.loc 1 441 0
+ 954 008a 0BE0     		b	.L67
+ 955              	.L68:
+ 442:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 443:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			ch = *( format++ );
+ 956              		.loc 1 443 0
+ 957 008c BB68     		ldr	r3, [r7, #8]
+ 958 008e 5A1C     		adds	r2, r3, #1
+ 959 0090 BA60     		str	r2, [r7, #8]
+ 960 0092 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 961 0094 7B61     		str	r3, [r7, #20]
+ 444:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			apBuf->flags.pad |= PAD_ZERO;
+ 962              		.loc 1 444 0
+ 963 0096 FB68     		ldr	r3, [r7, #12]
+ 964 0098 1B7F     		ldrb	r3, [r3, #28]	@ zero_extendqisi2
+ 965 009a 43F00203 		orr	r3, r3, #2
+ 966 009e DAB2     		uxtb	r2, r3
+ 967 00a0 FB68     		ldr	r3, [r7, #12]
+ 968 00a2 1A77     		strb	r2, [r3, #28]
+ 969              	.L67:
+ 441:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 970              		.loc 1 441 0
+ 971 00a4 7B69     		ldr	r3, [r7, #20]
+ 972 00a6 302B     		cmp	r3, #48
+ 973 00a8 F0D0     		beq	.L68
+ 445:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 446:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( ch == '*' )
+ 974              		.loc 1 446 0
+ 975 00aa 7B69     		ldr	r3, [r7, #20]
+ARM GAS  /tmp/ccBuMMq0.s 			page 26
+
+
+ 976 00ac 2A2B     		cmp	r3, #42
+ 977 00ae 0BD1     		bne	.L69
+ 447:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 448:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			ch = *( format++ );
+ 978              		.loc 1 448 0
+ 979 00b0 BB68     		ldr	r3, [r7, #8]
+ 980 00b2 5A1C     		adds	r2, r3, #1
+ 981 00b4 BA60     		str	r2, [r7, #8]
+ 982 00b6 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 983 00b8 7B61     		str	r3, [r7, #20]
+ 449:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			apBuf->flags.width = va_arg( args, int );
+ 984              		.loc 1 449 0
+ 985 00ba 7B68     		ldr	r3, [r7, #4]
+ 986 00bc 1A1D     		adds	r2, r3, #4
+ 987 00be 7A60     		str	r2, [r7, #4]
+ 988 00c0 1A68     		ldr	r2, [r3]
+ 989 00c2 FB68     		ldr	r3, [r7, #12]
+ 990 00c4 5A61     		str	r2, [r3, #20]
+ 991 00c6 1BE0     		b	.L70
+ 992              	.L69:
+ 450:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 451:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		else
+ 452:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 453:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			while( ch >= '0' && ch <= '9' )
+ 993              		.loc 1 453 0
+ 994 00c8 14E0     		b	.L71
+ 995              	.L72:
+ 454:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 455:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				apBuf->flags.width *= 10;
+ 996              		.loc 1 455 0
+ 997 00ca FB68     		ldr	r3, [r7, #12]
+ 998 00cc 5A69     		ldr	r2, [r3, #20]
+ 999 00ce 1346     		mov	r3, r2
+ 1000 00d0 9B00     		lsls	r3, r3, #2
+ 1001 00d2 1344     		add	r3, r3, r2
+ 1002 00d4 5B00     		lsls	r3, r3, #1
+ 1003 00d6 1A46     		mov	r2, r3
+ 1004 00d8 FB68     		ldr	r3, [r7, #12]
+ 1005 00da 5A61     		str	r2, [r3, #20]
+ 456:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				apBuf->flags.width += ch - '0';
+ 1006              		.loc 1 456 0
+ 1007 00dc FB68     		ldr	r3, [r7, #12]
+ 1008 00de 5A69     		ldr	r2, [r3, #20]
+ 1009 00e0 7B69     		ldr	r3, [r7, #20]
+ 1010 00e2 303B     		subs	r3, r3, #48
+ 1011 00e4 1A44     		add	r2, r2, r3
+ 1012 00e6 FB68     		ldr	r3, [r7, #12]
+ 1013 00e8 5A61     		str	r2, [r3, #20]
+ 457:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				ch = *( format++ );
+ 1014              		.loc 1 457 0
+ 1015 00ea BB68     		ldr	r3, [r7, #8]
+ 1016 00ec 5A1C     		adds	r2, r3, #1
+ 1017 00ee BA60     		str	r2, [r7, #8]
+ 1018 00f0 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1019 00f2 7B61     		str	r3, [r7, #20]
+ 1020              	.L71:
+ 453:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ARM GAS  /tmp/ccBuMMq0.s 			page 27
+
+
+ 1021              		.loc 1 453 0
+ 1022 00f4 7B69     		ldr	r3, [r7, #20]
+ 1023 00f6 2F2B     		cmp	r3, #47
+ 1024 00f8 02DD     		ble	.L70
+ 453:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 1025              		.loc 1 453 0 is_stmt 0 discriminator 1
+ 1026 00fa 7B69     		ldr	r3, [r7, #20]
+ 1027 00fc 392B     		cmp	r3, #57
+ 1028 00fe E4DD     		ble	.L72
+ 1029              	.L70:
+ 458:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			}
+ 459:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 460:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( ch == '.' )
+ 1030              		.loc 1 460 0 is_stmt 1
+ 1031 0100 7B69     		ldr	r3, [r7, #20]
+ 1032 0102 2E2B     		cmp	r3, #46
+ 1033 0104 2FD1     		bne	.L73
+ 461:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 462:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			ch = *( format++ );
+ 1034              		.loc 1 462 0
+ 1035 0106 BB68     		ldr	r3, [r7, #8]
+ 1036 0108 5A1C     		adds	r2, r3, #1
+ 1037 010a BA60     		str	r2, [r7, #8]
+ 1038 010c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1039 010e 7B61     		str	r3, [r7, #20]
+ 463:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			if( ch == '*' )
+ 1040              		.loc 1 463 0
+ 1041 0110 7B69     		ldr	r3, [r7, #20]
+ 1042 0112 2A2B     		cmp	r3, #42
+ 1043 0114 0BD1     		bne	.L74
+ 464:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 465:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				apBuf->flags.printLimit = va_arg( args, int );
+ 1044              		.loc 1 465 0
+ 1045 0116 7B68     		ldr	r3, [r7, #4]
+ 1046 0118 1A1D     		adds	r2, r3, #4
+ 1047 011a 7A60     		str	r2, [r7, #4]
+ 1048 011c 1A68     		ldr	r2, [r3]
+ 1049 011e FB68     		ldr	r3, [r7, #12]
+ 1050 0120 9A61     		str	r2, [r3, #24]
+ 466:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				ch = *( format++ );
+ 1051              		.loc 1 466 0
+ 1052 0122 BB68     		ldr	r3, [r7, #8]
+ 1053 0124 5A1C     		adds	r2, r3, #1
+ 1054 0126 BA60     		str	r2, [r7, #8]
+ 1055 0128 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1056 012a 7B61     		str	r3, [r7, #20]
+ 1057 012c 1BE0     		b	.L73
+ 1058              	.L74:
+ 467:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			}
+ 468:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			else
+ 469:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 470:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				while( ch >= '0' && ch <= '9' )
+ 1059              		.loc 1 470 0
+ 1060 012e 14E0     		b	.L75
+ 1061              	.L76:
+ 471:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				{
+ 472:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 					apBuf->flags.printLimit *= 10;
+ARM GAS  /tmp/ccBuMMq0.s 			page 28
+
+
+ 1062              		.loc 1 472 0
+ 1063 0130 FB68     		ldr	r3, [r7, #12]
+ 1064 0132 9A69     		ldr	r2, [r3, #24]
+ 1065 0134 1346     		mov	r3, r2
+ 1066 0136 9B00     		lsls	r3, r3, #2
+ 1067 0138 1344     		add	r3, r3, r2
+ 1068 013a 5B00     		lsls	r3, r3, #1
+ 1069 013c 1A46     		mov	r2, r3
+ 1070 013e FB68     		ldr	r3, [r7, #12]
+ 1071 0140 9A61     		str	r2, [r3, #24]
+ 473:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 					apBuf->flags.printLimit += ch - '0';
+ 1072              		.loc 1 473 0
+ 1073 0142 FB68     		ldr	r3, [r7, #12]
+ 1074 0144 9A69     		ldr	r2, [r3, #24]
+ 1075 0146 7B69     		ldr	r3, [r7, #20]
+ 1076 0148 303B     		subs	r3, r3, #48
+ 1077 014a 1A44     		add	r2, r2, r3
+ 1078 014c FB68     		ldr	r3, [r7, #12]
+ 1079 014e 9A61     		str	r2, [r3, #24]
+ 474:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 					ch = *( format++ );
+ 1080              		.loc 1 474 0
+ 1081 0150 BB68     		ldr	r3, [r7, #8]
+ 1082 0152 5A1C     		adds	r2, r3, #1
+ 1083 0154 BA60     		str	r2, [r7, #8]
+ 1084 0156 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1085 0158 7B61     		str	r3, [r7, #20]
+ 1086              	.L75:
+ 470:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				{
+ 1087              		.loc 1 470 0
+ 1088 015a 7B69     		ldr	r3, [r7, #20]
+ 1089 015c 2F2B     		cmp	r3, #47
+ 1090 015e 02DD     		ble	.L73
+ 470:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				{
+ 1091              		.loc 1 470 0 is_stmt 0 discriminator 1
+ 1092 0160 7B69     		ldr	r3, [r7, #20]
+ 1093 0162 392B     		cmp	r3, #57
+ 1094 0164 E4DD     		ble	.L76
+ 1095              	.L73:
+ 475:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				}
+ 476:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			}
+ 477:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 478:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( apBuf->flags.printLimit == 0 )
+ 1096              		.loc 1 478 0 is_stmt 1
+ 1097 0166 FB68     		ldr	r3, [r7, #12]
+ 1098 0168 9B69     		ldr	r3, [r3, #24]
+ 1099 016a 002B     		cmp	r3, #0
+ 1100 016c 04D1     		bne	.L77
+ 479:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 480:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			apBuf->flags.printLimit--;  /* -1: make it unlimited */
+ 1101              		.loc 1 480 0
+ 1102 016e FB68     		ldr	r3, [r7, #12]
+ 1103 0170 9B69     		ldr	r3, [r3, #24]
+ 1104 0172 5A1E     		subs	r2, r3, #1
+ 1105 0174 FB68     		ldr	r3, [r7, #12]
+ 1106 0176 9A61     		str	r2, [r3, #24]
+ 1107              	.L77:
+ 481:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ARM GAS  /tmp/ccBuMMq0.s 			page 29
+
+
+ 482:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( ch == 's' )
+ 1108              		.loc 1 482 0
+ 1109 0178 7B69     		ldr	r3, [r7, #20]
+ 1110 017a 732B     		cmp	r3, #115
+ 1111 017c 12D1     		bne	.L78
+ 1112              	.LBB4:
+ 483:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 484:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			register char *s = ( char * )va_arg( args, int );
+ 1113              		.loc 1 484 0
+ 1114 017e 7B68     		ldr	r3, [r7, #4]
+ 1115 0180 1A1D     		adds	r2, r3, #4
+ 1116 0182 7A60     		str	r2, [r7, #4]
+ 1117 0184 1B68     		ldr	r3, [r3]
+ 1118 0186 1C46     		mov	r4, r3
+ 485:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			if( prints( apBuf, s ? s : "(null)" ) == 0 )
+ 1119              		.loc 1 485 0
+ 1120 0188 002C     		cmp	r4, #0
+ 1121 018a 01D0     		beq	.L79
+ 1122              		.loc 1 485 0 is_stmt 0 discriminator 1
+ 1123 018c 2346     		mov	r3, r4
+ 1124 018e 00E0     		b	.L80
+ 1125              	.L79:
+ 1126              		.loc 1 485 0 discriminator 2
+ 1127 0190 534B     		ldr	r3, .L97
+ 1128              	.L80:
+ 1129              		.loc 1 485 0 discriminator 4
+ 1130 0192 F868     		ldr	r0, [r7, #12]
+ 1131 0194 1946     		mov	r1, r3
+ 1132 0196 FFF7FEFF 		bl	prints
+ 1133 019a 0346     		mov	r3, r0
+ 1134 019c 002B     		cmp	r3, #0
+ 1135 019e 00D1     		bne	.L81
+ 486:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 487:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				break;
+ 1136              		.loc 1 487 0 is_stmt 1 discriminator 2
+ 1137 01a0 97E0     		b	.L62
+ 1138              	.L81:
+ 488:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			}
+ 489:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			continue;
+ 1139              		.loc 1 489 0
+ 1140 01a2 95E0     		b	.L65
+ 1141              	.L78:
+ 1142              	.LBE4:
+ 490:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 491:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( ch == 'c' )
+ 1143              		.loc 1 491 0
+ 1144 01a4 7B69     		ldr	r3, [r7, #20]
+ 1145 01a6 632B     		cmp	r3, #99
+ 1146 01a8 0FD1     		bne	.L82
+ 492:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 493:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			/* char are converted to int then pushed on the stack */
+ 494:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			scr[0] = ( char ) va_arg( args, int );
+ 1147              		.loc 1 494 0
+ 1148 01aa 7B68     		ldr	r3, [r7, #4]
+ 1149 01ac 1A1D     		adds	r2, r3, #4
+ 1150 01ae 7A60     		str	r2, [r7, #4]
+ 1151 01b0 1B68     		ldr	r3, [r3]
+ARM GAS  /tmp/ccBuMMq0.s 			page 30
+
+
+ 1152 01b2 DBB2     		uxtb	r3, r3
+ 1153 01b4 3B74     		strb	r3, [r7, #16]
+ 495:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 496:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			if( strbuf_printchar( apBuf, scr[0] )  == 0 )
+ 1154              		.loc 1 496 0
+ 1155 01b6 3B7C     		ldrb	r3, [r7, #16]	@ zero_extendqisi2
+ 1156 01b8 F868     		ldr	r0, [r7, #12]
+ 1157 01ba 1946     		mov	r1, r3
+ 1158 01bc FFF7FEFF 		bl	strbuf_printchar
+ 1159 01c0 0346     		mov	r3, r0
+ 1160 01c2 002B     		cmp	r3, #0
+ 1161 01c4 00D1     		bne	.L83
+ 497:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 498:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				return;
+ 1162              		.loc 1 498 0
+ 1163 01c6 88E0     		b	.L56
+ 1164              	.L83:
+ 499:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			}
+ 500:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 501:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			continue;
+ 1165              		.loc 1 501 0
+ 1166 01c8 82E0     		b	.L65
+ 1167              	.L82:
+ 502:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 503:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( ch == 'l' )
+ 1168              		.loc 1 503 0
+ 1169 01ca 7B69     		ldr	r3, [r7, #20]
+ 1170 01cc 6C2B     		cmp	r3, #108
+ 1171 01ce 09D1     		bne	.L84
+ 504:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 505:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			ch = *( format++ );
+ 1172              		.loc 1 505 0
+ 1173 01d0 BB68     		ldr	r3, [r7, #8]
+ 1174 01d2 5A1C     		adds	r2, r3, #1
+ 1175 01d4 BA60     		str	r2, [r7, #8]
+ 1176 01d6 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1177 01d8 7B61     		str	r3, [r7, #20]
+ 506:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			apBuf->flags.long32 = 1;
+ 1178              		.loc 1 506 0
+ 1179 01da FA68     		ldr	r2, [r7, #12]
+ 1180 01dc 937F     		ldrb	r3, [r2, #30]
+ 1181 01de 43F00403 		orr	r3, r3, #4
+ 1182 01e2 9377     		strb	r3, [r2, #30]
+ 1183              	.L84:
+ 507:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			/* Makes not difference as u32 == long */
+ 508:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 509:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( ch == 'L' )
+ 1184              		.loc 1 509 0
+ 1185 01e4 7B69     		ldr	r3, [r7, #20]
+ 1186 01e6 4C2B     		cmp	r3, #76
+ 1187 01e8 09D1     		bne	.L85
+ 510:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 511:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			ch = *( format++ );
+ 1188              		.loc 1 511 0
+ 1189 01ea BB68     		ldr	r3, [r7, #8]
+ 1190 01ec 5A1C     		adds	r2, r3, #1
+ 1191 01ee BA60     		str	r2, [r7, #8]
+ARM GAS  /tmp/ccBuMMq0.s 			page 31
+
+
+ 1192 01f0 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1193 01f2 7B61     		str	r3, [r7, #20]
+ 512:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			apBuf->flags.long64 = 1;
+ 1194              		.loc 1 512 0
+ 1195 01f4 FA68     		ldr	r2, [r7, #12]
+ 1196 01f6 937F     		ldrb	r3, [r2, #30]
+ 1197 01f8 43F00803 		orr	r3, r3, #8
+ 1198 01fc 9377     		strb	r3, [r2, #30]
+ 1199              	.L85:
+ 513:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			/* Does make a difference */
+ 514:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 515:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		apBuf->flags.base = 10;
+ 1200              		.loc 1 515 0
+ 1201 01fe FB68     		ldr	r3, [r7, #12]
+ 1202 0200 0A22     		movs	r2, #10
+ 1203 0202 1A61     		str	r2, [r3, #16]
+ 516:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		apBuf->flags.letBase = 'a';
+ 1204              		.loc 1 516 0
+ 1205 0204 FB68     		ldr	r3, [r7, #12]
+ 1206 0206 6122     		movs	r2, #97
+ 1207 0208 5A77     		strb	r2, [r3, #29]
+ 517:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 518:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( ch == 'd' || ch == 'u' )
+ 1208              		.loc 1 518 0
+ 1209 020a 7B69     		ldr	r3, [r7, #20]
+ 1210 020c 642B     		cmp	r3, #100
+ 1211 020e 02D0     		beq	.L86
+ 1212              		.loc 1 518 0 is_stmt 0 discriminator 1
+ 1213 0210 7B69     		ldr	r3, [r7, #20]
+ 1214 0212 752B     		cmp	r3, #117
+ 1215 0214 17D1     		bne	.L87
+ 1216              	.L86:
+ 519:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 520:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			apBuf->flags.isSigned = ( ch == 'd' );
+ 1217              		.loc 1 520 0 is_stmt 1
+ 1218 0216 7B69     		ldr	r3, [r7, #20]
+ 1219 0218 642B     		cmp	r3, #100
+ 1220 021a 0CBF     		ite	eq
+ 1221 021c 0123     		moveq	r3, #1
+ 1222 021e 0023     		movne	r3, #0
+ 1223 0220 D9B2     		uxtb	r1, r3
+ 1224 0222 FA68     		ldr	r2, [r7, #12]
+ 1225 0224 937F     		ldrb	r3, [r2, #30]
+ 1226 0226 61F30003 		bfi	r3, r1, #0, #1
+ 1227 022a 9377     		strb	r3, [r2, #30]
+ 521:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** #if	SPRINTF_LONG_LONG
+ 522:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			if( apBuf->flags.long64 != pdFALSE )
+ 523:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 524:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				if( printll( apBuf, va_arg( args, long long ) ) == 0 )
+ 525:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				{
+ 526:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 					break;
+ 527:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				}
+ 528:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			} else
+ 529:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** #endif	/* SPRINTF_LONG_LONG */
+ 530:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			if( printi( apBuf, va_arg( args, int ) ) == 0 )
+ 1228              		.loc 1 530 0
+ 1229 022c 7B68     		ldr	r3, [r7, #4]
+ARM GAS  /tmp/ccBuMMq0.s 			page 32
+
+
+ 1230 022e 1A1D     		adds	r2, r3, #4
+ 1231 0230 7A60     		str	r2, [r7, #4]
+ 1232 0232 1B68     		ldr	r3, [r3]
+ 1233 0234 F868     		ldr	r0, [r7, #12]
+ 1234 0236 1946     		mov	r1, r3
+ 1235 0238 FFF7FEFF 		bl	printi
+ 1236 023c 0346     		mov	r3, r0
+ 1237 023e 002B     		cmp	r3, #0
+ 1238 0240 00D1     		bne	.L88
+ 531:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 532:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				break;
+ 1239              		.loc 1 532 0 discriminator 3
+ 1240 0242 46E0     		b	.L62
+ 1241              	.L88:
+ 533:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			}
+ 534:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			continue;
+ 1242              		.loc 1 534 0
+ 1243 0244 44E0     		b	.L65
+ 1244              	.L87:
+ 535:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 536:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 537:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		apBuf->flags.base = 16;		/* From here all hexadecimal */
+ 1245              		.loc 1 537 0
+ 1246 0246 FB68     		ldr	r3, [r7, #12]
+ 1247 0248 1022     		movs	r2, #16
+ 1248 024a 1A61     		str	r2, [r3, #16]
+ 538:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 539:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( ch == 'x' && format[0] == 'i' && format[1] == 'p' )
+ 1249              		.loc 1 539 0
+ 1250 024c 7B69     		ldr	r3, [r7, #20]
+ 1251 024e 782B     		cmp	r3, #120
+ 1252 0250 18D1     		bne	.L89
+ 1253              		.loc 1 539 0 is_stmt 0 discriminator 1
+ 1254 0252 BB68     		ldr	r3, [r7, #8]
+ 1255 0254 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1256 0256 692B     		cmp	r3, #105
+ 1257 0258 14D1     		bne	.L89
+ 1258              		.loc 1 539 0 discriminator 2
+ 1259 025a BB68     		ldr	r3, [r7, #8]
+ 1260 025c 0133     		adds	r3, r3, #1
+ 1261 025e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1262 0260 702B     		cmp	r3, #112
+ 1263 0262 0FD1     		bne	.L89
+ 540:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 541:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			format += 2;	/* eat the "xi" of "xip" */
+ 1264              		.loc 1 541 0 is_stmt 1
+ 1265 0264 BB68     		ldr	r3, [r7, #8]
+ 1266 0266 0233     		adds	r3, r3, #2
+ 1267 0268 BB60     		str	r3, [r7, #8]
+ 542:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			/* Will use base 10 again */
+ 543:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			if( printIp( apBuf, va_arg( args, int ) ) == 0 )
+ 1268              		.loc 1 543 0
+ 1269 026a 7B68     		ldr	r3, [r7, #4]
+ 1270 026c 1A1D     		adds	r2, r3, #4
+ 1271 026e 7A60     		str	r2, [r7, #4]
+ 1272 0270 1B68     		ldr	r3, [r3]
+ 1273 0272 F868     		ldr	r0, [r7, #12]
+ARM GAS  /tmp/ccBuMMq0.s 			page 33
+
+
+ 1274 0274 1946     		mov	r1, r3
+ 1275 0276 FFF7FEFF 		bl	printIp
+ 1276 027a 0346     		mov	r3, r0
+ 1277 027c 002B     		cmp	r3, #0
+ 1278 027e 00D1     		bne	.L90
+ 544:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 545:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				break;
+ 1279              		.loc 1 545 0 discriminator 4
+ 1280 0280 27E0     		b	.L62
+ 1281              	.L90:
+ 546:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			}
+ 547:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			continue;
+ 1282              		.loc 1 547 0
+ 1283 0282 25E0     		b	.L65
+ 1284              	.L89:
+ 548:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 549:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		if( ch == 'x' || ch == 'X' || ch == 'p' || ch == 'o' )
+ 1285              		.loc 1 549 0
+ 1286 0284 7B69     		ldr	r3, [r7, #20]
+ 1287 0286 782B     		cmp	r3, #120
+ 1288 0288 08D0     		beq	.L91
+ 1289              		.loc 1 549 0 is_stmt 0 discriminator 1
+ 1290 028a 7B69     		ldr	r3, [r7, #20]
+ 1291 028c 582B     		cmp	r3, #88
+ 1292 028e 05D0     		beq	.L91
+ 1293              		.loc 1 549 0 discriminator 2
+ 1294 0290 7B69     		ldr	r3, [r7, #20]
+ 1295 0292 702B     		cmp	r3, #112
+ 1296 0294 02D0     		beq	.L91
+ 1297              		.loc 1 549 0 discriminator 3
+ 1298 0296 7B69     		ldr	r3, [r7, #20]
+ 1299 0298 6F2B     		cmp	r3, #111
+ 1300 029a 19D1     		bne	.L65
+ 1301              	.L91:
+ 550:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		{
+ 551:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			if( ch == 'X' )
+ 1302              		.loc 1 551 0 is_stmt 1
+ 1303 029c 7B69     		ldr	r3, [r7, #20]
+ 1304 029e 582B     		cmp	r3, #88
+ 1305 02a0 03D1     		bne	.L92
+ 552:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 553:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				apBuf->flags.letBase = 'A';
+ 1306              		.loc 1 553 0
+ 1307 02a2 FB68     		ldr	r3, [r7, #12]
+ 1308 02a4 4122     		movs	r2, #65
+ 1309 02a6 5A77     		strb	r2, [r3, #29]
+ 1310 02a8 05E0     		b	.L93
+ 1311              	.L92:
+ 554:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			}
+ 555:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			else if( ch == 'o' )
+ 1312              		.loc 1 555 0
+ 1313 02aa 7B69     		ldr	r3, [r7, #20]
+ 1314 02ac 6F2B     		cmp	r3, #111
+ 1315 02ae 02D1     		bne	.L93
+ 556:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 557:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				apBuf->flags.base = 8;
+ 1316              		.loc 1 557 0
+ARM GAS  /tmp/ccBuMMq0.s 			page 34
+
+
+ 1317 02b0 FB68     		ldr	r3, [r7, #12]
+ 1318 02b2 0822     		movs	r2, #8
+ 1319 02b4 1A61     		str	r2, [r3, #16]
+ 1320              	.L93:
+ 558:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			}
+ 559:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** #if	SPRINTF_LONG_LONG
+ 560:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			if( apBuf->flags.long64 != pdFALSE )
+ 561:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 562:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				if( printll( apBuf, va_arg( args, long long ) ) == 0 )
+ 563:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				{
+ 564:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 					break;
+ 565:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				}
+ 566:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			} else
+ 567:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** #endif	/* SPRINTF_LONG_LONG */
+ 568:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			if( printi( apBuf, va_arg( args, int ) ) == 0 )
+ 1321              		.loc 1 568 0
+ 1322 02b6 7B68     		ldr	r3, [r7, #4]
+ 1323 02b8 1A1D     		adds	r2, r3, #4
+ 1324 02ba 7A60     		str	r2, [r7, #4]
+ 1325 02bc 1B68     		ldr	r3, [r3]
+ 1326 02be F868     		ldr	r0, [r7, #12]
+ 1327 02c0 1946     		mov	r1, r3
+ 1328 02c2 FFF7FEFF 		bl	printi
+ 1329 02c6 0346     		mov	r3, r0
+ 1330 02c8 002B     		cmp	r3, #0
+ 1331 02ca 00D1     		bne	.L94
+ 569:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			{
+ 570:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 				break;
+ 1332              		.loc 1 570 0 discriminator 5
+ 1333 02cc 01E0     		b	.L62
+ 1334              	.L94:
+ 571:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			}
+ 572:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 			continue;
+ 1335              		.loc 1 572 0
+ 1336 02ce 00BF     		nop
+ 1337              	.L65:
+ 1338              	.LBE3:
+ 573:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		}
+ 574:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 1339              		.loc 1 574 0
+ 1340 02d0 9CE6     		b	.L95
+ 1341              	.L62:
+ 575:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	strbuf_printchar( apBuf, '\0' );
+ 1342              		.loc 1 575 0 discriminator 1
+ 1343 02d2 F868     		ldr	r0, [r7, #12]
+ 1344 02d4 0021     		movs	r1, #0
+ 1345 02d6 FFF7FEFF 		bl	strbuf_printchar
+ 1346              	.L56:
+ 576:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** }
+ 1347              		.loc 1 576 0
+ 1348 02da 1C37     		adds	r7, r7, #28
+ 1349              	.LCFI33:
+ 1350              		.cfi_def_cfa_offset 12
+ 1351 02dc BD46     		mov	sp, r7
+ 1352              	.LCFI34:
+ 1353              		.cfi_def_cfa_register 13
+ 1354              		@ sp needed
+ARM GAS  /tmp/ccBuMMq0.s 			page 35
+
+
+ 1355 02de 90BD     		pop	{r4, r7, pc}
+ 1356              	.L98:
+ 1357              		.align	2
+ 1358              	.L97:
+ 1359 02e0 0C000000 		.word	.LC1
+ 1360              		.cfi_endproc
+ 1361              	.LFE12:
+ 1363              		.section	.text.tiny_printf,"ax",%progbits
+ 1364              		.align	2
+ 1365              		.global	tiny_printf
+ 1366              		.thumb
+ 1367              		.thumb_func
+ 1369              	tiny_printf:
+ 1370              	.LFB13:
+ 577:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** /*-----------------------------------------------------------*/
+ 578:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 579:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** int tiny_printf( const char *format, ... )
+ 580:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** {
+ 1371              		.loc 1 580 0
+ 1372              		.cfi_startproc
+ 1373              		@ args = 4, pretend = 16, frame = 40
+ 1374              		@ frame_needed = 1, uses_anonymous_args = 1
+ 1375 0000 0FB4     		push	{r0, r1, r2, r3}
+ 1376              	.LCFI35:
+ 1377              		.cfi_def_cfa_offset 16
+ 1378              		.cfi_offset 0, -16
+ 1379              		.cfi_offset 1, -12
+ 1380              		.cfi_offset 2, -8
+ 1381              		.cfi_offset 3, -4
+ 1382 0002 80B5     		push	{r7, lr}
+ 1383              	.LCFI36:
+ 1384              		.cfi_def_cfa_offset 24
+ 1385              		.cfi_offset 7, -24
+ 1386              		.cfi_offset 14, -20
+ 1387 0004 8AB0     		sub	sp, sp, #40
+ 1388              	.LCFI37:
+ 1389              		.cfi_def_cfa_offset 64
+ 1390 0006 00AF     		add	r7, sp, #0
+ 1391              	.LCFI38:
+ 1392              		.cfi_def_cfa_register 7
+ 581:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** va_list args;
+ 582:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 583:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	va_start( args, format );
+ 1393              		.loc 1 583 0
+ 1394 0008 07F13403 		add	r3, r7, #52
+ 1395 000c 7B62     		str	r3, [r7, #36]
+ 584:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	struct SStringBuf strBuf;
+ 585:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	strbuf_init( &strBuf, NULL, ( const char* )NULL );
+ 1396              		.loc 1 585 0
+ 1397 000e 3B1D     		adds	r3, r7, #4
+ 1398 0010 1846     		mov	r0, r3
+ 1399 0012 0021     		movs	r1, #0
+ 1400 0014 0022     		movs	r2, #0
+ 1401 0016 FFF7FEFF 		bl	strbuf_init
+ 586:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	tiny_print( &strBuf, format, args );
+ 1402              		.loc 1 586 0
+ 1403 001a 3B1D     		adds	r3, r7, #4
+ARM GAS  /tmp/ccBuMMq0.s 			page 36
+
+
+ 1404 001c 1846     		mov	r0, r3
+ 1405 001e 396B     		ldr	r1, [r7, #48]
+ 1406 0020 7A6A     		ldr	r2, [r7, #36]
+ 1407 0022 FFF7FEFF 		bl	tiny_print
+ 587:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	va_end( args );
+ 588:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 589:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	return strBuf.curLen;
+ 1408              		.loc 1 589 0
+ 1409 0026 3B69     		ldr	r3, [r7, #16]
+ 590:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** }
+ 1410              		.loc 1 590 0
+ 1411 0028 1846     		mov	r0, r3
+ 1412 002a 2837     		adds	r7, r7, #40
+ 1413              	.LCFI39:
+ 1414              		.cfi_def_cfa_offset 24
+ 1415 002c BD46     		mov	sp, r7
+ 1416              	.LCFI40:
+ 1417              		.cfi_def_cfa_register 13
+ 1418              		@ sp needed
+ 1419 002e BDE88040 		pop	{r7, lr}
+ 1420              	.LCFI41:
+ 1421              		.cfi_restore 14
+ 1422              		.cfi_restore 7
+ 1423              		.cfi_def_cfa_offset 16
+ 1424 0032 04B0     		add	sp, sp, #16
+ 1425              	.LCFI42:
+ 1426              		.cfi_restore 3
+ 1427              		.cfi_restore 2
+ 1428              		.cfi_restore 1
+ 1429              		.cfi_restore 0
+ 1430              		.cfi_def_cfa_offset 0
+ 1431 0034 7047     		bx	lr
+ 1432              		.cfi_endproc
+ 1433              	.LFE13:
+ 1435 0036 00BF     		.section	.text.vsnprintf,"ax",%progbits
+ 1436              		.align	2
+ 1437              		.global	vsnprintf
+ 1438              		.thumb
+ 1439              		.thumb_func
+ 1441              	vsnprintf:
+ 1442              	.LFB14:
+ 591:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** /*-----------------------------------------------------------*/
+ 592:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 593:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** int vsnprintf( char *apBuf, size_t aMaxLen, const char *apFmt, va_list args )
+ 594:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** {
+ 1443              		.loc 1 594 0
+ 1444              		.cfi_startproc
+ 1445              		@ args = 0, pretend = 0, frame = 48
+ 1446              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1447 0000 80B5     		push	{r7, lr}
+ 1448              	.LCFI43:
+ 1449              		.cfi_def_cfa_offset 8
+ 1450              		.cfi_offset 7, -8
+ 1451              		.cfi_offset 14, -4
+ 1452 0002 8CB0     		sub	sp, sp, #48
+ 1453              	.LCFI44:
+ 1454              		.cfi_def_cfa_offset 56
+ARM GAS  /tmp/ccBuMMq0.s 			page 37
+
+
+ 1455 0004 00AF     		add	r7, sp, #0
+ 1456              	.LCFI45:
+ 1457              		.cfi_def_cfa_register 7
+ 1458 0006 F860     		str	r0, [r7, #12]
+ 1459 0008 B960     		str	r1, [r7, #8]
+ 1460 000a 7A60     		str	r2, [r7, #4]
+ 1461 000c 3B60     		str	r3, [r7]
+ 595:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	struct SStringBuf strBuf;
+ 596:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	strbuf_init( &strBuf, apBuf, ( const char* )apBuf + aMaxLen );
+ 1462              		.loc 1 596 0
+ 1463 000e FA68     		ldr	r2, [r7, #12]
+ 1464 0010 BB68     		ldr	r3, [r7, #8]
+ 1465 0012 1344     		add	r3, r3, r2
+ 1466 0014 07F11002 		add	r2, r7, #16
+ 1467 0018 1046     		mov	r0, r2
+ 1468 001a F968     		ldr	r1, [r7, #12]
+ 1469 001c 1A46     		mov	r2, r3
+ 1470 001e FFF7FEFF 		bl	strbuf_init
+ 597:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	tiny_print( &strBuf, apFmt, args );
+ 1471              		.loc 1 597 0
+ 1472 0022 07F11003 		add	r3, r7, #16
+ 1473 0026 1846     		mov	r0, r3
+ 1474 0028 7968     		ldr	r1, [r7, #4]
+ 1475 002a 3A68     		ldr	r2, [r7]
+ 1476 002c FFF7FEFF 		bl	tiny_print
+ 598:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 599:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	return strBuf.curLen;
+ 1477              		.loc 1 599 0
+ 1478 0030 FB69     		ldr	r3, [r7, #28]
+ 600:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** }
+ 1479              		.loc 1 600 0
+ 1480 0032 1846     		mov	r0, r3
+ 1481 0034 3037     		adds	r7, r7, #48
+ 1482              	.LCFI46:
+ 1483              		.cfi_def_cfa_offset 8
+ 1484 0036 BD46     		mov	sp, r7
+ 1485              	.LCFI47:
+ 1486              		.cfi_def_cfa_register 13
+ 1487              		@ sp needed
+ 1488 0038 80BD     		pop	{r7, pc}
+ 1489              		.cfi_endproc
+ 1490              	.LFE14:
+ 1492 003a 00BF     		.section	.text.snprintf,"ax",%progbits
+ 1493              		.align	2
+ 1494              		.global	snprintf
+ 1495              		.thumb
+ 1496              		.thumb_func
+ 1498              	snprintf:
+ 1499              	.LFB15:
+ 601:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** /*-----------------------------------------------------------*/
+ 602:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 603:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** int snprintf( char *apBuf, size_t aMaxLen, const char *apFmt, ... )
+ 604:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** {
+ 1500              		.loc 1 604 0
+ 1501              		.cfi_startproc
+ 1502              		@ args = 4, pretend = 8, frame = 48
+ 1503              		@ frame_needed = 1, uses_anonymous_args = 1
+ARM GAS  /tmp/ccBuMMq0.s 			page 38
+
+
+ 1504 0000 0CB4     		push	{r2, r3}
+ 1505              	.LCFI48:
+ 1506              		.cfi_def_cfa_offset 8
+ 1507              		.cfi_offset 2, -8
+ 1508              		.cfi_offset 3, -4
+ 1509 0002 80B5     		push	{r7, lr}
+ 1510              	.LCFI49:
+ 1511              		.cfi_def_cfa_offset 16
+ 1512              		.cfi_offset 7, -16
+ 1513              		.cfi_offset 14, -12
+ 1514 0004 8CB0     		sub	sp, sp, #48
+ 1515              	.LCFI50:
+ 1516              		.cfi_def_cfa_offset 64
+ 1517 0006 00AF     		add	r7, sp, #0
+ 1518              	.LCFI51:
+ 1519              		.cfi_def_cfa_register 7
+ 1520 0008 7860     		str	r0, [r7, #4]
+ 1521 000a 3960     		str	r1, [r7]
+ 605:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	va_list args;
+ 606:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 607:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	va_start( args,  apFmt );
+ 1522              		.loc 1 607 0
+ 1523 000c 07F13C03 		add	r3, r7, #60
+ 1524 0010 FB62     		str	r3, [r7, #44]
+ 608:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	struct SStringBuf strBuf;
+ 609:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	strbuf_init( &strBuf, apBuf, ( const char* )apBuf + aMaxLen );
+ 1525              		.loc 1 609 0
+ 1526 0012 7A68     		ldr	r2, [r7, #4]
+ 1527 0014 3B68     		ldr	r3, [r7]
+ 1528 0016 1344     		add	r3, r3, r2
+ 1529 0018 07F10C02 		add	r2, r7, #12
+ 1530 001c 1046     		mov	r0, r2
+ 1531 001e 7968     		ldr	r1, [r7, #4]
+ 1532 0020 1A46     		mov	r2, r3
+ 1533 0022 FFF7FEFF 		bl	strbuf_init
+ 610:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	tiny_print( &strBuf, apFmt, args );
+ 1534              		.loc 1 610 0
+ 1535 0026 07F10C03 		add	r3, r7, #12
+ 1536 002a 1846     		mov	r0, r3
+ 1537 002c B96B     		ldr	r1, [r7, #56]
+ 1538 002e FA6A     		ldr	r2, [r7, #44]
+ 1539 0030 FFF7FEFF 		bl	tiny_print
+ 611:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	va_end( args );
+ 612:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 613:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	return strBuf.curLen;
+ 1540              		.loc 1 613 0
+ 1541 0034 BB69     		ldr	r3, [r7, #24]
+ 614:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** }
+ 1542              		.loc 1 614 0
+ 1543 0036 1846     		mov	r0, r3
+ 1544 0038 3037     		adds	r7, r7, #48
+ 1545              	.LCFI52:
+ 1546              		.cfi_def_cfa_offset 16
+ 1547 003a BD46     		mov	sp, r7
+ 1548              	.LCFI53:
+ 1549              		.cfi_def_cfa_register 13
+ 1550              		@ sp needed
+ARM GAS  /tmp/ccBuMMq0.s 			page 39
+
+
+ 1551 003c BDE88040 		pop	{r7, lr}
+ 1552              	.LCFI54:
+ 1553              		.cfi_restore 14
+ 1554              		.cfi_restore 7
+ 1555              		.cfi_def_cfa_offset 8
+ 1556 0040 02B0     		add	sp, sp, #8
+ 1557              	.LCFI55:
+ 1558              		.cfi_restore 3
+ 1559              		.cfi_restore 2
+ 1560              		.cfi_def_cfa_offset 0
+ 1561 0042 7047     		bx	lr
+ 1562              		.cfi_endproc
+ 1563              	.LFE15:
+ 1565              		.section	.text.sprintf,"ax",%progbits
+ 1566              		.align	2
+ 1567              		.global	sprintf
+ 1568              		.thumb
+ 1569              		.thumb_func
+ 1571              	sprintf:
+ 1572              	.LFB16:
+ 615:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** /*-----------------------------------------------------------*/
+ 616:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 617:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** int sprintf( char *apBuf, const char *apFmt, ... )
+ 618:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** {
+ 1573              		.loc 1 618 0
+ 1574              		.cfi_startproc
+ 1575              		@ args = 4, pretend = 12, frame = 48
+ 1576              		@ frame_needed = 1, uses_anonymous_args = 1
+ 1577 0000 0EB4     		push	{r1, r2, r3}
+ 1578              	.LCFI56:
+ 1579              		.cfi_def_cfa_offset 12
+ 1580              		.cfi_offset 1, -12
+ 1581              		.cfi_offset 2, -8
+ 1582              		.cfi_offset 3, -4
+ 1583 0002 80B5     		push	{r7, lr}
+ 1584              	.LCFI57:
+ 1585              		.cfi_def_cfa_offset 20
+ 1586              		.cfi_offset 7, -20
+ 1587              		.cfi_offset 14, -16
+ 1588 0004 8DB0     		sub	sp, sp, #52
+ 1589              	.LCFI58:
+ 1590              		.cfi_def_cfa_offset 72
+ 1591 0006 00AF     		add	r7, sp, #0
+ 1592              	.LCFI59:
+ 1593              		.cfi_def_cfa_register 7
+ 1594 0008 7860     		str	r0, [r7, #4]
+ 619:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	va_list args;
+ 620:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 621:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	va_start( args,  apFmt );
+ 1595              		.loc 1 621 0
+ 1596 000a 07F14003 		add	r3, r7, #64
+ 1597 000e FB62     		str	r3, [r7, #44]
+ 622:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	struct SStringBuf strBuf;
+ 623:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	strbuf_init( &strBuf, apBuf, ( const char * )apBuf + 1024 );
+ 1598              		.loc 1 623 0
+ 1599 0010 7B68     		ldr	r3, [r7, #4]
+ 1600 0012 03F58063 		add	r3, r3, #1024
+ARM GAS  /tmp/ccBuMMq0.s 			page 40
+
+
+ 1601 0016 07F10C02 		add	r2, r7, #12
+ 1602 001a 1046     		mov	r0, r2
+ 1603 001c 7968     		ldr	r1, [r7, #4]
+ 1604 001e 1A46     		mov	r2, r3
+ 1605 0020 FFF7FEFF 		bl	strbuf_init
+ 624:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	tiny_print( &strBuf, apFmt, args );
+ 1606              		.loc 1 624 0
+ 1607 0024 07F10C03 		add	r3, r7, #12
+ 1608 0028 1846     		mov	r0, r3
+ 1609 002a F96B     		ldr	r1, [r7, #60]
+ 1610 002c FA6A     		ldr	r2, [r7, #44]
+ 1611 002e FFF7FEFF 		bl	tiny_print
+ 625:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	va_end( args );
+ 626:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 627:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	return strBuf.curLen;
+ 1612              		.loc 1 627 0
+ 1613 0032 BB69     		ldr	r3, [r7, #24]
+ 628:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** }
+ 1614              		.loc 1 628 0
+ 1615 0034 1846     		mov	r0, r3
+ 1616 0036 3437     		adds	r7, r7, #52
+ 1617              	.LCFI60:
+ 1618              		.cfi_def_cfa_offset 20
+ 1619 0038 BD46     		mov	sp, r7
+ 1620              	.LCFI61:
+ 1621              		.cfi_def_cfa_register 13
+ 1622              		@ sp needed
+ 1623 003a BDE88040 		pop	{r7, lr}
+ 1624              	.LCFI62:
+ 1625              		.cfi_restore 14
+ 1626              		.cfi_restore 7
+ 1627              		.cfi_def_cfa_offset 12
+ 1628 003e 03B0     		add	sp, sp, #12
+ 1629              	.LCFI63:
+ 1630              		.cfi_restore 3
+ 1631              		.cfi_restore 2
+ 1632              		.cfi_restore 1
+ 1633              		.cfi_def_cfa_offset 0
+ 1634 0040 7047     		bx	lr
+ 1635              		.cfi_endproc
+ 1636              	.LFE16:
+ 1638 0042 00BF     		.section	.text.vsprintf,"ax",%progbits
+ 1639              		.align	2
+ 1640              		.global	vsprintf
+ 1641              		.thumb
+ 1642              		.thumb_func
+ 1644              	vsprintf:
+ 1645              	.LFB17:
+ 629:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** /*-----------------------------------------------------------*/
+ 630:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 631:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** int vsprintf( char *apBuf, const char *apFmt, va_list args )
+ 632:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** {
+ 1646              		.loc 1 632 0
+ 1647              		.cfi_startproc
+ 1648              		@ args = 0, pretend = 0, frame = 48
+ 1649              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1650 0000 80B5     		push	{r7, lr}
+ARM GAS  /tmp/ccBuMMq0.s 			page 41
+
+
+ 1651              	.LCFI64:
+ 1652              		.cfi_def_cfa_offset 8
+ 1653              		.cfi_offset 7, -8
+ 1654              		.cfi_offset 14, -4
+ 1655 0002 8CB0     		sub	sp, sp, #48
+ 1656              	.LCFI65:
+ 1657              		.cfi_def_cfa_offset 56
+ 1658 0004 00AF     		add	r7, sp, #0
+ 1659              	.LCFI66:
+ 1660              		.cfi_def_cfa_register 7
+ 1661 0006 F860     		str	r0, [r7, #12]
+ 1662 0008 B960     		str	r1, [r7, #8]
+ 1663 000a 7A60     		str	r2, [r7, #4]
+ 633:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	struct SStringBuf strBuf;
+ 634:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	strbuf_init( &strBuf, apBuf, ( const char* ) apBuf + 1024 );
+ 1664              		.loc 1 634 0
+ 1665 000c FB68     		ldr	r3, [r7, #12]
+ 1666 000e 03F58063 		add	r3, r3, #1024
+ 1667 0012 07F11002 		add	r2, r7, #16
+ 1668 0016 1046     		mov	r0, r2
+ 1669 0018 F968     		ldr	r1, [r7, #12]
+ 1670 001a 1A46     		mov	r2, r3
+ 1671 001c FFF7FEFF 		bl	strbuf_init
+ 635:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	tiny_print( &strBuf, apFmt, args );
+ 1672              		.loc 1 635 0
+ 1673 0020 07F11003 		add	r3, r7, #16
+ 1674 0024 1846     		mov	r0, r3
+ 1675 0026 B968     		ldr	r1, [r7, #8]
+ 1676 0028 7A68     		ldr	r2, [r7, #4]
+ 1677 002a FFF7FEFF 		bl	tiny_print
+ 636:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 637:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	return strBuf.curLen;
+ 1678              		.loc 1 637 0
+ 1679 002e FB69     		ldr	r3, [r7, #28]
+ 638:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** }
+ 1680              		.loc 1 638 0
+ 1681 0030 1846     		mov	r0, r3
+ 1682 0032 3037     		adds	r7, r7, #48
+ 1683              	.LCFI67:
+ 1684              		.cfi_def_cfa_offset 8
+ 1685 0034 BD46     		mov	sp, r7
+ 1686              	.LCFI68:
+ 1687              		.cfi_def_cfa_register 13
+ 1688              		@ sp needed
+ 1689 0036 80BD     		pop	{r7, pc}
+ 1690              		.cfi_endproc
+ 1691              	.LFE17:
+ 1693              		.section	.rodata
+ 1694 0013 00       		.align	2
+ 1695              	.LC2:
+ 1696 0014 25752E25 		.ascii	"%u.%02u GB\000"
+ 1696      30327520 
+ 1696      474200
+ 1697 001f 00       		.align	2
+ 1698              	.LC3:
+ 1699 0020 25752E25 		.ascii	"%u.%02u MB\000"
+ 1699      30327520 
+ARM GAS  /tmp/ccBuMMq0.s 			page 42
+
+
+ 1699      4D4200
+ 1700 002b 00       		.align	2
+ 1701              	.LC4:
+ 1702 002c 25752E25 		.ascii	"%u.%02u KB\000"
+ 1702      30327520 
+ 1702      4B4200
+ 1703 0037 00       		.align	2
+ 1704              	.LC5:
+ 1705 0038 25752062 		.ascii	"%u bytes\000"
+ 1705      79746573 
+ 1705      00
+ 1706              		.section	.text.mkSize,"ax",%progbits
+ 1707              		.align	2
+ 1708              		.global	mkSize
+ 1709              		.thumb
+ 1710              		.thumb_func
+ 1712              	mkSize:
+ 1713              	.LFB18:
+ 639:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** /*-----------------------------------------------------------*/
+ 640:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 641:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** const char *mkSize (unsigned long long aSize, char *apBuf, int aLen)
+ 642:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** {
+ 1714              		.loc 1 642 0
+ 1715              		.cfi_startproc
+ 1716              		@ args = 0, pretend = 0, frame = 32
+ 1717              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1718 0000 2DE9B04F 		push	{r4, r5, r7, r8, r9, r10, fp, lr}
+ 1719              	.LCFI69:
+ 1720              		.cfi_def_cfa_offset 32
+ 1721              		.cfi_offset 4, -32
+ 1722              		.cfi_offset 5, -28
+ 1723              		.cfi_offset 7, -24
+ 1724              		.cfi_offset 8, -20
+ 1725              		.cfi_offset 9, -16
+ 1726              		.cfi_offset 10, -12
+ 1727              		.cfi_offset 11, -8
+ 1728              		.cfi_offset 14, -4
+ 1729 0004 8AB0     		sub	sp, sp, #40
+ 1730              	.LCFI70:
+ 1731              		.cfi_def_cfa_offset 72
+ 1732 0006 02AF     		add	r7, sp, #8
+ 1733              	.LCFI71:
+ 1734              		.cfi_def_cfa 7, 64
+ 1735 0008 C7E90201 		strd	r0, [r7, #8]
+ 1736 000c 7A60     		str	r2, [r7, #4]
+ 1737 000e 3B60     		str	r3, [r7]
+ 643:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** static char retString[33];
+ 644:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** size_t gb, mb, kb, sb;
+ 645:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 
+ 646:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	if (apBuf == NULL) {
+ 1738              		.loc 1 646 0
+ 1739 0010 7B68     		ldr	r3, [r7, #4]
+ 1740 0012 002B     		cmp	r3, #0
+ 1741 0014 03D1     		bne	.L110
+ 647:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		apBuf = retString;
+ 1742              		.loc 1 647 0
+ 1743 0016 414B     		ldr	r3, .L116
+ARM GAS  /tmp/ccBuMMq0.s 			page 43
+
+
+ 1744 0018 7B60     		str	r3, [r7, #4]
+ 648:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		aLen = sizeof( retString );
+ 1745              		.loc 1 648 0
+ 1746 001a 2123     		movs	r3, #33
+ 1747 001c 3B60     		str	r3, [r7]
+ 1748              	.L110:
+ 649:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 650:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	gb = aSize / (1024*1024*1024);
+ 1749              		.loc 1 650 0
+ 1750 001e D7E90223 		ldrd	r2, [r7, #8]
+ 1751 0022 4FEA927A 		lsr	r10, r2, #30
+ 1752 0026 4AEA830A 		orr	r10, r10, r3, lsl #2
+ 1753 002a 4FEA937B 		lsr	fp, r3, #30
+ 1754 002e 5346     		mov	r3, r10
+ 1755 0030 FB61     		str	r3, [r7, #28]
+ 651:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	aSize -= gb * (1024*1024*1024);
+ 1756              		.loc 1 651 0
+ 1757 0032 FB69     		ldr	r3, [r7, #28]
+ 1758 0034 9B07     		lsls	r3, r3, #30
+ 1759 0036 1A46     		mov	r2, r3
+ 1760 0038 4FF00003 		mov	r3, #0
+ 1761 003c D7E90201 		ldrd	r0, [r7, #8]
+ 1762 0040 821A     		subs	r2, r0, r2
+ 1763 0042 61EB0303 		sbc	r3, r1, r3
+ 1764 0046 C7E90223 		strd	r2, [r7, #8]
+ 652:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	mb = aSize / (1024*1024);
+ 1765              		.loc 1 652 0
+ 1766 004a D7E90223 		ldrd	r2, [r7, #8]
+ 1767 004e 4FEA1258 		lsr	r8, r2, #20
+ 1768 0052 48EA0338 		orr	r8, r8, r3, lsl #12
+ 1769 0056 4FEA1359 		lsr	r9, r3, #20
+ 1770 005a 4346     		mov	r3, r8
+ 1771 005c BB61     		str	r3, [r7, #24]
+ 653:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	aSize -= mb * (1024*1024);
+ 1772              		.loc 1 653 0
+ 1773 005e BB69     		ldr	r3, [r7, #24]
+ 1774 0060 1B05     		lsls	r3, r3, #20
+ 1775 0062 1A46     		mov	r2, r3
+ 1776 0064 4FF00003 		mov	r3, #0
+ 1777 0068 D7E90201 		ldrd	r0, [r7, #8]
+ 1778 006c 821A     		subs	r2, r0, r2
+ 1779 006e 61EB0303 		sbc	r3, r1, r3
+ 1780 0072 C7E90223 		strd	r2, [r7, #8]
+ 654:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	kb = aSize / (1024);
+ 1781              		.loc 1 654 0
+ 1782 0076 D7E90223 		ldrd	r2, [r7, #8]
+ 1783 007a 940A     		lsrs	r4, r2, #10
+ 1784 007c 44EA8354 		orr	r4, r4, r3, lsl #22
+ 1785 0080 9D0A     		lsrs	r5, r3, #10
+ 1786 0082 2346     		mov	r3, r4
+ 1787 0084 7B61     		str	r3, [r7, #20]
+ 655:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	aSize -= kb * (1024);
+ 1788              		.loc 1 655 0
+ 1789 0086 7B69     		ldr	r3, [r7, #20]
+ 1790 0088 9B02     		lsls	r3, r3, #10
+ 1791 008a 1A46     		mov	r2, r3
+ 1792 008c 4FF00003 		mov	r3, #0
+ARM GAS  /tmp/ccBuMMq0.s 			page 44
+
+
+ 1793 0090 D7E90201 		ldrd	r0, [r7, #8]
+ 1794 0094 821A     		subs	r2, r0, r2
+ 1795 0096 61EB0303 		sbc	r3, r1, r3
+ 1796 009a C7E90223 		strd	r2, [r7, #8]
+ 656:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	sb = aSize;
+ 1797              		.loc 1 656 0
+ 1798 009e BB68     		ldr	r3, [r7, #8]
+ 1799 00a0 3B61     		str	r3, [r7, #16]
+ 657:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	if( gb )
+ 1800              		.loc 1 657 0
+ 1801 00a2 FB69     		ldr	r3, [r7, #28]
+ 1802 00a4 002B     		cmp	r3, #0
+ 1803 00a6 0CD0     		beq	.L111
+ 658:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 659:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		snprintf (apBuf, aLen, "%u.%02u GB", ( unsigned ) gb, ( unsigned ) ( ( 100 * mb ) / 1024ul ) );
+ 1804              		.loc 1 659 0
+ 1805 00a8 3968     		ldr	r1, [r7]
+ 1806 00aa BB69     		ldr	r3, [r7, #24]
+ 1807 00ac 6422     		movs	r2, #100
+ 1808 00ae 02FB03F3 		mul	r3, r2, r3
+ 1809 00b2 9B0A     		lsrs	r3, r3, #10
+ 1810 00b4 0093     		str	r3, [sp]
+ 1811 00b6 7868     		ldr	r0, [r7, #4]
+ 1812 00b8 194A     		ldr	r2, .L116+4
+ 1813 00ba FB69     		ldr	r3, [r7, #28]
+ 1814 00bc FFF7FEFF 		bl	snprintf
+ 1815 00c0 26E0     		b	.L112
+ 1816              	.L111:
+ 660:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 661:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	else if( mb )
+ 1817              		.loc 1 661 0
+ 1818 00c2 BB69     		ldr	r3, [r7, #24]
+ 1819 00c4 002B     		cmp	r3, #0
+ 1820 00c6 0CD0     		beq	.L113
+ 662:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 663:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		snprintf (apBuf, aLen, "%u.%02u MB", ( unsigned ) mb, ( unsigned ) ( ( 100 * kb) / 1024ul ) );
+ 1821              		.loc 1 663 0
+ 1822 00c8 3968     		ldr	r1, [r7]
+ 1823 00ca 7B69     		ldr	r3, [r7, #20]
+ 1824 00cc 6422     		movs	r2, #100
+ 1825 00ce 02FB03F3 		mul	r3, r2, r3
+ 1826 00d2 9B0A     		lsrs	r3, r3, #10
+ 1827 00d4 0093     		str	r3, [sp]
+ 1828 00d6 7868     		ldr	r0, [r7, #4]
+ 1829 00d8 124A     		ldr	r2, .L116+8
+ 1830 00da BB69     		ldr	r3, [r7, #24]
+ 1831 00dc FFF7FEFF 		bl	snprintf
+ 1832 00e0 16E0     		b	.L112
+ 1833              	.L113:
+ 664:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 665:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	else if( kb != 0ul )
+ 1834              		.loc 1 665 0
+ 1835 00e2 7B69     		ldr	r3, [r7, #20]
+ 1836 00e4 002B     		cmp	r3, #0
+ 1837 00e6 0CD0     		beq	.L114
+ 666:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 667:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		snprintf (apBuf, aLen, "%u.%02u KB", ( unsigned ) kb, ( unsigned ) ( ( 100 * sb) / 1024ul ) );
+ARM GAS  /tmp/ccBuMMq0.s 			page 45
+
+
+ 1838              		.loc 1 667 0
+ 1839 00e8 3968     		ldr	r1, [r7]
+ 1840 00ea 3B69     		ldr	r3, [r7, #16]
+ 1841 00ec 6422     		movs	r2, #100
+ 1842 00ee 02FB03F3 		mul	r3, r2, r3
+ 1843 00f2 9B0A     		lsrs	r3, r3, #10
+ 1844 00f4 0093     		str	r3, [sp]
+ 1845 00f6 7868     		ldr	r0, [r7, #4]
+ 1846 00f8 0B4A     		ldr	r2, .L116+12
+ 1847 00fa 7B69     		ldr	r3, [r7, #20]
+ 1848 00fc FFF7FEFF 		bl	snprintf
+ 1849 0100 06E0     		b	.L112
+ 1850              	.L114:
+ 668:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 669:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	else
+ 670:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	{
+ 671:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 		snprintf (apBuf, aLen, "%u bytes", ( unsigned ) sb);
+ 1851              		.loc 1 671 0
+ 1852 0102 3B68     		ldr	r3, [r7]
+ 1853 0104 7868     		ldr	r0, [r7, #4]
+ 1854 0106 1946     		mov	r1, r3
+ 1855 0108 084A     		ldr	r2, .L116+16
+ 1856 010a 3B69     		ldr	r3, [r7, #16]
+ 1857 010c FFF7FEFF 		bl	snprintf
+ 1858              	.L112:
+ 672:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	}
+ 673:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** 	return apBuf;
+ 1859              		.loc 1 673 0
+ 1860 0110 7B68     		ldr	r3, [r7, #4]
+ 674:../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c **** }
+ 1861              		.loc 1 674 0
+ 1862 0112 1846     		mov	r0, r3
+ 1863 0114 2037     		adds	r7, r7, #32
+ 1864              	.LCFI72:
+ 1865              		.cfi_def_cfa_offset 32
+ 1866 0116 BD46     		mov	sp, r7
+ 1867              	.LCFI73:
+ 1868              		.cfi_def_cfa_register 13
+ 1869              		@ sp needed
+ 1870 0118 BDE8B08F 		pop	{r4, r5, r7, r8, r9, r10, fp, pc}
+ 1871              	.L117:
+ 1872              		.align	2
+ 1873              	.L116:
+ 1874 011c 00000000 		.word	retString.5823
+ 1875 0120 14000000 		.word	.LC2
+ 1876 0124 20000000 		.word	.LC3
+ 1877 0128 2C000000 		.word	.LC4
+ 1878 012c 38000000 		.word	.LC5
+ 1879              		.cfi_endproc
+ 1880              	.LFE18:
+ 1882              		.section	.bss.retString.5823,"aw",%nobits
+ 1883              		.align	2
+ 1886              	retString.5823:
+ 1887 0000 00000000 		.space	33
+ 1887      00000000 
+ 1887      00000000 
+ 1887      00000000 
+ARM GAS  /tmp/ccBuMMq0.s 			page 46
+
+
+ 1887      00000000 
+ 1888              		.text
+ 1889              	.Letext0:
+ 1890              		.file 2 "/usr/lib/gcc/arm-none-eabi/4.9.3/include/stdarg.h"
+ 1891              		.file 3 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 1892              		.file 4 "/usr/lib/gcc/arm-none-eabi/4.9.3/include/stddef.h"
+ 1893              		.file 5 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 1894              		.file 6 "../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h"
+ 1895              		.file 7 "<built-in>"
+ 1896              		.file 8 "/usr/arm-none-eabi/include/stdio.h"
+ARM GAS  /tmp/ccBuMMq0.s 			page 47
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 printf-stdarg.c
+     /tmp/ccBuMMq0.s:21     .rodata.xTicksToWait:0000000000000000 $d
+     /tmp/ccBuMMq0.s:24     .rodata.xTicksToWait:0000000000000000 xTicksToWait
+     /tmp/ccBuMMq0.s:27     .text.strbuf_init:0000000000000000 $t
+     /tmp/ccBuMMq0.s:31     .text.strbuf_init:0000000000000000 strbuf_init
+     /tmp/ccBuMMq0.s:89     .text.strbuf_printchar:0000000000000000 $t
+     /tmp/ccBuMMq0.s:93     .text.strbuf_printchar:0000000000000000 strbuf_printchar
+     /tmp/ccBuMMq0.s:193    .text.strbuf_printchar_inline:0000000000000000 $t
+     /tmp/ccBuMMq0.s:197    .text.strbuf_printchar_inline:0000000000000000 strbuf_printchar_inline
+     /tmp/ccBuMMq0.s:313    .text.prints:0000000000000000 $t
+     /tmp/ccBuMMq0.s:317    .text.prints:0000000000000000 prints
+     /tmp/ccBuMMq0.s:556    .text.printi:0000000000000000 $t
+     /tmp/ccBuMMq0.s:560    .text.printi:0000000000000000 printi
+     /tmp/ccBuMMq0.s:756    .rodata:0000000000000000 $d
+     /tmp/ccBuMMq0.s:760    .text.printIp:0000000000000000 $t
+     /tmp/ccBuMMq0.s:764    .text.printIp:0000000000000000 printIp
+     /tmp/ccBuMMq0.s:1571   .text.sprintf:0000000000000000 sprintf
+     /tmp/ccBuMMq0.s:833    .text.printIp:0000000000000054 $d
+     /tmp/ccBuMMq0.s:842    .text.tiny_print:0000000000000000 $t
+     /tmp/ccBuMMq0.s:846    .text.tiny_print:0000000000000000 tiny_print
+     /tmp/ccBuMMq0.s:1359   .text.tiny_print:00000000000002e0 $d
+     /tmp/ccBuMMq0.s:1364   .text.tiny_printf:0000000000000000 $t
+     /tmp/ccBuMMq0.s:1369   .text.tiny_printf:0000000000000000 tiny_printf
+     /tmp/ccBuMMq0.s:1436   .text.vsnprintf:0000000000000000 $t
+     /tmp/ccBuMMq0.s:1441   .text.vsnprintf:0000000000000000 vsnprintf
+     /tmp/ccBuMMq0.s:1493   .text.snprintf:0000000000000000 $t
+     /tmp/ccBuMMq0.s:1498   .text.snprintf:0000000000000000 snprintf
+     /tmp/ccBuMMq0.s:1566   .text.sprintf:0000000000000000 $t
+     /tmp/ccBuMMq0.s:1639   .text.vsprintf:0000000000000000 $t
+     /tmp/ccBuMMq0.s:1644   .text.vsprintf:0000000000000000 vsprintf
+     /tmp/ccBuMMq0.s:1707   .text.mkSize:0000000000000000 $t
+     /tmp/ccBuMMq0.s:1712   .text.mkSize:0000000000000000 mkSize
+     /tmp/ccBuMMq0.s:1874   .text.mkSize:000000000000011c $d
+     /tmp/ccBuMMq0.s:1886   .bss.retString.5823:0000000000000000 retString.5823
+     /tmp/ccBuMMq0.s:1883   .bss.retString.5823:0000000000000000 $d
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+memset
+vOutputChar
+strlen

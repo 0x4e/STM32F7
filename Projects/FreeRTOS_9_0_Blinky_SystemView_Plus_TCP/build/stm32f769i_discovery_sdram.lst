@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc9IpTja.s 			page 1
+ARM GAS  /tmp/ccGJTILH.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
   12:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****    - This driver is used to drive the MT48LC4M32B2B5-6A SDRAM external memory mounted
   13:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****      on STM32F769I-DISCOVERY board.
   14:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****    - This driver does not need a specific component driver for the SDRAM device
-ARM GAS  /tmp/cc9IpTja.s 			page 2
+ARM GAS  /tmp/ccGJTILH.s 			page 2
 
 
   15:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****      to be included with.
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
   69:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
   70:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
   71:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-ARM GAS  /tmp/cc9IpTja.s 			page 3
+ARM GAS  /tmp/ccGJTILH.s 			page 3
 
 
   72:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  126:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /**
  127:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @}
  128:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */
-ARM GAS  /tmp/cc9IpTja.s 			page 4
+ARM GAS  /tmp/ccGJTILH.s 			page 4
 
 
  129:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
   75 0022 244B     		ldr	r3, .L5+8
   76 0024 0222     		movs	r2, #2
   77 0026 1A61     		str	r2, [r3, #16]
-ARM GAS  /tmp/cc9IpTja.s 			page 5
+ARM GAS  /tmp/ccGJTILH.s 			page 5
 
 
  150:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Timing.RPDelay              = 2;
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  120 006a 4FF48052 		mov	r2, #4096
  121 006e 5A62     		str	r2, [r3, #36]
  162:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   sdramHandle.Init.ReadPipeDelay      = FMC_SDRAM_RPIPE_DELAY_0;
-ARM GAS  /tmp/cc9IpTja.s 			page 6
+ARM GAS  /tmp/ccGJTILH.s 			page 6
 
 
  122              		.loc 1 162 0
@@ -358,13 +358,13 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  157              	.L6:
  158 00aa 00BF     		.align	2
  159              	.L5:
-ARM GAS  /tmp/cc9IpTja.s 			page 7
+ARM GAS  /tmp/ccGJTILH.s 			page 7
 
 
  160 00ac 00000000 		.word	sdramHandle
  161 00b0 400100A0 		.word	-1610612416
  162 00b4 00000000 		.word	Timing
- 163 00b8 00000000 		.word	sdramstatus.9409
+ 163 00b8 00000000 		.word	sdramstatus.8961
  164              		.cfi_endproc
  165              	.LFE135:
  167              		.section	.text.BSP_SDRAM_DeInit,"ax",%progbits
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  202              	.L8:
  196:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   }
  197:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   else
-ARM GAS  /tmp/cc9IpTja.s 			page 8
+ARM GAS  /tmp/ccGJTILH.s 			page 8
 
 
  198:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   {
@@ -450,7 +450,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  220              	.L11:
  221 0034 00000000 		.word	sdramHandle
  222 0038 400100A0 		.word	-1610612416
- 223 003c 00000000 		.word	sdramstatus.9413
+ 223 003c 00000000 		.word	sdramstatus.8965
  224              		.cfi_endproc
  225              	.LFE136:
  227              		.section	.text.BSP_SDRAM_Initialization_sequence,"ax",%progbits
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  242              		.cfi_offset 7, -8
  243              		.cfi_offset 14, -4
  244 0002 84B0     		sub	sp, sp, #16
-ARM GAS  /tmp/cc9IpTja.s 			page 9
+ARM GAS  /tmp/ccGJTILH.s 			page 9
 
 
  245              	.LCFI5:
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  232:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Command.CommandTarget          = FMC_SDRAM_CMD_TARGET_BANK1;
  282              		.loc 1 232 0
  283 003c 1E4B     		ldr	r3, .L14
-ARM GAS  /tmp/cc9IpTja.s 			page 10
+ARM GAS  /tmp/ccGJTILH.s 			page 10
 
 
  284 003e 1022     		movs	r2, #16
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  321 007e 4FF40C73 		mov	r3, #560
  322 0082 FB60     		str	r3, [r7, #12]
  250:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****                      SDRAM_MODEREG_BURST_TYPE_SEQUENTIAL   |\
-ARM GAS  /tmp/cc9IpTja.s 			page 11
+ARM GAS  /tmp/ccGJTILH.s 			page 11
 
 
  251:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****                      SDRAM_MODEREG_CAS_LATENCY_3           |\
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  361 00bc 00000000 		.word	sdramHandle
  362              		.cfi_endproc
  363              	.LFE137:
-ARM GAS  /tmp/cc9IpTja.s 			page 12
+ARM GAS  /tmp/ccGJTILH.s 			page 12
 
 
  365              		.section	.text.BSP_SDRAM_ReadData,"ax",%progbits
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  282:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   {
  283:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     return SDRAM_OK;
  405              		.loc 1 283 0
-ARM GAS  /tmp/cc9IpTja.s 			page 13
+ARM GAS  /tmp/ccGJTILH.s 			page 13
 
 
  406 0024 0023     		movs	r3, #0
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  450 000a 7A60     		str	r2, [r7, #4]
  296:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   if(HAL_SDRAM_Read_DMA(&sdramHandle, (uint32_t *)uwStartAddress, pData, uwDataSize) != HAL_OK)
  451              		.loc 1 296 0
-ARM GAS  /tmp/cc9IpTja.s 			page 14
+ARM GAS  /tmp/ccGJTILH.s 			page 14
 
 
  452 000c FB68     		ldr	r3, [r7, #12]
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  312:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */
  313:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** uint8_t BSP_SDRAM_WriteData(uint32_t uwStartAddress, uint32_t *pData, uint32_t uwDataSize) 
  314:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** {
-ARM GAS  /tmp/cc9IpTja.s 			page 15
+ARM GAS  /tmp/ccGJTILH.s 			page 15
 
 
  493              		.loc 1 314 0
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  538              	.L30:
  539 002e 00BF     		.align	2
  540              	.L29:
-ARM GAS  /tmp/cc9IpTja.s 			page 16
+ARM GAS  /tmp/ccGJTILH.s 			page 16
 
 
  541 0030 00000000 		.word	sdramHandle
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  584              	.L32:
  337:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   }
  338:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   else
-ARM GAS  /tmp/cc9IpTja.s 			page 17
+ARM GAS  /tmp/ccGJTILH.s 			page 17
 
 
  339:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   {
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  351:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   if(HAL_SDRAM_SendCommand(&sdramHandle, SdramCmd, SDRAM_TIMEOUT) != HAL_OK)
  629              		.loc 1 351 0
  630 0008 0748     		ldr	r0, .L39
-ARM GAS  /tmp/cc9IpTja.s 			page 18
+ARM GAS  /tmp/ccGJTILH.s 			page 18
 
 
  631 000a 7968     		ldr	r1, [r7, #4]
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  671              		@ args = 0, pretend = 0, frame = 64
  672              		@ frame_needed = 1, uses_anonymous_args = 0
  673 0000 80B5     		push	{r7, lr}
-ARM GAS  /tmp/cc9IpTja.s 			page 19
+ARM GAS  /tmp/ccGJTILH.s 			page 19
 
 
  674              	.LCFI34:
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  717 0040 43F00803 		orr	r3, r3, #8
  718 0044 1363     		str	r3, [r2, #48]
  719 0046 614B     		ldr	r3, .L42
-ARM GAS  /tmp/cc9IpTja.s 			page 20
+ARM GAS  /tmp/ccGJTILH.s 			page 20
 
 
  720 0048 1B6B     		ldr	r3, [r3, #48]
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  770 00a4 1363     		str	r3, [r2, #48]
  771 00a6 494B     		ldr	r3, .L42
  772 00a8 1B6B     		ldr	r3, [r3, #48]
-ARM GAS  /tmp/cc9IpTja.s 			page 21
+ARM GAS  /tmp/ccGJTILH.s 			page 21
 
 
  773 00aa 03F08003 		and	r3, r3, #128
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  810              		.loc 1 399 0
  811 00ec 4FF68373 		movw	r3, #65411
  812 00f0 FB62     		str	r3, [r7, #44]
-ARM GAS  /tmp/cc9IpTja.s 			page 22
+ARM GAS  /tmp/ccGJTILH.s 			page 22
 
 
  400:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****                               GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 |
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  842              		.loc 1 424 0
  843 0134 40F2FF63 		movw	r3, #1791
  844 0138 FB62     		str	r3, [r7, #44]
-ARM GAS  /tmp/cc9IpTja.s 			page 23
+ARM GAS  /tmp/ccGJTILH.s 			page 23
 
 
  425:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****                               GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_9 | GPIO_PIN_10;
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  438:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   dma_handle.Init.FIFOThreshold       = DMA_FIFO_THRESHOLD_FULL;
  886              		.loc 1 438 0
  887 0186 184B     		ldr	r3, .L42+28
-ARM GAS  /tmp/cc9IpTja.s 			page 24
+ARM GAS  /tmp/ccGJTILH.s 			page 24
 
 
  888 0188 0322     		movs	r2, #3
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  924 01c6 4037     		adds	r7, r7, #64
  925              	.LCFI37:
  926              		.cfi_def_cfa_offset 8
-ARM GAS  /tmp/cc9IpTja.s 			page 25
+ARM GAS  /tmp/ccGJTILH.s 			page 25
 
 
  927 01c8 BD46     		mov	sp, r7
@@ -1456,7 +1456,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  939 01dc 00180240 		.word	1073879040
  940 01e0 001C0240 		.word	1073880064
  941 01e4 00200240 		.word	1073881088
- 942 01e8 00000000 		.word	dma_handle.9445
+ 942 01e8 00000000 		.word	dma_handle.8997
  943 01ec 10640240 		.word	1073898512
  944              		.cfi_endproc
  945              	.LFE143:
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  468:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     HAL_NVIC_DisableIRQ(SDRAM_DMAx_IRQn);
  972              		.loc 1 468 0
  973 000a 3820     		movs	r0, #56
-ARM GAS  /tmp/cc9IpTja.s 			page 26
+ARM GAS  /tmp/ccGJTILH.s 			page 26
 
 
  974 000c FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
@@ -1529,27 +1529,27 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  991              	.L46:
  992 0022 00BF     		.align	2
  993              	.L45:
- 994 0024 00000000 		.word	dma_handle.9459
+ 994 0024 00000000 		.word	dma_handle.9011
  995 0028 10640240 		.word	1073898512
  996              		.cfi_endproc
  997              	.LFE144:
- 999              		.section	.data.sdramstatus.9409,"aw",%progbits
- 1002              	sdramstatus.9409:
+ 999              		.section	.data.sdramstatus.8961,"aw",%progbits
+ 1002              	sdramstatus.8961:
  1003 0000 01       		.byte	1
- 1004              		.section	.data.sdramstatus.9413,"aw",%progbits
- 1007              	sdramstatus.9413:
+ 1004              		.section	.data.sdramstatus.8965,"aw",%progbits
+ 1007              	sdramstatus.8965:
  1008 0000 01       		.byte	1
- 1009              		.section	.bss.dma_handle.9445,"aw",%nobits
+ 1009              		.section	.bss.dma_handle.8997,"aw",%nobits
  1010              		.align	2
- 1013              	dma_handle.9445:
+ 1013              	dma_handle.8997:
  1014 0000 00000000 		.space	96
  1014      00000000 
  1014      00000000 
  1014      00000000 
  1014      00000000 
- 1015              		.section	.bss.dma_handle.9459,"aw",%nobits
+ 1015              		.section	.bss.dma_handle.9011,"aw",%nobits
  1016              		.align	2
- 1019              	dma_handle.9459:
+ 1019              	dma_handle.9011:
  1020 0000 00000000 		.space	96
  1020      00000000 
  1020      00000000 
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  1021              		.text
  1022              	.Letext0:
  1023              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
-ARM GAS  /tmp/cc9IpTja.s 			page 27
+ARM GAS  /tmp/ccGJTILH.s 			page 27
 
 
  1024              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
@@ -1569,52 +1569,52 @@ ARM GAS  /tmp/cc9IpTja.s 			page 1
  1029              		.file 8 "../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_fmc.h"
  1030              		.file 9 "../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_sdram.h"
  1031              		.file 10 "../../Drivers/CMSIS/Include/core_cm7.h"
-ARM GAS  /tmp/cc9IpTja.s 			page 28
+ARM GAS  /tmp/ccGJTILH.s 			page 28
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f769i_discovery_sdram.c
                             *COM*:0000000000000034 sdramHandle
-     /tmp/cc9IpTja.s:22     .bss.Timing:0000000000000000 $d
-     /tmp/cc9IpTja.s:25     .bss.Timing:0000000000000000 Timing
-     /tmp/cc9IpTja.s:28     .bss.Command:0000000000000000 $d
-     /tmp/cc9IpTja.s:31     .bss.Command:0000000000000000 Command
-     /tmp/cc9IpTja.s:34     .text.BSP_SDRAM_Init:0000000000000000 $t
-     /tmp/cc9IpTja.s:39     .text.BSP_SDRAM_Init:0000000000000000 BSP_SDRAM_Init
-     /tmp/cc9IpTja.s:667    .text.BSP_SDRAM_MspInit:0000000000000000 BSP_SDRAM_MspInit
-     /tmp/cc9IpTja.s:233    .text.BSP_SDRAM_Initialization_sequence:0000000000000000 BSP_SDRAM_Initialization_sequence
-     /tmp/cc9IpTja.s:160    .text.BSP_SDRAM_Init:00000000000000ac $d
-     /tmp/cc9IpTja.s:1002   .data.sdramstatus.9409:0000000000000000 sdramstatus.9409
-     /tmp/cc9IpTja.s:168    .text.BSP_SDRAM_DeInit:0000000000000000 $t
-     /tmp/cc9IpTja.s:173    .text.BSP_SDRAM_DeInit:0000000000000000 BSP_SDRAM_DeInit
-     /tmp/cc9IpTja.s:953    .text.BSP_SDRAM_MspDeInit:0000000000000000 BSP_SDRAM_MspDeInit
-     /tmp/cc9IpTja.s:221    .text.BSP_SDRAM_DeInit:0000000000000034 $d
-     /tmp/cc9IpTja.s:1007   .data.sdramstatus.9413:0000000000000000 sdramstatus.9413
-     /tmp/cc9IpTja.s:228    .text.BSP_SDRAM_Initialization_sequence:0000000000000000 $t
-     /tmp/cc9IpTja.s:360    .text.BSP_SDRAM_Initialization_sequence:00000000000000b8 $d
-     /tmp/cc9IpTja.s:366    .text.BSP_SDRAM_ReadData:0000000000000000 $t
-     /tmp/cc9IpTja.s:371    .text.BSP_SDRAM_ReadData:0000000000000000 BSP_SDRAM_ReadData
-     /tmp/cc9IpTja.s:421    .text.BSP_SDRAM_ReadData:0000000000000030 $d
-     /tmp/cc9IpTja.s:426    .text.BSP_SDRAM_ReadData_DMA:0000000000000000 $t
-     /tmp/cc9IpTja.s:431    .text.BSP_SDRAM_ReadData_DMA:0000000000000000 BSP_SDRAM_ReadData_DMA
-     /tmp/cc9IpTja.s:481    .text.BSP_SDRAM_ReadData_DMA:0000000000000030 $d
-     /tmp/cc9IpTja.s:486    .text.BSP_SDRAM_WriteData:0000000000000000 $t
-     /tmp/cc9IpTja.s:491    .text.BSP_SDRAM_WriteData:0000000000000000 BSP_SDRAM_WriteData
-     /tmp/cc9IpTja.s:541    .text.BSP_SDRAM_WriteData:0000000000000030 $d
-     /tmp/cc9IpTja.s:546    .text.BSP_SDRAM_WriteData_DMA:0000000000000000 $t
-     /tmp/cc9IpTja.s:551    .text.BSP_SDRAM_WriteData_DMA:0000000000000000 BSP_SDRAM_WriteData_DMA
-     /tmp/cc9IpTja.s:601    .text.BSP_SDRAM_WriteData_DMA:0000000000000030 $d
-     /tmp/cc9IpTja.s:606    .text.BSP_SDRAM_Sendcmd:0000000000000000 $t
-     /tmp/cc9IpTja.s:611    .text.BSP_SDRAM_Sendcmd:0000000000000000 BSP_SDRAM_Sendcmd
-     /tmp/cc9IpTja.s:657    .text.BSP_SDRAM_Sendcmd:0000000000000028 $d
-     /tmp/cc9IpTja.s:662    .text.BSP_SDRAM_MspInit:0000000000000000 $t
-     /tmp/cc9IpTja.s:935    .text.BSP_SDRAM_MspInit:00000000000001cc $d
-     /tmp/cc9IpTja.s:1013   .bss.dma_handle.9445:0000000000000000 dma_handle.9445
-     /tmp/cc9IpTja.s:948    .text.BSP_SDRAM_MspDeInit:0000000000000000 $t
-     /tmp/cc9IpTja.s:994    .text.BSP_SDRAM_MspDeInit:0000000000000024 $d
-     /tmp/cc9IpTja.s:1019   .bss.dma_handle.9459:0000000000000000 dma_handle.9459
-     /tmp/cc9IpTja.s:1010   .bss.dma_handle.9445:0000000000000000 $d
-     /tmp/cc9IpTja.s:1016   .bss.dma_handle.9459:0000000000000000 $d
+     /tmp/ccGJTILH.s:22     .bss.Timing:0000000000000000 $d
+     /tmp/ccGJTILH.s:25     .bss.Timing:0000000000000000 Timing
+     /tmp/ccGJTILH.s:28     .bss.Command:0000000000000000 $d
+     /tmp/ccGJTILH.s:31     .bss.Command:0000000000000000 Command
+     /tmp/ccGJTILH.s:34     .text.BSP_SDRAM_Init:0000000000000000 $t
+     /tmp/ccGJTILH.s:39     .text.BSP_SDRAM_Init:0000000000000000 BSP_SDRAM_Init
+     /tmp/ccGJTILH.s:667    .text.BSP_SDRAM_MspInit:0000000000000000 BSP_SDRAM_MspInit
+     /tmp/ccGJTILH.s:233    .text.BSP_SDRAM_Initialization_sequence:0000000000000000 BSP_SDRAM_Initialization_sequence
+     /tmp/ccGJTILH.s:160    .text.BSP_SDRAM_Init:00000000000000ac $d
+     /tmp/ccGJTILH.s:1002   .data.sdramstatus.8961:0000000000000000 sdramstatus.8961
+     /tmp/ccGJTILH.s:168    .text.BSP_SDRAM_DeInit:0000000000000000 $t
+     /tmp/ccGJTILH.s:173    .text.BSP_SDRAM_DeInit:0000000000000000 BSP_SDRAM_DeInit
+     /tmp/ccGJTILH.s:953    .text.BSP_SDRAM_MspDeInit:0000000000000000 BSP_SDRAM_MspDeInit
+     /tmp/ccGJTILH.s:221    .text.BSP_SDRAM_DeInit:0000000000000034 $d
+     /tmp/ccGJTILH.s:1007   .data.sdramstatus.8965:0000000000000000 sdramstatus.8965
+     /tmp/ccGJTILH.s:228    .text.BSP_SDRAM_Initialization_sequence:0000000000000000 $t
+     /tmp/ccGJTILH.s:360    .text.BSP_SDRAM_Initialization_sequence:00000000000000b8 $d
+     /tmp/ccGJTILH.s:366    .text.BSP_SDRAM_ReadData:0000000000000000 $t
+     /tmp/ccGJTILH.s:371    .text.BSP_SDRAM_ReadData:0000000000000000 BSP_SDRAM_ReadData
+     /tmp/ccGJTILH.s:421    .text.BSP_SDRAM_ReadData:0000000000000030 $d
+     /tmp/ccGJTILH.s:426    .text.BSP_SDRAM_ReadData_DMA:0000000000000000 $t
+     /tmp/ccGJTILH.s:431    .text.BSP_SDRAM_ReadData_DMA:0000000000000000 BSP_SDRAM_ReadData_DMA
+     /tmp/ccGJTILH.s:481    .text.BSP_SDRAM_ReadData_DMA:0000000000000030 $d
+     /tmp/ccGJTILH.s:486    .text.BSP_SDRAM_WriteData:0000000000000000 $t
+     /tmp/ccGJTILH.s:491    .text.BSP_SDRAM_WriteData:0000000000000000 BSP_SDRAM_WriteData
+     /tmp/ccGJTILH.s:541    .text.BSP_SDRAM_WriteData:0000000000000030 $d
+     /tmp/ccGJTILH.s:546    .text.BSP_SDRAM_WriteData_DMA:0000000000000000 $t
+     /tmp/ccGJTILH.s:551    .text.BSP_SDRAM_WriteData_DMA:0000000000000000 BSP_SDRAM_WriteData_DMA
+     /tmp/ccGJTILH.s:601    .text.BSP_SDRAM_WriteData_DMA:0000000000000030 $d
+     /tmp/ccGJTILH.s:606    .text.BSP_SDRAM_Sendcmd:0000000000000000 $t
+     /tmp/ccGJTILH.s:611    .text.BSP_SDRAM_Sendcmd:0000000000000000 BSP_SDRAM_Sendcmd
+     /tmp/ccGJTILH.s:657    .text.BSP_SDRAM_Sendcmd:0000000000000028 $d
+     /tmp/ccGJTILH.s:662    .text.BSP_SDRAM_MspInit:0000000000000000 $t
+     /tmp/ccGJTILH.s:935    .text.BSP_SDRAM_MspInit:00000000000001cc $d
+     /tmp/ccGJTILH.s:1013   .bss.dma_handle.8997:0000000000000000 dma_handle.8997
+     /tmp/ccGJTILH.s:948    .text.BSP_SDRAM_MspDeInit:0000000000000000 $t
+     /tmp/ccGJTILH.s:994    .text.BSP_SDRAM_MspDeInit:0000000000000024 $d
+     /tmp/ccGJTILH.s:1019   .bss.dma_handle.9011:0000000000000000 dma_handle.9011
+     /tmp/ccGJTILH.s:1010   .bss.dma_handle.8997:0000000000000000 $d
+     /tmp/ccGJTILH.s:1016   .bss.dma_handle.9011:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
@@ -1629,7 +1629,7 @@ HAL_SDRAM_Write_32b
 HAL_SDRAM_Write_DMA
 HAL_GPIO_Init
 HAL_DMA_DeInit
-ARM GAS  /tmp/cc9IpTja.s 			page 29
+ARM GAS  /tmp/ccGJTILH.s 			page 29
 
 
 HAL_DMA_Init

@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc3zEYQo.s 			page 1
+ARM GAS  /tmp/ccMAVCpa.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
   29:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * license that applies is dependent on the processor on which FreeRTOS+TCP is
   30:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * executed, as follows:
   31:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  *
-ARM GAS  /tmp/cc3zEYQo.s 			page 2
+ARM GAS  /tmp/ccMAVCpa.s 			page 2
 
 
   32:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * If FreeRTOS+TCP is executed on one of the processors listed under the Special
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
   86:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	/* Make the circular buffer empty */
   87:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	pxBuffer->uxHead = 0u;
   88:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	pxBuffer->uxTail = 0u;
-ARM GAS  /tmp/cc3zEYQo.s 			page 3
+ARM GAS  /tmp/ccMAVCpa.s 			page 3
 
 
   89:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	pxBuffer->uxFront = 0u;
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
   67              	.L2:
  104:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	}
  105:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
-ARM GAS  /tmp/cc3zEYQo.s 			page 4
+ARM GAS  /tmp/ccMAVCpa.s 			page 4
 
 
  106:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	return uxCount;
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  113 000c FB68     		ldr	r3, [r7, #12]
  114 000e 1A69     		ldr	r2, [r3, #16]
  115 0010 7B68     		ldr	r3, [r7, #4]
-ARM GAS  /tmp/cc3zEYQo.s 			page 5
+ARM GAS  /tmp/ccMAVCpa.s 			page 5
 
 
  116 0012 1A44     		add	r2, r2, r3
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  160              		.cfi_startproc
  161              		@ args = 0, pretend = 0, frame = 16
  162              		@ frame_needed = 1, uses_anonymous_args = 0
-ARM GAS  /tmp/cc3zEYQo.s 			page 6
+ARM GAS  /tmp/ccMAVCpa.s 			page 6
 
 
  163 0000 80B5     		push	{r7, lr}
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  139:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE size_t uxStreamBufferFrontSpace( const StreamBuffer_t *pxBuffer )
  140:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** {
  141:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /* Distance between uxFront and uxTail
-ARM GAS  /tmp/cc3zEYQo.s 			page 7
+ARM GAS  /tmp/ccMAVCpa.s 			page 7
 
 
  142:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** or the number of items which can still be added to uxFront,
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  243              		.cfi_def_cfa_offset 8
  244 0024 BD46     		mov	sp, r7
  245              	.LCFI21:
-ARM GAS  /tmp/cc3zEYQo.s 			page 8
+ARM GAS  /tmp/ccMAVCpa.s 			page 8
 
 
  246              		.cfi_def_cfa_register 13
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
   23:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c ****     link: http://www.freertos.org/a00114.html
   24:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
   25:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c ****     ***************************************************************************
-ARM GAS  /tmp/cc3zEYQo.s 			page 9
+ARM GAS  /tmp/ccMAVCpa.s 			page 9
 
 
   26:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c ****      *                                                                       *
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
   80:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** #include <string.h>
   81:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** #include <stdlib.h>
   82:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** #include <limits.h>
-ARM GAS  /tmp/cc3zEYQo.s 			page 10
+ARM GAS  /tmp/ccMAVCpa.s 			page 10
 
 
   83:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  137:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	#define configUDP_LOGGING_PORT_LOCAL 0
  138:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** #endif
  139:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
-ARM GAS  /tmp/cc3zEYQo.s 			page 11
+ARM GAS  /tmp/ccMAVCpa.s 			page 11
 
 
  140:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** /* The logging task's block time.  This is used as the UDP socket's send block
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  194:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	#else
  195:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 		uint32_t ulLogTime;
  196:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	#endif
-ARM GAS  /tmp/cc3zEYQo.s 			page 12
+ARM GAS  /tmp/ccMAVCpa.s 			page 12
 
 
  197:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	uint32_t ulPriority;
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  226:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 			bytes + 1. */ /*_RB_ Why is the size of pxStreamBuffer->ucArray
  227:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 			subtracted here? */
  228:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 			xSize = sizeof( StreamBuffer_t ) - sizeof( pxStreamBuffer->ucArray ) + logMESSAGE_BUFFER_SIZE_BY
-ARM GAS  /tmp/cc3zEYQo.s 			page 13
+ARM GAS  /tmp/ccMAVCpa.s 			page 13
 
 
  309              		.loc 2 228 0
@@ -778,14 +778,14 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  349              	.LCFI26:
  350              		.cfi_def_cfa_register 13
  351              		@ sp needed
-ARM GAS  /tmp/cc3zEYQo.s 			page 14
+ARM GAS  /tmp/ccMAVCpa.s 			page 14
 
 
  352 005a 80BD     		pop	{r7, pc}
  353              	.L15:
  354              		.align	2
  355              	.L14:
- 356 005c 00000000 		.word	xLoggingInitialised.7066
+ 356 005c 00000000 		.word	xLoggingInitialised.6618
  357 0060 00000000 		.word	pxStreamBuffer
  358              		.cfi_endproc
  359              	.LFE27:
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  397 001a 1846     		mov	r0, r3
  398 001c FFF7FEFF 		bl	uxStreamBufferGetSize
  399 0020 F860     		str	r0, [r7, #12]
-ARM GAS  /tmp/cc3zEYQo.s 			page 15
+ARM GAS  /tmp/ccMAVCpa.s 			page 15
 
 
  254:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 		if( uxLength > sizeof( size_t ) )
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  437              		.loc 2 270 0
  438 006a 3B68     		ldr	r3, [r7]
  439 006c BB60     		str	r3, [r7, #8]
-ARM GAS  /tmp/cc3zEYQo.s 			page 16
+ARM GAS  /tmp/ccMAVCpa.s 			page 16
 
 
  271:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  475              	.LCFI30:
  476              		.cfi_def_cfa_offset 12
  477 00a6 BD46     		mov	sp, r7
-ARM GAS  /tmp/cc3zEYQo.s 			page 17
+ARM GAS  /tmp/ccMAVCpa.s 			page 17
 
 
  478              	.LCFI31:
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  520 000a 4D4B     		ldr	r3, .L29
  521 000c 1B68     		ldr	r3, [r3]
  522 000e 002B     		cmp	r3, #0
-ARM GAS  /tmp/cc3zEYQo.s 			page 18
+ARM GAS  /tmp/ccMAVCpa.s 			page 18
 
 
  523 0010 09D1     		bne	.L24
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
   51:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
   52:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     http://www.FreeRTOS.org/plus - A selection of FreeRTOS ecosystem products,
   53:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     including FreeRTOS+Trace - an indispensable productivity tool, a DOS
-ARM GAS  /tmp/cc3zEYQo.s 			page 19
+ARM GAS  /tmp/ccMAVCpa.s 			page 19
 
 
   54:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     compatible FAT file system, and our tiny thread aware UDP/IP stack.
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  108:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	/* 32-bit tick type on a 32-bit architecture, so reads of the tick count do
  109:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	not need to be guarded with a critical section. */
  110:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	#define portTICK_TYPE_IS_ATOMIC 1
-ARM GAS  /tmp/cc3zEYQo.s 			page 20
+ARM GAS  /tmp/ccMAVCpa.s 			page 20
 
 
  111:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #endif
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  165:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #ifndef configUSE_PORT_OPTIMISED_TASK_SELECTION
  166:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	#define configUSE_PORT_OPTIMISED_TASK_SELECTION 1
  167:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #endif
-ARM GAS  /tmp/cc3zEYQo.s 			page 21
+ARM GAS  /tmp/ccMAVCpa.s 			page 21
 
 
  168:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  222:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	}
  223:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	else
  224:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	{
-ARM GAS  /tmp/cc3zEYQo.s 			page 22
+ARM GAS  /tmp/ccMAVCpa.s 			page 22
 
 
  225:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 		xReturn = pdTRUE;
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  562 0052 1946     		mov	r1, r3
  563 0054 3B4A     		ldr	r2, .L29+4
  564 0056 4FF00003 		mov	r3, #0
-ARM GAS  /tmp/cc3zEYQo.s 			page 23
+ARM GAS  /tmp/ccMAVCpa.s 			page 23
 
 
  565 005a FFF7FEFF 		bl	__aeabi_uldivmod
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  613 00cc 7A68     		ldr	r2, [r7, #4]
  614 00ce 3B68     		ldr	r3, [r7]
  615 00d0 FFF7FEFF 		bl	vsnprintf
-ARM GAS  /tmp/cc3zEYQo.s 			page 24
+ARM GAS  /tmp/ccMAVCpa.s 			page 24
 
 
  616 00d4 0346     		mov	r3, r0
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  324:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	{
  325:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 		/* Unblock the logging task so it can output the message. */
  326:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 		xTaskNotifyGive( xLoggingTask );
-ARM GAS  /tmp/cc3zEYQo.s 			page 25
+ARM GAS  /tmp/ccMAVCpa.s 			page 25
 
 
  658              		.loc 2 326 0
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  706              		.cfi_offset 0, -16
  707              		.cfi_offset 1, -12
  708              		.cfi_offset 2, -8
-ARM GAS  /tmp/cc3zEYQo.s 			page 26
+ARM GAS  /tmp/ccMAVCpa.s 			page 26
 
 
  709              		.cfi_offset 3, -4
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  747              	.LCFI41:
  748              		.cfi_def_cfa_offset 24
  749 002e BD46     		mov	sp, r7
-ARM GAS  /tmp/cc3zEYQo.s 			page 27
+ARM GAS  /tmp/ccMAVCpa.s 			page 27
 
 
  750              	.LCFI42:
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  799 000a 054B     		ldr	r3, .L36
  800 000c 0193     		str	r3, [sp, #4]
  801 000e 0548     		ldr	r0, .L36+4
-ARM GAS  /tmp/cc3zEYQo.s 			page 28
+ARM GAS  /tmp/ccMAVCpa.s 			page 28
 
 
  802 0010 0549     		ldr	r1, .L36+8
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  850 000e 094B     		ldr	r3, .L42
  851 0010 1B68     		ldr	r3, [r3]
  852 0012 B3F1FF3F 		cmp	r3, #-1
-ARM GAS  /tmp/cc3zEYQo.s 			page 29
+ARM GAS  /tmp/ccMAVCpa.s 			page 29
 
 
  853 0016 03D0     		beq	.L39
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  896              	prvLoggingTask:
  897              	.LFB33:
  375:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** /*-----------------------------------------------------------*/
-ARM GAS  /tmp/cc3zEYQo.s 			page 30
+ARM GAS  /tmp/ccMAVCpa.s 			page 30
 
 
  376:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
@@ -1790,7 +1790,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  396:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 		/* Use a fixed address to where the logging will be sent. */
  397:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 		xRemoteAddress.sin_addr = FreeRTOS_inet_addr_quick( configUDP_LOGGING_ADDR0,
  924              		.loc 2 397 0
- 925 0018 554B     		ldr	r3, .L56
+ 925 0018 534B     		ldr	r3, .L56
  926 001a 7B61     		str	r3, [r7, #20]
  927              	.L45:
  398:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 															configUDP_LOGGING_ADDR1,
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  400:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 															configUDP_LOGGING_ADDR3 );
  401:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	}
  402:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	#else
-ARM GAS  /tmp/cc3zEYQo.s 			page 31
+ARM GAS  /tmp/ccMAVCpa.s 			page 31
 
 
  403:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	{
@@ -1822,11 +1822,11 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  934 0026 1122     		movs	r2, #17
  935 0028 FFF7FEFF 		bl	FreeRTOS_socket
  936 002c 0246     		mov	r2, r0
- 937 002e 514B     		ldr	r3, .L56+4
+ 937 002e 4F4B     		ldr	r3, .L56+4
  938 0030 1A60     		str	r2, [r3]
  415:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	} while( xUDPLoggingSocket == FREERTOS_INVALID_SOCKET );
  939              		.loc 2 415 0 discriminator 1
- 940 0032 504B     		ldr	r3, .L56+4
+ 940 0032 4E4B     		ldr	r3, .L56+4
  941 0034 1B68     		ldr	r3, [r3]
  942 0036 B3F1FF3F 		cmp	r3, #-1
  943 003a EFD0     		beq	.L45
@@ -1843,7 +1843,7 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  419:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
  420:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	FreeRTOS_bind( xUDPLoggingSocket, &xLocalAddress, sizeof( xLocalAddress ) );
  951              		.loc 2 420 0
- 952 004a 4A4B     		ldr	r3, .L56+4
+ 952 004a 484B     		ldr	r3, .L56+4
  953 004c 1A68     		ldr	r2, [r3]
  954 004e 07F11803 		add	r3, r7, #24
  955 0052 1046     		mov	r0, r2
@@ -1857,8 +1857,8 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  961 005e FB60     		str	r3, [r7, #12]
  423:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	FreeRTOS_setsockopt( xUDPLoggingSocket, 0, FREERTOS_SO_SNDTIMEO, &xSendTimeOut, sizeof( xSendTimeO
  962              		.loc 2 423 0
- 963 0060 444B     		ldr	r3, .L56+4
-ARM GAS  /tmp/cc3zEYQo.s 			page 32
+ 963 0060 424B     		ldr	r3, .L56+4
+ARM GAS  /tmp/ccMAVCpa.s 			page 32
 
 
  964 0062 1A68     		ldr	r2, [r3]
@@ -1875,81 +1875,76 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  426:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	messages. */
  427:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	snprintf( cLoggingLine, configUDP_LOGGING_STRING_LENGTH, "Logging Probe\n" );
  973              		.loc 2 427 0
- 974 0078 3F4A     		ldr	r2, .L56+8
- 975 007a 404B     		ldr	r3, .L56+12
- 976 007c 1446     		mov	r4, r2
- 977 007e 0FCB     		ldmia	r3, {r0, r1, r2, r3}
- 978 0080 07C4     		stmia	r4!, {r0, r1, r2}
- 979 0082 2380     		strh	r3, [r4]	@ movhi
- 980 0084 0234     		adds	r4, r4, #2
- 981 0086 1B0C     		lsrs	r3, r3, #16
- 982 0088 2370     		strb	r3, [r4]
+ 974 0078 3D48     		ldr	r0, .L56+8
+ 975 007a C821     		movs	r1, #200
+ 976 007c 3D4A     		ldr	r2, .L56+12
+ 977 007e FFF7FEFF 		bl	snprintf
  428:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	FreeRTOS_sendto( xUDPLoggingSocket, ( void * ) cLoggingLine, strlen( cLoggingLine ), 0, &xRemoteAd
- 983              		.loc 2 428 0
- 984 008a 3A4B     		ldr	r3, .L56+4
- 985 008c 1C68     		ldr	r4, [r3]
- 986 008e 3A48     		ldr	r0, .L56+8
- 987 0090 FFF7FEFF 		bl	strlen
- 988 0094 0246     		mov	r2, r0
- 989 0096 07F11003 		add	r3, r7, #16
- 990 009a 0093     		str	r3, [sp]
- 991 009c 0823     		movs	r3, #8
- 992 009e 0193     		str	r3, [sp, #4]
- 993 00a0 2046     		mov	r0, r4
- 994 00a2 3549     		ldr	r1, .L56+8
- 995 00a4 0023     		movs	r3, #0
- 996 00a6 FFF7FEFF 		bl	FreeRTOS_sendto
+ 978              		.loc 2 428 0
+ 979 0082 3A4B     		ldr	r3, .L56+4
+ 980 0084 1C68     		ldr	r4, [r3]
+ 981 0086 3A48     		ldr	r0, .L56+8
+ 982 0088 FFF7FEFF 		bl	strlen
+ 983 008c 0246     		mov	r2, r0
+ 984 008e 07F11003 		add	r3, r7, #16
+ 985 0092 0093     		str	r3, [sp]
+ 986 0094 0823     		movs	r3, #8
+ 987 0096 0193     		str	r3, [sp, #4]
+ 988 0098 2046     		mov	r0, r4
+ 989 009a 3549     		ldr	r1, .L56+8
+ 990 009c 0023     		movs	r3, #0
+ 991 009e FFF7FEFF 		bl	FreeRTOS_sendto
  429:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	vTaskDelay( xResolveDelay );
- 997              		.loc 2 429 0
- 998 00aa 386A     		ldr	r0, [r7, #32]
- 999 00ac FFF7FEFF 		bl	vTaskDelay
- 1000              	.L55:
+ 992              		.loc 2 429 0
+ 993 00a2 386A     		ldr	r0, [r7, #32]
+ 994 00a4 FFF7FEFF 		bl	vTaskDelay
+ 995              	.L55:
  430:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
  431:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	for( ;; )
  432:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	{
  433:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 		/* Wait for another message to be placed into the stream buffer. */
  434:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 		ulTaskNotifyTake( pdTRUE, xBlockingTime );
- 1001              		.loc 2 434 0
- 1002 00b0 0120     		movs	r0, #1
- 1003 00b2 796A     		ldr	r1, [r7, #36]
- 1004 00b4 FFF7FEFF 		bl	ulTaskNotifyTake
+ 996              		.loc 2 434 0
+ 997 00a8 0120     		movs	r0, #1
+ 998 00aa 796A     		ldr	r1, [r7, #36]
+ 999 00ac FFF7FEFF 		bl	ulTaskNotifyTake
  435:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
  436:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 		if( xGetPhyLinkStatus() != pdFALSE )
- 1005              		.loc 2 436 0
- 1006 00b8 FFF7FEFF 		bl	xGetPhyLinkStatus
- 1007 00bc 0346     		mov	r3, r0
-ARM GAS  /tmp/cc3zEYQo.s 			page 33
-
-
- 1008 00be 002B     		cmp	r3, #0
- 1009 00c0 54D0     		beq	.L46
+ 1000              		.loc 2 436 0
+ 1001 00b0 FFF7FEFF 		bl	xGetPhyLinkStatus
+ 1002 00b4 0346     		mov	r3, r0
+ 1003 00b6 002B     		cmp	r3, #0
+ 1004 00b8 54D0     		beq	.L46
  437:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 		{
  438:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 			/* Check for messages in the buffer. */
  439:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 			for( lLines = 0; lLines < configUDP_LOGGING_MAX_MESSAGES_IN_BUFFER; lLines++ )
- 1010              		.loc 2 439 0
- 1011 00c2 0023     		movs	r3, #0
- 1012 00c4 7B63     		str	r3, [r7, #52]
- 1013 00c6 4EE0     		b	.L47
- 1014              	.L54:
+ARM GAS  /tmp/ccMAVCpa.s 			page 33
+
+
+ 1005              		.loc 2 439 0
+ 1006 00ba 0023     		movs	r3, #0
+ 1007 00bc 7B63     		str	r3, [r7, #52]
+ 1008 00be 4EE0     		b	.L47
+ 1009              	.L54:
  440:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 			{
  441:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 				xCount = prvGetMessageFromStreamBuffer ( cLoggingLine, sizeof( cLoggingLine ) );
- 1015              		.loc 2 441 0
- 1016 00c8 2B48     		ldr	r0, .L56+8
- 1017 00ca C821     		movs	r1, #200
- 1018 00cc FFF7FEFF 		bl	prvGetMessageFromStreamBuffer
- 1019 00d0 3863     		str	r0, [r7, #48]
+ 1010              		.loc 2 441 0
+ 1011 00c0 2B48     		ldr	r0, .L56+8
+ 1012 00c2 C821     		movs	r1, #200
+ 1013 00c4 FFF7FEFF 		bl	prvGetMessageFromStreamBuffer
+ 1014 00c8 3863     		str	r0, [r7, #48]
  442:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
  443:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 				if( xCount <= 0 )
- 1020              		.loc 2 443 0
- 1021 00d2 3B6B     		ldr	r3, [r7, #48]
- 1022 00d4 002B     		cmp	r3, #0
- 1023 00d6 00D1     		bne	.L48
+ 1015              		.loc 2 443 0
+ 1016 00ca 3B6B     		ldr	r3, [r7, #48]
+ 1017 00cc 002B     		cmp	r3, #0
+ 1018 00ce 00D1     		bne	.L48
  444:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 				{
  445:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 					break;
- 1024              		.loc 2 445 0
- 1025 00d8 48E0     		b	.L46
- 1026              	.L48:
- 1027              	.LBB7:
+ 1019              		.loc 2 445 0
+ 1020 00d0 48E0     		b	.L46
+ 1021              	.L48:
+ 1022              	.LBB7:
  446:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 				}
  447:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
  448:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 				#if( configUDP_LOGGING_NEEDS_CR_LF != 0 )
@@ -1961,311 +1956,311 @@ ARM GAS  /tmp/cc3zEYQo.s 			page 1
  454:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 					newline.  If 'configUDP_LOGGING_NEEDS_CR_LF' is defined as non-zero,
  455:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 					every "\n" will be translated into a "\r\n". */
  456:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 					pcTarget = cLoggingLine;
- 1028              		.loc 2 456 0
- 1029 00da 274B     		ldr	r3, .L56+8
- 1030 00dc FB62     		str	r3, [r7, #44]
+ 1023              		.loc 2 456 0
+ 1024 00d2 274B     		ldr	r3, .L56+8
+ 1025 00d4 FB62     		str	r3, [r7, #44]
  457:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 					pcSource = cLoggingLine;
- 1031              		.loc 2 457 0
- 1032 00de 264B     		ldr	r3, .L56+8
- 1033 00e0 BB62     		str	r3, [r7, #40]
+ 1026              		.loc 2 457 0
+ 1027 00d6 264B     		ldr	r3, .L56+8
+ 1028 00d8 BB62     		str	r3, [r7, #40]
  458:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
  459:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 					while( ( *pcSource != 0x00 ) && ( pcSource < ( cLoggingLine + xCount ) ) )
- 1034              		.loc 2 459 0
- 1035 00e2 26E0     		b	.L49
- 1036              	.L53:
+ 1029              		.loc 2 459 0
+ 1030 00da 26E0     		b	.L49
+ 1031              	.L53:
  460:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 					{
  461:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 						*pcTarget = *pcSource;
- 1037              		.loc 2 461 0
- 1038 00e4 BB6A     		ldr	r3, [r7, #40]
- 1039 00e6 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
-ARM GAS  /tmp/cc3zEYQo.s 			page 34
-
-
- 1040 00e8 FB6A     		ldr	r3, [r7, #44]
- 1041 00ea 1A70     		strb	r2, [r3]
+ 1032              		.loc 2 461 0
+ 1033 00dc BB6A     		ldr	r3, [r7, #40]
+ 1034 00de 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 1035 00e0 FB6A     		ldr	r3, [r7, #44]
+ 1036 00e2 1A70     		strb	r2, [r3]
  462:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
  463:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 						if( ( ( pcSource == cLoggingLine ) || ( pcSource[ -1 ] != logASCII_CR ) ) && ( pcSource[ 0 ] 
- 1042              		.loc 2 463 0
+ 1037              		.loc 2 463 0
+ARM GAS  /tmp/ccMAVCpa.s 			page 34
+
+
+ 1038 00e4 BB6A     		ldr	r3, [r7, #40]
+ 1039 00e6 224A     		ldr	r2, .L56+8
+ 1040 00e8 9342     		cmp	r3, r2
+ 1041 00ea 04D0     		beq	.L50
+ 1042              		.loc 2 463 0 is_stmt 0 discriminator 2
  1043 00ec BB6A     		ldr	r3, [r7, #40]
- 1044 00ee 224A     		ldr	r2, .L56+8
- 1045 00f0 9342     		cmp	r3, r2
- 1046 00f2 04D0     		beq	.L50
- 1047              		.loc 2 463 0 is_stmt 0 discriminator 2
- 1048 00f4 BB6A     		ldr	r3, [r7, #40]
- 1049 00f6 013B     		subs	r3, r3, #1
- 1050 00f8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 1051 00fa 0D2B     		cmp	r3, #13
- 1052 00fc 13D0     		beq	.L51
- 1053              	.L50:
- 1054              		.loc 2 463 0 discriminator 3
- 1055 00fe BB6A     		ldr	r3, [r7, #40]
- 1056 0100 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 1057 0102 0A2B     		cmp	r3, #10
- 1058 0104 0FD1     		bne	.L51
+ 1044 00ee 013B     		subs	r3, r3, #1
+ 1045 00f0 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1046 00f2 0D2B     		cmp	r3, #13
+ 1047 00f4 13D0     		beq	.L51
+ 1048              	.L50:
+ 1049              		.loc 2 463 0 discriminator 3
+ 1050 00f6 BB6A     		ldr	r3, [r7, #40]
+ 1051 00f8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1052 00fa 0A2B     		cmp	r3, #10
+ 1053 00fc 0FD1     		bne	.L51
  464:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 						{
  465:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 							pcTarget[ 0 ] = logASCII_CR;
- 1059              		.loc 2 465 0 is_stmt 1
- 1060 0106 FB6A     		ldr	r3, [r7, #44]
- 1061 0108 0D22     		movs	r2, #13
- 1062 010a 1A70     		strb	r2, [r3]
+ 1054              		.loc 2 465 0 is_stmt 1
+ 1055 00fe FB6A     		ldr	r3, [r7, #44]
+ 1056 0100 0D22     		movs	r2, #13
+ 1057 0102 1A70     		strb	r2, [r3]
  466:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 							pcTarget[ 1 ] = logASCII_NL;
- 1063              		.loc 2 466 0
- 1064 010c FB6A     		ldr	r3, [r7, #44]
- 1065 010e 0133     		adds	r3, r3, #1
- 1066 0110 0A22     		movs	r2, #10
- 1067 0112 1A70     		strb	r2, [r3]
+ 1058              		.loc 2 466 0
+ 1059 0104 FB6A     		ldr	r3, [r7, #44]
+ 1060 0106 0133     		adds	r3, r3, #1
+ 1061 0108 0A22     		movs	r2, #10
+ 1062 010a 1A70     		strb	r2, [r3]
  467:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
  468:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 							if( xCount < ( sizeof( cLoggingLine ) - 1 ) )
- 1068              		.loc 2 468 0
- 1069 0114 3B6B     		ldr	r3, [r7, #48]
- 1070 0116 C62B     		cmp	r3, #198
- 1071 0118 05D8     		bhi	.L51
+ 1063              		.loc 2 468 0
+ 1064 010c 3B6B     		ldr	r3, [r7, #48]
+ 1065 010e C62B     		cmp	r3, #198
+ 1066 0110 05D8     		bhi	.L51
  469:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 							{
  470:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 								xCount++;
- 1072              		.loc 2 470 0
- 1073 011a 3B6B     		ldr	r3, [r7, #48]
- 1074 011c 0133     		adds	r3, r3, #1
- 1075 011e 3B63     		str	r3, [r7, #48]
+ 1067              		.loc 2 470 0
+ 1068 0112 3B6B     		ldr	r3, [r7, #48]
+ 1069 0114 0133     		adds	r3, r3, #1
+ 1070 0116 3B63     		str	r3, [r7, #48]
  471:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 								pcTarget++;
- 1076              		.loc 2 471 0
- 1077 0120 FB6A     		ldr	r3, [r7, #44]
- 1078 0122 0133     		adds	r3, r3, #1
- 1079 0124 FB62     		str	r3, [r7, #44]
- 1080              	.L51:
+ 1071              		.loc 2 471 0
+ 1072 0118 FB6A     		ldr	r3, [r7, #44]
+ 1073 011a 0133     		adds	r3, r3, #1
+ 1074 011c FB62     		str	r3, [r7, #44]
+ 1075              	.L51:
  472:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 							}
  473:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 						}
  474:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
  475:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 						pcTarget++;
- 1081              		.loc 2 475 0
- 1082 0126 FB6A     		ldr	r3, [r7, #44]
-ARM GAS  /tmp/cc3zEYQo.s 			page 35
-
-
- 1083 0128 0133     		adds	r3, r3, #1
- 1084 012a FB62     		str	r3, [r7, #44]
+ 1076              		.loc 2 475 0
+ 1077 011e FB6A     		ldr	r3, [r7, #44]
+ 1078 0120 0133     		adds	r3, r3, #1
+ 1079 0122 FB62     		str	r3, [r7, #44]
  476:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 						pcSource++;
- 1085              		.loc 2 476 0
- 1086 012c BB6A     		ldr	r3, [r7, #40]
- 1087 012e 0133     		adds	r3, r3, #1
- 1088 0130 BB62     		str	r3, [r7, #40]
- 1089              	.L49:
+ 1080              		.loc 2 476 0
+ 1081 0124 BB6A     		ldr	r3, [r7, #40]
+ARM GAS  /tmp/ccMAVCpa.s 			page 35
+
+
+ 1082 0126 0133     		adds	r3, r3, #1
+ 1083 0128 BB62     		str	r3, [r7, #40]
+ 1084              	.L49:
  459:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 					{
- 1090              		.loc 2 459 0
- 1091 0132 BB6A     		ldr	r3, [r7, #40]
- 1092 0134 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
- 1093 0136 002B     		cmp	r3, #0
- 1094 0138 05D0     		beq	.L52
+ 1085              		.loc 2 459 0
+ 1086 012a BB6A     		ldr	r3, [r7, #40]
+ 1087 012c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 1088 012e 002B     		cmp	r3, #0
+ 1089 0130 05D0     		beq	.L52
  459:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 					{
- 1095              		.loc 2 459 0 is_stmt 0 discriminator 1
- 1096 013a 3B6B     		ldr	r3, [r7, #48]
- 1097 013c 0E4A     		ldr	r2, .L56+8
- 1098 013e 1A44     		add	r2, r2, r3
- 1099 0140 BB6A     		ldr	r3, [r7, #40]
- 1100 0142 9A42     		cmp	r2, r3
- 1101 0144 CED8     		bhi	.L53
- 1102              	.L52:
- 1103              	.LBE7:
+ 1090              		.loc 2 459 0 is_stmt 0 discriminator 1
+ 1091 0132 3B6B     		ldr	r3, [r7, #48]
+ 1092 0134 0E4A     		ldr	r2, .L56+8
+ 1093 0136 1A44     		add	r2, r2, r3
+ 1094 0138 BB6A     		ldr	r3, [r7, #40]
+ 1095 013a 9A42     		cmp	r2, r3
+ 1096 013c CED8     		bhi	.L53
+ 1097              	.L52:
+ 1098              	.LBE7:
  477:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 					}
  478:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 				}
  479:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 				#endif
  480:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
  481:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 				FreeRTOS_sendto( xUDPLoggingSocket, ( void * ) cLoggingLine, xCount, 0, &xRemoteAddress, sizeof
- 1104              		.loc 2 481 0 is_stmt 1 discriminator 2
- 1105 0146 0B4B     		ldr	r3, .L56+4
- 1106 0148 1A68     		ldr	r2, [r3]
- 1107 014a 07F11003 		add	r3, r7, #16
- 1108 014e 0093     		str	r3, [sp]
- 1109 0150 0823     		movs	r3, #8
- 1110 0152 0193     		str	r3, [sp, #4]
- 1111 0154 1046     		mov	r0, r2
- 1112 0156 0849     		ldr	r1, .L56+8
- 1113 0158 3A6B     		ldr	r2, [r7, #48]
- 1114 015a 0023     		movs	r3, #0
- 1115 015c FFF7FEFF 		bl	FreeRTOS_sendto
+ 1099              		.loc 2 481 0 is_stmt 1 discriminator 2
+ 1100 013e 0B4B     		ldr	r3, .L56+4
+ 1101 0140 1A68     		ldr	r2, [r3]
+ 1102 0142 07F11003 		add	r3, r7, #16
+ 1103 0146 0093     		str	r3, [sp]
+ 1104 0148 0823     		movs	r3, #8
+ 1105 014a 0193     		str	r3, [sp, #4]
+ 1106 014c 1046     		mov	r0, r2
+ 1107 014e 0849     		ldr	r1, .L56+8
+ 1108 0150 3A6B     		ldr	r2, [r7, #48]
+ 1109 0152 0023     		movs	r3, #0
+ 1110 0154 FFF7FEFF 		bl	FreeRTOS_sendto
  439:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 			{
- 1116              		.loc 2 439 0 discriminator 2
- 1117 0160 7B6B     		ldr	r3, [r7, #52]
- 1118 0162 0133     		adds	r3, r3, #1
- 1119 0164 7B63     		str	r3, [r7, #52]
- 1120              	.L47:
+ 1111              		.loc 2 439 0 discriminator 2
+ 1112 0158 7B6B     		ldr	r3, [r7, #52]
+ 1113 015a 0133     		adds	r3, r3, #1
+ 1114 015c 7B63     		str	r3, [r7, #52]
+ 1115              	.L47:
  439:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 			{
- 1121              		.loc 2 439 0 is_stmt 0 discriminator 1
- 1122 0166 7B6B     		ldr	r3, [r7, #52]
- 1123 0168 132B     		cmp	r3, #19
- 1124 016a ADDD     		ble	.L54
- 1125              	.L46:
+ 1116              		.loc 2 439 0 is_stmt 0 discriminator 1
+ 1117 015e 7B6B     		ldr	r3, [r7, #52]
+ 1118 0160 132B     		cmp	r3, #19
+ 1119 0162 ADDD     		ble	.L54
+ 1120              	.L46:
  482:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 			}
  483:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 		}
  484:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	}
- 1126              		.loc 2 484 0 is_stmt 1 discriminator 1
-ARM GAS  /tmp/cc3zEYQo.s 			page 36
+ 1121              		.loc 2 484 0 is_stmt 1 discriminator 1
+ 1122 0164 A0E7     		b	.L55
+ 1123              	.L57:
+ 1124 0166 00BF     		.align	2
+ 1125              	.L56:
+ 1126 0168 C0A80064 		.word	1677764800
+ARM GAS  /tmp/ccMAVCpa.s 			page 36
 
 
- 1127 016c A0E7     		b	.L55
- 1128              	.L57:
- 1129 016e 00BF     		.align	2
- 1130              	.L56:
- 1131 0170 C0A80064 		.word	1677764800
- 1132 0174 00000000 		.word	xUDPLoggingSocket
- 1133 0178 00000000 		.word	cLoggingLine.7105
- 1134 017c 20000000 		.word	.LC2
- 1135              		.cfi_endproc
- 1136              	.LFE33:
- 1138              		.section	.text.vUDPLoggingFlush,"ax",%progbits
- 1139              		.align	2
- 1140              		.global	vUDPLoggingFlush
- 1141              		.thumb
- 1142              		.thumb_func
- 1144              	vUDPLoggingFlush:
- 1145              	.LFB34:
+ 1127 016c 00000000 		.word	xUDPLoggingSocket
+ 1128 0170 00000000 		.word	cLoggingLine.6657
+ 1129 0174 20000000 		.word	.LC2
+ 1130              		.cfi_endproc
+ 1131              	.LFE33:
+ 1133              		.section	.text.vUDPLoggingFlush,"ax",%progbits
+ 1134              		.align	2
+ 1135              		.global	vUDPLoggingFlush
+ 1136              		.thumb
+ 1137              		.thumb_func
+ 1139              	vUDPLoggingFlush:
+ 1140              	.LFB34:
  485:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** }
  486:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** /*-----------------------------------------------------------*/
  487:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
  488:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** void vUDPLoggingFlush( void )
  489:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** {
- 1146              		.loc 2 489 0
- 1147              		.cfi_startproc
- 1148              		@ args = 0, pretend = 0, frame = 8
- 1149              		@ frame_needed = 1, uses_anonymous_args = 0
- 1150 0000 80B5     		push	{r7, lr}
- 1151              	.LCFI58:
- 1152              		.cfi_def_cfa_offset 8
- 1153              		.cfi_offset 7, -8
- 1154              		.cfi_offset 14, -4
- 1155 0002 82B0     		sub	sp, sp, #8
- 1156              	.LCFI59:
- 1157              		.cfi_def_cfa_offset 16
- 1158 0004 00AF     		add	r7, sp, #0
- 1159              	.LCFI60:
- 1160              		.cfi_def_cfa_register 7
+ 1141              		.loc 2 489 0
+ 1142              		.cfi_startproc
+ 1143              		@ args = 0, pretend = 0, frame = 8
+ 1144              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1145 0000 80B5     		push	{r7, lr}
+ 1146              	.LCFI58:
+ 1147              		.cfi_def_cfa_offset 8
+ 1148              		.cfi_offset 7, -8
+ 1149              		.cfi_offset 14, -4
+ 1150 0002 82B0     		sub	sp, sp, #8
+ 1151              	.LCFI59:
+ 1152              		.cfi_def_cfa_offset 16
+ 1153 0004 00AF     		add	r7, sp, #0
+ 1154              	.LCFI60:
+ 1155              		.cfi_def_cfa_register 7
  490:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** const TickType_t xDelay = pdMS_TO_TICKS( 20UL );
- 1161              		.loc 2 490 0
- 1162 0006 1423     		movs	r3, #20
- 1163 0008 7B60     		str	r3, [r7, #4]
+ 1156              		.loc 2 490 0
+ 1157 0006 1423     		movs	r3, #20
+ 1158 0008 7B60     		str	r3, [r7, #4]
  491:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
  492:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	/* In some situations a lot of logging is produced deliberately in which
  493:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	case vUDPLoggingFlush() can be called to prevent the buffer overflowing. */
  494:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	if( xLoggingTask != NULL )
- 1164              		.loc 2 494 0
- 1165 000a 0D4B     		ldr	r3, .L60
- 1166 000c 1B68     		ldr	r3, [r3]
- 1167 000e 002B     		cmp	r3, #0
- 1168 0010 07D0     		beq	.L59
+ 1159              		.loc 2 494 0
+ 1160 000a 0D4B     		ldr	r3, .L60
+ 1161 000c 1B68     		ldr	r3, [r3]
+ 1162 000e 002B     		cmp	r3, #0
+ 1163 0010 07D0     		beq	.L59
  495:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	{
  496:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 		/* Unblock the logging task so it can output the message. */
  497:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 		xTaskNotifyGive( xLoggingTask );
- 1169              		.loc 2 497 0
- 1170 0012 0B4B     		ldr	r3, .L60
- 1171 0014 1B68     		ldr	r3, [r3]
- 1172 0016 1846     		mov	r0, r3
-ARM GAS  /tmp/cc3zEYQo.s 			page 37
+ 1164              		.loc 2 497 0
+ 1165 0012 0B4B     		ldr	r3, .L60
+ 1166 0014 1B68     		ldr	r3, [r3]
+ 1167 0016 1846     		mov	r0, r3
+ 1168 0018 0021     		movs	r1, #0
+ 1169 001a 0222     		movs	r2, #2
+ 1170 001c 0023     		movs	r3, #0
+ 1171 001e FFF7FEFF 		bl	xTaskGenericNotify
+ 1172              	.L59:
+ARM GAS  /tmp/ccMAVCpa.s 			page 37
 
 
- 1173 0018 0021     		movs	r1, #0
- 1174 001a 0222     		movs	r2, #2
- 1175 001c 0023     		movs	r3, #0
- 1176 001e FFF7FEFF 		bl	xTaskGenericNotify
- 1177              	.L59:
  498:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	}
  499:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
  500:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	/* Allow the low priority logging task a chance to clear the buffer. */
  501:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	vTaskDelay( pdMS_TO_TICKS( xDelay ) );
- 1178              		.loc 2 501 0
- 1179 0022 7B68     		ldr	r3, [r7, #4]
- 1180 0024 4FF47A72 		mov	r2, #1000
- 1181 0028 02FB03F3 		mul	r3, r2, r3
- 1182 002c 054A     		ldr	r2, .L60+4
- 1183 002e A2FB0323 		umull	r2, r3, r2, r3
- 1184 0032 9B09     		lsrs	r3, r3, #6
- 1185 0034 1846     		mov	r0, r3
- 1186 0036 FFF7FEFF 		bl	vTaskDelay
+ 1173              		.loc 2 501 0
+ 1174 0022 7B68     		ldr	r3, [r7, #4]
+ 1175 0024 4FF47A72 		mov	r2, #1000
+ 1176 0028 02FB03F3 		mul	r3, r2, r3
+ 1177 002c 054A     		ldr	r2, .L60+4
+ 1178 002e A2FB0323 		umull	r2, r3, r2, r3
+ 1179 0032 9B09     		lsrs	r3, r3, #6
+ 1180 0034 1846     		mov	r0, r3
+ 1181 0036 FFF7FEFF 		bl	vTaskDelay
  502:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** }
- 1187              		.loc 2 502 0
- 1188 003a 0837     		adds	r7, r7, #8
- 1189              	.LCFI61:
- 1190              		.cfi_def_cfa_offset 8
- 1191 003c BD46     		mov	sp, r7
- 1192              	.LCFI62:
- 1193              		.cfi_def_cfa_register 13
- 1194              		@ sp needed
- 1195 003e 80BD     		pop	{r7, pc}
- 1196              	.L61:
- 1197              		.align	2
- 1198              	.L60:
- 1199 0040 00000000 		.word	xLoggingTask
- 1200 0044 D34D6210 		.word	274877907
- 1201              		.cfi_endproc
- 1202              	.LFE34:
- 1204              		.section	.bss.xLoggingInitialised.7066,"aw",%nobits
- 1205              		.align	2
- 1208              	xLoggingInitialised.7066:
- 1209 0000 00000000 		.space	4
- 1210              		.section	.bss.cLoggingLine.7105,"aw",%nobits
- 1211              		.align	2
- 1214              	cLoggingLine.7105:
- 1215 0000 00000000 		.space	200
- 1215      00000000 
- 1215      00000000 
- 1215      00000000 
- 1215      00000000 
- 1216              		.text
- 1217              	.Letext0:
- 1218              		.file 4 "/usr/arm-none-eabi/include/machine/_default_types.h"
- 1219              		.file 5 "/usr/lib/gcc/arm-none-eabi/4.9.3/include/stddef.h"
- 1220              		.file 6 "/usr/lib/gcc/arm-none-eabi/4.9.3/include/stdarg.h"
- 1221              		.file 7 "/usr/arm-none-eabi/include/sys/_stdint.h"
- 1222              		.file 8 "../../../FreeRTOS_9_0/Source/include/task.h"
- 1223              		.file 9 "<built-in>"
- 1224              		.file 10 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Sockets.h"
-ARM GAS  /tmp/cc3zEYQo.s 			page 38
+ 1182              		.loc 2 502 0
+ 1183 003a 0837     		adds	r7, r7, #8
+ 1184              	.LCFI61:
+ 1185              		.cfi_def_cfa_offset 8
+ 1186 003c BD46     		mov	sp, r7
+ 1187              	.LCFI62:
+ 1188              		.cfi_def_cfa_register 13
+ 1189              		@ sp needed
+ 1190 003e 80BD     		pop	{r7, pc}
+ 1191              	.L61:
+ 1192              		.align	2
+ 1193              	.L60:
+ 1194 0040 00000000 		.word	xLoggingTask
+ 1195 0044 D34D6210 		.word	274877907
+ 1196              		.cfi_endproc
+ 1197              	.LFE34:
+ 1199              		.section	.bss.xLoggingInitialised.6618,"aw",%nobits
+ 1200              		.align	2
+ 1203              	xLoggingInitialised.6618:
+ 1204 0000 00000000 		.space	4
+ 1205              		.section	.bss.cLoggingLine.6657,"aw",%nobits
+ 1206              		.align	2
+ 1209              	cLoggingLine.6657:
+ 1210 0000 00000000 		.space	200
+ 1210      00000000 
+ 1210      00000000 
+ 1210      00000000 
+ 1210      00000000 
+ 1211              		.text
+ 1212              	.Letext0:
+ 1213              		.file 4 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 1214              		.file 5 "/usr/lib/gcc/arm-none-eabi/4.9.3/include/stddef.h"
+ 1215              		.file 6 "/usr/lib/gcc/arm-none-eabi/4.9.3/include/stdarg.h"
+ 1216              		.file 7 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 1217              		.file 8 "../../../FreeRTOS_9_0/Source/include/task.h"
+ 1218              		.file 9 "<built-in>"
+ 1219              		.file 10 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Sockets.h"
+ARM GAS  /tmp/ccMAVCpa.s 			page 38
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 UDPLoggingPrintf.c
-     /tmp/cc3zEYQo.s:21     .text.uxStreamBufferSpace:0000000000000000 $t
-     /tmp/cc3zEYQo.s:25     .text.uxStreamBufferSpace:0000000000000000 uxStreamBufferSpace
-     /tmp/cc3zEYQo.s:88     .text.uxStreamBufferDistance:0000000000000000 $t
-     /tmp/cc3zEYQo.s:92     .text.uxStreamBufferDistance:0000000000000000 uxStreamBufferDistance
-     /tmp/cc3zEYQo.s:153    .text.uxStreamBufferGetSpace:0000000000000000 $t
-     /tmp/cc3zEYQo.s:157    .text.uxStreamBufferGetSpace:0000000000000000 uxStreamBufferGetSpace
-     /tmp/cc3zEYQo.s:203    .text.uxStreamBufferGetSize:0000000000000000 $t
-     /tmp/cc3zEYQo.s:207    .text.uxStreamBufferGetSize:0000000000000000 uxStreamBufferGetSize
-     /tmp/cc3zEYQo.s:253    .bss.xLogEntry:0000000000000000 $d
-     /tmp/cc3zEYQo.s:256    .bss.xLogEntry:0000000000000000 xLogEntry
-     /tmp/cc3zEYQo.s:259    .bss.pxStreamBuffer:0000000000000000 $d
-     /tmp/cc3zEYQo.s:262    .bss.pxStreamBuffer:0000000000000000 pxStreamBuffer
-     /tmp/cc3zEYQo.s:265    .bss.xLoggingTask:0000000000000000 $d
-     /tmp/cc3zEYQo.s:268    .bss.xLoggingTask:0000000000000000 xLoggingTask
-     /tmp/cc3zEYQo.s:271    .data.xUDPLoggingSocket:0000000000000000 $d
-     /tmp/cc3zEYQo.s:274    .data.xUDPLoggingSocket:0000000000000000 xUDPLoggingSocket
-     /tmp/cc3zEYQo.s:277    .text.prvInitialiseLogging:0000000000000000 $t
-     /tmp/cc3zEYQo.s:281    .text.prvInitialiseLogging:0000000000000000 prvInitialiseLogging
-     /tmp/cc3zEYQo.s:356    .text.prvInitialiseLogging:000000000000005c $d
-     /tmp/cc3zEYQo.s:1208   .bss.xLoggingInitialised.7066:0000000000000000 xLoggingInitialised.7066
-     /tmp/cc3zEYQo.s:362    .text.prvGetMessageFromStreamBuffer:0000000000000000 $t
-     /tmp/cc3zEYQo.s:366    .text.prvGetMessageFromStreamBuffer:0000000000000000 prvGetMessageFromStreamBuffer
-     /tmp/cc3zEYQo.s:485    .text.prvGetMessageFromStreamBuffer:00000000000000ac $d
-     /tmp/cc3zEYQo.s:492    .rodata:0000000000000000 $d
-     /tmp/cc3zEYQo.s:496    .text.prvBufferFormattedString:0000000000000000 $t
-     /tmp/cc3zEYQo.s:500    .text.prvBufferFormattedString:0000000000000000 prvBufferFormattedString
-     /tmp/cc3zEYQo.s:682    .text.prvBufferFormattedString:0000000000000140 $d
-     /tmp/cc3zEYQo.s:692    .text.lUDPLoggingPrintf:0000000000000000 $t
-     /tmp/cc3zEYQo.s:697    .text.lUDPLoggingPrintf:0000000000000000 lUDPLoggingPrintf
-     /tmp/cc3zEYQo.s:774    .text.vUDPLoggingTaskCreate:0000000000000000 $t
-     /tmp/cc3zEYQo.s:779    .text.vUDPLoggingTaskCreate:0000000000000000 vUDPLoggingTaskCreate
-     /tmp/cc3zEYQo.s:815    .text.vUDPLoggingTaskCreate:0000000000000020 $d
-     /tmp/cc3zEYQo.s:896    .text.prvLoggingTask:0000000000000000 prvLoggingTask
-     /tmp/cc3zEYQo.s:822    .text.xLoggingGetSocket:0000000000000000 $t
-     /tmp/cc3zEYQo.s:827    .text.xLoggingGetSocket:0000000000000000 xLoggingGetSocket
-     /tmp/cc3zEYQo.s:883    .text.xLoggingGetSocket:0000000000000034 $d
-     /tmp/cc3zEYQo.s:892    .text.prvLoggingTask:0000000000000000 $t
-     /tmp/cc3zEYQo.s:1131   .text.prvLoggingTask:0000000000000170 $d
-     /tmp/cc3zEYQo.s:1214   .bss.cLoggingLine.7105:0000000000000000 cLoggingLine.7105
-     /tmp/cc3zEYQo.s:1139   .text.vUDPLoggingFlush:0000000000000000 $t
-     /tmp/cc3zEYQo.s:1144   .text.vUDPLoggingFlush:0000000000000000 vUDPLoggingFlush
-     /tmp/cc3zEYQo.s:1199   .text.vUDPLoggingFlush:0000000000000040 $d
-     /tmp/cc3zEYQo.s:1205   .bss.xLoggingInitialised.7066:0000000000000000 $d
-     /tmp/cc3zEYQo.s:1211   .bss.cLoggingLine.7105:0000000000000000 $d
+     /tmp/ccMAVCpa.s:21     .text.uxStreamBufferSpace:0000000000000000 $t
+     /tmp/ccMAVCpa.s:25     .text.uxStreamBufferSpace:0000000000000000 uxStreamBufferSpace
+     /tmp/ccMAVCpa.s:88     .text.uxStreamBufferDistance:0000000000000000 $t
+     /tmp/ccMAVCpa.s:92     .text.uxStreamBufferDistance:0000000000000000 uxStreamBufferDistance
+     /tmp/ccMAVCpa.s:153    .text.uxStreamBufferGetSpace:0000000000000000 $t
+     /tmp/ccMAVCpa.s:157    .text.uxStreamBufferGetSpace:0000000000000000 uxStreamBufferGetSpace
+     /tmp/ccMAVCpa.s:203    .text.uxStreamBufferGetSize:0000000000000000 $t
+     /tmp/ccMAVCpa.s:207    .text.uxStreamBufferGetSize:0000000000000000 uxStreamBufferGetSize
+     /tmp/ccMAVCpa.s:253    .bss.xLogEntry:0000000000000000 $d
+     /tmp/ccMAVCpa.s:256    .bss.xLogEntry:0000000000000000 xLogEntry
+     /tmp/ccMAVCpa.s:259    .bss.pxStreamBuffer:0000000000000000 $d
+     /tmp/ccMAVCpa.s:262    .bss.pxStreamBuffer:0000000000000000 pxStreamBuffer
+     /tmp/ccMAVCpa.s:265    .bss.xLoggingTask:0000000000000000 $d
+     /tmp/ccMAVCpa.s:268    .bss.xLoggingTask:0000000000000000 xLoggingTask
+     /tmp/ccMAVCpa.s:271    .data.xUDPLoggingSocket:0000000000000000 $d
+     /tmp/ccMAVCpa.s:274    .data.xUDPLoggingSocket:0000000000000000 xUDPLoggingSocket
+     /tmp/ccMAVCpa.s:277    .text.prvInitialiseLogging:0000000000000000 $t
+     /tmp/ccMAVCpa.s:281    .text.prvInitialiseLogging:0000000000000000 prvInitialiseLogging
+     /tmp/ccMAVCpa.s:356    .text.prvInitialiseLogging:000000000000005c $d
+     /tmp/ccMAVCpa.s:1203   .bss.xLoggingInitialised.6618:0000000000000000 xLoggingInitialised.6618
+     /tmp/ccMAVCpa.s:362    .text.prvGetMessageFromStreamBuffer:0000000000000000 $t
+     /tmp/ccMAVCpa.s:366    .text.prvGetMessageFromStreamBuffer:0000000000000000 prvGetMessageFromStreamBuffer
+     /tmp/ccMAVCpa.s:485    .text.prvGetMessageFromStreamBuffer:00000000000000ac $d
+     /tmp/ccMAVCpa.s:492    .rodata:0000000000000000 $d
+     /tmp/ccMAVCpa.s:496    .text.prvBufferFormattedString:0000000000000000 $t
+     /tmp/ccMAVCpa.s:500    .text.prvBufferFormattedString:0000000000000000 prvBufferFormattedString
+     /tmp/ccMAVCpa.s:682    .text.prvBufferFormattedString:0000000000000140 $d
+     /tmp/ccMAVCpa.s:692    .text.lUDPLoggingPrintf:0000000000000000 $t
+     /tmp/ccMAVCpa.s:697    .text.lUDPLoggingPrintf:0000000000000000 lUDPLoggingPrintf
+     /tmp/ccMAVCpa.s:774    .text.vUDPLoggingTaskCreate:0000000000000000 $t
+     /tmp/ccMAVCpa.s:779    .text.vUDPLoggingTaskCreate:0000000000000000 vUDPLoggingTaskCreate
+     /tmp/ccMAVCpa.s:815    .text.vUDPLoggingTaskCreate:0000000000000020 $d
+     /tmp/ccMAVCpa.s:896    .text.prvLoggingTask:0000000000000000 prvLoggingTask
+     /tmp/ccMAVCpa.s:822    .text.xLoggingGetSocket:0000000000000000 $t
+     /tmp/ccMAVCpa.s:827    .text.xLoggingGetSocket:0000000000000000 xLoggingGetSocket
+     /tmp/ccMAVCpa.s:883    .text.xLoggingGetSocket:0000000000000034 $d
+     /tmp/ccMAVCpa.s:892    .text.prvLoggingTask:0000000000000000 $t
+     /tmp/ccMAVCpa.s:1126   .text.prvLoggingTask:0000000000000168 $d
+     /tmp/ccMAVCpa.s:1209   .bss.cLoggingLine.6657:0000000000000000 cLoggingLine.6657
+     /tmp/ccMAVCpa.s:1134   .text.vUDPLoggingFlush:0000000000000000 $t
+     /tmp/ccMAVCpa.s:1139   .text.vUDPLoggingFlush:0000000000000000 vUDPLoggingFlush
+     /tmp/ccMAVCpa.s:1194   .text.vUDPLoggingFlush:0000000000000040 $d
+     /tmp/ccMAVCpa.s:1200   .bss.xLoggingInitialised.6618:0000000000000000 $d
+     /tmp/ccMAVCpa.s:1206   .bss.cLoggingLine.6657:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
@@ -2277,7 +2272,7 @@ uxStreamBufferGet
 memcpy
 xTaskResumeAll
 __aeabi_uldivmod
-ARM GAS  /tmp/cc3zEYQo.s 			page 39
+ARM GAS  /tmp/ccMAVCpa.s 			page 39
 
 
 ullGetHighResolutionTime

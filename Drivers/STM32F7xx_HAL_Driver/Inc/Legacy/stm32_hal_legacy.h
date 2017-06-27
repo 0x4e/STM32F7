@@ -948,9 +948,9 @@
 #define ETH_MAC_RXFIFO_FULL              ((uint32_t)0x00000300)  /* Rx FIFO fill level: full */
 #if defined(STM32F1)
 #else
-#define ETH_MAC_READCONTROLLER_IDLE               ((uint32_t)0x00000000)  /* Rx FIFO read controller IDLE state */
-#define ETH_MAC_READCONTROLLER_READING_DATA       ((uint32_t)0x00000020)  /* Rx FIFO read controller Reading frame data */
-#define ETH_MAC_READCONTROLLER_READING_STATUS     ((uint32_t)0x00000040)  /* Rx FIFO read controller Reading frame status (or time-stamp) */
+//#define ETH_MAC_READCONTROLLER_IDLE               ((uint32_t)0x00000000)  /* Rx FIFO read controller IDLE state */
+//#define ETH_MAC_READCONTROLLER_READING_DATA       ((uint32_t)0x00000020)  /* Rx FIFO read controller Reading frame data */
+//#define ETH_MAC_READCONTROLLER_READING_STATUS     ((uint32_t)0x00000040)  /* Rx FIFO read controller Reading frame status (or time-stamp) */
 #endif
 #define ETH_MAC_READCONTROLLER_FLUSHING           ((uint32_t)0x00000060)  /* Rx FIFO read controller Flushing the frame data and status */
 #define ETH_MAC_RXFIFO_WRITE_ACTIVE     ((uint32_t)0x00000010)  /* Rx FIFO write controller active */

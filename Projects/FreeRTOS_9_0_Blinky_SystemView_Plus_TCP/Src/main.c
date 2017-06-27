@@ -149,7 +149,7 @@ void blink_task(void *pvParameters)
 	(void) pvParameters;
 	while(1){
 		BSP_LED_Toggle(LED2);	// Debugging, watch Calculation Time
-		vTaskDelay(100);
+		vTaskDelay(200);
 	}
 }
 
@@ -536,24 +536,24 @@ static void BSP_Config_task(void *pvParameters)
   BSP_LED_Init(LED2);
 
   /* Initialize the LCD */
-  BSP_LCD_Init();
+  //BSP_LCD_Init();
   
   /* Initialize the LCD Layers */
-  BSP_LCD_LayerDefaultInit(1, LCD_FB_START_ADDRESS);
+  //BSP_LCD_LayerDefaultInit(1, LCD_FB_START_ADDRESS);
   
   /* Set LCD Foreground Layer  */
-  BSP_LCD_SelectLayer(1);
+  //BSP_LCD_SelectLayer(1);
   
-  BSP_LCD_SetFont(&LCD_DEFAULT_FONT);
+  //BSP_LCD_SetFont(&LCD_DEFAULT_FONT);
   
   /* Initialize LCD Log module */
-  LCD_LOG_Init();
+  //LCD_LOG_Init();
   
   /* Show Header and Footer texts */
-  LCD_LOG_SetHeader((uint8_t *)"FreeRTOS Blinky_TCP");
-  LCD_LOG_SetFooter((uint8_t *)"STM32F769I-DISOVERY board");
+  //LCD_LOG_SetHeader((uint8_t *)"FreeRTOS Blinky_TCP");
+  //LCD_LOG_SetFooter((uint8_t *)"STM32F769I-DISOVERY board");
   
-  LCD_UsrLog ("  Blink LED BLINK!!!...\n");
+  //LCD_UsrLog ("  Blink LED BLINK!!!...\n");
 
   while(1){
       vTaskDelay(1000);

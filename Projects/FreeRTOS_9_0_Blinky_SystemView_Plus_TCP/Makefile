@@ -10,6 +10,8 @@ TARGET = STM32F769I_DISCOVERY
 ######################################
 #JTAG and environment configuration
 ######################################
+GCC_BIN           ?= /usr/bin/
+GCC_PREFIX        ?= arm-none-eabi
 OPENOCD           ?= openocd
 OPENOCD_INTERFACE ?= interface/stlink-v2-1.cfg
 OPENOCD_CMDS      ?=
@@ -59,7 +61,8 @@ C_SOURCES = \
   ../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_uart.c \
   ../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_ll_fmc.c \
   ../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rtc.c \
-    ../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c \
+  ../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_rng.c \
+  ../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_eth_FreeRTOS_TCP.c \
   ../../../FreeRTOS_9_0/Source/croutine.c \
   ../../../FreeRTOS_9_0/Source/list.c \
   ../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/port.c \
@@ -69,7 +72,6 @@ C_SOURCES = \
   ../../../FreeRTOS_9_0/Source/timers.c \
   ../../../FreeRTOS_9_0/Source/event_groups.c \
   ../../Utilities/Log/lcd_log.c \
-  ../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/NetworkInterface/NetworkInterface_STM32F7xx/stm32f7xx_hal_eth.c \
   ../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/NetworkInterface/NetworkInterface_STM32F7xx/NetworkInterface.c \
   ../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/portable/BufferManagement/BufferAllocation_2.c \
   ../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_IP.c \
@@ -80,9 +82,11 @@ C_SOURCES = \
   ../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_TCP_IP.c \
   ../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_TCP_WIN.c \
   ../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_Stream_Buffer.c \
-    ../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c \
+  ../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c \
+  ../../../FreeRTOS-Plus/Demo/Common/Utilities/printf-stdarg.c \
   ../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c \
   Src/main.c \
+  Src/memcpy.c \
   Src/hr_gettime.c \
   Src/stm32f7xx_hal_msp.c \
   Src/stm32f7xx_hal_timebase_tim.c \
@@ -104,11 +108,12 @@ ASM_SOURCES = \
 #######################################
 # binaries
 #######################################
-CC = arm-none-eabi-gcc
-AS = arm-none-eabi-gcc -x assembler-with-cpp
-CP = arm-none-eabi-objcopy
-AR = arm-none-eabi-ar
-SZ = arm-none-eabi-size -A -x
+CC = $(GCC_BIN)/$(GCC_PREFIX)-gcc
+AS = $(GCC_BIN)/$(GCC_PREFIX)-gcc -x assembler-with-cpp
+CP = $(GCC_BIN)/$(GCC_PREFIX)-objcopy
+AR = $(GCC_BIN)/$(GCC_PREFIX)-ar
+SZ = $(GCC_BIN)/$(GCC_PREFIX)-size -A -x
+OBJDUMP = $(GCC_BIN)/$(GCC_PREFIX)-objdump
 HEX = $(CP) -O ihex
 BIN = $(CP) -O binary -S
  
@@ -145,8 +150,8 @@ C_INCLUDES += -I../../../SystemView/SEGGER
 C_INCLUDES += -I../../../SystemView/Sample/OS
 
 # compile gcc flags
-ASFLAGS = -mthumb -mcpu=cortex-m7 -mfpu=fpv5-sp-d16 -mfloat-abi=hard $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
-CFLAGS = -mthumb -mcpu=cortex-m7 -mfpu=fpv5-sp-d16 -mfloat-abi=hard $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
+ASFLAGS = -mthumb -mcpu=cortex-m7 -mfpu=fpv5-sp-d16 -mfloat-abi=hard $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -fno-builtin
+CFLAGS = -mthumb -mcpu=cortex-m7 -mfpu=fpv5-sp-d16 -mfloat-abi=hard $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -fno-builtin
 ifeq ($(DEBUG), 1)
 CFLAGS += -g -gdwarf-2
 endif
@@ -164,7 +169,7 @@ LIBDIR =
 LDFLAGS = -mthumb -mcpu=cortex-m7 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections
 
 # default action: build all
-all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin
+all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin $(BUILD_DIR)/$(TARGET).lss
 
 #######################################
 # build the application
@@ -185,6 +190,9 @@ $(BUILD_DIR)/%.o: %.s Makefile | $(BUILD_DIR)
 $(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) Makefile
 	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
 	$(SZ) $@
+
+$(BUILD_DIR)/%.lss: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
+	$(OBJDUMP) -S $< > $@
 
 $(BUILD_DIR)/%.hex: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
 	$(HEX) $< $@

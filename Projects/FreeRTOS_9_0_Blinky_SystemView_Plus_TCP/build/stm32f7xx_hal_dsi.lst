@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccbtaASa.s 			page 1
+ARM GAS  /tmp/cc5zARxf.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
   29:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   *
   30:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
   31:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-ARM GAS  /tmp/ccbtaASa.s 			page 2
+ARM GAS  /tmp/cc5zARxf.s 			page 2
 
 
   32:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
   86:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** static void DSI_ConfigPacketHeader(DSI_TypeDef *DSIx, uint32_t ChannelID, uint32_t DataType, uint32
   87:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** 
   88:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** /* Private functions ---------------------------------------------------------*/
-ARM GAS  /tmp/ccbtaASa.s 			page 3
+ARM GAS  /tmp/cc5zARxf.s 			page 3
 
 
   89:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** /**
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  111:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** }
   60              		.loc 1 111 0
   61 0026 1437     		adds	r7, r7, #20
-ARM GAS  /tmp/ccbtaASa.s 			page 4
+ARM GAS  /tmp/cc5zARxf.s 			page 4
 
 
   62              	.LCFI3:
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
   86              		@ args = 0, pretend = 0, frame = 24
   87              		@ frame_needed = 1, uses_anonymous_args = 0
   88 0000 80B5     		push	{r7, lr}
-ARM GAS  /tmp/ccbtaASa.s 			page 5
+ARM GAS  /tmp/cc5zARxf.s 			page 5
 
 
   89              	.LCFI6:
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  163:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     /* Initialize the low level hardware */
  164:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     HAL_DSI_MspInit(hdsi);
  124              		.loc 1 164 0
-ARM GAS  /tmp/ccbtaASa.s 			page 6
+ARM GAS  /tmp/cc5zARxf.s 			page 6
 
 
  125 002a 7868     		ldr	r0, [r7, #4]
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  158 0066 7B68     		ldr	r3, [r7, #4]
  159 0068 1B68     		ldr	r3, [r3]
  160 006a D3F80C34 		ldr	r3, [r3, #1036]
-ARM GAS  /tmp/ccbtaASa.s 			page 7
+ARM GAS  /tmp/cc5zARxf.s 			page 7
 
 
  161 006e 03F48053 		and	r3, r3, #4096
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  197:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** 	
  198:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     /* Wait for the lock of the PLL */
  199:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     while(__HAL_DSI_GET_FLAG(hdsi, DSI_FLAG_PLLLS) == RESET)
-ARM GAS  /tmp/ccbtaASa.s 			page 8
+ARM GAS  /tmp/cc5zARxf.s 			page 8
 
 
  203              		.loc 1 199 0
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  240              		.loc 1 215 0
  241 011a 7B68     		ldr	r3, [r7, #4]
  242 011c 1B68     		ldr	r3, [r3]
-ARM GAS  /tmp/ccbtaASa.s 			page 9
+ARM GAS  /tmp/cc5zARxf.s 			page 9
 
 
  243 011e 7A68     		ldr	r2, [r7, #4]
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  226:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     
  227:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     /* Calculate the bit period in high-speed mode in unit of 0.25 ns (UIX4) */
  228:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     /* The equation is : UIX4 = IntegerPart( (1000/F_PHY_Mhz) * 4 )          */
-ARM GAS  /tmp/ccbtaASa.s 			page 10
+ARM GAS  /tmp/cc5zARxf.s 			page 10
 
 
  229:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     /* Where : F_PHY_Mhz = (NDIV * HSE_Mhz) / (IDF * ODF)                    */
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  238:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   
  239:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     /* Disable all error interrupts and reset the Error Mask */
  240:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     hdsi->Instance->IER[0] = 0;
-ARM GAS  /tmp/ccbtaASa.s 			page 11
+ARM GAS  /tmp/cc5zARxf.s 			page 11
 
 
  332              		.loc 1 240 0 discriminator 4
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  376              		.align	2
  377              		.global	HAL_DSI_DeInit
  378              		.thumb
-ARM GAS  /tmp/ccbtaASa.s 			page 12
+ARM GAS  /tmp/cc5zARxf.s 			page 12
 
 
  379              		.thumb_func
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  413 001a 1B68     		ldr	r3, [r3]
  414 001c 7A68     		ldr	r2, [r7, #4]
  415 001e 1268     		ldr	r2, [r2]
-ARM GAS  /tmp/ccbtaASa.s 			page 13
+ARM GAS  /tmp/cc5zARxf.s 			page 13
 
 
  416 0020 D2F80424 		ldr	r2, [r2, #1028]
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  289:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   /* Initialise the error code */
  290:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   hdsi->ErrorCode = HAL_DSI_ERROR_NONE;
  454              		.loc 1 290 0
-ARM GAS  /tmp/ccbtaASa.s 			page 14
+ARM GAS  /tmp/cc5zARxf.s 			page 14
 
 
  455 007e 7B68     		ldr	r3, [r7, #4]
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  493              		@ frame_needed = 1, uses_anonymous_args = 0
  494              		@ link register save eliminated.
  495 0000 80B4     		push	{r7}
-ARM GAS  /tmp/ccbtaASa.s 			page 15
+ARM GAS  /tmp/cc5zARxf.s 			page 15
 
 
  496              	.LCFI16:
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  538              		@ link register save eliminated.
  539 0000 80B4     		push	{r7}
  540              	.LCFI22:
-ARM GAS  /tmp/ccbtaASa.s 			page 16
+ARM GAS  /tmp/cc5zARxf.s 			page 16
 
 
  541              		.cfi_def_cfa_offset 4
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  335:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     hdsi->Instance->IER[0] |= DSI_ERROR_ACK_MASK;
  583              		.loc 1 335 0
  584 0040 7B68     		ldr	r3, [r7, #4]
-ARM GAS  /tmp/ccbtaASa.s 			page 17
+ARM GAS  /tmp/cc5zARxf.s 			page 17
 
 
  585 0042 1A68     		ldr	r2, [r3]
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  624 0098 002B     		cmp	r3, #0
  625 009a 09D0     		beq	.L25
  351:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   {
-ARM GAS  /tmp/ccbtaASa.s 			page 18
+ARM GAS  /tmp/cc5zARxf.s 			page 18
 
 
  352:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     /* Enable the interrupt generation on selected errors */
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  663              		.loc 1 368 0
  664 00ec 3B68     		ldr	r3, [r7]
  665 00ee 03F04003 		and	r3, r3, #64
-ARM GAS  /tmp/ccbtaASa.s 			page 19
+ARM GAS  /tmp/cc5zARxf.s 			page 19
 
 
  666 00f2 002B     		cmp	r3, #0
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  384:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   }
  385:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   
  386:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   if((ActiveErrors & HAL_DSI_ERROR_GEN) != RESET)
-ARM GAS  /tmp/ccbtaASa.s 			page 20
+ARM GAS  /tmp/cc5zARxf.s 			page 20
 
 
  705              		.loc 1 386 0
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  397:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** 
  398:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** /**
  399:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   * @brief  Initializes the DSI MSP.
-ARM GAS  /tmp/ccbtaASa.s 			page 21
+ARM GAS  /tmp/cc5zARxf.s 			page 21
 
 
  400:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   * @param  hdsi: pointer to a DSI_HandleTypeDef structure that contains
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  416:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   * @param  hdsi: pointer to a DSI_HandleTypeDef structure that contains
  417:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   *               the configuration information for the DSI.
  418:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   * @retval None
-ARM GAS  /tmp/ccbtaASa.s 			page 22
+ARM GAS  /tmp/cc5zARxf.s 			page 22
 
 
  419:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   */
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  435:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****  *  @brief    IO operation functions  
  436:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****  *
  437:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** @verbatim
-ARM GAS  /tmp/ccbtaASa.s 			page 23
+ARM GAS  /tmp/cc5zARxf.s 			page 23
 
 
  438:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****  ===============================================================================
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  462:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****       /* Clear the Tearing Effect Interrupt Flag */
  463:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****       __HAL_DSI_CLEAR_FLAG(hdsi, DSI_FLAG_TE);
  861              		.loc 1 463 0
-ARM GAS  /tmp/ccbtaASa.s 			page 24
+ARM GAS  /tmp/cc5zARxf.s 			page 24
 
 
  862 0028 7B68     		ldr	r3, [r7, #4]
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  895 006a 9B69     		ldr	r3, [r3, #24]
  896 006c 002B     		cmp	r3, #0
  897 006e 00F08C80 		beq	.L34
-ARM GAS  /tmp/ccbtaASa.s 			page 25
+ARM GAS  /tmp/cc5zARxf.s 			page 25
 
 
  485:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   {
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  498:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****       hdsi->ErrorCode |= HAL_DSI_ERROR_PHY;
  939              		.loc 1 498 0
  940 00c0 7B68     		ldr	r3, [r7, #4]
-ARM GAS  /tmp/ccbtaASa.s 			page 26
+ARM GAS  /tmp/cc5zARxf.s 			page 26
 
 
  941 00c2 5B69     		ldr	r3, [r3, #20]
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  980 010c 5A61     		str	r2, [r3, #20]
  981              	.L42:
  514:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     }
-ARM GAS  /tmp/ccbtaASa.s 			page 27
+ARM GAS  /tmp/cc5zARxf.s 			page 27
 
 
  515:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  1019 0150 BB68     		ldr	r3, [r7, #8]
  1020 0152 03F08003 		and	r3, r3, #128
  1021 0156 002B     		cmp	r3, #0
-ARM GAS  /tmp/ccbtaASa.s 			page 28
+ARM GAS  /tmp/cc5zARxf.s 			page 28
 
 
  1022 0158 05D0     		beq	.L46
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  1059 018e 80BD     		pop	{r7, pc}
  1060              		.cfi_endproc
  1061              	.LFE142:
-ARM GAS  /tmp/ccbtaASa.s 			page 29
+ARM GAS  /tmp/cc5zARxf.s 			page 29
 
 
  1063              		.section	.text.HAL_DSI_TearingEffectCallback,"ax",%progbits
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  1103 0012 00BF     		.section	.text.HAL_DSI_EndOfRefreshCallback,"ax",%progbits
  1104              		.align	2
  1105              		.weak	HAL_DSI_EndOfRefreshCallback
-ARM GAS  /tmp/ccbtaASa.s 			page 30
+ARM GAS  /tmp/cc5zARxf.s 			page 30
 
 
  1106              		.thumb
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  1146              		.thumb
  1147              		.thumb_func
  1149              	HAL_DSI_ErrorCallback:
-ARM GAS  /tmp/ccbtaASa.s 			page 31
+ARM GAS  /tmp/cc5zARxf.s 			page 31
 
 
  1150              	.LFB145:
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  1190              	.LFB146:
  597:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** 
  598:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** /**
-ARM GAS  /tmp/ccbtaASa.s 			page 32
+ARM GAS  /tmp/cc5zARxf.s 			page 32
 
 
  599:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   * @}
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  1215 0014 16E0     		b	.L53
  1216              	.L52:
  1217              		.loc 1 628 0 discriminator 2
-ARM GAS  /tmp/ccbtaASa.s 			page 33
+ARM GAS  /tmp/cc5zARxf.s 			page 33
 
 
  1218 0016 7B68     		ldr	r3, [r7, #4]
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  1263              		.align	2
  1264              		.global	HAL_DSI_ConfigVideoMode
  1265              		.thumb
-ARM GAS  /tmp/ccbtaASa.s 			page 34
+ARM GAS  /tmp/cc5zARxf.s 			page 34
 
 
  1266              		.thumb_func
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  660:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   assert_param(IS_DSI_LP_VFP(VidCfg->LPVerticalFrontPorchEnable));
  661:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   assert_param(IS_DSI_LP_VBP(VidCfg->LPVerticalBackPorchEnable));
  662:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   assert_param(IS_DSI_LP_VSYNC(VidCfg->LPVerticalSyncActiveEnable));
-ARM GAS  /tmp/ccbtaASa.s 			page 35
+ARM GAS  /tmp/cc5zARxf.s 			page 35
 
 
  663:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   assert_param(IS_DSI_FBTAA(VidCfg->FrameBTAAcknowledgeEnable));
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  1334              		.loc 1 682 0 discriminator 2
  1335 0062 7B68     		ldr	r3, [r7, #4]
  1336 0064 1A68     		ldr	r2, [r3]
-ARM GAS  /tmp/ccbtaASa.s 			page 36
+ARM GAS  /tmp/cc5zARxf.s 			page 36
 
 
  1337 0066 7B68     		ldr	r3, [r7, #4]
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  1382 00b6 7B68     		ldr	r3, [r7, #4]
  1383 00b8 1B68     		ldr	r3, [r3]
  1384 00ba 7A68     		ldr	r2, [r7, #4]
-ARM GAS  /tmp/ccbtaASa.s 			page 37
+ARM GAS  /tmp/cc5zARxf.s 			page 37
 
 
  1385 00bc 1268     		ldr	r2, [r2]
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  1431 0114 0A43     		orrs	r2, r2, r1
  1432 0116 5A61     		str	r2, [r3, #20]
  700:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   
-ARM GAS  /tmp/ccbtaASa.s 			page 38
+ARM GAS  /tmp/cc5zARxf.s 			page 38
 
 
  701:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   /* Select the color coding for the host */
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  1475              		.loc 1 712 0
  1476 016e 7B68     		ldr	r3, [r7, #4]
  1477 0170 1B68     		ldr	r3, [r3]
-ARM GAS  /tmp/ccbtaASa.s 			page 39
+ARM GAS  /tmp/cc5zARxf.s 			page 39
 
 
  1478 0172 7A68     		ldr	r2, [r7, #4]
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  1522              		.loc 1 722 0
  1523 01c2 7B68     		ldr	r3, [r7, #4]
  1524 01c4 1B68     		ldr	r3, [r3]
-ARM GAS  /tmp/ccbtaASa.s 			page 40
+ARM GAS  /tmp/cc5zARxf.s 			page 40
 
 
  1525 01c6 7A68     		ldr	r2, [r7, #4]
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  732:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   /* Set the Vertical Back Porch (VBP)*/
  733:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   hdsi->Instance->VVBPCR &= ~DSI_VVBPCR_VBP;
  1570              		.loc 1 733 0
-ARM GAS  /tmp/ccbtaASa.s 			page 41
+ARM GAS  /tmp/cc5zARxf.s 			page 41
 
 
  1571 0218 7B68     		ldr	r3, [r7, #4]
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  742:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   hdsi->Instance->VVACR |= VidCfg->VerticalActive;
  1617              		.loc 1 742 0
  1618 026c 7B68     		ldr	r3, [r7, #4]
-ARM GAS  /tmp/ccbtaASa.s 			page 42
+ARM GAS  /tmp/cc5zARxf.s 			page 42
 
 
  1619 026e 1B68     		ldr	r3, [r3]
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  1665 02ca 1B68     		ldr	r3, [r3]
  1666 02cc 7A68     		ldr	r2, [r7, #4]
  1667 02ce 1268     		ldr	r2, [r2]
-ARM GAS  /tmp/ccbtaASa.s 			page 43
+ARM GAS  /tmp/cc5zARxf.s 			page 43
 
 
  1668 02d0 9169     		ldr	r1, [r2, #24]
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  1711 0320 7B68     		ldr	r3, [r7, #4]
  1712 0322 1B68     		ldr	r3, [r3]
  1713 0324 7A68     		ldr	r2, [r7, #4]
-ARM GAS  /tmp/ccbtaASa.s 			page 44
+ARM GAS  /tmp/cc5zARxf.s 			page 44
 
 
  1714 0326 1268     		ldr	r2, [r2]
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  1759 037c 916B     		ldr	r1, [r2, #56]
  1760 037e 3A68     		ldr	r2, [r7]
  1761 0380 D26D     		ldr	r2, [r2, #92]
-ARM GAS  /tmp/ccbtaASa.s 			page 45
+ARM GAS  /tmp/cc5zARxf.s 			page 45
 
 
  1762 0382 0A43     		orrs	r2, r2, r1
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  1805 03d2 926B     		ldr	r2, [r2, #56]
  1806 03d4 22F48042 		bic	r2, r2, #16384
  1807 03d8 9A63     		str	r2, [r3, #56]
-ARM GAS  /tmp/ccbtaASa.s 			page 46
+ARM GAS  /tmp/cc5zARxf.s 			page 46
 
 
  782:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   hdsi->Instance->VMCR |= VidCfg->FrameBTAAcknowledgeEnable;
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  796:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   * @retval HAL status
  797:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   */
  798:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** HAL_StatusTypeDef HAL_DSI_ConfigAdaptedCommandMode(DSI_HandleTypeDef *hdsi, DSI_CmdCfgTypeDef *CmdC
-ARM GAS  /tmp/ccbtaASa.s 			page 47
+ARM GAS  /tmp/cc5zARxf.s 			page 47
 
 
  799:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** {
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  1887 002a 5A63     		str	r2, [r3, #52]
  816:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   hdsi->Instance->WCFGR &= ~DSI_WCFGR_DSIM;
  1888              		.loc 1 816 0 discriminator 2
-ARM GAS  /tmp/ccbtaASa.s 			page 48
+ARM GAS  /tmp/cc5zARxf.s 			page 48
 
 
  1889 002c 7B68     		ldr	r3, [r7, #4]
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  1934 008c 1268     		ldr	r2, [r2]
  1935 008e 5169     		ldr	r1, [r2, #20]
  1936 0090 3A68     		ldr	r2, [r7]
-ARM GAS  /tmp/ccbtaASa.s 			page 49
+ARM GAS  /tmp/cc5zARxf.s 			page 49
 
 
  1937 0092 D069     		ldr	r0, [r2, #28]
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  834:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   
  835:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   /* Configure the maximum allowed size for write memory command */
  836:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   hdsi->Instance->LCCR &= ~DSI_LCCR_CMDSIZE;
-ARM GAS  /tmp/ccbtaASa.s 			page 50
+ARM GAS  /tmp/cc5zARxf.s 			page 50
 
 
  1983              		.loc 1 836 0 discriminator 2
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  2029              		.loc 1 844 0 discriminator 2
  2030 0150 7B68     		ldr	r3, [r7, #4]
  2031 0152 1B68     		ldr	r3, [r3]
-ARM GAS  /tmp/ccbtaASa.s 			page 51
+ARM GAS  /tmp/cc5zARxf.s 			page 51
 
 
  2032 0154 7A68     		ldr	r2, [r7, #4]
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  2073              	.LCFI78:
  2074              		.cfi_def_cfa_offset 4
  2075 01a6 BD46     		mov	sp, r7
-ARM GAS  /tmp/ccbtaASa.s 			page 52
+ARM GAS  /tmp/cc5zARxf.s 			page 52
 
 
  2076              	.LCFI79:
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  2118 000c 1B7C     		ldrb	r3, [r3, #16]	@ zero_extendqisi2
  2119 000e 012B     		cmp	r3, #1
  2120 0010 01D1     		bne	.L67
-ARM GAS  /tmp/ccbtaASa.s 			page 53
+ARM GAS  /tmp/cc5zARxf.s 			page 53
 
 
  2121              		.loc 1 871 0 is_stmt 0 discriminator 1
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  901:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****                            LPCmd->LPGenShortWriteOneP |\
  2146              		.loc 1 901 0 discriminator 2
  2147 003a 3A68     		ldr	r2, [r7]
-ARM GAS  /tmp/ccbtaASa.s 			page 54
+ARM GAS  /tmp/cc5zARxf.s 			page 54
 
 
  2148 003c 5268     		ldr	r2, [r2, #4]
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  2186              		.loc 1 909 0 discriminator 2
  2187 006a 3A68     		ldr	r2, [r7]
  2188 006c 526A     		ldr	r2, [r2, #36]
-ARM GAS  /tmp/ccbtaASa.s 			page 55
+ARM GAS  /tmp/cc5zARxf.s 			page 55
 
 
  908:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****                            LPCmd->LPDcsShortWriteOneP |\
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  2228              	.L68:
  921:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** }
  2229              		.loc 1 921 0
-ARM GAS  /tmp/ccbtaASa.s 			page 56
+ARM GAS  /tmp/cc5zARxf.s 			page 56
 
 
  2230 00aa 1846     		mov	r0, r3
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  933:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   /* Process locked */
  934:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   __HAL_LOCK(hdsi);
  2275              		.loc 1 934 0
-ARM GAS  /tmp/ccbtaASa.s 			page 57
+ARM GAS  /tmp/cc5zARxf.s 			page 57
 
 
  2276 000a 7B68     		ldr	r3, [r7, #4]
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  2317 0048 BD46     		mov	sp, r7
  2318              	.LCFI91:
  2319              		.cfi_def_cfa_register 13
-ARM GAS  /tmp/ccbtaASa.s 			page 58
+ARM GAS  /tmp/cc5zARxf.s 			page 58
 
 
  2320              		@ sp needed
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  2362              	.L75:
  2363              		.loc 1 961 0 discriminator 2
  2364 0016 7B68     		ldr	r3, [r7, #4]
-ARM GAS  /tmp/ccbtaASa.s 			page 59
+ARM GAS  /tmp/cc5zARxf.s 			page 59
 
 
  2365 0018 0122     		movs	r2, #1
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  2400 0060 1268     		ldr	r2, [r2]
  2401 0062 D2F89C20 		ldr	r2, [r2, #156]
  2402 0066 02F40042 		and	r2, r2, #32768
-ARM GAS  /tmp/ccbtaASa.s 			page 60
+ARM GAS  /tmp/cc5zARxf.s 			page 60
 
 
  2403 006a C3F89C20 		str	r2, [r3, #156]
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  2447              	.L76:
  991:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** }
  2448              		.loc 1 991 0
-ARM GAS  /tmp/ccbtaASa.s 			page 61
+ARM GAS  /tmp/cc5zARxf.s 			page 61
 
 
  2449 00c8 1846     		mov	r0, r3
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  2492 000c 1B7C     		ldrb	r3, [r3, #16]	@ zero_extendqisi2
  2493 000e 012B     		cmp	r3, #1
  2494 0010 01D1     		bne	.L78
-ARM GAS  /tmp/ccbtaASa.s 			page 62
+ARM GAS  /tmp/cc5zARxf.s 			page 62
 
 
  2495              		.loc 1 1004 0 is_stmt 0 discriminator 1
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 1013:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   
 1014:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   /* Low-power reception timeout */
 1015:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   hdsi->Instance->TCCR[0] &= ~DSI_TCCR0_LPRX_TOCNT;
-ARM GAS  /tmp/ccbtaASa.s 			page 63
+ARM GAS  /tmp/cc5zARxf.s 			page 63
 
 
  2541              		.loc 1 1015 0 discriminator 2
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  2587 00b6 C2F88030 		str	r3, [r2, #128]
 1024:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   hdsi->Instance->TCCR[2] |= HostTimeouts->LowPowerReadTimeout;
  2588              		.loc 1 1024 0 discriminator 2
-ARM GAS  /tmp/ccbtaASa.s 			page 64
+ARM GAS  /tmp/cc5zARxf.s 			page 64
 
 
  2589 00ba 7B68     		ldr	r3, [r7, #4]
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 1033:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   
 1034:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   /* Low-speed write timeout */
 1035:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   hdsi->Instance->TCCR[4] &= ~DSI_TCCR4_LPWR_TOCNT;
-ARM GAS  /tmp/ccbtaASa.s 			page 65
+ARM GAS  /tmp/cc5zARxf.s 			page 65
 
 
  2635              		.loc 1 1035 0 discriminator 2
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  2679              	.L79:
 1046:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** }
  2680              		.loc 1 1046 0
-ARM GAS  /tmp/ccbtaASa.s 			page 66
+ARM GAS  /tmp/cc5zARxf.s 			page 66
 
 
  2681 0180 1846     		mov	r0, r3
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  2726 0008 7B68     		ldr	r3, [r7, #4]
  2727 000a 1B7C     		ldrb	r3, [r3, #16]	@ zero_extendqisi2
  2728 000c 012B     		cmp	r3, #1
-ARM GAS  /tmp/ccbtaASa.s 			page 67
+ARM GAS  /tmp/cc5zARxf.s 			page 67
 
 
  2729 000e 01D1     		bne	.L83
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  2771              	.LCFI110:
  2772              		.cfi_restore 7
  2773              		.cfi_def_cfa_offset 0
-ARM GAS  /tmp/ccbtaASa.s 			page 68
+ARM GAS  /tmp/cc5zARxf.s 			page 68
 
 
  2774 0050 7047     		bx	lr
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  2816 001a 7B68     		ldr	r3, [r7, #4]
  2817 001c 1B68     		ldr	r3, [r3]
  2818 001e 7A68     		ldr	r2, [r7, #4]
-ARM GAS  /tmp/ccbtaASa.s 			page 69
+ARM GAS  /tmp/cc5zARxf.s 			page 69
 
 
  2819 0020 1268     		ldr	r2, [r2]
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 1096:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   * @param  hdsi: pointer to a DSI_HandleTypeDef structure that contains
 1097:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   *               the configuration information for the DSI.
 1098:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   * @retval HAL status
-ARM GAS  /tmp/ccbtaASa.s 			page 70
+ARM GAS  /tmp/cc5zARxf.s 			page 70
 
 
 1099:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   */
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  2904              		.loc 1 1111 0 discriminator 2
  2905 0034 0023     		movs	r3, #0
  2906              	.L90:
-ARM GAS  /tmp/ccbtaASa.s 			page 71
+ARM GAS  /tmp/cc5zARxf.s 			page 71
 
 
 1112:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** }
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  2949              		.loc 1 1125 0
  2950 000a 7B68     		ldr	r3, [r7, #4]
  2951 000c 1B7C     		ldrb	r3, [r3, #16]	@ zero_extendqisi2
-ARM GAS  /tmp/ccbtaASa.s 			page 72
+ARM GAS  /tmp/cc5zARxf.s 			page 72
 
 
  2952 000e 012B     		cmp	r3, #1
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  2993              		.cfi_def_cfa_register 13
  2994              		@ sp needed
  2995 0052 5DF8047B 		ldr	r7, [sp], #4
-ARM GAS  /tmp/ccbtaASa.s 			page 73
+ARM GAS  /tmp/cc5zARxf.s 			page 73
 
 
  2996              	.LCFI128:
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  3039 0018 0122     		movs	r2, #1
  3040 001a 1A74     		strb	r2, [r3, #16]
 1152:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   
-ARM GAS  /tmp/ccbtaASa.s 			page 74
+ARM GAS  /tmp/cc5zARxf.s 			page 74
 
 
 1153:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   /* Check the parameters */
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  3084              		.global	HAL_DSI_ShortWrite
  3085              		.thumb
  3086              		.thumb_func
-ARM GAS  /tmp/ccbtaASa.s 			page 75
+ARM GAS  /tmp/cc5zARxf.s 			page 75
 
 
  3088              	HAL_DSI_ShortWrite:
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  3118 001a 0223     		movs	r3, #2
  3119 001c 28E0     		b	.L99
  3120              	.L98:
-ARM GAS  /tmp/ccbtaASa.s 			page 76
+ARM GAS  /tmp/cc5zARxf.s 			page 76
 
 
  3121              		.loc 1 1188 0 discriminator 2
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 1210:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   DSI_ConfigPacketHeader(hdsi->Instance,
  3153              		.loc 1 1210 0
  3154 0054 FB68     		ldr	r3, [r7, #12]
-ARM GAS  /tmp/ccbtaASa.s 			page 77
+ARM GAS  /tmp/cc5zARxf.s 			page 77
 
 
  3155 0056 1A68     		ldr	r2, [r3]
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 1231:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   *                 This parameter can be any value of @ref DSI_DCS_Command or a 
 1232:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   *                 generic command code
 1233:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   * @param  ParametersTable: Pointer to parameter values table.
-ARM GAS  /tmp/ccbtaASa.s 			page 78
+ARM GAS  /tmp/cc5zARxf.s 			page 78
 
 
 1234:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   * @retval HAL status
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 1249:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   /* Check the parameters */
 1250:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   assert_param(IS_DSI_LONG_WRITE_PACKET_TYPE(Mode));
 1251:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   
-ARM GAS  /tmp/ccbtaASa.s 			page 79
+ARM GAS  /tmp/cc5zARxf.s 			page 79
 
 
 1252:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   /* Get tick */ 
@@ -4738,7 +4738,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  3263 005c 002B     		cmp	r3, #0
  3264 005e 1BD1     		bne	.L108
 1272:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     {
-ARM GAS  /tmp/ccbtaASa.s 			page 80
+ARM GAS  /tmp/cc5zARxf.s 			page 80
 
 
 1273:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****       hdsi->Instance->GPDR=(Param1 | \
@@ -4798,7 +4798,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  3306 009c F96A     		ldr	r1, [r7, #44]
  3307 009e 7A69     		ldr	r2, [r7, #20]
  3308 00a0 0A44     		add	r2, r2, r1
-ARM GAS  /tmp/ccbtaASa.s 			page 81
+ARM GAS  /tmp/cc5zARxf.s 			page 81
 
 
  3309 00a2 1278     		ldrb	r2, [r2]	@ zero_extendqisi2
@@ -4858,7 +4858,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 1290:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   DSI_ConfigPacketHeader(hdsi->Instance,
  3350              		.loc 1 1290 0
  3351 00e2 FB68     		ldr	r3, [r7, #12]
-ARM GAS  /tmp/ccbtaASa.s 			page 82
+ARM GAS  /tmp/cc5zARxf.s 			page 82
 
 
  3352 00e4 1A68     		ldr	r2, [r3]
@@ -4918,7 +4918,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  3396              	HAL_DSI_Read:
  3397              	.LFB160:
 1301:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** 
-ARM GAS  /tmp/ccbtaASa.s 			page 83
+ARM GAS  /tmp/cc5zARxf.s 			page 83
 
 
 1302:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** /**
@@ -4978,7 +4978,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  3427 001a 0223     		movs	r3, #2
  3428 001c ABE0     		b	.L112
  3429              	.L111:
-ARM GAS  /tmp/ccbtaASa.s 			page 84
+ARM GAS  /tmp/cc5zARxf.s 			page 84
 
 
  3430              		.loc 1 1326 0 discriminator 2
@@ -5038,7 +5038,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  3468 005e BB6A     		ldr	r3, [r7, #40]
  3469 0060 042B     		cmp	r3, #4
  3470 0062 0AD1     		bne	.L116
-ARM GAS  /tmp/ccbtaASa.s 			page 85
+ARM GAS  /tmp/cc5zARxf.s 			page 85
 
 
 1343:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   {
@@ -5098,7 +5098,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  3515 00b2 0093     		str	r3, [sp]
  3516 00b4 1046     		mov	r0, r2
  3517 00b6 B968     		ldr	r1, [r7, #8]
-ARM GAS  /tmp/ccbtaASa.s 			page 86
+ARM GAS  /tmp/cc5zARxf.s 			page 86
 
 
  3518 00b8 BA6A     		ldr	r2, [r7, #40]
@@ -5158,7 +5158,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  3550 00ec 43E0     		b	.L112
  3551              	.L119:
 1366:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   {
-ARM GAS  /tmp/ccbtaASa.s 			page 87
+ARM GAS  /tmp/cc5zARxf.s 			page 87
 
 
  3552              		.loc 1 1366 0
@@ -5218,7 +5218,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 1388:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     
  3583              		.loc 1 1388 0
  3584 0120 FB68     		ldr	r3, [r7, #12]
-ARM GAS  /tmp/ccbtaASa.s 			page 88
+ARM GAS  /tmp/cc5zARxf.s 			page 88
 
 
  3585 0122 0022     		movs	r2, #0
@@ -5278,7 +5278,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 1412:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****       return HAL_TIMEOUT;
  3624              		.loc 1 1412 0
  3625 0164 0323     		movs	r3, #3
-ARM GAS  /tmp/ccbtaASa.s 			page 89
+ARM GAS  /tmp/cc5zARxf.s 			page 89
 
 
  3626 0166 06E0     		b	.L112
@@ -5338,7 +5338,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  3663              		@ frame_needed = 1, uses_anonymous_args = 0
  3664 0000 80B5     		push	{r7, lr}
  3665              	.LCFI150:
-ARM GAS  /tmp/ccbtaASa.s 			page 90
+ARM GAS  /tmp/cc5zARxf.s 			page 90
 
 
  3666              		.cfi_def_cfa_offset 8
@@ -5398,7 +5398,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  3707 0040 03F00303 		and	r3, r3, #3
  3708 0044 002B     		cmp	r3, #0
  3709 0046 16D1     		bne	.L129
-ARM GAS  /tmp/ccbtaASa.s 			page 91
+ARM GAS  /tmp/cc5zARxf.s 			page 91
 
 
 1444:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   {
@@ -5458,7 +5458,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 1460:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     {
 1461:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****       /* Check for the Timeout */
 1462:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****       if((HAL_GetTick() - tickstart ) > DSI_TIMEOUT_VALUE)
-ARM GAS  /tmp/ccbtaASa.s 			page 92
+ARM GAS  /tmp/cc5zARxf.s 			page 92
 
 
  3747              		.loc 1 1462 0
@@ -5518,7 +5518,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  3786 00c0 80BD     		pop	{r7, pc}
  3787              		.cfi_endproc
  3788              	.LFE161:
-ARM GAS  /tmp/ccbtaASa.s 			page 93
+ARM GAS  /tmp/cc5zARxf.s 			page 93
 
 
  3790 00c2 00BF     		.section	.text.HAL_DSI_ExitULPMData,"ax",%progbits
@@ -5578,7 +5578,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 1492:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   /* Exit ULPS on Data Lanes */
 1493:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   hdsi->Instance->PUCR |= DSI_PUCR_UEDL;
  3830              		.loc 1 1493 0 is_stmt 1 discriminator 2
-ARM GAS  /tmp/ccbtaASa.s 			page 94
+ARM GAS  /tmp/cc5zARxf.s 			page 94
 
 
  3831 001e 7B68     		ldr	r3, [r7, #4]
@@ -5638,7 +5638,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  3868 0066 1B68     		ldr	r3, [r3]
  3869 0068 D3F8B030 		ldr	r3, [r3, #176]
  3870 006c 03F02003 		and	r3, r3, #32
-ARM GAS  /tmp/ccbtaASa.s 			page 95
+ARM GAS  /tmp/cc5zARxf.s 			page 95
 
 
  3871 0070 002B     		cmp	r3, #0
@@ -5698,7 +5698,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 1526:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   }
 1527:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   
 1528:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   /* De-assert the ULPM requests and the ULPM exit bits */
-ARM GAS  /tmp/ccbtaASa.s 			page 96
+ARM GAS  /tmp/cc5zARxf.s 			page 96
 
 
 1529:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   hdsi->Instance->PUCR = 0;
@@ -5758,7 +5758,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  3947              		.cfi_def_cfa_offset 8
  3948              		.cfi_offset 7, -8
  3949              		.cfi_offset 14, -4
-ARM GAS  /tmp/ccbtaASa.s 			page 97
+ARM GAS  /tmp/cc5zARxf.s 			page 97
 
 
  3950 0002 84B0     		sub	sp, sp, #16
@@ -5818,7 +5818,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  3991 0048 1268     		ldr	r2, [r2]
  3992 004a D2F8A820 		ldr	r2, [r2, #168]
  3993 004e 42F00502 		orr	r2, r2, #5
-ARM GAS  /tmp/ccbtaASa.s 			page 98
+ARM GAS  /tmp/cc5zARxf.s 			page 98
 
 
  3994 0052 C3F8A820 		str	r2, [r3, #168]
@@ -5878,7 +5878,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  4031              	.L147:
 1575:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****       }
 1576:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     }
-ARM GAS  /tmp/ccbtaASa.s 			page 99
+ARM GAS  /tmp/cc5zARxf.s 			page 99
 
 
 1577:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   }
@@ -5938,7 +5938,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  4067 00d8 1B68     		ldr	r3, [r3]
  4068 00da 7A68     		ldr	r2, [r7, #4]
  4069 00dc 1268     		ldr	r2, [r2]
-ARM GAS  /tmp/ccbtaASa.s 			page 100
+ARM GAS  /tmp/cc5zARxf.s 			page 100
 
 
  4070 00de D2F83024 		ldr	r2, [r2, #1072]
@@ -5998,7 +5998,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  4110              	.LCFI165:
  4111              		.cfi_def_cfa_offset 8
  4112              		.cfi_offset 7, -8
-ARM GAS  /tmp/ccbtaASa.s 			page 101
+ARM GAS  /tmp/cc5zARxf.s 			page 101
 
 
  4113              		.cfi_offset 14, -4
@@ -6058,7 +6058,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  4151              		.loc 1 1626 0
  4152 003a FFF7FEFF 		bl	HAL_GetTick
  4153 003e 0246     		mov	r2, r0
-ARM GAS  /tmp/ccbtaASa.s 			page 102
+ARM GAS  /tmp/cc5zARxf.s 			page 102
 
 
  4154 0040 FB68     		ldr	r3, [r7, #12]
@@ -6118,7 +6118,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 1643:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   {
 1644:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** 	while((hdsi->Instance->PSR & (DSI_PSR_UAN0 | DSI_PSR_UANC)) != (DSI_PSR_UAN0 | DSI_PSR_UANC))
  4191              		.loc 1 1644 0
-ARM GAS  /tmp/ccbtaASa.s 			page 103
+ARM GAS  /tmp/cc5zARxf.s 			page 103
 
 
  4192 008e 0CE0     		b	.L161
@@ -6178,7 +6178,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  4228              		.loc 1 1661 0
  4229 00ce FFF7FEFF 		bl	HAL_GetTick
  4230 00d2 0246     		mov	r2, r0
-ARM GAS  /tmp/ccbtaASa.s 			page 104
+ARM GAS  /tmp/cc5zARxf.s 			page 104
 
 
  4231 00d4 FB68     		ldr	r3, [r7, #12]
@@ -6238,7 +6238,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  4267 011c D2F89420 		ldr	r2, [r2, #148]
  4268 0120 42F00102 		orr	r2, r2, #1
  4269 0124 C3F89420 		str	r2, [r3, #148]
-ARM GAS  /tmp/ccbtaASa.s 			page 105
+ARM GAS  /tmp/cc5zARxf.s 			page 105
 
 
 1679:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   
@@ -6298,7 +6298,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  4303              		.cfi_startproc
  4304              		@ args = 0, pretend = 0, frame = 16
  4305              		@ frame_needed = 1, uses_anonymous_args = 0
-ARM GAS  /tmp/ccbtaASa.s 			page 106
+ARM GAS  /tmp/cc5zARxf.s 			page 106
 
 
  4306              		@ link register save eliminated.
@@ -6358,7 +6358,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 1708:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   
 1709:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   /* Enable pattern generator by setting PGE bit */
 1710:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   hdsi->Instance->VMCR |= DSI_VMCR_PGE;
-ARM GAS  /tmp/ccbtaASa.s 			page 107
+ARM GAS  /tmp/cc5zARxf.s 			page 107
 
 
  4354              		.loc 1 1710 0 discriminator 2
@@ -6418,7 +6418,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  4395              		.cfi_startproc
  4396              		@ args = 0, pretend = 0, frame = 8
  4397              		@ frame_needed = 1, uses_anonymous_args = 0
-ARM GAS  /tmp/ccbtaASa.s 			page 108
+ARM GAS  /tmp/cc5zARxf.s 			page 108
 
 
  4398              		@ link register save eliminated.
@@ -6478,7 +6478,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  4441              	.LCFI179:
  4442              		.cfi_def_cfa_offset 4
  4443 0036 BD46     		mov	sp, r7
-ARM GAS  /tmp/ccbtaASa.s 			page 109
+ARM GAS  /tmp/cc5zARxf.s 			page 109
 
 
  4444              	.LCFI180:
@@ -6538,7 +6538,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  4484 0010 1B7C     		ldrb	r3, [r3, #16]	@ zero_extendqisi2
  4485 0012 012B     		cmp	r3, #1
  4486 0014 01D1     		bne	.L175
-ARM GAS  /tmp/ccbtaASa.s 			page 110
+ARM GAS  /tmp/cc5zARxf.s 			page 110
 
 
  4487              		.loc 1 1752 0 is_stmt 0 discriminator 1
@@ -6598,7 +6598,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 1791:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****       /* High-Speed Transmission Delay on Clock Lane */
 1792:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****       hdsi->Instance->WPCR[1] &= ~DSI_WPCR1_HSTXDCL;
 1793:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****       hdsi->Instance->WPCR[1] |= Value;
-ARM GAS  /tmp/ccbtaASa.s 			page 111
+ARM GAS  /tmp/cc5zARxf.s 			page 111
 
 
 1794:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     }
@@ -6658,7 +6658,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 1771:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     }
  4542              		.loc 1 1771 0
  4543 007c FB68     		ldr	r3, [r7, #12]
-ARM GAS  /tmp/ccbtaASa.s 			page 112
+ARM GAS  /tmp/cc5zARxf.s 			page 112
 
 
  4544 007e 1B68     		ldr	r3, [r3]
@@ -6718,7 +6718,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  4592 00de C3F81C24 		str	r2, [r3, #1052]
 1785:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     }
  4593              		.loc 1 1785 0
-ARM GAS  /tmp/ccbtaASa.s 			page 113
+ARM GAS  /tmp/cc5zARxf.s 			page 113
 
 
  4594 00e2 FB68     		ldr	r3, [r7, #12]
@@ -6778,7 +6778,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  4642 0142 C3F81C24 		str	r2, [r3, #1052]
 1799:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     }
  4643              		.loc 1 1799 0
-ARM GAS  /tmp/ccbtaASa.s 			page 114
+ARM GAS  /tmp/cc5zARxf.s 			page 114
 
 
  4644 0146 FB68     		ldr	r3, [r7, #12]
@@ -6838,7 +6838,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 1812:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c **** /**
 1813:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   * @brief  Low-Power Reception Filter Tuning
 1814:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   * @param  hdsi: pointer to a DSI_HandleTypeDef structure that contains
-ARM GAS  /tmp/ccbtaASa.s 			page 115
+ARM GAS  /tmp/cc5zARxf.s 			page 115
 
 
 1815:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   *               the configuration information for the DSI.
@@ -6898,7 +6898,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  4733 0036 1268     		ldr	r2, [r2]
  4734 0038 D2F81C14 		ldr	r1, [r2, #1052]
  4735 003c 3A68     		ldr	r2, [r7]
-ARM GAS  /tmp/ccbtaASa.s 			page 116
+ARM GAS  /tmp/cc5zARxf.s 			page 116
 
 
  4736 003e 5206     		lsls	r2, r2, #25
@@ -6958,7 +6958,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  4775              		@ link register save eliminated.
  4776 0000 80B4     		push	{r7}
  4777              	.LCFI194:
-ARM GAS  /tmp/ccbtaASa.s 			page 117
+ARM GAS  /tmp/cc5zARxf.s 			page 117
 
 
  4778              		.cfi_def_cfa_offset 4
@@ -7018,7 +7018,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  4820              		.loc 1 1855 0 discriminator 2
  4821 0048 7B68     		ldr	r3, [r7, #4]
  4822 004a 0022     		movs	r2, #0
-ARM GAS  /tmp/ccbtaASa.s 			page 118
+ARM GAS  /tmp/cc5zARxf.s 			page 118
 
 
  4823 004c 1A74     		strb	r2, [r3, #16]
@@ -7078,7 +7078,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  4862              	.LCFI201:
  4863              		.cfi_def_cfa_offset 24
  4864 0004 00AF     		add	r7, sp, #0
-ARM GAS  /tmp/ccbtaASa.s 			page 119
+ARM GAS  /tmp/cc5zARxf.s 			page 119
 
 
  4865              	.LCFI202:
@@ -7138,7 +7138,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 1902:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     break;
 1903:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   case DSI_INVERT_HS_SIGNAL:
 1904:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     if(Lane == DSI_CLOCK_LANE)
-ARM GAS  /tmp/ccbtaASa.s 			page 120
+ARM GAS  /tmp/cc5zARxf.s 			page 120
 
 
 1905:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     {
@@ -7198,7 +7198,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  4920 0062 15D1     		bne	.L203
 1893:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****       hdsi->Instance->WPCR[0] |= ((uint32_t)State << 7);
  4921              		.loc 1 1893 0
-ARM GAS  /tmp/ccbtaASa.s 			page 121
+ARM GAS  /tmp/cc5zARxf.s 			page 121
 
 
  4922 0064 FB68     		ldr	r3, [r7, #12]
@@ -7258,7 +7258,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  4970 00c6 002B     		cmp	r3, #0
  4971 00c8 15D1     		bne	.L205
 1907:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****       hdsi->Instance->WPCR[0] |= ((uint32_t)State << 9);
-ARM GAS  /tmp/ccbtaASa.s 			page 122
+ARM GAS  /tmp/cc5zARxf.s 			page 122
 
 
  4972              		.loc 1 1907 0
@@ -7318,7 +7318,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  5020              		.loc 1 1919 0
  5021 012e FB68     		ldr	r3, [r7, #12]
  5022 0130 1B68     		ldr	r3, [r3]
-ARM GAS  /tmp/ccbtaASa.s 			page 123
+ARM GAS  /tmp/cc5zARxf.s 			page 123
 
 
  5023 0132 FA68     		ldr	r2, [r7, #12]
@@ -7378,7 +7378,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  5069              		.align	2
  5070              		.global	HAL_DSI_SetPHYTimings
  5071              		.thumb
-ARM GAS  /tmp/ccbtaASa.s 			page 124
+ARM GAS  /tmp/cc5zARxf.s 			page 124
 
 
  5072              		.thumb_func
@@ -7438,7 +7438,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 1950:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   assert_param(IS_FUNCTIONAL_STATE(State));
 1951:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   
 1952:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   switch(Timing)
-ARM GAS  /tmp/ccbtaASa.s 			page 125
+ARM GAS  /tmp/cc5zARxf.s 			page 125
 
 
  5109              		.loc 1 1952 0 is_stmt 1 discriminator 2
@@ -7498,7 +7498,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  5153 0088 FA68     		ldr	r2, [r7, #12]
  5154 008a 1268     		ldr	r2, [r2]
  5155 008c D2F82824 		ldr	r2, [r2, #1064]
-ARM GAS  /tmp/ccbtaASa.s 			page 126
+ARM GAS  /tmp/cc5zARxf.s 			page 126
 
 
  5156 0090 22F0FF02 		bic	r2, r2, #255
@@ -7558,7 +7558,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  5197 00e4 1B68     		ldr	r3, [r3]
  5198 00e6 FA68     		ldr	r2, [r7, #12]
  5199 00e8 1268     		ldr	r2, [r2]
-ARM GAS  /tmp/ccbtaASa.s 			page 127
+ARM GAS  /tmp/cc5zARxf.s 			page 127
 
 
  5200 00ea D2F82424 		ldr	r2, [r2, #1060]
@@ -7618,7 +7618,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  5241 0140 FB68     		ldr	r3, [r7, #12]
  5242 0142 1B68     		ldr	r3, [r3]
  5243 0144 FA68     		ldr	r2, [r7, #12]
-ARM GAS  /tmp/ccbtaASa.s 			page 128
+ARM GAS  /tmp/cc5zARxf.s 			page 128
 
 
  5244 0146 1268     		ldr	r2, [r2]
@@ -7678,7 +7678,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 2001:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****       hdsi->Instance->WPCR[3] &= ~DSI_WPCR3_TLPXD;
  5286              		.loc 1 2001 0
  5287 01a2 FB68     		ldr	r3, [r7, #12]
-ARM GAS  /tmp/ccbtaASa.s 			page 129
+ARM GAS  /tmp/cc5zARxf.s 			page 129
 
 
  5288 01a4 1B68     		ldr	r3, [r3]
@@ -7738,7 +7738,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 2012:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     {
 2013:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****       /* Set custom value */
 2014:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****       hdsi->Instance->WPCR[3] &= ~DSI_WPCR3_THSZERO;
-ARM GAS  /tmp/ccbtaASa.s 			page 130
+ARM GAS  /tmp/cc5zARxf.s 			page 130
 
 
  5332              		.loc 1 2014 0
@@ -7798,7 +7798,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  5376 025e 15D0     		beq	.L229
 2025:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     {
 2026:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****       /* Set custom value */
-ARM GAS  /tmp/ccbtaASa.s 			page 131
+ARM GAS  /tmp/cc5zARxf.s 			page 131
 
 
 2027:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****       hdsi->Instance->WPCR[2] &= ~DSI_WPCR2_THSTRAIL;
@@ -7858,7 +7858,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  5420 02ba 002B     		cmp	r3, #0
  5421 02bc 17D0     		beq	.L230
 2038:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     {
-ARM GAS  /tmp/ccbtaASa.s 			page 132
+ARM GAS  /tmp/cc5zARxf.s 			page 132
 
 
 2039:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****       /* Set custom value */
@@ -7918,7 +7918,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  5464              		.loc 1 2050 0
  5465 031a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
  5466 031c 002B     		cmp	r3, #0
-ARM GAS  /tmp/ccbtaASa.s 			page 133
+ARM GAS  /tmp/cc5zARxf.s 			page 133
 
 
  5467 031e 16D0     		beq	.L231
@@ -7978,7 +7978,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 2062:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     
 2063:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****     if(State)
  5510              		.loc 1 2063 0
-ARM GAS  /tmp/ccbtaASa.s 			page 134
+ARM GAS  /tmp/cc5zARxf.s 			page 134
 
 
  5511 037a FB79     		ldrb	r3, [r7, #7]	@ zero_extendqisi2
@@ -8038,7 +8038,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  5549 03ba 1437     		adds	r7, r7, #20
  5550              	.LCFI209:
  5551              		.cfi_def_cfa_offset 4
-ARM GAS  /tmp/ccbtaASa.s 			page 135
+ARM GAS  /tmp/cc5zARxf.s 			page 135
 
 
  5552 03bc BD46     		mov	sp, r7
@@ -8098,7 +8098,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  5594 0012 012B     		cmp	r3, #1
  5595 0014 01D1     		bne	.L235
  5596              		.loc 1 2093 0 is_stmt 0 discriminator 1
-ARM GAS  /tmp/ccbtaASa.s 			page 136
+ARM GAS  /tmp/cc5zARxf.s 			page 136
 
 
  5597 0016 0223     		movs	r3, #2
@@ -8158,7 +8158,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  5636 005e 1268     		ldr	r2, [r2]
  5637 0060 D2F81824 		ldr	r2, [r2, #1048]
  5638 0064 22F40052 		bic	r2, r2, #8192
-ARM GAS  /tmp/ccbtaASa.s 			page 137
+ARM GAS  /tmp/cc5zARxf.s 			page 137
 
 
  5639 0068 C3F81824 		str	r2, [r3, #1048]
@@ -8218,7 +8218,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
 2121:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   *               the configuration information for the DSI.
 2122:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   * @param  State: ENABLE or DISABLE
 2123:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   * @retval HAL status
-ARM GAS  /tmp/ccbtaASa.s 			page 138
+ARM GAS  /tmp/cc5zARxf.s 			page 138
 
 
 2124:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   */
@@ -8278,7 +8278,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  5725 0036 7A68     		ldr	r2, [r7, #4]
  5726 0038 1268     		ldr	r2, [r2]
  5727 003a D2F81C14 		ldr	r1, [r2, #1052]
-ARM GAS  /tmp/ccbtaASa.s 			page 139
+ARM GAS  /tmp/cc5zARxf.s 			page 139
 
 
  5728 003e FA78     		ldrb	r2, [r7, #3]	@ zero_extendqisi2
@@ -8338,7 +8338,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  5768              		@ link register save eliminated.
  5769 0000 80B4     		push	{r7}
  5770              	.LCFI224:
-ARM GAS  /tmp/ccbtaASa.s 			page 140
+ARM GAS  /tmp/cc5zARxf.s 			page 140
 
 
  5771              		.cfi_def_cfa_offset 4
@@ -8398,7 +8398,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  5813              		.loc 1 2163 0 discriminator 2
  5814 0048 7B68     		ldr	r3, [r7, #4]
  5815 004a 0022     		movs	r2, #0
-ARM GAS  /tmp/ccbtaASa.s 			page 141
+ARM GAS  /tmp/cc5zARxf.s 			page 141
 
 
  5816 004c 1A74     		strb	r2, [r3, #16]
@@ -8458,7 +8458,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  5859              		.cfi_def_cfa_register 7
  5860 0006 7860     		str	r0, [r7, #4]
  5861 0008 0B46     		mov	r3, r1
-ARM GAS  /tmp/ccbtaASa.s 			page 142
+ARM GAS  /tmp/cc5zARxf.s 			page 142
 
 
  5862 000a FB70     		strb	r3, [r7, #3]
@@ -8518,7 +8518,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  5901              		.loc 1 2191 0
  5902 0050 1846     		mov	r0, r3
  5903 0052 0C37     		adds	r7, r7, #12
-ARM GAS  /tmp/ccbtaASa.s 			page 143
+ARM GAS  /tmp/cc5zARxf.s 			page 143
 
 
  5904              	.LCFI233:
@@ -8578,7 +8578,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  5948 0012 01D1     		bne	.L249
  5949              		.loc 1 2203 0 is_stmt 0 discriminator 1
  5950 0014 0223     		movs	r3, #2
-ARM GAS  /tmp/ccbtaASa.s 			page 144
+ARM GAS  /tmp/cc5zARxf.s 			page 144
 
 
  5951 0016 1BE0     		b	.L250
@@ -8638,7 +8638,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  5992              	.LCFI241:
  5993              		.cfi_restore 7
  5994              		.cfi_def_cfa_offset 0
-ARM GAS  /tmp/ccbtaASa.s 			page 145
+ARM GAS  /tmp/cc5zARxf.s 			page 145
 
 
  5995 005a 7047     		bx	lr
@@ -8698,7 +8698,7 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  6022 0006 7860     		str	r0, [r7, #4]
 2246:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_dsi.c ****   return hdsi->State;
  6023              		.loc 1 2246 0
-ARM GAS  /tmp/ccbtaASa.s 			page 146
+ARM GAS  /tmp/cc5zARxf.s 			page 146
 
 
  6024 0008 7B68     		ldr	r3, [r7, #4]
@@ -8730,110 +8730,110 @@ ARM GAS  /tmp/ccbtaASa.s 			page 1
  6050              		.file 6 "../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
  6051              		.file 7 "../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dsi.h"
  6052              		.file 8 "../../Drivers/CMSIS/Include/core_cm7.h"
-ARM GAS  /tmp/ccbtaASa.s 			page 147
+ARM GAS  /tmp/cc5zARxf.s 			page 147
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f7xx_hal_dsi.c
-     /tmp/ccbtaASa.s:21     .text.DSI_ConfigPacketHeader:0000000000000000 $t
-     /tmp/ccbtaASa.s:25     .text.DSI_ConfigPacketHeader:0000000000000000 DSI_ConfigPacketHeader
-     /tmp/ccbtaASa.s:77     .text.HAL_DSI_Init:0000000000000000 $t
-     /tmp/ccbtaASa.s:82     .text.HAL_DSI_Init:0000000000000000 HAL_DSI_Init
-     /tmp/ccbtaASa.s:749    .text.HAL_DSI_MspInit:0000000000000000 HAL_DSI_MspInit
-     /tmp/ccbtaASa.s:370    .text.HAL_DSI_Init:000000000000020c $d
-     /tmp/ccbtaASa.s:376    .text.HAL_DSI_DeInit:0000000000000000 $t
-     /tmp/ccbtaASa.s:381    .text.HAL_DSI_DeInit:0000000000000000 HAL_DSI_DeInit
-     /tmp/ccbtaASa.s:789    .text.HAL_DSI_MspDeInit:0000000000000000 HAL_DSI_MspDeInit
-     /tmp/ccbtaASa.s:483    .text.HAL_DSI_GetError:0000000000000000 $t
-     /tmp/ccbtaASa.s:488    .text.HAL_DSI_GetError:0000000000000000 HAL_DSI_GetError
-     /tmp/ccbtaASa.s:527    .text.HAL_DSI_ConfigErrorMonitor:0000000000000000 $t
-     /tmp/ccbtaASa.s:532    .text.HAL_DSI_ConfigErrorMonitor:0000000000000000 HAL_DSI_ConfigErrorMonitor
-     /tmp/ccbtaASa.s:744    .text.HAL_DSI_MspInit:0000000000000000 $t
-     /tmp/ccbtaASa.s:784    .text.HAL_DSI_MspDeInit:0000000000000000 $t
-     /tmp/ccbtaASa.s:824    .text.HAL_DSI_IRQHandler:0000000000000000 $t
-     /tmp/ccbtaASa.s:829    .text.HAL_DSI_IRQHandler:0000000000000000 HAL_DSI_IRQHandler
-     /tmp/ccbtaASa.s:1069   .text.HAL_DSI_TearingEffectCallback:0000000000000000 HAL_DSI_TearingEffectCallback
-     /tmp/ccbtaASa.s:1109   .text.HAL_DSI_EndOfRefreshCallback:0000000000000000 HAL_DSI_EndOfRefreshCallback
-     /tmp/ccbtaASa.s:1149   .text.HAL_DSI_ErrorCallback:0000000000000000 HAL_DSI_ErrorCallback
-     /tmp/ccbtaASa.s:1064   .text.HAL_DSI_TearingEffectCallback:0000000000000000 $t
-     /tmp/ccbtaASa.s:1104   .text.HAL_DSI_EndOfRefreshCallback:0000000000000000 $t
-     /tmp/ccbtaASa.s:1144   .text.HAL_DSI_ErrorCallback:0000000000000000 $t
-     /tmp/ccbtaASa.s:1184   .text.HAL_DSI_SetGenericVCID:0000000000000000 $t
-     /tmp/ccbtaASa.s:1189   .text.HAL_DSI_SetGenericVCID:0000000000000000 HAL_DSI_SetGenericVCID
-     /tmp/ccbtaASa.s:1263   .text.HAL_DSI_ConfigVideoMode:0000000000000000 $t
-     /tmp/ccbtaASa.s:1268   .text.HAL_DSI_ConfigVideoMode:0000000000000000 HAL_DSI_ConfigVideoMode
-     /tmp/ccbtaASa.s:1645   .text.HAL_DSI_ConfigVideoMode:000000000000029c $d
-     /tmp/ccbtaASa.s:1651   .text.HAL_DSI_ConfigVideoMode:00000000000002b0 $t
-     /tmp/ccbtaASa.s:1843   .text.HAL_DSI_ConfigAdaptedCommandMode:0000000000000000 $t
-     /tmp/ccbtaASa.s:1848   .text.HAL_DSI_ConfigAdaptedCommandMode:0000000000000000 HAL_DSI_ConfigAdaptedCommandMode
-     /tmp/ccbtaASa.s:2087   .text.HAL_DSI_ConfigAdaptedCommandMode:00000000000001b0 $d
-     /tmp/ccbtaASa.s:2092   .text.HAL_DSI_ConfigCommand:0000000000000000 $t
-     /tmp/ccbtaASa.s:2097   .text.HAL_DSI_ConfigCommand:0000000000000000 HAL_DSI_ConfigCommand
-     /tmp/ccbtaASa.s:2246   .text.HAL_DSI_ConfigCommand:00000000000000b8 $d
-     /tmp/ccbtaASa.s:2251   .text.HAL_DSI_ConfigFlowControl:0000000000000000 $t
-     /tmp/ccbtaASa.s:2256   .text.HAL_DSI_ConfigFlowControl:0000000000000000 HAL_DSI_ConfigFlowControl
-     /tmp/ccbtaASa.s:2330   .text.HAL_DSI_ConfigPhyTimer:0000000000000000 $t
-     /tmp/ccbtaASa.s:2335   .text.HAL_DSI_ConfigPhyTimer:0000000000000000 HAL_DSI_ConfigPhyTimer
-     /tmp/ccbtaASa.s:2466   .text.HAL_DSI_ConfigHostTimeouts:0000000000000000 $t
-     /tmp/ccbtaASa.s:2471   .text.HAL_DSI_ConfigHostTimeouts:0000000000000000 HAL_DSI_ConfigHostTimeouts
-     /tmp/ccbtaASa.s:2697   .text.HAL_DSI_ConfigHostTimeouts:000000000000018c $d
-     /tmp/ccbtaASa.s:2702   .text.HAL_DSI_Start:0000000000000000 $t
-     /tmp/ccbtaASa.s:2707   .text.HAL_DSI_Start:0000000000000000 HAL_DSI_Start
-     /tmp/ccbtaASa.s:2779   .text.HAL_DSI_Stop:0000000000000000 $t
-     /tmp/ccbtaASa.s:2784   .text.HAL_DSI_Stop:0000000000000000 HAL_DSI_Stop
-     /tmp/ccbtaASa.s:2856   .text.HAL_DSI_Refresh:0000000000000000 $t
-     /tmp/ccbtaASa.s:2861   .text.HAL_DSI_Refresh:0000000000000000 HAL_DSI_Refresh
-     /tmp/ccbtaASa.s:2925   .text.HAL_DSI_ColorMode:0000000000000000 $t
-     /tmp/ccbtaASa.s:2930   .text.HAL_DSI_ColorMode:0000000000000000 HAL_DSI_ColorMode
-     /tmp/ccbtaASa.s:3004   .text.HAL_DSI_Shutdown:0000000000000000 $t
-     /tmp/ccbtaASa.s:3009   .text.HAL_DSI_Shutdown:0000000000000000 HAL_DSI_Shutdown
-     /tmp/ccbtaASa.s:3083   .text.HAL_DSI_ShortWrite:0000000000000000 $t
-     /tmp/ccbtaASa.s:3088   .text.HAL_DSI_ShortWrite:0000000000000000 HAL_DSI_ShortWrite
-     /tmp/ccbtaASa.s:3184   .text.HAL_DSI_LongWrite:0000000000000000 $t
-ARM GAS  /tmp/ccbtaASa.s 			page 148
+     /tmp/cc5zARxf.s:21     .text.DSI_ConfigPacketHeader:0000000000000000 $t
+     /tmp/cc5zARxf.s:25     .text.DSI_ConfigPacketHeader:0000000000000000 DSI_ConfigPacketHeader
+     /tmp/cc5zARxf.s:77     .text.HAL_DSI_Init:0000000000000000 $t
+     /tmp/cc5zARxf.s:82     .text.HAL_DSI_Init:0000000000000000 HAL_DSI_Init
+     /tmp/cc5zARxf.s:749    .text.HAL_DSI_MspInit:0000000000000000 HAL_DSI_MspInit
+     /tmp/cc5zARxf.s:370    .text.HAL_DSI_Init:000000000000020c $d
+     /tmp/cc5zARxf.s:376    .text.HAL_DSI_DeInit:0000000000000000 $t
+     /tmp/cc5zARxf.s:381    .text.HAL_DSI_DeInit:0000000000000000 HAL_DSI_DeInit
+     /tmp/cc5zARxf.s:789    .text.HAL_DSI_MspDeInit:0000000000000000 HAL_DSI_MspDeInit
+     /tmp/cc5zARxf.s:483    .text.HAL_DSI_GetError:0000000000000000 $t
+     /tmp/cc5zARxf.s:488    .text.HAL_DSI_GetError:0000000000000000 HAL_DSI_GetError
+     /tmp/cc5zARxf.s:527    .text.HAL_DSI_ConfigErrorMonitor:0000000000000000 $t
+     /tmp/cc5zARxf.s:532    .text.HAL_DSI_ConfigErrorMonitor:0000000000000000 HAL_DSI_ConfigErrorMonitor
+     /tmp/cc5zARxf.s:744    .text.HAL_DSI_MspInit:0000000000000000 $t
+     /tmp/cc5zARxf.s:784    .text.HAL_DSI_MspDeInit:0000000000000000 $t
+     /tmp/cc5zARxf.s:824    .text.HAL_DSI_IRQHandler:0000000000000000 $t
+     /tmp/cc5zARxf.s:829    .text.HAL_DSI_IRQHandler:0000000000000000 HAL_DSI_IRQHandler
+     /tmp/cc5zARxf.s:1069   .text.HAL_DSI_TearingEffectCallback:0000000000000000 HAL_DSI_TearingEffectCallback
+     /tmp/cc5zARxf.s:1109   .text.HAL_DSI_EndOfRefreshCallback:0000000000000000 HAL_DSI_EndOfRefreshCallback
+     /tmp/cc5zARxf.s:1149   .text.HAL_DSI_ErrorCallback:0000000000000000 HAL_DSI_ErrorCallback
+     /tmp/cc5zARxf.s:1064   .text.HAL_DSI_TearingEffectCallback:0000000000000000 $t
+     /tmp/cc5zARxf.s:1104   .text.HAL_DSI_EndOfRefreshCallback:0000000000000000 $t
+     /tmp/cc5zARxf.s:1144   .text.HAL_DSI_ErrorCallback:0000000000000000 $t
+     /tmp/cc5zARxf.s:1184   .text.HAL_DSI_SetGenericVCID:0000000000000000 $t
+     /tmp/cc5zARxf.s:1189   .text.HAL_DSI_SetGenericVCID:0000000000000000 HAL_DSI_SetGenericVCID
+     /tmp/cc5zARxf.s:1263   .text.HAL_DSI_ConfigVideoMode:0000000000000000 $t
+     /tmp/cc5zARxf.s:1268   .text.HAL_DSI_ConfigVideoMode:0000000000000000 HAL_DSI_ConfigVideoMode
+     /tmp/cc5zARxf.s:1645   .text.HAL_DSI_ConfigVideoMode:000000000000029c $d
+     /tmp/cc5zARxf.s:1651   .text.HAL_DSI_ConfigVideoMode:00000000000002b0 $t
+     /tmp/cc5zARxf.s:1843   .text.HAL_DSI_ConfigAdaptedCommandMode:0000000000000000 $t
+     /tmp/cc5zARxf.s:1848   .text.HAL_DSI_ConfigAdaptedCommandMode:0000000000000000 HAL_DSI_ConfigAdaptedCommandMode
+     /tmp/cc5zARxf.s:2087   .text.HAL_DSI_ConfigAdaptedCommandMode:00000000000001b0 $d
+     /tmp/cc5zARxf.s:2092   .text.HAL_DSI_ConfigCommand:0000000000000000 $t
+     /tmp/cc5zARxf.s:2097   .text.HAL_DSI_ConfigCommand:0000000000000000 HAL_DSI_ConfigCommand
+     /tmp/cc5zARxf.s:2246   .text.HAL_DSI_ConfigCommand:00000000000000b8 $d
+     /tmp/cc5zARxf.s:2251   .text.HAL_DSI_ConfigFlowControl:0000000000000000 $t
+     /tmp/cc5zARxf.s:2256   .text.HAL_DSI_ConfigFlowControl:0000000000000000 HAL_DSI_ConfigFlowControl
+     /tmp/cc5zARxf.s:2330   .text.HAL_DSI_ConfigPhyTimer:0000000000000000 $t
+     /tmp/cc5zARxf.s:2335   .text.HAL_DSI_ConfigPhyTimer:0000000000000000 HAL_DSI_ConfigPhyTimer
+     /tmp/cc5zARxf.s:2466   .text.HAL_DSI_ConfigHostTimeouts:0000000000000000 $t
+     /tmp/cc5zARxf.s:2471   .text.HAL_DSI_ConfigHostTimeouts:0000000000000000 HAL_DSI_ConfigHostTimeouts
+     /tmp/cc5zARxf.s:2697   .text.HAL_DSI_ConfigHostTimeouts:000000000000018c $d
+     /tmp/cc5zARxf.s:2702   .text.HAL_DSI_Start:0000000000000000 $t
+     /tmp/cc5zARxf.s:2707   .text.HAL_DSI_Start:0000000000000000 HAL_DSI_Start
+     /tmp/cc5zARxf.s:2779   .text.HAL_DSI_Stop:0000000000000000 $t
+     /tmp/cc5zARxf.s:2784   .text.HAL_DSI_Stop:0000000000000000 HAL_DSI_Stop
+     /tmp/cc5zARxf.s:2856   .text.HAL_DSI_Refresh:0000000000000000 $t
+     /tmp/cc5zARxf.s:2861   .text.HAL_DSI_Refresh:0000000000000000 HAL_DSI_Refresh
+     /tmp/cc5zARxf.s:2925   .text.HAL_DSI_ColorMode:0000000000000000 $t
+     /tmp/cc5zARxf.s:2930   .text.HAL_DSI_ColorMode:0000000000000000 HAL_DSI_ColorMode
+     /tmp/cc5zARxf.s:3004   .text.HAL_DSI_Shutdown:0000000000000000 $t
+     /tmp/cc5zARxf.s:3009   .text.HAL_DSI_Shutdown:0000000000000000 HAL_DSI_Shutdown
+     /tmp/cc5zARxf.s:3083   .text.HAL_DSI_ShortWrite:0000000000000000 $t
+     /tmp/cc5zARxf.s:3088   .text.HAL_DSI_ShortWrite:0000000000000000 HAL_DSI_ShortWrite
+     /tmp/cc5zARxf.s:3184   .text.HAL_DSI_LongWrite:0000000000000000 $t
+ARM GAS  /tmp/cc5zARxf.s 			page 148
 
 
-     /tmp/ccbtaASa.s:3189   .text.HAL_DSI_LongWrite:0000000000000000 HAL_DSI_LongWrite
-     /tmp/ccbtaASa.s:3391   .text.HAL_DSI_Read:0000000000000000 $t
-     /tmp/ccbtaASa.s:3396   .text.HAL_DSI_Read:0000000000000000 HAL_DSI_Read
-     /tmp/ccbtaASa.s:3653   .text.HAL_DSI_EnterULPMData:0000000000000000 $t
-     /tmp/ccbtaASa.s:3658   .text.HAL_DSI_EnterULPMData:0000000000000000 HAL_DSI_EnterULPMData
-     /tmp/ccbtaASa.s:3791   .text.HAL_DSI_ExitULPMData:0000000000000000 $t
-     /tmp/ccbtaASa.s:3796   .text.HAL_DSI_ExitULPMData:0000000000000000 HAL_DSI_ExitULPMData
-     /tmp/ccbtaASa.s:3934   .text.HAL_DSI_EnterULPM:0000000000000000 $t
-     /tmp/ccbtaASa.s:3939   .text.HAL_DSI_EnterULPM:0000000000000000 HAL_DSI_EnterULPM
-     /tmp/ccbtaASa.s:4093   .text.HAL_DSI_EnterULPM:00000000000000fc $d
-     /tmp/ccbtaASa.s:4098   .text.HAL_DSI_ExitULPM:0000000000000000 $t
-     /tmp/ccbtaASa.s:4103   .text.HAL_DSI_ExitULPM:0000000000000000 HAL_DSI_ExitULPM
-     /tmp/ccbtaASa.s:4290   .text.HAL_DSI_ExitULPM:0000000000000138 $d
-     /tmp/ccbtaASa.s:4295   .text.HAL_DSI_PatternGeneratorStart:0000000000000000 $t
-     /tmp/ccbtaASa.s:4300   .text.HAL_DSI_PatternGeneratorStart:0000000000000000 HAL_DSI_PatternGeneratorStart
-     /tmp/ccbtaASa.s:4387   .text.HAL_DSI_PatternGeneratorStop:0000000000000000 $t
-     /tmp/ccbtaASa.s:4392   .text.HAL_DSI_PatternGeneratorStop:0000000000000000 HAL_DSI_PatternGeneratorStop
-     /tmp/ccbtaASa.s:4456   .text.HAL_DSI_SetSlewRateAndDelayTuning:0000000000000000 $t
-     /tmp/ccbtaASa.s:4461   .text.HAL_DSI_SetSlewRateAndDelayTuning:0000000000000000 HAL_DSI_SetSlewRateAndDelayTuning
-     /tmp/ccbtaASa.s:4684   .text.HAL_DSI_SetLowPowerRXFilter:0000000000000000 $t
-     /tmp/ccbtaASa.s:4689   .text.HAL_DSI_SetLowPowerRXFilter:0000000000000000 HAL_DSI_SetLowPowerRXFilter
-     /tmp/ccbtaASa.s:4764   .text.HAL_DSI_SetSDD:0000000000000000 $t
-     /tmp/ccbtaASa.s:4769   .text.HAL_DSI_SetSDD:0000000000000000 HAL_DSI_SetSDD
-     /tmp/ccbtaASa.s:4845   .text.HAL_DSI_SetLanePinsConfiguration:0000000000000000 $t
-     /tmp/ccbtaASa.s:4850   .text.HAL_DSI_SetLanePinsConfiguration:0000000000000000 HAL_DSI_SetLanePinsConfiguration
-     /tmp/ccbtaASa.s:5069   .text.HAL_DSI_SetPHYTimings:0000000000000000 $t
-     /tmp/ccbtaASa.s:5074   .text.HAL_DSI_SetPHYTimings:0000000000000000 HAL_DSI_SetPHYTimings
-     /tmp/ccbtaASa.s:5117   .text.HAL_DSI_SetPHYTimings:0000000000000030 $d
-     /tmp/ccbtaASa.s:5126   .text.HAL_DSI_SetPHYTimings:0000000000000054 $t
-     /tmp/ccbtaASa.s:5565   .text.HAL_DSI_ForceTXStopMode:0000000000000000 $t
-     /tmp/ccbtaASa.s:5570   .text.HAL_DSI_ForceTXStopMode:0000000000000000 HAL_DSI_ForceTXStopMode
-     /tmp/ccbtaASa.s:5676   .text.HAL_DSI_ForceRXLowPower:0000000000000000 $t
-     /tmp/ccbtaASa.s:5681   .text.HAL_DSI_ForceRXLowPower:0000000000000000 HAL_DSI_ForceRXLowPower
-     /tmp/ccbtaASa.s:5757   .text.HAL_DSI_ForceDataLanesInRX:0000000000000000 $t
-     /tmp/ccbtaASa.s:5762   .text.HAL_DSI_ForceDataLanesInRX:0000000000000000 HAL_DSI_ForceDataLanesInRX
-     /tmp/ccbtaASa.s:5838   .text.HAL_DSI_SetPullDown:0000000000000000 $t
-     /tmp/ccbtaASa.s:5843   .text.HAL_DSI_SetPullDown:0000000000000000 HAL_DSI_SetPullDown
-     /tmp/ccbtaASa.s:5919   .text.HAL_DSI_SetContentionDetectionOff:0000000000000000 $t
-     /tmp/ccbtaASa.s:5924   .text.HAL_DSI_SetContentionDetectionOff:0000000000000000 HAL_DSI_SetContentionDetectionOff
-     /tmp/ccbtaASa.s:6000   .text.HAL_DSI_GetState:0000000000000000 $t
-     /tmp/ccbtaASa.s:6005   .text.HAL_DSI_GetState:0000000000000000 HAL_DSI_GetState
+     /tmp/cc5zARxf.s:3189   .text.HAL_DSI_LongWrite:0000000000000000 HAL_DSI_LongWrite
+     /tmp/cc5zARxf.s:3391   .text.HAL_DSI_Read:0000000000000000 $t
+     /tmp/cc5zARxf.s:3396   .text.HAL_DSI_Read:0000000000000000 HAL_DSI_Read
+     /tmp/cc5zARxf.s:3653   .text.HAL_DSI_EnterULPMData:0000000000000000 $t
+     /tmp/cc5zARxf.s:3658   .text.HAL_DSI_EnterULPMData:0000000000000000 HAL_DSI_EnterULPMData
+     /tmp/cc5zARxf.s:3791   .text.HAL_DSI_ExitULPMData:0000000000000000 $t
+     /tmp/cc5zARxf.s:3796   .text.HAL_DSI_ExitULPMData:0000000000000000 HAL_DSI_ExitULPMData
+     /tmp/cc5zARxf.s:3934   .text.HAL_DSI_EnterULPM:0000000000000000 $t
+     /tmp/cc5zARxf.s:3939   .text.HAL_DSI_EnterULPM:0000000000000000 HAL_DSI_EnterULPM
+     /tmp/cc5zARxf.s:4093   .text.HAL_DSI_EnterULPM:00000000000000fc $d
+     /tmp/cc5zARxf.s:4098   .text.HAL_DSI_ExitULPM:0000000000000000 $t
+     /tmp/cc5zARxf.s:4103   .text.HAL_DSI_ExitULPM:0000000000000000 HAL_DSI_ExitULPM
+     /tmp/cc5zARxf.s:4290   .text.HAL_DSI_ExitULPM:0000000000000138 $d
+     /tmp/cc5zARxf.s:4295   .text.HAL_DSI_PatternGeneratorStart:0000000000000000 $t
+     /tmp/cc5zARxf.s:4300   .text.HAL_DSI_PatternGeneratorStart:0000000000000000 HAL_DSI_PatternGeneratorStart
+     /tmp/cc5zARxf.s:4387   .text.HAL_DSI_PatternGeneratorStop:0000000000000000 $t
+     /tmp/cc5zARxf.s:4392   .text.HAL_DSI_PatternGeneratorStop:0000000000000000 HAL_DSI_PatternGeneratorStop
+     /tmp/cc5zARxf.s:4456   .text.HAL_DSI_SetSlewRateAndDelayTuning:0000000000000000 $t
+     /tmp/cc5zARxf.s:4461   .text.HAL_DSI_SetSlewRateAndDelayTuning:0000000000000000 HAL_DSI_SetSlewRateAndDelayTuning
+     /tmp/cc5zARxf.s:4684   .text.HAL_DSI_SetLowPowerRXFilter:0000000000000000 $t
+     /tmp/cc5zARxf.s:4689   .text.HAL_DSI_SetLowPowerRXFilter:0000000000000000 HAL_DSI_SetLowPowerRXFilter
+     /tmp/cc5zARxf.s:4764   .text.HAL_DSI_SetSDD:0000000000000000 $t
+     /tmp/cc5zARxf.s:4769   .text.HAL_DSI_SetSDD:0000000000000000 HAL_DSI_SetSDD
+     /tmp/cc5zARxf.s:4845   .text.HAL_DSI_SetLanePinsConfiguration:0000000000000000 $t
+     /tmp/cc5zARxf.s:4850   .text.HAL_DSI_SetLanePinsConfiguration:0000000000000000 HAL_DSI_SetLanePinsConfiguration
+     /tmp/cc5zARxf.s:5069   .text.HAL_DSI_SetPHYTimings:0000000000000000 $t
+     /tmp/cc5zARxf.s:5074   .text.HAL_DSI_SetPHYTimings:0000000000000000 HAL_DSI_SetPHYTimings
+     /tmp/cc5zARxf.s:5117   .text.HAL_DSI_SetPHYTimings:0000000000000030 $d
+     /tmp/cc5zARxf.s:5126   .text.HAL_DSI_SetPHYTimings:0000000000000054 $t
+     /tmp/cc5zARxf.s:5565   .text.HAL_DSI_ForceTXStopMode:0000000000000000 $t
+     /tmp/cc5zARxf.s:5570   .text.HAL_DSI_ForceTXStopMode:0000000000000000 HAL_DSI_ForceTXStopMode
+     /tmp/cc5zARxf.s:5676   .text.HAL_DSI_ForceRXLowPower:0000000000000000 $t
+     /tmp/cc5zARxf.s:5681   .text.HAL_DSI_ForceRXLowPower:0000000000000000 HAL_DSI_ForceRXLowPower
+     /tmp/cc5zARxf.s:5757   .text.HAL_DSI_ForceDataLanesInRX:0000000000000000 $t
+     /tmp/cc5zARxf.s:5762   .text.HAL_DSI_ForceDataLanesInRX:0000000000000000 HAL_DSI_ForceDataLanesInRX
+     /tmp/cc5zARxf.s:5838   .text.HAL_DSI_SetPullDown:0000000000000000 $t
+     /tmp/cc5zARxf.s:5843   .text.HAL_DSI_SetPullDown:0000000000000000 HAL_DSI_SetPullDown
+     /tmp/cc5zARxf.s:5919   .text.HAL_DSI_SetContentionDetectionOff:0000000000000000 $t
+     /tmp/cc5zARxf.s:5924   .text.HAL_DSI_SetContentionDetectionOff:0000000000000000 HAL_DSI_SetContentionDetectionOff
+     /tmp/cc5zARxf.s:6000   .text.HAL_DSI_GetState:0000000000000000 $t
+     /tmp/cc5zARxf.s:6005   .text.HAL_DSI_GetState:0000000000000000 HAL_DSI_GetState
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
