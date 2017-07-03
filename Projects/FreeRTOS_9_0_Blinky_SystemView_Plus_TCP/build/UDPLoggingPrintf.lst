@@ -1,4 +1,4 @@
-ARM GAS  /tmp/ccMAVCpa.s 			page 1
+ARM GAS  /tmp/ccNHVUD7.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
   29:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * license that applies is dependent on the processor on which FreeRTOS+TCP is
   30:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * executed, as follows:
   31:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  *
-ARM GAS  /tmp/ccMAVCpa.s 			page 2
+ARM GAS  /tmp/ccNHVUD7.s 			page 2
 
 
   32:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h ****  * If FreeRTOS+TCP is executed on one of the processors listed under the Special
@@ -118,7 +118,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
   86:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	/* Make the circular buffer empty */
   87:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	pxBuffer->uxHead = 0u;
   88:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	pxBuffer->uxTail = 0u;
-ARM GAS  /tmp/ccMAVCpa.s 			page 3
+ARM GAS  /tmp/ccNHVUD7.s 			page 3
 
 
   89:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	pxBuffer->uxFront = 0u;
@@ -178,7 +178,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
   67              	.L2:
  104:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	}
  105:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 
-ARM GAS  /tmp/ccMAVCpa.s 			page 4
+ARM GAS  /tmp/ccNHVUD7.s 			page 4
 
 
  106:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** 	return uxCount;
@@ -238,7 +238,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  113 000c FB68     		ldr	r3, [r7, #12]
  114 000e 1A69     		ldr	r2, [r3, #16]
  115 0010 7B68     		ldr	r3, [r7, #4]
-ARM GAS  /tmp/ccMAVCpa.s 			page 5
+ARM GAS  /tmp/ccNHVUD7.s 			page 5
 
 
  116 0012 1A44     		add	r2, r2, r3
@@ -298,7 +298,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  160              		.cfi_startproc
  161              		@ args = 0, pretend = 0, frame = 16
  162              		@ frame_needed = 1, uses_anonymous_args = 0
-ARM GAS  /tmp/ccMAVCpa.s 			page 6
+ARM GAS  /tmp/ccNHVUD7.s 			page 6
 
 
  163 0000 80B5     		push	{r7, lr}
@@ -358,7 +358,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  139:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** static portINLINE size_t uxStreamBufferFrontSpace( const StreamBuffer_t *pxBuffer )
  140:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** {
  141:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** /* Distance between uxFront and uxTail
-ARM GAS  /tmp/ccMAVCpa.s 			page 7
+ARM GAS  /tmp/ccNHVUD7.s 			page 7
 
 
  142:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Stream_Buffer.h **** or the number of items which can still be added to uxFront,
@@ -418,7 +418,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  243              		.cfi_def_cfa_offset 8
  244 0024 BD46     		mov	sp, r7
  245              	.LCFI21:
-ARM GAS  /tmp/ccMAVCpa.s 			page 8
+ARM GAS  /tmp/ccNHVUD7.s 			page 8
 
 
  246              		.cfi_def_cfa_register 13
@@ -478,7 +478,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
   23:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c ****     link: http://www.freertos.org/a00114.html
   24:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
   25:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c ****     ***************************************************************************
-ARM GAS  /tmp/ccMAVCpa.s 			page 9
+ARM GAS  /tmp/ccNHVUD7.s 			page 9
 
 
   26:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c ****      *                                                                       *
@@ -538,7 +538,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
   80:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** #include <string.h>
   81:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** #include <stdlib.h>
   82:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** #include <limits.h>
-ARM GAS  /tmp/ccMAVCpa.s 			page 10
+ARM GAS  /tmp/ccNHVUD7.s 			page 10
 
 
   83:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
@@ -598,7 +598,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  137:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	#define configUDP_LOGGING_PORT_LOCAL 0
  138:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** #endif
  139:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
-ARM GAS  /tmp/ccMAVCpa.s 			page 11
+ARM GAS  /tmp/ccNHVUD7.s 			page 11
 
 
  140:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** /* The logging task's block time.  This is used as the UDP socket's send block
@@ -658,7 +658,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  194:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	#else
  195:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 		uint32_t ulLogTime;
  196:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	#endif
-ARM GAS  /tmp/ccMAVCpa.s 			page 12
+ARM GAS  /tmp/ccNHVUD7.s 			page 12
 
 
  197:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	uint32_t ulPriority;
@@ -718,7 +718,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  226:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 			bytes + 1. */ /*_RB_ Why is the size of pxStreamBuffer->ucArray
  227:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 			subtracted here? */
  228:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 			xSize = sizeof( StreamBuffer_t ) - sizeof( pxStreamBuffer->ucArray ) + logMESSAGE_BUFFER_SIZE_BY
-ARM GAS  /tmp/ccMAVCpa.s 			page 13
+ARM GAS  /tmp/ccNHVUD7.s 			page 13
 
 
  309              		.loc 2 228 0
@@ -778,7 +778,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  349              	.LCFI26:
  350              		.cfi_def_cfa_register 13
  351              		@ sp needed
-ARM GAS  /tmp/ccMAVCpa.s 			page 14
+ARM GAS  /tmp/ccNHVUD7.s 			page 14
 
 
  352 005a 80BD     		pop	{r7, pc}
@@ -838,7 +838,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  397 001a 1846     		mov	r0, r3
  398 001c FFF7FEFF 		bl	uxStreamBufferGetSize
  399 0020 F860     		str	r0, [r7, #12]
-ARM GAS  /tmp/ccMAVCpa.s 			page 15
+ARM GAS  /tmp/ccNHVUD7.s 			page 15
 
 
  254:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 		if( uxLength > sizeof( size_t ) )
@@ -898,7 +898,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  437              		.loc 2 270 0
  438 006a 3B68     		ldr	r3, [r7]
  439 006c BB60     		str	r3, [r7, #8]
-ARM GAS  /tmp/ccMAVCpa.s 			page 16
+ARM GAS  /tmp/ccNHVUD7.s 			page 16
 
 
  271:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
@@ -958,7 +958,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  475              	.LCFI30:
  476              		.cfi_def_cfa_offset 12
  477 00a6 BD46     		mov	sp, r7
-ARM GAS  /tmp/ccMAVCpa.s 			page 17
+ARM GAS  /tmp/ccNHVUD7.s 			page 17
 
 
  478              	.LCFI31:
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  520 000a 4D4B     		ldr	r3, .L29
  521 000c 1B68     		ldr	r3, [r3]
  522 000e 002B     		cmp	r3, #0
-ARM GAS  /tmp/ccMAVCpa.s 			page 18
+ARM GAS  /tmp/ccNHVUD7.s 			page 18
 
 
  523 0010 09D1     		bne	.L24
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
   51:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
   52:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     http://www.FreeRTOS.org/plus - A selection of FreeRTOS ecosystem products,
   53:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     including FreeRTOS+Trace - an indispensable productivity tool, a DOS
-ARM GAS  /tmp/ccMAVCpa.s 			page 19
+ARM GAS  /tmp/ccNHVUD7.s 			page 19
 
 
   54:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h ****     compatible FAT file system, and our tiny thread aware UDP/IP stack.
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  108:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	/* 32-bit tick type on a 32-bit architecture, so reads of the tick count do
  109:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	not need to be guarded with a critical section. */
  110:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	#define portTICK_TYPE_IS_ATOMIC 1
-ARM GAS  /tmp/ccMAVCpa.s 			page 20
+ARM GAS  /tmp/ccNHVUD7.s 			page 20
 
 
  111:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #endif
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  165:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #ifndef configUSE_PORT_OPTIMISED_TASK_SELECTION
  166:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	#define configUSE_PORT_OPTIMISED_TASK_SELECTION 1
  167:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** #endif
-ARM GAS  /tmp/ccMAVCpa.s 			page 21
+ARM GAS  /tmp/ccNHVUD7.s 			page 21
 
 
  168:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  222:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	}
  223:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	else
  224:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 	{
-ARM GAS  /tmp/ccMAVCpa.s 			page 22
+ARM GAS  /tmp/ccNHVUD7.s 			page 22
 
 
  225:../../../FreeRTOS_9_0/Source/portable/GCC/ARM_CM4F/portmacro.h **** 		xReturn = pdTRUE;
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  562 0052 1946     		mov	r1, r3
  563 0054 3B4A     		ldr	r2, .L29+4
  564 0056 4FF00003 		mov	r3, #0
-ARM GAS  /tmp/ccMAVCpa.s 			page 23
+ARM GAS  /tmp/ccNHVUD7.s 			page 23
 
 
  565 005a FFF7FEFF 		bl	__aeabi_uldivmod
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  613 00cc 7A68     		ldr	r2, [r7, #4]
  614 00ce 3B68     		ldr	r3, [r7]
  615 00d0 FFF7FEFF 		bl	vsnprintf
-ARM GAS  /tmp/ccMAVCpa.s 			page 24
+ARM GAS  /tmp/ccNHVUD7.s 			page 24
 
 
  616 00d4 0346     		mov	r3, r0
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  324:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	{
  325:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 		/* Unblock the logging task so it can output the message. */
  326:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 		xTaskNotifyGive( xLoggingTask );
-ARM GAS  /tmp/ccMAVCpa.s 			page 25
+ARM GAS  /tmp/ccNHVUD7.s 			page 25
 
 
  658              		.loc 2 326 0
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  706              		.cfi_offset 0, -16
  707              		.cfi_offset 1, -12
  708              		.cfi_offset 2, -8
-ARM GAS  /tmp/ccMAVCpa.s 			page 26
+ARM GAS  /tmp/ccNHVUD7.s 			page 26
 
 
  709              		.cfi_offset 3, -4
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  747              	.LCFI41:
  748              		.cfi_def_cfa_offset 24
  749 002e BD46     		mov	sp, r7
-ARM GAS  /tmp/ccMAVCpa.s 			page 27
+ARM GAS  /tmp/ccNHVUD7.s 			page 27
 
 
  750              	.LCFI42:
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  799 000a 054B     		ldr	r3, .L36
  800 000c 0193     		str	r3, [sp, #4]
  801 000e 0548     		ldr	r0, .L36+4
-ARM GAS  /tmp/ccMAVCpa.s 			page 28
+ARM GAS  /tmp/ccNHVUD7.s 			page 28
 
 
  802 0010 0549     		ldr	r1, .L36+8
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  850 000e 094B     		ldr	r3, .L42
  851 0010 1B68     		ldr	r3, [r3]
  852 0012 B3F1FF3F 		cmp	r3, #-1
-ARM GAS  /tmp/ccMAVCpa.s 			page 29
+ARM GAS  /tmp/ccNHVUD7.s 			page 29
 
 
  853 0016 03D0     		beq	.L39
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  896              	prvLoggingTask:
  897              	.LFB33:
  375:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** /*-----------------------------------------------------------*/
-ARM GAS  /tmp/ccMAVCpa.s 			page 30
+ARM GAS  /tmp/ccNHVUD7.s 			page 30
 
 
  376:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  400:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 															configUDP_LOGGING_ADDR3 );
  401:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	}
  402:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	#else
-ARM GAS  /tmp/ccMAVCpa.s 			page 31
+ARM GAS  /tmp/ccNHVUD7.s 			page 31
 
 
  403:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	{
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  423:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	FreeRTOS_setsockopt( xUDPLoggingSocket, 0, FREERTOS_SO_SNDTIMEO, &xSendTimeOut, sizeof( xSendTimeO
  962              		.loc 2 423 0
  963 0060 424B     		ldr	r3, .L56+4
-ARM GAS  /tmp/ccMAVCpa.s 			page 32
+ARM GAS  /tmp/ccNHVUD7.s 			page 32
 
 
  964 0062 1A68     		ldr	r2, [r3]
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  437:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 		{
  438:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 			/* Check for messages in the buffer. */
  439:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 			for( lLines = 0; lLines < configUDP_LOGGING_MAX_MESSAGES_IN_BUFFER; lLines++ )
-ARM GAS  /tmp/ccMAVCpa.s 			page 33
+ARM GAS  /tmp/ccNHVUD7.s 			page 33
 
 
  1005              		.loc 2 439 0
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  462:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 
  463:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 						if( ( ( pcSource == cLoggingLine ) || ( pcSource[ -1 ] != logASCII_CR ) ) && ( pcSource[ 0 ] 
  1037              		.loc 2 463 0
-ARM GAS  /tmp/ccMAVCpa.s 			page 34
+ARM GAS  /tmp/ccNHVUD7.s 			page 34
 
 
  1038 00e4 BB6A     		ldr	r3, [r7, #40]
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  476:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 						pcSource++;
  1080              		.loc 2 476 0
  1081 0124 BB6A     		ldr	r3, [r7, #40]
-ARM GAS  /tmp/ccMAVCpa.s 			page 35
+ARM GAS  /tmp/ccNHVUD7.s 			page 35
 
 
  1082 0126 0133     		adds	r3, r3, #1
@@ -2097,8 +2097,8 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  1123              	.L57:
  1124 0166 00BF     		.align	2
  1125              	.L56:
- 1126 0168 C0A80064 		.word	1677764800
-ARM GAS  /tmp/ccMAVCpa.s 			page 36
+ 1126 0168 C0A8016E 		.word	1845602496
+ARM GAS  /tmp/ccNHVUD7.s 			page 36
 
 
  1127 016c 00000000 		.word	xUDPLoggingSocket
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  1170 001c 0023     		movs	r3, #0
  1171 001e FFF7FEFF 		bl	xTaskGenericNotify
  1172              	.L59:
-ARM GAS  /tmp/ccMAVCpa.s 			page 37
+ARM GAS  /tmp/ccNHVUD7.s 			page 37
 
 
  498:../../../FreeRTOS-Plus/Demo/Common/Utilities/UDPLoggingPrintf.c **** 	}
@@ -2212,55 +2212,55 @@ ARM GAS  /tmp/ccMAVCpa.s 			page 1
  1217              		.file 8 "../../../FreeRTOS_9_0/Source/include/task.h"
  1218              		.file 9 "<built-in>"
  1219              		.file 10 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Sockets.h"
-ARM GAS  /tmp/ccMAVCpa.s 			page 38
+ARM GAS  /tmp/ccNHVUD7.s 			page 38
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 UDPLoggingPrintf.c
-     /tmp/ccMAVCpa.s:21     .text.uxStreamBufferSpace:0000000000000000 $t
-     /tmp/ccMAVCpa.s:25     .text.uxStreamBufferSpace:0000000000000000 uxStreamBufferSpace
-     /tmp/ccMAVCpa.s:88     .text.uxStreamBufferDistance:0000000000000000 $t
-     /tmp/ccMAVCpa.s:92     .text.uxStreamBufferDistance:0000000000000000 uxStreamBufferDistance
-     /tmp/ccMAVCpa.s:153    .text.uxStreamBufferGetSpace:0000000000000000 $t
-     /tmp/ccMAVCpa.s:157    .text.uxStreamBufferGetSpace:0000000000000000 uxStreamBufferGetSpace
-     /tmp/ccMAVCpa.s:203    .text.uxStreamBufferGetSize:0000000000000000 $t
-     /tmp/ccMAVCpa.s:207    .text.uxStreamBufferGetSize:0000000000000000 uxStreamBufferGetSize
-     /tmp/ccMAVCpa.s:253    .bss.xLogEntry:0000000000000000 $d
-     /tmp/ccMAVCpa.s:256    .bss.xLogEntry:0000000000000000 xLogEntry
-     /tmp/ccMAVCpa.s:259    .bss.pxStreamBuffer:0000000000000000 $d
-     /tmp/ccMAVCpa.s:262    .bss.pxStreamBuffer:0000000000000000 pxStreamBuffer
-     /tmp/ccMAVCpa.s:265    .bss.xLoggingTask:0000000000000000 $d
-     /tmp/ccMAVCpa.s:268    .bss.xLoggingTask:0000000000000000 xLoggingTask
-     /tmp/ccMAVCpa.s:271    .data.xUDPLoggingSocket:0000000000000000 $d
-     /tmp/ccMAVCpa.s:274    .data.xUDPLoggingSocket:0000000000000000 xUDPLoggingSocket
-     /tmp/ccMAVCpa.s:277    .text.prvInitialiseLogging:0000000000000000 $t
-     /tmp/ccMAVCpa.s:281    .text.prvInitialiseLogging:0000000000000000 prvInitialiseLogging
-     /tmp/ccMAVCpa.s:356    .text.prvInitialiseLogging:000000000000005c $d
-     /tmp/ccMAVCpa.s:1203   .bss.xLoggingInitialised.6618:0000000000000000 xLoggingInitialised.6618
-     /tmp/ccMAVCpa.s:362    .text.prvGetMessageFromStreamBuffer:0000000000000000 $t
-     /tmp/ccMAVCpa.s:366    .text.prvGetMessageFromStreamBuffer:0000000000000000 prvGetMessageFromStreamBuffer
-     /tmp/ccMAVCpa.s:485    .text.prvGetMessageFromStreamBuffer:00000000000000ac $d
-     /tmp/ccMAVCpa.s:492    .rodata:0000000000000000 $d
-     /tmp/ccMAVCpa.s:496    .text.prvBufferFormattedString:0000000000000000 $t
-     /tmp/ccMAVCpa.s:500    .text.prvBufferFormattedString:0000000000000000 prvBufferFormattedString
-     /tmp/ccMAVCpa.s:682    .text.prvBufferFormattedString:0000000000000140 $d
-     /tmp/ccMAVCpa.s:692    .text.lUDPLoggingPrintf:0000000000000000 $t
-     /tmp/ccMAVCpa.s:697    .text.lUDPLoggingPrintf:0000000000000000 lUDPLoggingPrintf
-     /tmp/ccMAVCpa.s:774    .text.vUDPLoggingTaskCreate:0000000000000000 $t
-     /tmp/ccMAVCpa.s:779    .text.vUDPLoggingTaskCreate:0000000000000000 vUDPLoggingTaskCreate
-     /tmp/ccMAVCpa.s:815    .text.vUDPLoggingTaskCreate:0000000000000020 $d
-     /tmp/ccMAVCpa.s:896    .text.prvLoggingTask:0000000000000000 prvLoggingTask
-     /tmp/ccMAVCpa.s:822    .text.xLoggingGetSocket:0000000000000000 $t
-     /tmp/ccMAVCpa.s:827    .text.xLoggingGetSocket:0000000000000000 xLoggingGetSocket
-     /tmp/ccMAVCpa.s:883    .text.xLoggingGetSocket:0000000000000034 $d
-     /tmp/ccMAVCpa.s:892    .text.prvLoggingTask:0000000000000000 $t
-     /tmp/ccMAVCpa.s:1126   .text.prvLoggingTask:0000000000000168 $d
-     /tmp/ccMAVCpa.s:1209   .bss.cLoggingLine.6657:0000000000000000 cLoggingLine.6657
-     /tmp/ccMAVCpa.s:1134   .text.vUDPLoggingFlush:0000000000000000 $t
-     /tmp/ccMAVCpa.s:1139   .text.vUDPLoggingFlush:0000000000000000 vUDPLoggingFlush
-     /tmp/ccMAVCpa.s:1194   .text.vUDPLoggingFlush:0000000000000040 $d
-     /tmp/ccMAVCpa.s:1200   .bss.xLoggingInitialised.6618:0000000000000000 $d
-     /tmp/ccMAVCpa.s:1206   .bss.cLoggingLine.6657:0000000000000000 $d
+     /tmp/ccNHVUD7.s:21     .text.uxStreamBufferSpace:0000000000000000 $t
+     /tmp/ccNHVUD7.s:25     .text.uxStreamBufferSpace:0000000000000000 uxStreamBufferSpace
+     /tmp/ccNHVUD7.s:88     .text.uxStreamBufferDistance:0000000000000000 $t
+     /tmp/ccNHVUD7.s:92     .text.uxStreamBufferDistance:0000000000000000 uxStreamBufferDistance
+     /tmp/ccNHVUD7.s:153    .text.uxStreamBufferGetSpace:0000000000000000 $t
+     /tmp/ccNHVUD7.s:157    .text.uxStreamBufferGetSpace:0000000000000000 uxStreamBufferGetSpace
+     /tmp/ccNHVUD7.s:203    .text.uxStreamBufferGetSize:0000000000000000 $t
+     /tmp/ccNHVUD7.s:207    .text.uxStreamBufferGetSize:0000000000000000 uxStreamBufferGetSize
+     /tmp/ccNHVUD7.s:253    .bss.xLogEntry:0000000000000000 $d
+     /tmp/ccNHVUD7.s:256    .bss.xLogEntry:0000000000000000 xLogEntry
+     /tmp/ccNHVUD7.s:259    .bss.pxStreamBuffer:0000000000000000 $d
+     /tmp/ccNHVUD7.s:262    .bss.pxStreamBuffer:0000000000000000 pxStreamBuffer
+     /tmp/ccNHVUD7.s:265    .bss.xLoggingTask:0000000000000000 $d
+     /tmp/ccNHVUD7.s:268    .bss.xLoggingTask:0000000000000000 xLoggingTask
+     /tmp/ccNHVUD7.s:271    .data.xUDPLoggingSocket:0000000000000000 $d
+     /tmp/ccNHVUD7.s:274    .data.xUDPLoggingSocket:0000000000000000 xUDPLoggingSocket
+     /tmp/ccNHVUD7.s:277    .text.prvInitialiseLogging:0000000000000000 $t
+     /tmp/ccNHVUD7.s:281    .text.prvInitialiseLogging:0000000000000000 prvInitialiseLogging
+     /tmp/ccNHVUD7.s:356    .text.prvInitialiseLogging:000000000000005c $d
+     /tmp/ccNHVUD7.s:1203   .bss.xLoggingInitialised.6618:0000000000000000 xLoggingInitialised.6618
+     /tmp/ccNHVUD7.s:362    .text.prvGetMessageFromStreamBuffer:0000000000000000 $t
+     /tmp/ccNHVUD7.s:366    .text.prvGetMessageFromStreamBuffer:0000000000000000 prvGetMessageFromStreamBuffer
+     /tmp/ccNHVUD7.s:485    .text.prvGetMessageFromStreamBuffer:00000000000000ac $d
+     /tmp/ccNHVUD7.s:492    .rodata:0000000000000000 $d
+     /tmp/ccNHVUD7.s:496    .text.prvBufferFormattedString:0000000000000000 $t
+     /tmp/ccNHVUD7.s:500    .text.prvBufferFormattedString:0000000000000000 prvBufferFormattedString
+     /tmp/ccNHVUD7.s:682    .text.prvBufferFormattedString:0000000000000140 $d
+     /tmp/ccNHVUD7.s:692    .text.lUDPLoggingPrintf:0000000000000000 $t
+     /tmp/ccNHVUD7.s:697    .text.lUDPLoggingPrintf:0000000000000000 lUDPLoggingPrintf
+     /tmp/ccNHVUD7.s:774    .text.vUDPLoggingTaskCreate:0000000000000000 $t
+     /tmp/ccNHVUD7.s:779    .text.vUDPLoggingTaskCreate:0000000000000000 vUDPLoggingTaskCreate
+     /tmp/ccNHVUD7.s:815    .text.vUDPLoggingTaskCreate:0000000000000020 $d
+     /tmp/ccNHVUD7.s:896    .text.prvLoggingTask:0000000000000000 prvLoggingTask
+     /tmp/ccNHVUD7.s:822    .text.xLoggingGetSocket:0000000000000000 $t
+     /tmp/ccNHVUD7.s:827    .text.xLoggingGetSocket:0000000000000000 xLoggingGetSocket
+     /tmp/ccNHVUD7.s:883    .text.xLoggingGetSocket:0000000000000034 $d
+     /tmp/ccNHVUD7.s:892    .text.prvLoggingTask:0000000000000000 $t
+     /tmp/ccNHVUD7.s:1126   .text.prvLoggingTask:0000000000000168 $d
+     /tmp/ccNHVUD7.s:1209   .bss.cLoggingLine.6657:0000000000000000 cLoggingLine.6657
+     /tmp/ccNHVUD7.s:1134   .text.vUDPLoggingFlush:0000000000000000 $t
+     /tmp/ccNHVUD7.s:1139   .text.vUDPLoggingFlush:0000000000000000 vUDPLoggingFlush
+     /tmp/ccNHVUD7.s:1194   .text.vUDPLoggingFlush:0000000000000040 $d
+     /tmp/ccNHVUD7.s:1200   .bss.xLoggingInitialised.6618:0000000000000000 $d
+     /tmp/ccNHVUD7.s:1206   .bss.cLoggingLine.6657:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
@@ -2272,7 +2272,7 @@ uxStreamBufferGet
 memcpy
 xTaskResumeAll
 __aeabi_uldivmod
-ARM GAS  /tmp/ccMAVCpa.s 			page 39
+ARM GAS  /tmp/ccNHVUD7.s 			page 39
 
 
 ullGetHighResolutionTime

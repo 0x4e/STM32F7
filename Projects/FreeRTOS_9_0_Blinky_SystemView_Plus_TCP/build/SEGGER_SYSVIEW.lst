@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cc34iHaW.s 			page 1
+ARM GAS  /tmp/cc6BtNgK.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
   56              		.align	2
   59              	_aPacket:
   60 0000 00000000 		.space	227
-ARM GAS  /tmp/cc34iHaW.s 			page 2
+ARM GAS  /tmp/cc6BtNgK.s 			page 2
 
 
   60      00000000 
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
   44:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR           *
   45:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT  *
   46:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;    *
-ARM GAS  /tmp/cc34iHaW.s 			page 3
+ARM GAS  /tmp/cc6BtNgK.s 			page 3
 
 
   47:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF      *
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  101:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****         Data: 0xA2 (162),   0x03 (3), 0x7000
  102:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****         Encoded: 0xA2 0x01  0x03      0x80 0xE0 0x01
  103:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** 
-ARM GAS  /tmp/cc34iHaW.s 			page 4
+ARM GAS  /tmp/cc6BtNgK.s 			page 4
 
 
  104:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     Byte arrays and strings:
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  158:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** **********************************************************************
  159:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** */
  160:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** #if SEGGER_SYSVIEW_ID_SHIFT
-ARM GAS  /tmp/cc34iHaW.s 			page 5
+ARM GAS  /tmp/cc6BtNgK.s 			page 5
 
 
  161:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   #define SHRINK_ID(Id)   (((Id) - _SYSVIEW_Globals.RAMBaseAddress) >> SEGGER_SYSVIEW_ID_SHIFT)
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  215:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** */
  216:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** typedef struct {
  217:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   U8*       pBuffer;
-ARM GAS  /tmp/cc34iHaW.s 			page 6
+ARM GAS  /tmp/cc6BtNgK.s 			page 6
 
 
  218:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   U8*       pPayload;
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  272:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     #if (SEGGER_SYSVIEW_POST_MORTEM_MODE != 1)
  273:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     __attribute__ ((section (SEGGER_SYSVIEW_SECTION), zero_init)) static char _DownBuffer[8];  // S
  274:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     #endif
-ARM GAS  /tmp/cc34iHaW.s 			page 7
+ARM GAS  /tmp/cc6BtNgK.s 			page 7
 
 
  275:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   #else
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  329:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** 
  330:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** #endif
  331:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** 
-ARM GAS  /tmp/cc34iHaW.s 			page 8
+ARM GAS  /tmp/cc6BtNgK.s 			page 8
 
 
  332:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** /*********************************************************************
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
   96 001a 1A70     		strb	r2, [r3]
  359:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   while (n < NumBytes) {
   97              		.loc 1 359 0
-ARM GAS  /tmp/cc34iHaW.s 			page 9
+ARM GAS  /tmp/cc6BtNgK.s 			page 9
 
 
   98 001c 0AE0     		b	.L2
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  368:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *       _EncodeStr()
  369:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *
  370:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *  Function description
-ARM GAS  /tmp/cc34iHaW.s 			page 10
+ARM GAS  /tmp/cc6BtNgK.s 			page 10
 
 
  371:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    Encode a string in variable-length format.
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  173              	.L6:
  395:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   while(*(pText + Len) != 0) {
  174              		.loc 1 395 0
-ARM GAS  /tmp/cc34iHaW.s 			page 11
+ARM GAS  /tmp/cc6BtNgK.s 			page 11
 
 
  175 0018 BA68     		ldr	r2, [r7, #8]
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  216              		.loc 1 409 0
  217 005a FB68     		ldr	r3, [r7, #12]
  218 005c 5A1C     		adds	r2, r3, #1
-ARM GAS  /tmp/cc34iHaW.s 			page 12
+ARM GAS  /tmp/cc6BtNgK.s 			page 12
 
 
  219 005e FA60     		str	r2, [r7, #12]
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  261 0094 5DF8047B 		ldr	r7, [sp], #4
  262              	.LCFI11:
  263              		.cfi_restore 7
-ARM GAS  /tmp/cc34iHaW.s 			page 13
+ARM GAS  /tmp/cc6BtNgK.s 			page 13
 
 
  264              		.cfi_def_cfa_offset 0
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  298              	.LCFI15:
  299              		.cfi_def_cfa_offset 4
  300 0010 BD46     		mov	sp, r7
-ARM GAS  /tmp/cc34iHaW.s 			page 14
+ARM GAS  /tmp/cc6BtNgK.s 			page 14
 
 
  301              	.LCFI16:
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  338 000c 0122     		movs	r2, #1
  339 000e FFF7FEFF 		bl	SEGGER_RTT_ReadNoLock
  340 0012 0346     		mov	r3, r0
-ARM GAS  /tmp/cc34iHaW.s 			page 15
+ARM GAS  /tmp/cc6BtNgK.s 			page 15
 
 
  341 0014 7B60     		str	r3, [r7, #4]
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  384              	.L19:
  473:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     case SEGGER_SYSVIEW_COMMAND_ID_GET_TASKLIST:
  474:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****       SEGGER_SYSVIEW_SendTaskList();
-ARM GAS  /tmp/cc34iHaW.s 			page 16
+ARM GAS  /tmp/cc6BtNgK.s 			page 16
 
 
  385              		.loc 1 474 0
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  423              	.L28:
  424 0090 0BE0     		b	.L16
  425              	.L18:
-ARM GAS  /tmp/cc34iHaW.s 			page 17
+ARM GAS  /tmp/cc6BtNgK.s 			page 17
 
 
  491:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     default:
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  512:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *
  513:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    Example packets sent
  514:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *      01 20 40
-ARM GAS  /tmp/cc34iHaW.s 			page 18
+ARM GAS  /tmp/cc6BtNgK.s 			page 18
 
 
  515:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  498 0026 62F07F02 		orn	r2, r2, #127
  499 002a D2B2     		uxtb	r2, r2
  500 002c 1A70     		strb	r2, [r3]
-ARM GAS  /tmp/cc34iHaW.s 			page 19
+ARM GAS  /tmp/cc6BtNgK.s 			page 19
 
 
  501 002e BB6A     		ldr	r3, [r7, #40]
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  548 007a 3B62     		str	r3, [r7, #32]
  549              	.L33:
  550              		.loc 1 538 0 discriminator 1
-ARM GAS  /tmp/cc34iHaW.s 			page 20
+ARM GAS  /tmp/cc6BtNgK.s 			page 20
 
 
  551 007c 3B6A     		ldr	r3, [r7, #32]
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  596 00c8 034A     		ldr	r2, .L38
  597 00ca 5361     		str	r3, [r2, #20]
  598              	.L36:
-ARM GAS  /tmp/cc34iHaW.s 			page 21
+ARM GAS  /tmp/cc6BtNgK.s 			page 21
 
 
  548:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   }
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  577:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   {
  578:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     U8* pPayload;
  579:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     U8* pPayloadStart;
-ARM GAS  /tmp/cc34iHaW.s 			page 22
+ARM GAS  /tmp/cc6BtNgK.s 			page 22
 
 
  580:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     RECORD_START(SEGGER_SYSVIEW_INFO_SIZE + 4 * SEGGER_SYSVIEW_QUANTA_U32);
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  635 0002 8AB0     		sub	sp, sp, #40
  636              	.LCFI29:
  637              		.cfi_def_cfa_offset 48
-ARM GAS  /tmp/cc34iHaW.s 			page 23
+ARM GAS  /tmp/cc6BtNgK.s 			page 23
 
 
  638 0004 00AF     		add	r7, sp, #0
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  664 0026 06D1     		bne	.L42
  653:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     _TrySendOverflowPacket();
  665              		.loc 1 653 0
-ARM GAS  /tmp/cc34iHaW.s 			page 24
+ARM GAS  /tmp/cc6BtNgK.s 			page 24
 
 
  666 0028 FFF7FEFF 		bl	_TrySendOverflowPacket
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  699 005e DAB2     		uxtb	r2, r3
  700 0060 FB68     		ldr	r3, [r7, #12]
  701 0062 1A70     		strb	r2, [r3]
-ARM GAS  /tmp/cc34iHaW.s 			page 25
+ARM GAS  /tmp/cc6BtNgK.s 			page 25
 
 
  702 0064 3DE0     		b	.L47
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  684:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****       *--pStartPacket = (EventId >> 7);
  747              		.loc 1 684 0
  748 00ae FB68     		ldr	r3, [r7, #12]
-ARM GAS  /tmp/cc34iHaW.s 			page 26
+ARM GAS  /tmp/cc6BtNgK.s 			page 26
 
 
  749 00b0 013B     		subs	r3, r3, #1
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  791 00f6 7B69     		ldr	r3, [r7, #20]
  792 00f8 3B62     		str	r3, [r7, #32]
  793 00fa 0BE0     		b	.L51
-ARM GAS  /tmp/cc34iHaW.s 			page 27
+ARM GAS  /tmp/cc6BtNgK.s 			page 27
 
 
  794              	.L52:
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  709:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     _SYSVIEW_Globals.LastTxTimeStamp = TimeStamp;
  836              		.loc 1 709 0
  837 0144 104A     		ldr	r2, .L55
-ARM GAS  /tmp/cc34iHaW.s 			page 28
+ARM GAS  /tmp/cc6BtNgK.s 			page 28
 
 
  838 0146 BB69     		ldr	r3, [r7, #24]
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  863 0170 054B     		ldr	r3, .L55
  864 0172 0122     		movs	r2, #1
  865 0174 9A70     		strb	r2, [r3, #2]
-ARM GAS  /tmp/cc34iHaW.s 			page 29
+ARM GAS  /tmp/cc6BtNgK.s 			page 29
 
 
  739:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****       _HandleIncomingPacket();
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  763:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** static int _VPrintHost(const char* s, U32 Options, va_list* pParamList) {
  898              		.loc 1 763 0
  899              		.cfi_startproc
-ARM GAS  /tmp/cc34iHaW.s 			page 30
+ARM GAS  /tmp/cc6BtNgK.s 			page 30
 
 
  900              		@ args = 0, pretend = 0, frame = 136
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  785:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****       break;
  933              		.loc 1 785 0
  934 002a 1EE0     		b	.L59
-ARM GAS  /tmp/cc34iHaW.s 			page 31
+ARM GAS  /tmp/cc6BtNgK.s 			page 31
 
 
  935              	.L58:
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  968              	.LBB5:
  807:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** 
  808:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** #if SEGGER_SYSVIEW_PRINTF_IMPLICIT_FORMAT
-ARM GAS  /tmp/cc34iHaW.s 			page 32
+ARM GAS  /tmp/cc6BtNgK.s 			page 32
 
 
  809:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   if (HasNonScalar) {
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  1012              		.loc 1 819 0 discriminator 4
  1013 00b4 7B6F     		ldr	r3, [r7, #116]
  1014 00b6 5A1C     		adds	r2, r3, #1
-ARM GAS  /tmp/cc34iHaW.s 			page 33
+ARM GAS  /tmp/cc6BtNgK.s 			page 33
 
 
  1015 00b8 7A67     		str	r2, [r7, #116]
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  1065 0108 BB6F     		ldr	r3, [r7, #120]
  1066 010a 7B66     		str	r3, [r7, #100]
  1067 010c D7F88430 		ldr	r3, [r7, #132]
-ARM GAS  /tmp/cc34iHaW.s 			page 34
+ARM GAS  /tmp/cc6BtNgK.s 			page 34
 
 
  1068 0110 1B68     		ldr	r3, [r3]
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  1117              	@ 827 "../../../SystemView/SEGGER/SEGGER_SYSVIEW.c" 1
  1118 0168 83F31188 		msr   basepri, r3  
  1119              		
-ARM GAS  /tmp/cc34iHaW.s 			page 35
+ARM GAS  /tmp/cc6BtNgK.s 			page 35
 
 
  1120              	@ 0 "" 2
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  1159              	.LCFI39:
  1160              		.cfi_def_cfa_offset 48
  1161 0004 00AF     		add	r7, sp, #0
-ARM GAS  /tmp/cc34iHaW.s 			page 36
+ARM GAS  /tmp/cc6BtNgK.s 			page 36
 
 
  1162              	.LCFI40:
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  859:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     pPayload = p->pPayload;
  1202              		.loc 1 859 0
  1203 0044 7B68     		ldr	r3, [r7, #4]
-ARM GAS  /tmp/cc34iHaW.s 			page 37
+ARM GAS  /tmp/cc6BtNgK.s 			page 37
 
 
  1204 0046 5B68     		ldr	r3, [r3, #4]
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  1255 0094 5A1C     		adds	r2, r3, #1
  1256 0096 FA61     		str	r2, [r7, #28]
  1257 0098 BA69     		ldr	r2, [r7, #24]
-ARM GAS  /tmp/cc34iHaW.s 			page 38
+ARM GAS  /tmp/cc6BtNgK.s 			page 38
 
 
  1258 009a D2B2     		uxtb	r2, r2
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  1306              		.loc 1 868 0
  1307 00ee 2837     		adds	r7, r7, #40
  1308              	.LCFI41:
-ARM GAS  /tmp/cc34iHaW.s 			page 39
+ARM GAS  /tmp/cc6BtNgK.s 			page 39
 
 
  1309              		.cfi_def_cfa_offset 8
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  890:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   unsigned int      Number;
  891:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   unsigned int      Width;
  892:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   char              c;
-ARM GAS  /tmp/cc34iHaW.s 			page 40
+ARM GAS  /tmp/cc6BtNgK.s 			page 40
 
 
  893:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** 
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  910:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   if ((FormatFlags & FORMAT_FLAG_LEFT_JUSTIFY) == 0u) {
  1380              		.loc 1 910 0
  1381 0040 7B6B     		ldr	r3, [r7, #52]
-ARM GAS  /tmp/cc34iHaW.s 			page 41
+ARM GAS  /tmp/cc6BtNgK.s 			page 41
 
 
  1382 0042 03F00103 		and	r3, r3, #1
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  1425 0082 FA69     		ldr	r2, [r7, #28]
  1426 0084 3B6B     		ldr	r3, [r7, #48]
  1427 0086 9A42     		cmp	r2, r3
-ARM GAS  /tmp/cc34iHaW.s 			page 42
+ARM GAS  /tmp/cc6BtNgK.s 			page 42
 
 
  1428 0088 F0D3     		bcc	.L88
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  941:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   //
  942:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   do {
  943:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     Div = v / Digit;
-ARM GAS  /tmp/cc34iHaW.s 			page 43
+ARM GAS  /tmp/cc6BtNgK.s 			page 43
 
 
  1461              		.loc 1 943 0 discriminator 1
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  1504 0104 013B     		subs	r3, r3, #1
  1505 0106 3B63     		str	r3, [r7, #48]
  955:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****         _StoreChar(pBufferDesc, ' ');
-ARM GAS  /tmp/cc34iHaW.s 			page 44
+ARM GAS  /tmp/cc6BtNgK.s 			page 44
 
 
  1506              		.loc 1 955 0
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  972:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    Base         Base of the value.
  973:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    NumDigits    Number of digits to be printed.
  974:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    FieldWidth   Width of the printed field.
-ARM GAS  /tmp/cc34iHaW.s 			page 45
+ARM GAS  /tmp/cc6BtNgK.s 			page 45
 
 
  975:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    FormatFlags  Flags for formatting the value.
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  1583 002c 7B61     		str	r3, [r7, #20]
  1584              	.L98:
  987:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   while (Number >= (int)Base) {
-ARM GAS  /tmp/cc34iHaW.s 			page 46
+ARM GAS  /tmp/cc6BtNgK.s 			page 46
 
 
  1585              		.loc 1 987 0
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  1627              	.L103:
  1628              		.loc 1 1001 0 discriminator 3
  1629 006e 7B6A     		ldr	r3, [r7, #36]
-ARM GAS  /tmp/cc34iHaW.s 			page 47
+ARM GAS  /tmp/cc6BtNgK.s 			page 47
 
 
  1630 0070 03F00103 		and	r3, r3, #1
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  1669 00aa 2D21     		movs	r1, #45
  1670 00ac FFF7FEFF 		bl	_StoreChar
  1671 00b0 08E0     		b	.L108
-ARM GAS  /tmp/cc34iHaW.s 			page 48
+ARM GAS  /tmp/cc6BtNgK.s 			page 48
 
 
  1672              	.L107:
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 1025:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****       while ((FieldWidth != 0u) && (Width < FieldWidth)) {
  1713              		.loc 1 1025 0
  1714 00f4 3B6A     		ldr	r3, [r7, #32]
-ARM GAS  /tmp/cc34iHaW.s 			page 49
+ARM GAS  /tmp/cc6BtNgK.s 			page 49
 
 
  1715 00f6 002B     		cmp	r3, #0
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 1045:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *  Parameters
 1046:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    sFormat      Pointer to format string.
 1047:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    Options      Options to be sent to the host.
-ARM GAS  /tmp/cc34iHaW.s 			page 50
+ARM GAS  /tmp/cc6BtNgK.s 			page 50
 
 
 1048:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    pParamList   Pointer to the list of arguments for the format string.
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  1786 0024 7B61     		str	r3, [r7, #20]
 1069:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** #endif
 1070:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   BufferDesc.Cnt            = 0u;
-ARM GAS  /tmp/cc34iHaW.s 			page 51
+ARM GAS  /tmp/cc6BtNgK.s 			page 51
 
 
  1787              		.loc 1 1070 0
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  1825 0060 3B65     		str	r3, [r7, #80]
  1826              	.L123:
 1087:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****       do {
-ARM GAS  /tmp/cc34iHaW.s 			page 52
+ARM GAS  /tmp/cc6BtNgK.s 			page 52
 
 
 1088:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****         c = *sFormat;
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  1876 00d6 43F00403 		orr	r3, r3, #4
  1877 00da BB64     		str	r3, [r7, #72]
  1878 00dc FB68     		ldr	r3, [r7, #12]
-ARM GAS  /tmp/cc34iHaW.s 			page 53
+ARM GAS  /tmp/cc6BtNgK.s 			page 53
 
 
  1879 00de 0133     		adds	r3, r3, #1
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  1919 011e 0133     		adds	r3, r3, #1
  1920 0120 FB60     		str	r3, [r7, #12]
 1107:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****         FieldWidth = (FieldWidth * 10u) + ((unsigned int)c - '0');
-ARM GAS  /tmp/cc34iHaW.s 			page 54
+ARM GAS  /tmp/cc6BtNgK.s 			page 54
 
 
  1921              		.loc 1 1107 0
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 1120:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****             break;
 1121:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****           }
 1122:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****           sFormat++;
-ARM GAS  /tmp/cc34iHaW.s 			page 55
+ARM GAS  /tmp/cc6BtNgK.s 			page 55
 
 
  1963              		.loc 1 1122 0 is_stmt 1
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 1137:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****       } while (1);
  2003              		.loc 1 1137 0
  2004 01b0 EFE7     		b	.L130
-ARM GAS  /tmp/cc34iHaW.s 			page 56
+ARM GAS  /tmp/cc6BtNgK.s 			page 56
 
 
  2005              	.L129:
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  2025 01d2 3ED0     		beq	.L134
  2026 01d4 702B     		cmp	r3, #112
  2027 01d6 51D0     		beq	.L138
-ARM GAS  /tmp/cc34iHaW.s 			page 57
+ARM GAS  /tmp/cc6BtNgK.s 			page 57
 
 
  2028              		.loc 1 1170 0
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 1154:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****         _PrintUnsigned(&BufferDesc, (unsigned int)v, 10u, NumDigits, FieldWidth, FormatFlags);
  2075              		.loc 1 1154 0
  2076 0228 7B68     		ldr	r3, [r7, #4]
-ARM GAS  /tmp/cc34iHaW.s 			page 58
+ARM GAS  /tmp/cc6BtNgK.s 			page 58
 
 
  2077 022a 1B68     		ldr	r3, [r3]
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  2125 0282 7A68     		ldr	r2, [r7, #4]
  2126 0284 1160     		str	r1, [r2]
  2127 0286 1B68     		ldr	r3, [r3]
-ARM GAS  /tmp/cc34iHaW.s 			page 59
+ARM GAS  /tmp/cc6BtNgK.s 			page 59
 
 
  2128 0288 3B65     		str	r3, [r7, #80]
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  2172 02d4 002B     		cmp	r3, #0
  2173 02d6 7FF4AFAE 		bne	.L141
  2174              	.L114:
-ARM GAS  /tmp/cc34iHaW.s 			page 60
+ARM GAS  /tmp/cc6BtNgK.s 			page 60
 
 
 1177:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** 
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  2221 0320 BB69     		ldr	r3, [r7, #24]
  2222 0322 BB63     		str	r3, [r7, #56]
  2223 0324 0023     		movs	r3, #0
-ARM GAS  /tmp/cc34iHaW.s 			page 61
+ARM GAS  /tmp/cc6BtNgK.s 			page 61
 
 
  2224 0326 7B63     		str	r3, [r7, #52]
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 1193:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** }
  2270              		.loc 1 1193 0
  2271 036c 5837     		adds	r7, r7, #88
-ARM GAS  /tmp/cc34iHaW.s 			page 62
+ARM GAS  /tmp/cc6BtNgK.s 			page 62
 
 
  2272              	.LCFI56:
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  2294              		.loc 1 1226 0
  2295              		.cfi_startproc
  2296              		@ args = 0, pretend = 0, frame = 16
-ARM GAS  /tmp/cc34iHaW.s 			page 63
+ARM GAS  /tmp/cc6BtNgK.s 			page 63
 
 
  2297              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  2327 002a 0823     		movs	r3, #8
  2328 002c FFF7FEFF 		bl	SEGGER_RTT_ConfigDownBuffer
 1251:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** #else
-ARM GAS  /tmp/cc34iHaW.s 			page 64
+ARM GAS  /tmp/cc6BtNgK.s 			page 64
 
 
 1252:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   _SYSVIEW_Globals.UpChannel = SEGGER_RTT_AllocUpBuffer  ("SysView", &_UpBuffer[0],   sizeof(_UpBuf
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  2367              	.L151:
  2368              		.align	2
  2369              	.L150:
-ARM GAS  /tmp/cc34iHaW.s 			page 65
+ARM GAS  /tmp/cc6BtNgK.s 			page 65
 
 
  2370 0064 00000000 		.word	.LC0
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  2411              	.LCFI67:
  2412              		.cfi_def_cfa_register 13
  2413              		@ sp needed
-ARM GAS  /tmp/cc34iHaW.s 			page 66
+ARM GAS  /tmp/cc6BtNgK.s 			page 66
 
 
  2414 0012 5DF8047B 		ldr	r7, [sp], #4
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  2456              		
  2457              	@ 0 "" 2
  2458              		.thumb
-ARM GAS  /tmp/cc34iHaW.s 			page 67
+ARM GAS  /tmp/cc6BtNgK.s 			page 67
 
 
  2459 0014 FB60     		str	r3, [r7, #12]
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 1312:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    Value   - The 32-bit parameter encoded to SystemView packet payload.
 1313:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** */
 1314:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** void SEGGER_SYSVIEW_RecordU32(unsigned int EventID, U32 Value) {
-ARM GAS  /tmp/cc34iHaW.s 			page 68
+ARM GAS  /tmp/cc6BtNgK.s 			page 68
 
 
  2500              		.loc 1 1314 0
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  2548 003c D2B2     		uxtb	r2, r2
  2549 003e 1A70     		strb	r2, [r3]
  2550 0040 BB69     		ldr	r3, [r7, #24]
-ARM GAS  /tmp/cc34iHaW.s 			page 69
+ARM GAS  /tmp/cc6BtNgK.s 			page 69
 
 
  2551 0042 DB09     		lsrs	r3, r3, #7
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  2604              	.LFB15:
 1324:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** 
 1325:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** /*********************************************************************
-ARM GAS  /tmp/cc34iHaW.s 			page 70
+ARM GAS  /tmp/cc6BtNgK.s 			page 70
 
 
 1326:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  2641 0026 7B69     		ldr	r3, [r7, #20]
  2642 0028 FB62     		str	r3, [r7, #44]
  2643 002a BB68     		ldr	r3, [r7, #8]
-ARM GAS  /tmp/cc34iHaW.s 			page 71
+ARM GAS  /tmp/cc6BtNgK.s 			page 71
 
 
  2644 002c BB62     		str	r3, [r7, #40]
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  2697 0082 7F2B     		cmp	r3, #127
  2698 0084 F0D8     		bhi	.L167
  2699              		.loc 1 1344 0 discriminator 4
-ARM GAS  /tmp/cc34iHaW.s 			page 72
+ARM GAS  /tmp/cc6BtNgK.s 			page 72
 
 
  2700 0086 7B6A     		ldr	r3, [r7, #36]
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 1355:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *
 1356:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *  Parameters
 1357:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    EventID - SystemView event ID.
-ARM GAS  /tmp/cc34iHaW.s 			page 73
+ARM GAS  /tmp/cc6BtNgK.s 			page 73
 
 
 1358:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    Para0   - The 32-bit parameter encoded to SystemView packet payload.
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  2789              		.loc 1 1368 0 is_stmt 0 discriminator 3
  2790 0032 7B6B     		ldr	r3, [r7, #52]
  2791 0034 5A1C     		adds	r2, r3, #1
-ARM GAS  /tmp/cc34iHaW.s 			page 74
+ARM GAS  /tmp/cc6BtNgK.s 			page 74
 
 
  2792 0036 7A63     		str	r2, [r7, #52]
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  2845 008e BA6A     		ldr	r2, [r7, #40]
  2846 0090 D2B2     		uxtb	r2, r2
  2847 0092 1A70     		strb	r2, [r3]
-ARM GAS  /tmp/cc34iHaW.s 			page 75
+ARM GAS  /tmp/cc6BtNgK.s 			page 75
 
 
  2848 0094 FB6A     		ldr	r3, [r7, #44]
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 1373:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** }
  2899              		.loc 1 1373 0 discriminator 4
  2900 00e0 3837     		adds	r7, r7, #56
-ARM GAS  /tmp/cc34iHaW.s 			page 76
+ARM GAS  /tmp/cc6BtNgK.s 			page 76
 
 
  2901              	.LCFI87:
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  2941 000c 3B60     		str	r3, [r7]
  2942              	.LBB25:
 1390:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   U8* pPayload;
-ARM GAS  /tmp/cc34iHaW.s 			page 77
+ARM GAS  /tmp/cc6BtNgK.s 			page 77
 
 
 1391:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   U8* pPayloadStart;
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  2992              	.LBE26:
  2993              	.LBB27:
 1396:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   ENCODE_U32(pPayload, Para1);
-ARM GAS  /tmp/cc34iHaW.s 			page 78
+ARM GAS  /tmp/cc6BtNgK.s 			page 78
 
 
  2994              		.loc 1 1396 0 is_stmt 1 discriminator 4
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  3047 00b8 BB62     		str	r3, [r7, #40]
  3048              	.L184:
  3049              		.loc 1 1397 0 discriminator 1
-ARM GAS  /tmp/cc34iHaW.s 			page 79
+ARM GAS  /tmp/cc6BtNgK.s 			page 79
 
 
  3050 00ba BB6A     		ldr	r3, [r7, #40]
@@ -4738,7 +4738,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  3102 010e FFF7FEFF 		bl	_SendPacket
 1400:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   RECORD_END();
  3103              		.loc 1 1400 0 discriminator 4
-ARM GAS  /tmp/cc34iHaW.s 			page 80
+ARM GAS  /tmp/cc6BtNgK.s 			page 80
 
 
  3104 0112 FB69     		ldr	r3, [r7, #28]
@@ -4798,7 +4798,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  3142              		.cfi_offset 7, -8
  3143              		.cfi_offset 14, -4
  3144 0002 92B0     		sub	sp, sp, #72
-ARM GAS  /tmp/cc34iHaW.s 			page 81
+ARM GAS  /tmp/cc6BtNgK.s 			page 81
 
 
  3145              	.LCFI95:
@@ -4858,7 +4858,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  3193 004c 7F2B     		cmp	r3, #127
  3194 004e F0D8     		bhi	.L192
  3195              		.loc 1 1424 0 discriminator 4
-ARM GAS  /tmp/cc34iHaW.s 			page 82
+ARM GAS  /tmp/cc6BtNgK.s 			page 82
 
 
  3196 0050 7B6C     		ldr	r3, [r7, #68]
@@ -4918,7 +4918,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  3248              		.loc 1 1426 0 is_stmt 0 discriminator 3
  3249 00a2 7B6B     		ldr	r3, [r7, #52]
  3250 00a4 5A1C     		adds	r2, r3, #1
-ARM GAS  /tmp/cc34iHaW.s 			page 83
+ARM GAS  /tmp/cc6BtNgK.s 			page 83
 
 
  3251 00a6 7A63     		str	r2, [r7, #52]
@@ -4978,7 +4978,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  3304 00fe BA6A     		ldr	r2, [r7, #40]
  3305 0100 D2B2     		uxtb	r2, r2
  3306 0102 1A70     		strb	r2, [r3]
-ARM GAS  /tmp/cc34iHaW.s 			page 84
+ARM GAS  /tmp/cc6BtNgK.s 			page 84
 
 
  3307 0104 FB6A     		ldr	r3, [r7, #44]
@@ -5038,7 +5038,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 1431:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** }
  3358              		.loc 1 1431 0 discriminator 4
  3359 0150 4837     		adds	r7, r7, #72
-ARM GAS  /tmp/cc34iHaW.s 			page 85
+ARM GAS  /tmp/cc6BtNgK.s 			page 85
 
 
  3360              	.LCFI97:
@@ -5098,7 +5098,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  3398 0008 B960     		str	r1, [r7, #8]
  3399 000a 7A60     		str	r2, [r7, #4]
  3400 000c 3B60     		str	r3, [r7]
-ARM GAS  /tmp/cc34iHaW.s 			page 86
+ARM GAS  /tmp/cc6BtNgK.s 			page 86
 
 
  3401              	.LBB36:
@@ -5158,7 +5158,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  3449 005c FB6C     		ldr	r3, [r7, #76]
  3450 005e 7B61     		str	r3, [r7, #20]
  3451              	.LBE37:
-ARM GAS  /tmp/cc34iHaW.s 			page 87
+ARM GAS  /tmp/cc6BtNgK.s 			page 87
 
 
  3452              	.LBB38:
@@ -5218,7 +5218,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  3504 00b4 BB6B     		ldr	r3, [r7, #56]
  3505 00b6 DB09     		lsrs	r3, r3, #7
  3506 00b8 BB63     		str	r3, [r7, #56]
-ARM GAS  /tmp/cc34iHaW.s 			page 88
+ARM GAS  /tmp/cc6BtNgK.s 			page 88
 
 
  3507              	.L208:
@@ -5278,7 +5278,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  3559 0108 7B69     		ldr	r3, [r7, #20]
  3560 010a FB62     		str	r3, [r7, #44]
  3561 010c FB6D     		ldr	r3, [r7, #92]
-ARM GAS  /tmp/cc34iHaW.s 			page 89
+ARM GAS  /tmp/cc6BtNgK.s 			page 89
 
 
  3562 010e BB62     		str	r3, [r7, #40]
@@ -5338,7 +5338,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  3615 0164 7F2B     		cmp	r3, #127
  3616 0166 F0D8     		bhi	.L215
  3617              		.loc 1 1460 0 discriminator 4
-ARM GAS  /tmp/cc34iHaW.s 			page 90
+ARM GAS  /tmp/cc6BtNgK.s 			page 90
 
 
  3618 0168 7B6A     		ldr	r3, [r7, #36]
@@ -5398,7 +5398,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 1471:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *
 1472:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *  Parameters
 1473:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    EventID - SystemView event ID.
-ARM GAS  /tmp/cc34iHaW.s 			page 91
+ARM GAS  /tmp/cc6BtNgK.s 			page 91
 
 
 1474:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    Para0   - The 32-bit parameter encoded to SystemView packet payload.
@@ -5458,7 +5458,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  3703 002c BB68     		ldr	r3, [r7, #8]
  3704 002e 3B65     		str	r3, [r7, #80]
  3705 0030 0BE0     		b	.L219
-ARM GAS  /tmp/cc34iHaW.s 			page 92
+ARM GAS  /tmp/cc6BtNgK.s 			page 92
 
 
  3706              	.L220:
@@ -5518,7 +5518,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  3759              		.loc 1 1489 0 discriminator 4
  3760 0088 FB6C     		ldr	r3, [r7, #76]
  3761 008a 5A1C     		adds	r2, r3, #1
-ARM GAS  /tmp/cc34iHaW.s 			page 93
+ARM GAS  /tmp/cc6BtNgK.s 			page 93
 
 
  3762 008c FA64     		str	r2, [r7, #76]
@@ -5578,7 +5578,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  3814 00dc 5A1C     		adds	r2, r3, #1
  3815 00de FA63     		str	r2, [r7, #60]
  3816 00e0 BA6B     		ldr	r2, [r7, #56]
-ARM GAS  /tmp/cc34iHaW.s 			page 94
+ARM GAS  /tmp/cc6BtNgK.s 			page 94
 
 
  3817 00e2 D2B2     		uxtb	r2, r2
@@ -5638,7 +5638,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  3870 013a 1A70     		strb	r2, [r3]
  3871 013c 7B6B     		ldr	r3, [r7, #52]
  3872 013e 7B61     		str	r3, [r7, #20]
-ARM GAS  /tmp/cc34iHaW.s 			page 95
+ARM GAS  /tmp/cc6BtNgK.s 			page 95
 
 
  3873              	.LBE48:
@@ -5698,7 +5698,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  3925 0192 1A70     		strb	r2, [r3]
  3926 0194 3B6A     		ldr	r3, [r7, #32]
  3927 0196 DB09     		lsrs	r3, r3, #7
-ARM GAS  /tmp/cc34iHaW.s 			page 96
+ARM GAS  /tmp/cc6BtNgK.s 			page 96
 
 
  3928 0198 3B62     		str	r3, [r7, #32]
@@ -5758,7 +5758,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 1498:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** 
 1499:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** /*********************************************************************
 1500:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *
-ARM GAS  /tmp/cc34iHaW.s 			page 97
+ARM GAS  /tmp/cc6BtNgK.s 			page 97
 
 
 1501:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *       SEGGER_SYSVIEW_RecordU32x8()
@@ -5818,7 +5818,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  4013              		.loc 1 1522 0
  4014 0024 BB69     		ldr	r3, [r7, #24]
  4015 0026 7B61     		str	r3, [r7, #20]
-ARM GAS  /tmp/cc34iHaW.s 			page 98
+ARM GAS  /tmp/cc6BtNgK.s 			page 98
 
 
  4016              	.LBB52:
@@ -5878,7 +5878,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  4068 007c 3B6D     		ldr	r3, [r7, #80]
  4069 007e DB09     		lsrs	r3, r3, #7
  4070 0080 3B65     		str	r3, [r7, #80]
-ARM GAS  /tmp/cc34iHaW.s 			page 99
+ARM GAS  /tmp/cc6BtNgK.s 			page 99
 
 
  4071              	.L238:
@@ -5938,7 +5938,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  4123 00d0 7B69     		ldr	r3, [r7, #20]
  4124 00d2 7B64     		str	r3, [r7, #68]
  4125 00d4 BB6E     		ldr	r3, [r7, #104]
-ARM GAS  /tmp/cc34iHaW.s 			page 100
+ARM GAS  /tmp/cc6BtNgK.s 			page 100
 
 
  4126 00d6 3B64     		str	r3, [r7, #64]
@@ -5998,7 +5998,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  4179 012c 7F2B     		cmp	r3, #127
  4180 012e F0D8     		bhi	.L245
  4181              		.loc 1 1527 0 discriminator 4
-ARM GAS  /tmp/cc34iHaW.s 			page 101
+ARM GAS  /tmp/cc6BtNgK.s 			page 101
 
 
  4182 0130 FB6B     		ldr	r3, [r7, #60]
@@ -6058,7 +6058,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  4234              		.loc 1 1529 0 is_stmt 0 discriminator 3
  4235 0182 FB6A     		ldr	r3, [r7, #44]
  4236 0184 5A1C     		adds	r2, r3, #1
-ARM GAS  /tmp/cc34iHaW.s 			page 102
+ARM GAS  /tmp/cc6BtNgK.s 			page 102
 
 
  4237 0186 FA62     		str	r2, [r7, #44]
@@ -6118,7 +6118,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  4290 01de 3A6A     		ldr	r2, [r7, #32]
  4291 01e0 D2B2     		uxtb	r2, r2
  4292 01e2 1A70     		strb	r2, [r3]
-ARM GAS  /tmp/cc34iHaW.s 			page 103
+ARM GAS  /tmp/cc6BtNgK.s 			page 103
 
 
  4293 01e4 7B6A     		ldr	r3, [r7, #36]
@@ -6178,7 +6178,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 1547:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    Para3   - The 32-bit parameter encoded to SystemView packet payload.
 1548:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    Para4   - The 32-bit parameter encoded to SystemView packet payload.
 1549:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    Para5   - The 32-bit parameter encoded to SystemView packet payload.
-ARM GAS  /tmp/cc34iHaW.s 			page 104
+ARM GAS  /tmp/cc6BtNgK.s 			page 104
 
 
 1550:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    Para6   - The 32-bit parameter encoded to SystemView packet payload.
@@ -6238,7 +6238,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  4376              		.loc 1 1560 0 is_stmt 0 discriminator 3
  4377 0032 7B6E     		ldr	r3, [r7, #100]
  4378 0034 5A1C     		adds	r2, r3, #1
-ARM GAS  /tmp/cc34iHaW.s 			page 105
+ARM GAS  /tmp/cc6BtNgK.s 			page 105
 
 
  4379 0036 7A66     		str	r2, [r7, #100]
@@ -6298,7 +6298,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  4432 008e BA6D     		ldr	r2, [r7, #88]
  4433 0090 D2B2     		uxtb	r2, r2
  4434 0092 1A70     		strb	r2, [r3]
-ARM GAS  /tmp/cc34iHaW.s 			page 106
+ARM GAS  /tmp/cc6BtNgK.s 			page 106
 
 
  4435 0094 FB6D     		ldr	r3, [r7, #92]
@@ -6358,7 +6358,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  4487 00e4 62F07F02 		orn	r2, r2, #127
  4488 00e8 D2B2     		uxtb	r2, r2
  4489 00ea 1A70     		strb	r2, [r3]
-ARM GAS  /tmp/cc34iHaW.s 			page 107
+ARM GAS  /tmp/cc6BtNgK.s 			page 107
 
 
  4490 00ec BB6C     		ldr	r3, [r7, #72]
@@ -6418,7 +6418,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  4543              	.LBB66:
 1565:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   ENCODE_U32(pPayload, Para5);
  4544              		.loc 1 1565 0 is_stmt 1 discriminator 4
-ARM GAS  /tmp/cc34iHaW.s 			page 108
+ARM GAS  /tmp/cc6BtNgK.s 			page 108
 
 
  4545 0140 7B69     		ldr	r3, [r7, #20]
@@ -6478,7 +6478,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  4598              	.L267:
  4599              		.loc 1 1566 0 discriminator 1
  4600 019a 3B6B     		ldr	r3, [r7, #48]
-ARM GAS  /tmp/cc34iHaW.s 			page 109
+ARM GAS  /tmp/cc6BtNgK.s 			page 109
 
 
  4601 019c 7F2B     		cmp	r3, #127
@@ -6538,7 +6538,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  4653 01f2 3B62     		str	r3, [r7, #32]
  4654 01f4 0BE0     		b	.L271
  4655              	.L272:
-ARM GAS  /tmp/cc34iHaW.s 			page 110
+ARM GAS  /tmp/cc6BtNgK.s 			page 110
 
 
  4656              		.loc 1 1568 0 is_stmt 0 discriminator 3
@@ -6598,7 +6598,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  4707              	.L273:
  4708 023c 00000000 		.word	_aPacket
  4709              		.cfi_endproc
-ARM GAS  /tmp/cc34iHaW.s 			page 111
+ARM GAS  /tmp/cc6BtNgK.s 			page 111
 
 
  4710              	.LFE22:
@@ -6658,7 +6658,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  4741              	@ 1596 "../../../SystemView/SEGGER/SEGGER_SYSVIEW.c" 1
  4742 000e EFF31183 		mrs   r3, basepri  
  4743 0012 4FF02001 		mov   r1, #32       
-ARM GAS  /tmp/cc34iHaW.s 			page 112
+ARM GAS  /tmp/cc6BtNgK.s 			page 112
 
 
  4744 0016 81F31188 		msr   basepri, r1  
@@ -6718,7 +6718,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  4794 0064 7B68     		ldr	r3, [r7, #4]
  4795 0066 3B66     		str	r3, [r7, #96]
  4796 0068 0BE0     		b	.L278
-ARM GAS  /tmp/cc34iHaW.s 			page 113
+ARM GAS  /tmp/cc6BtNgK.s 			page 113
 
 
  4797              	.L279:
@@ -6778,7 +6778,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  4850              		.loc 1 1601 0 discriminator 4
  4851 00c0 FB6D     		ldr	r3, [r7, #92]
  4852 00c2 5A1C     		adds	r2, r3, #1
-ARM GAS  /tmp/cc34iHaW.s 			page 114
+ARM GAS  /tmp/cc6BtNgK.s 			page 114
 
 
  4853 00c4 FA65     		str	r2, [r7, #92]
@@ -6838,7 +6838,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  4905 0114 5A1C     		adds	r2, r3, #1
  4906 0116 FA64     		str	r2, [r7, #76]
  4907 0118 BA6C     		ldr	r2, [r7, #72]
-ARM GAS  /tmp/cc34iHaW.s 			page 115
+ARM GAS  /tmp/cc6BtNgK.s 			page 115
 
 
  4908 011a D2B2     		uxtb	r2, r2
@@ -6898,7 +6898,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  4961 0174 1A70     		strb	r2, [r3]
  4962 0176 7B6C     		ldr	r3, [r7, #68]
  4963 0178 7B61     		str	r3, [r7, #20]
-ARM GAS  /tmp/cc34iHaW.s 			page 116
+ARM GAS  /tmp/cc6BtNgK.s 			page 116
 
 
  4964              	.LBE76:
@@ -6958,7 +6958,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  5016 01d0 1A70     		strb	r2, [r3]
  5017 01d2 3B6B     		ldr	r3, [r7, #48]
  5018 01d4 DB09     		lsrs	r3, r3, #7
-ARM GAS  /tmp/cc34iHaW.s 			page 117
+ARM GAS  /tmp/cc6BtNgK.s 			page 117
 
 
  5019 01d6 3B63     		str	r3, [r7, #48]
@@ -7018,7 +7018,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  5071              		.loc 1 1608 0 is_stmt 1 discriminator 4
  5072 0228 7B69     		ldr	r3, [r7, #20]
  5073 022a 7B62     		str	r3, [r7, #36]
-ARM GAS  /tmp/cc34iHaW.s 			page 118
+ARM GAS  /tmp/cc6BtNgK.s 			page 118
 
 
  5074 022c D7F89030 		ldr	r3, [r7, #144]
@@ -7078,7 +7078,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  5125              		@ sp needed
  5126 0276 80BD     		pop	{r7, pc}
  5127              	.L297:
-ARM GAS  /tmp/cc34iHaW.s 			page 119
+ARM GAS  /tmp/cc6BtNgK.s 			page 119
 
 
  5128              		.align	2
@@ -7138,7 +7138,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  5164 0012 81F31188 		msr   basepri, r1  
  5165              		
  5166              	@ 0 "" 2
-ARM GAS  /tmp/cc34iHaW.s 			page 120
+ARM GAS  /tmp/cc6BtNgK.s 			page 120
 
 
  5167              		.thumb
@@ -7198,7 +7198,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 1640:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *       SEGGER_SYSVIEW_Start()
 1641:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *
 1642:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *  Function description
-ARM GAS  /tmp/cc34iHaW.s 			page 121
+ARM GAS  /tmp/cc6BtNgK.s 			page 121
 
 
 1643:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    Start recording SystemView events.
@@ -7258,7 +7258,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  5248 0022 FB60     		str	r3, [r7, #12]
 1664:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     SEGGER_RTT_WriteSkipNoLock(CHANNEL_ID_UP, _abSync, 10);
  5249              		.loc 1 1664 0
-ARM GAS  /tmp/cc34iHaW.s 			page 122
+ARM GAS  /tmp/cc6BtNgK.s 			page 122
 
 
  5250 0024 0120     		movs	r0, #1
@@ -7318,7 +7318,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  5295 0066 BA6A     		ldr	r2, [r7, #40]
  5296 0068 D2B2     		uxtb	r2, r2
  5297 006a 62F07F02 		orn	r2, r2, #127
-ARM GAS  /tmp/cc34iHaW.s 			page 123
+ARM GAS  /tmp/cc6BtNgK.s 			page 123
 
 
  5298 006e D2B2     		uxtb	r2, r2
@@ -7378,7 +7378,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  5351 00c4 7B6A     		ldr	r3, [r7, #36]
  5352 00c6 3B60     		str	r3, [r7]
  5353              	.LBE86:
-ARM GAS  /tmp/cc34iHaW.s 			page 124
+ARM GAS  /tmp/cc6BtNgK.s 			page 124
 
 
  5354              	.LBB87:
@@ -7438,7 +7438,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  5406 011c 1A70     		strb	r2, [r3]
  5407 011e 3B69     		ldr	r3, [r7, #16]
  5408 0120 DB09     		lsrs	r3, r3, #7
-ARM GAS  /tmp/cc34iHaW.s 			page 125
+ARM GAS  /tmp/cc6BtNgK.s 			page 125
 
 
  5409 0122 3B61     		str	r3, [r7, #16]
@@ -7498,7 +7498,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  5454 0160 FFF7FEFF 		bl	SEGGER_SYSVIEW_SendNumModules
  5455              	.L301:
 1686:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** #endif
-ARM GAS  /tmp/cc34iHaW.s 			page 126
+ARM GAS  /tmp/cc6BtNgK.s 			page 126
 
 
 1687:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   }
@@ -7558,7 +7558,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  5495              	.LCFI136:
  5496              		.cfi_def_cfa_register 7
  5497              	.LBB89:
-ARM GAS  /tmp/cc34iHaW.s 			page 127
+ARM GAS  /tmp/cc6BtNgK.s 			page 127
 
 
 1704:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   U8* pPayloadStart;
@@ -7618,7 +7618,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  5543              		.align	2
  5544              	.L316:
  5545 0040 00000000 		.word	_aPacket
-ARM GAS  /tmp/cc34iHaW.s 			page 128
+ARM GAS  /tmp/cc6BtNgK.s 			page 128
 
 
  5546 0044 00000000 		.word	_SYSVIEW_Globals
@@ -7678,7 +7678,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  5587 001c BB68     		ldr	r3, [r7, #8]
  5588 001e 7B60     		str	r3, [r7, #4]
  5589              	.LBB91:
-ARM GAS  /tmp/cc34iHaW.s 			page 129
+ARM GAS  /tmp/cc6BtNgK.s 			page 129
 
 
 1728:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   ENCODE_U32(pPayload, _SYSVIEW_Globals.SysFreq);
@@ -7738,7 +7738,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  5642 0076 1A70     		strb	r2, [r3]
  5643 0078 3B6A     		ldr	r3, [r7, #32]
  5644 007a DB09     		lsrs	r3, r3, #7
-ARM GAS  /tmp/cc34iHaW.s 			page 130
+ARM GAS  /tmp/cc6BtNgK.s 			page 130
 
 
  5645 007c 3B62     		str	r3, [r7, #32]
@@ -7798,7 +7798,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 1731:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   ENCODE_U32(pPayload, SEGGER_SYSVIEW_ID_SHIFT);
  5698              		.loc 1 1731 0 is_stmt 1 discriminator 4
  5699 00ce 7B68     		ldr	r3, [r7, #4]
-ARM GAS  /tmp/cc34iHaW.s 			page 131
+ARM GAS  /tmp/cc6BtNgK.s 			page 131
 
 
  5700 00d0 7B61     		str	r3, [r7, #20]
@@ -7858,7 +7858,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  5750              		.loc 1 1735 0
  5751 011e 044B     		ldr	r3, .L328+4
  5752 0120 5B6A     		ldr	r3, [r3, #36]
-ARM GAS  /tmp/cc34iHaW.s 			page 132
+ARM GAS  /tmp/cc6BtNgK.s 			page 132
 
 
  5753 0122 9847     		blx	r3
@@ -7918,7 +7918,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  5794              		.cfi_def_cfa_register 7
  5795 0006 7860     		str	r0, [r7, #4]
  5796              	.LBB95:
-ARM GAS  /tmp/cc34iHaW.s 			page 133
+ARM GAS  /tmp/cc6BtNgK.s 			page 133
 
 
 1751:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   U8* pPayload;
@@ -7978,7 +7978,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  5845 0058 7A64     		str	r2, [r7, #68]
  5846 005a 3A6C     		ldr	r2, [r7, #64]
  5847 005c D2B2     		uxtb	r2, r2
-ARM GAS  /tmp/cc34iHaW.s 			page 134
+ARM GAS  /tmp/cc6BtNgK.s 			page 134
 
 
  5848 005e 1A70     		strb	r2, [r3]
@@ -8038,7 +8038,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  5899 00b2 0922     		movs	r2, #9
  5900 00b4 FFF7FEFF 		bl	_SendPacket
 1760:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   //
-ARM GAS  /tmp/cc34iHaW.s 			page 135
+ARM GAS  /tmp/cc6BtNgK.s 			page 135
 
 
 1761:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   pPayload = pPayloadStart;
@@ -8098,7 +8098,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  5952              	.L338:
  5953              		.loc 1 1763 0 is_stmt 0 discriminator 3
  5954 010a FB6A     		ldr	r3, [r7, #44]
-ARM GAS  /tmp/cc34iHaW.s 			page 136
+ARM GAS  /tmp/cc6BtNgK.s 			page 136
 
 
  5955 010c 5A1C     		adds	r2, r3, #1
@@ -8158,7 +8158,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  6008 0164 5A1C     		adds	r2, r3, #1
  6009 0166 7A62     		str	r2, [r7, #36]
  6010 0168 3A6A     		ldr	r2, [r7, #32]
-ARM GAS  /tmp/cc34iHaW.s 			page 137
+ARM GAS  /tmp/cc6BtNgK.s 			page 137
 
 
  6011 016a D2B2     		uxtb	r2, r2
@@ -8218,7 +8218,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  6062              		.thumb
  6063              	.LBE95:
 1768:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** }
-ARM GAS  /tmp/cc34iHaW.s 			page 138
+ARM GAS  /tmp/cc6BtNgK.s 			page 138
 
 
  6064              		.loc 1 1768 0 discriminator 4
@@ -8278,7 +8278,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  6110 0012 002B     		cmp	r3, #0
  6111 0014 03D0     		beq	.L345
 1779:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     _SYSVIEW_Globals.pOSAPI->pfSendTaskList();
-ARM GAS  /tmp/cc34iHaW.s 			page 139
+ARM GAS  /tmp/cc6BtNgK.s 			page 139
 
 
  6112              		.loc 1 1779 0 is_stmt 1
@@ -8338,7 +8338,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  6145              	.LCFI152:
  6146              		.cfi_def_cfa_offset 32
  6147 0004 00AF     		add	r7, sp, #0
-ARM GAS  /tmp/cc34iHaW.s 			page 140
+ARM GAS  /tmp/cc6BtNgK.s 			page 140
 
 
  6148              	.LCFI153:
@@ -8398,7 +8398,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  6194              	.L350:
  6195 0040 00000000 		.word	_aPacket
  6196              		.cfi_endproc
-ARM GAS  /tmp/cc34iHaW.s 			page 141
+ARM GAS  /tmp/cc6BtNgK.s 			page 141
 
 
  6197              	.LFE30:
@@ -8458,7 +8458,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  6239 001e 9847     		blx	r3
  6240 0020 C7E90001 		strd	r0, [r7]
 1825:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     SEGGER_SYSVIEW_RecordU32x2(SYSVIEW_EVTID_SYSTIME_US,
-ARM GAS  /tmp/cc34iHaW.s 			page 142
+ARM GAS  /tmp/cc6BtNgK.s 			page 142
 
 
  6241              		.loc 1 1825 0
@@ -8518,7 +8518,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 1836:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *
 1837:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *  Function description
 1838:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    Format and send an ISR entry event.
-ARM GAS  /tmp/cc34iHaW.s 			page 143
+ARM GAS  /tmp/cc6BtNgK.s 			page 143
 
 
 1839:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *
@@ -8578,7 +8578,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  6326 002e 3B68     		ldr	r3, [r7]
  6327 0030 3B61     		str	r3, [r7, #16]
  6328 0032 0BE0     		b	.L358
-ARM GAS  /tmp/cc34iHaW.s 			page 144
+ARM GAS  /tmp/cc6BtNgK.s 			page 144
 
 
  6329              	.L359:
@@ -8638,7 +8638,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  6380              		.align	2
  6381              	.L360:
  6382 0078 00000000 		.word	_aPacket
-ARM GAS  /tmp/cc34iHaW.s 			page 145
+ARM GAS  /tmp/cc6BtNgK.s 			page 145
 
 
  6383 007c 04ED00E0 		.word	-536810236
@@ -8698,7 +8698,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  6421 0016 FFF7FEFF 		bl	_PreparePacket
  6422 001a 3860     		str	r0, [r7]
 1874:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   //
-ARM GAS  /tmp/cc34iHaW.s 			page 146
+ARM GAS  /tmp/cc6BtNgK.s 			page 146
 
 
 1875:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   _SendPacket(pPayloadStart, pPayloadStart, SYSVIEW_EVTID_ISR_EXIT);
@@ -8758,7 +8758,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  6460              		.loc 1 1893 0
  6461              		.cfi_startproc
  6462              		@ args = 0, pretend = 0, frame = 8
-ARM GAS  /tmp/cc34iHaW.s 			page 147
+ARM GAS  /tmp/cc6BtNgK.s 			page 147
 
 
  6463              		@ frame_needed = 1, uses_anonymous_args = 0
@@ -8818,7 +8818,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  6511 0032 00BF     		.align	2
  6512              	.L366:
  6513 0034 00000000 		.word	_aPacket
-ARM GAS  /tmp/cc34iHaW.s 			page 148
+ARM GAS  /tmp/cc6BtNgK.s 			page 148
 
 
  6514              		.cfi_endproc
@@ -8878,7 +8878,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 1916:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   pPayload = pPayloadStart;
  6554              		.loc 1 1916 0
  6555 001e 3B69     		ldr	r3, [r7, #16]
-ARM GAS  /tmp/cc34iHaW.s 			page 149
+ARM GAS  /tmp/cc6BtNgK.s 			page 149
 
 
  6556 0020 FB60     		str	r3, [r7, #12]
@@ -8938,7 +8938,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  6607              		.thumb
  6608              	.LBE107:
 1920:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** }
-ARM GAS  /tmp/cc34iHaW.s 			page 150
+ARM GAS  /tmp/cc6BtNgK.s 			page 150
 
 
  6609              		.loc 1 1920 0 discriminator 4
@@ -8998,7 +8998,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  6654 000e 81F31188 		msr   basepri, r1  
  6655              		
  6656              	@ 0 "" 2
-ARM GAS  /tmp/cc34iHaW.s 			page 151
+ARM GAS  /tmp/cc6BtNgK.s 			page 151
 
 
  6657              		.thumb
@@ -9058,7 +9058,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 1946:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** */
 1947:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** void SEGGER_SYSVIEW_RecordEndCall(unsigned int EventID) {
  6699              		.loc 1 1947 0
-ARM GAS  /tmp/cc34iHaW.s 			page 152
+ARM GAS  /tmp/cc6BtNgK.s 			page 152
 
 
  6700              		.cfi_startproc
@@ -9118,7 +9118,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  6748 003e BB69     		ldr	r3, [r7, #24]
  6749 0040 DB09     		lsrs	r3, r3, #7
  6750 0042 BB61     		str	r3, [r7, #24]
-ARM GAS  /tmp/cc34iHaW.s 			page 153
+ARM GAS  /tmp/cc6BtNgK.s 			page 153
 
 
  6751              	.L377:
@@ -9178,7 +9178,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 1958:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** /*********************************************************************
 1959:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *
 1960:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *       SEGGER_SYSVIEW_RecordEndCallU32()
-ARM GAS  /tmp/cc34iHaW.s 			page 154
+ARM GAS  /tmp/cc6BtNgK.s 			page 154
 
 
 1961:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *
@@ -9238,7 +9238,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  6842 002c 0BE0     		b	.L382
  6843              	.L383:
  6844              		.loc 1 1975 0 is_stmt 0 discriminator 3
-ARM GAS  /tmp/cc34iHaW.s 			page 155
+ARM GAS  /tmp/cc6BtNgK.s 			page 155
 
 
  6845 002e 7B6A     		ldr	r3, [r7, #36]
@@ -9298,7 +9298,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  6898 0086 5A1C     		adds	r2, r3, #1
  6899 0088 FA61     		str	r2, [r7, #28]
  6900 008a BA69     		ldr	r2, [r7, #24]
-ARM GAS  /tmp/cc34iHaW.s 			page 156
+ARM GAS  /tmp/cc6BtNgK.s 			page 156
 
 
  6901 008c D2B2     		uxtb	r2, r2
@@ -9358,7 +9358,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  6945              		@ args = 0, pretend = 0, frame = 8
  6946              		@ frame_needed = 1, uses_anonymous_args = 0
  6947 0000 80B5     		push	{r7, lr}
-ARM GAS  /tmp/cc34iHaW.s 			page 157
+ARM GAS  /tmp/cc6BtNgK.s 			page 157
 
 
  6948              	.LCFI196:
@@ -9418,7 +9418,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  6996 0034 00000000 		.word	_aPacket
  6997              		.cfi_endproc
  6998              	.LFE39:
-ARM GAS  /tmp/cc34iHaW.s 			page 158
+ARM GAS  /tmp/cc6BtNgK.s 			page 158
 
 
  7000              		.section	.text.SEGGER_SYSVIEW_OnTaskCreate,"ax",%progbits
@@ -9478,7 +9478,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  7037              		.loc 1 2012 0
  7038 001e 3B69     		ldr	r3, [r7, #16]
  7039 0020 FB60     		str	r3, [r7, #12]
-ARM GAS  /tmp/cc34iHaW.s 			page 159
+ARM GAS  /tmp/cc6BtNgK.s 			page 159
 
 
 2013:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   TaskId = SHRINK_ID(TaskId);
@@ -9538,7 +9538,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  7090 0072 83F31188 		msr   basepri, r3  
  7091              		
  7092              	@ 0 "" 2
-ARM GAS  /tmp/cc34iHaW.s 			page 160
+ARM GAS  /tmp/cc6BtNgK.s 			page 160
 
 
  7093              		.thumb
@@ -9598,7 +9598,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  7133              	.LCFI208:
  7134              		.cfi_def_cfa_register 7
  7135 0006 7860     		str	r0, [r7, #4]
-ARM GAS  /tmp/cc34iHaW.s 			page 161
+ARM GAS  /tmp/cc6BtNgK.s 			page 161
 
 
  7136              	.LBB118:
@@ -9658,7 +9658,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  7183 0054 F0D8     		bhi	.L398
  7184              		.loc 1 2039 0 discriminator 4
  7185 0056 FB69     		ldr	r3, [r7, #28]
-ARM GAS  /tmp/cc34iHaW.s 			page 162
+ARM GAS  /tmp/cc6BtNgK.s 			page 162
 
 
  7186 0058 5A1C     		adds	r2, r3, #1
@@ -9718,7 +9718,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 2050:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    corresponds to when a task has started to execute rather than
 2051:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    when it is ready to execute.
 2052:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *
-ARM GAS  /tmp/cc34iHaW.s 			page 163
+ARM GAS  /tmp/cc6BtNgK.s 			page 163
 
 
 2053:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *  Parameters
@@ -9778,7 +9778,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  7275 0032 7B68     		ldr	r3, [r7, #4]
  7276 0034 BB61     		str	r3, [r7, #24]
  7277 0036 0BE0     		b	.L402
-ARM GAS  /tmp/cc34iHaW.s 			page 164
+ARM GAS  /tmp/cc6BtNgK.s 			page 164
 
 
  7278              	.L403:
@@ -9838,7 +9838,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  7329              		.align	2
  7330              	.L404:
  7331 007c 00000000 		.word	_aPacket
-ARM GAS  /tmp/cc34iHaW.s 			page 165
+ARM GAS  /tmp/cc6BtNgK.s 			page 165
 
 
  7332 0080 00000000 		.word	_SYSVIEW_Globals
@@ -9898,7 +9898,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  7374 001e 3968     		ldr	r1, [r7]
  7375 0020 0522     		movs	r2, #5
  7376 0022 FFF7FEFF 		bl	_SendPacket
-ARM GAS  /tmp/cc34iHaW.s 			page 166
+ARM GAS  /tmp/cc6BtNgK.s 			page 166
 
 
 2081:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   RECORD_END();
@@ -9958,7 +9958,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  7419              	.LCFI222:
  7420              		.cfi_def_cfa_offset 40
  7421 0004 00AF     		add	r7, sp, #0
-ARM GAS  /tmp/cc34iHaW.s 			page 167
+ARM GAS  /tmp/cc6BtNgK.s 			page 167
 
 
  7422              	.LCFI223:
@@ -10018,7 +10018,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  7469              		.loc 1 2101 0 discriminator 1
  7470 0050 BB69     		ldr	r3, [r7, #24]
  7471 0052 7F2B     		cmp	r3, #127
-ARM GAS  /tmp/cc34iHaW.s 			page 168
+ARM GAS  /tmp/cc6BtNgK.s 			page 168
 
 
  7472 0054 F0D8     		bhi	.L411
@@ -10078,7 +10078,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 2109:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *
 2110:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *  Function description
 2111:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    Record a Task Stop Ready event.
-ARM GAS  /tmp/cc34iHaW.s 			page 169
+ARM GAS  /tmp/cc6BtNgK.s 			page 169
 
 
 2112:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *
@@ -10138,7 +10138,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  7562              		.loc 1 2124 0
  7563 0030 FB68     		ldr	r3, [r7, #12]
  7564 0032 7B62     		str	r3, [r7, #36]
-ARM GAS  /tmp/cc34iHaW.s 			page 170
+ARM GAS  /tmp/cc6BtNgK.s 			page 170
 
 
  7565 0034 7B68     		ldr	r3, [r7, #4]
@@ -10198,7 +10198,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  7618 008a BB69     		ldr	r3, [r7, #24]
  7619 008c 7F2B     		cmp	r3, #127
  7620 008e F0D8     		bhi	.L418
-ARM GAS  /tmp/cc34iHaW.s 			page 171
+ARM GAS  /tmp/cc6BtNgK.s 			page 171
 
 
  7621              		.loc 1 2125 0 discriminator 4
@@ -10258,7 +10258,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 2134:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *  Function description
 2135:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    Send a user event start, such as start of a subroutine for profiling.
 2136:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *
-ARM GAS  /tmp/cc34iHaW.s 			page 172
+ARM GAS  /tmp/cc6BtNgK.s 			page 172
 
 
 2137:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *  Parameters
@@ -10318,7 +10318,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  7713 0032 BA69     		ldr	r2, [r7, #24]
  7714 0034 D2B2     		uxtb	r2, r2
  7715 0036 62F07F02 		orn	r2, r2, #127
-ARM GAS  /tmp/cc34iHaW.s 			page 173
+ARM GAS  /tmp/cc6BtNgK.s 			page 173
 
 
  7716 003a D2B2     		uxtb	r2, r2
@@ -10378,7 +10378,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  7768              		.thumb
  7769              		.thumb_func
  7771              	SEGGER_SYSVIEW_OnUserStop:
-ARM GAS  /tmp/cc34iHaW.s 			page 174
+ARM GAS  /tmp/cc6BtNgK.s 			page 174
 
 
  7772              	.LFB47:
@@ -10438,7 +10438,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  7808 0024 FB61     		str	r3, [r7, #28]
  7809 0026 7B68     		ldr	r3, [r7, #4]
  7810 0028 BB61     		str	r3, [r7, #24]
-ARM GAS  /tmp/cc34iHaW.s 			page 175
+ARM GAS  /tmp/cc6BtNgK.s 			page 175
 
 
  7811 002a 0BE0     		b	.L427
@@ -10498,7 +10498,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  7862              	.L430:
  7863              		.align	2
  7864              	.L429:
-ARM GAS  /tmp/cc34iHaW.s 			page 176
+ARM GAS  /tmp/cc6BtNgK.s 			page 176
 
 
  7865 0070 00000000 		.word	_aPacket
@@ -10558,7 +10558,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  7905 001a FFF7FEFF 		bl	_PreparePacket
  7906 001e 3861     		str	r0, [r7, #16]
 2187:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   //
-ARM GAS  /tmp/cc34iHaW.s 			page 177
+ARM GAS  /tmp/cc6BtNgK.s 			page 177
 
 
 2188:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   pPayload = pPayloadStart;
@@ -10618,7 +10618,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  7957 0072 F968     		ldr	r1, [r7, #12]
  7958 0074 1922     		movs	r2, #25
  7959 0076 FFF7FEFF 		bl	_SendPacket
-ARM GAS  /tmp/cc34iHaW.s 			page 178
+ARM GAS  /tmp/cc6BtNgK.s 			page 178
 
 
 2192:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   RECORD_END();
@@ -10678,7 +10678,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  7995              		@ args = 0, pretend = 0, frame = 24
  7996              		@ frame_needed = 1, uses_anonymous_args = 0
  7997 0000 80B5     		push	{r7, lr}
-ARM GAS  /tmp/cc34iHaW.s 			page 179
+ARM GAS  /tmp/cc6BtNgK.s 			page 179
 
 
  7998              	.LCFI246:
@@ -10738,7 +10738,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  8043 0034 BD46     		mov	sp, r7
  8044              	.LCFI250:
  8045              		.cfi_def_cfa_register 13
-ARM GAS  /tmp/cc34iHaW.s 			page 180
+ARM GAS  /tmp/cc6BtNgK.s 			page 180
 
 
  8046              		@ sp needed
@@ -10798,7 +10798,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  8083              	.L440:
  8084              		.loc 1 2240 0 is_stmt 0 discriminator 3
  8085 0014 FB68     		ldr	r3, [r7, #12]
-ARM GAS  /tmp/cc34iHaW.s 			page 181
+ARM GAS  /tmp/cc6BtNgK.s 			page 181
 
 
  8086 0016 5A1C     		adds	r2, r3, #1
@@ -10858,7 +10858,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 2245:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *
 2246:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *       SEGGER_SYSVIEW_EncodeString()
 2247:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *
-ARM GAS  /tmp/cc34iHaW.s 			page 182
+ARM GAS  /tmp/cc6BtNgK.s 			page 182
 
 
 2248:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *  Function description
@@ -10918,7 +10918,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  8171 001e 80BD     		pop	{r7, pc}
  8172              		.cfi_endproc
  8173              	.LFE51:
-ARM GAS  /tmp/cc34iHaW.s 			page 183
+ARM GAS  /tmp/cc6BtNgK.s 			page 183
 
 
  8175              		.section	.text.SEGGER_SYSVIEW_EncodeData,"ax",%progbits
@@ -10978,7 +10978,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  8205 0012 FFF7FEFF 		bl	_EncodeData
  8206 0016 0346     		mov	r3, r0
 2294:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** }
-ARM GAS  /tmp/cc34iHaW.s 			page 184
+ARM GAS  /tmp/cc6BtNgK.s 			page 184
 
 
  8207              		.loc 1 2294 0
@@ -11038,7 +11038,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  8237 0002 85B0     		sub	sp, sp, #20
  8238              	.LCFI268:
  8239              		.cfi_def_cfa_offset 24
-ARM GAS  /tmp/cc34iHaW.s 			page 185
+ARM GAS  /tmp/cc6BtNgK.s 			page 185
 
 
  8240 0004 00AF     		add	r7, sp, #0
@@ -11098,7 +11098,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  8290 0050 1846     		mov	r0, r3
  8291 0052 1437     		adds	r7, r7, #20
  8292              	.LCFI270:
-ARM GAS  /tmp/cc34iHaW.s 			page 186
+ARM GAS  /tmp/cc6BtNgK.s 			page 186
 
 
  8293              		.cfi_def_cfa_offset 4
@@ -11158,7 +11158,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  8325              		.cfi_def_cfa_offset 4
  8326              		.cfi_offset 7, -4
  8327 0002 83B0     		sub	sp, sp, #12
-ARM GAS  /tmp/cc34iHaW.s 			page 187
+ARM GAS  /tmp/cc6BtNgK.s 			page 187
 
 
  8328              	.LCFI274:
@@ -11218,7 +11218,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 2364:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *      sDescription      - Pointer to a string containing the module name and optionally the module
 2365:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *      NumEvents         - Number of events the module wants to register.
 2366:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *      EventOffset       - Offset to be added to the event Ids. Out parameter, set by this function
-ARM GAS  /tmp/cc34iHaW.s 			page 188
+ARM GAS  /tmp/cc6BtNgK.s 			page 188
 
 
 2367:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *      pfSendModuleDesc  - Callback function pointer to send more detailed module description to Sy
@@ -11278,7 +11278,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  8409 002c 164A     		ldr	r2, .L460
  8410 002e 7B68     		ldr	r3, [r7, #4]
  8411 0030 1360     		str	r3, [r2]
-ARM GAS  /tmp/cc34iHaW.s 			page 189
+ARM GAS  /tmp/cc6BtNgK.s 			page 189
 
 
 2381:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     _NumModules = 1;
@@ -11338,7 +11338,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  8452 0072 02D0     		beq	.L459
 2395:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     pModule->pfSendModuleDesc();
  8453              		.loc 1 2395 0
-ARM GAS  /tmp/cc34iHaW.s 			page 190
+ARM GAS  /tmp/cc6BtNgK.s 			page 190
 
 
  8454 0074 7B68     		ldr	r3, [r7, #4]
@@ -11398,7 +11398,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  8494              		@ frame_needed = 1, uses_anonymous_args = 0
  8495 0000 80B5     		push	{r7, lr}
  8496              	.LCFI284:
-ARM GAS  /tmp/cc34iHaW.s 			page 191
+ARM GAS  /tmp/cc6BtNgK.s 			page 191
 
 
  8497              		.cfi_def_cfa_offset 8
@@ -11458,7 +11458,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 2424:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   {
 2425:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     U8* pPayload;
 2426:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     U8* pPayloadStart;
-ARM GAS  /tmp/cc34iHaW.s 			page 192
+ARM GAS  /tmp/cc6BtNgK.s 			page 192
 
 
 2427:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****     RECORD_START(SEGGER_SYSVIEW_INFO_SIZE + 2 * SEGGER_SYSVIEW_QUANTA_U32 + 1 + SEGGER_SYSVIEW_MAX_
@@ -11518,7 +11518,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  8585 0084 1A70     		strb	r2, [r3]
  8586 0086 7B6A     		ldr	r3, [r7, #36]
  8587 0088 FB60     		str	r3, [r7, #12]
-ARM GAS  /tmp/cc34iHaW.s 			page 193
+ARM GAS  /tmp/cc6BtNgK.s 			page 193
 
 
  8588              	.LBE140:
@@ -11578,7 +11578,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  8638              	@ 2438 "../../../SystemView/SEGGER/SEGGER_SYSVIEW.c" 1
  8639 00dc 83F31188 		msr   basepri, r3  
  8640              		
-ARM GAS  /tmp/cc34iHaW.s 			page 194
+ARM GAS  /tmp/cc6BtNgK.s 			page 194
 
 
  8641              	@ 0 "" 2
@@ -11638,7 +11638,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  8683              	.LCFI291:
  8684              		.cfi_def_cfa_register 7
  8685 0006 0346     		mov	r3, r0
-ARM GAS  /tmp/cc34iHaW.s 			page 195
+ARM GAS  /tmp/cc6BtNgK.s 			page 195
 
 
  8686 0008 FB71     		strb	r3, [r7, #7]
@@ -11698,7 +11698,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  8726 003e 55D0     		beq	.L472
  8727              	.LBB142:
  8728              	.LBB143:
-ARM GAS  /tmp/cc34iHaW.s 			page 196
+ARM GAS  /tmp/cc6BtNgK.s 			page 196
 
 
 2465:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****       U8* pPayload;
@@ -11758,7 +11758,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  8773 0088 3A6A     		ldr	r2, [r7, #32]
  8774 008a D2B2     		uxtb	r2, r2
  8775 008c 1A70     		strb	r2, [r3]
-ARM GAS  /tmp/cc34iHaW.s 			page 197
+ARM GAS  /tmp/cc6BtNgK.s 			page 197
 
 
  8776 008e 7B6A     		ldr	r3, [r7, #36]
@@ -11818,7 +11818,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  8827 00e2 FFF7FEFF 		bl	_SendPacket
 2478:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****       RECORD_END();
  8828              		.loc 1 2478 0 discriminator 4
-ARM GAS  /tmp/cc34iHaW.s 			page 198
+ARM GAS  /tmp/cc6BtNgK.s 			page 198
 
 
  8829 00e6 7B69     		ldr	r3, [r7, #20]
@@ -11878,7 +11878,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  8872 0002 82B0     		sub	sp, sp, #8
  8873              	.LCFI295:
  8874              		.cfi_def_cfa_offset 16
-ARM GAS  /tmp/cc34iHaW.s 			page 199
+ARM GAS  /tmp/cc6BtNgK.s 			page 199
 
 
  8875 0004 00AF     		add	r7, sp, #0
@@ -11938,7 +11938,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  8917              		.align	2
  8918              	.L488:
  8919 0034 00000000 		.word	_pFirstModule
-ARM GAS  /tmp/cc34iHaW.s 			page 200
+ARM GAS  /tmp/cc6BtNgK.s 			page 200
 
 
  8920              		.cfi_endproc
@@ -11998,7 +11998,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 2517:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   ENCODE_U32(pPayload, _NumModules);
  8963              		.loc 1 2517 0
  8964 0020 7B68     		ldr	r3, [r7, #4]
-ARM GAS  /tmp/cc34iHaW.s 			page 201
+ARM GAS  /tmp/cc6BtNgK.s 			page 201
 
 
  8965 0022 7B61     		str	r3, [r7, #20]
@@ -12058,7 +12058,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  9016              	.LCFI303:
  9017              		.cfi_def_cfa_register 13
  9018              		@ sp needed
-ARM GAS  /tmp/cc34iHaW.s 			page 202
+ARM GAS  /tmp/cc6BtNgK.s 			page 202
 
 
  9019 006e 80BD     		pop	{r7, pc}
@@ -12118,7 +12118,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  9056              		.cfi_def_cfa_register 7
  9057 0008 7860     		str	r0, [r7, #4]
 2540:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   va_list ParamList;
-ARM GAS  /tmp/cc34iHaW.s 			page 203
+ARM GAS  /tmp/cc6BtNgK.s 			page 203
 
 
 2541:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** #if SEGGER_SYSVIEW_PRINTF_IMPLICIT_FORMAT
@@ -12178,7 +12178,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  9096              	SEGGER_SYSVIEW_PrintfHost:
  9097              	.LFB61:
 2559:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** 
-ARM GAS  /tmp/cc34iHaW.s 			page 204
+ARM GAS  /tmp/cc6BtNgK.s 			page 204
 
 
 2560:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** /*********************************************************************
@@ -12238,7 +12238,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 2589:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   _VPrintHost(s, SEGGER_SYSVIEW_LOG, &ParamList);
  9123              		.loc 1 2589 0
  9124 000e 3B1D     		adds	r3, r7, #4
-ARM GAS  /tmp/cc34iHaW.s 			page 205
+ARM GAS  /tmp/cc6BtNgK.s 			page 205
 
 
  9125 0010 3869     		ldr	r0, [r7, #16]
@@ -12298,7 +12298,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  9162              		.cfi_startproc
  9163              		@ args = 4, pretend = 16, frame = 8
  9164              		@ frame_needed = 1, uses_anonymous_args = 1
-ARM GAS  /tmp/cc34iHaW.s 			page 206
+ARM GAS  /tmp/cc6BtNgK.s 			page 206
 
 
  9165 0000 0FB4     		push	{r0, r1, r2, r3}
@@ -12358,7 +12358,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  9200 001e BDE88040 		pop	{r7, lr}
  9201              	.LCFI326:
  9202              		.cfi_restore 14
-ARM GAS  /tmp/cc34iHaW.s 			page 207
+ARM GAS  /tmp/cc6BtNgK.s 			page 207
 
 
  9203              		.cfi_restore 7
@@ -12418,7 +12418,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  9243 0006 00AF     		add	r7, sp, #0
  9244              	.LCFI331:
  9245              		.cfi_def_cfa_register 7
-ARM GAS  /tmp/cc34iHaW.s 			page 208
+ARM GAS  /tmp/cc6BtNgK.s 			page 208
 
 
 2644:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   va_list ParamList;
@@ -12478,7 +12478,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  9282              		.thumb
  9283              		.thumb_func
  9285              	SEGGER_SYSVIEW_PrintfTargetEx:
-ARM GAS  /tmp/cc34iHaW.s 			page 209
+ARM GAS  /tmp/cc6BtNgK.s 			page 209
 
 
  9286              	.LFB64:
@@ -12538,7 +12538,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  9320              	.LCFI340:
  9321              		.cfi_def_cfa_offset 20
  9322 0020 BD46     		mov	sp, r7
-ARM GAS  /tmp/cc34iHaW.s 			page 210
+ARM GAS  /tmp/cc6BtNgK.s 			page 210
 
 
  9323              	.LCFI341:
@@ -12598,7 +12598,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  9366              	.LCFI346:
  9367              		.cfi_def_cfa_offset 32
  9368 0006 00AF     		add	r7, sp, #0
-ARM GAS  /tmp/cc34iHaW.s 			page 211
+ARM GAS  /tmp/cc6BtNgK.s 			page 211
 
 
  9369              	.LCFI347:
@@ -12658,7 +12658,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 2709:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    sent to the host.
 2710:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *
 2711:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *  Parameters
-ARM GAS  /tmp/cc34iHaW.s 			page 212
+ARM GAS  /tmp/cc6BtNgK.s 			page 212
 
 
 2712:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c **** *    s        - String to be formatted.
@@ -12718,7 +12718,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  9457              	.LCFI359:
  9458              		.cfi_restore 3
  9459              		.cfi_restore 2
-ARM GAS  /tmp/cc34iHaW.s 			page 213
+ARM GAS  /tmp/cc6BtNgK.s 			page 213
 
 
  9460              		.cfi_restore 1
@@ -12778,7 +12778,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
 2737:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   _VPrintTarget(s, SEGGER_SYSVIEW_ERROR, &ParamList);
  9500              		.loc 1 2737 0
  9501 000e 3B1D     		adds	r3, r7, #4
-ARM GAS  /tmp/cc34iHaW.s 			page 214
+ARM GAS  /tmp/cc6BtNgK.s 			page 214
 
 
  9502 0010 3869     		ldr	r0, [r7, #16]
@@ -12838,7 +12838,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  9543              	.LCFI368:
  9544              		.cfi_def_cfa_offset 8
  9545              		.cfi_offset 7, -8
-ARM GAS  /tmp/cc34iHaW.s 			page 215
+ARM GAS  /tmp/cc6BtNgK.s 			page 215
 
 
  9546              		.cfi_offset 14, -4
@@ -12898,7 +12898,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  9594              		.loc 1 2758 0 discriminator 1
  9595 004c 3B6A     		ldr	r3, [r7, #32]
  9596 004e 7F2B     		cmp	r3, #127
-ARM GAS  /tmp/cc34iHaW.s 			page 216
+ARM GAS  /tmp/cc6BtNgK.s 			page 216
 
 
  9597 0050 F0D8     		bhi	.L505
@@ -12958,7 +12958,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  9648              		.loc 1 2761 0 discriminator 4
  9649 00a4 7B69     		ldr	r3, [r7, #20]
  9650              	@ 2761 "../../../SystemView/SEGGER/SEGGER_SYSVIEW.c" 1
-ARM GAS  /tmp/cc34iHaW.s 			page 217
+ARM GAS  /tmp/cc6BtNgK.s 			page 217
 
 
  9651 00a6 83F31188 		msr   basepri, r3  
@@ -13018,7 +13018,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  9694              		.cfi_def_cfa_register 7
  9695 0006 7860     		str	r0, [r7, #4]
  9696              	.LBB151:
-ARM GAS  /tmp/cc34iHaW.s 			page 218
+ARM GAS  /tmp/cc6BtNgK.s 			page 218
 
 
 2775:../../../SystemView/SEGGER/SEGGER_SYSVIEW.c ****   U8* pPayload;
@@ -13078,7 +13078,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  9745 005a D2B2     		uxtb	r2, r2
  9746 005c 1A70     		strb	r2, [r3]
  9747 005e 7B6A     		ldr	r3, [r7, #36]
-ARM GAS  /tmp/cc34iHaW.s 			page 219
+ARM GAS  /tmp/cc6BtNgK.s 			page 219
 
 
  9748 0060 FB60     		str	r3, [r7, #12]
@@ -13138,7 +13138,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  9798              		.loc 1 2784 0 discriminator 4
  9799 00aa 2837     		adds	r7, r7, #40
  9800              	.LCFI376:
-ARM GAS  /tmp/cc34iHaW.s 			page 220
+ARM GAS  /tmp/cc6BtNgK.s 			page 220
 
 
  9801              		.cfi_def_cfa_offset 8
@@ -13198,7 +13198,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  9842 000c 4FF02001 		mov   r1, #32       
  9843 0010 81F31188 		msr   basepri, r1  
  9844              		
-ARM GAS  /tmp/cc34iHaW.s 			page 221
+ARM GAS  /tmp/cc6BtNgK.s 			page 221
 
 
  9845              	@ 0 "" 2
@@ -13258,7 +13258,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  9895 0064 FB61     		str	r3, [r7, #28]
  9896 0066 0023     		movs	r3, #0
  9897 0068 BB61     		str	r3, [r7, #24]
-ARM GAS  /tmp/cc34iHaW.s 			page 222
+ARM GAS  /tmp/cc6BtNgK.s 			page 222
 
 
  9898 006a 0BE0     		b	.L520
@@ -13318,7 +13318,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  9949              	.L523:
  9950              		.align	2
  9951              	.L522:
-ARM GAS  /tmp/cc34iHaW.s 			page 223
+ARM GAS  /tmp/cc6BtNgK.s 			page 223
 
 
  9952 00b0 00000000 		.word	_aPacket
@@ -13378,7 +13378,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  9994              		.cfi_def_cfa_register 13
  9995              		@ sp needed
  9996 001a 5DF8047B 		ldr	r7, [sp], #4
-ARM GAS  /tmp/cc34iHaW.s 			page 224
+ARM GAS  /tmp/cc6BtNgK.s 			page 224
 
 
  9997              	.LCFI388:
@@ -13438,7 +13438,7 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  10039              		.loc 1 2834 0
  10040 0014 0C37     		adds	r7, r7, #12
  10041              	.LCFI392:
-ARM GAS  /tmp/cc34iHaW.s 			page 225
+ARM GAS  /tmp/cc6BtNgK.s 			page 225
 
 
  10042              		.cfi_def_cfa_offset 4
@@ -13483,247 +13483,247 @@ ARM GAS  /tmp/cc34iHaW.s 			page 1
  10084              		.file 4 "<built-in>"
  10085              		.file 5 "../../../SystemView/SEGGER/SEGGER_RTT.h"
  10086              		.file 6 "../../../SystemView/SEGGER/SEGGER_SYSVIEW_Int.h"
-ARM GAS  /tmp/cc34iHaW.s 			page 226
+ARM GAS  /tmp/cc6BtNgK.s 			page 226
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 SEGGER_SYSVIEW.c
-     /tmp/cc34iHaW.s:21     .rodata._abSync:0000000000000000 $d
-     /tmp/cc34iHaW.s:24     .rodata._abSync:0000000000000000 _abSync
-     /tmp/cc34iHaW.s:27     .bss._UpBuffer:0000000000000000 $d
-     /tmp/cc34iHaW.s:30     .bss._UpBuffer:0000000000000000 _UpBuffer
-     /tmp/cc34iHaW.s:33     .bss._DownBuffer:0000000000000000 $d
-     /tmp/cc34iHaW.s:36     .bss._DownBuffer:0000000000000000 _DownBuffer
-     /tmp/cc34iHaW.s:39     .bss._SYSVIEW_Globals:0000000000000000 $d
-     /tmp/cc34iHaW.s:42     .bss._SYSVIEW_Globals:0000000000000000 _SYSVIEW_Globals
-     /tmp/cc34iHaW.s:45     .bss._pFirstModule:0000000000000000 $d
-     /tmp/cc34iHaW.s:48     .bss._pFirstModule:0000000000000000 _pFirstModule
-     /tmp/cc34iHaW.s:53     .bss._NumModules:0000000000000000 _NumModules
-     /tmp/cc34iHaW.s:54     .bss._NumModules:0000000000000000 $d
-     /tmp/cc34iHaW.s:56     .bss._aPacket:0000000000000000 $d
-     /tmp/cc34iHaW.s:59     .bss._aPacket:0000000000000000 _aPacket
-     /tmp/cc34iHaW.s:62     .text._EncodeData:0000000000000000 $t
-     /tmp/cc34iHaW.s:66     .text._EncodeData:0000000000000000 _EncodeData
-     /tmp/cc34iHaW.s:139    .text._EncodeStr:0000000000000000 $t
-     /tmp/cc34iHaW.s:143    .text._EncodeStr:0000000000000000 _EncodeStr
-     /tmp/cc34iHaW.s:270    .text._PreparePacket:0000000000000000 $t
-     /tmp/cc34iHaW.s:274    .text._PreparePacket:0000000000000000 _PreparePacket
-     /tmp/cc34iHaW.s:313    .text._HandleIncomingPacket:0000000000000000 $t
-     /tmp/cc34iHaW.s:317    .text._HandleIncomingPacket:0000000000000000 _HandleIncomingPacket
-     /tmp/cc34iHaW.s:5213   .text.SEGGER_SYSVIEW_Start:0000000000000000 SEGGER_SYSVIEW_Start
-     /tmp/cc34iHaW.s:5480   .text.SEGGER_SYSVIEW_Stop:0000000000000000 SEGGER_SYSVIEW_Stop
-     /tmp/cc34iHaW.s:6205   .text.SEGGER_SYSVIEW_RecordSystime:0000000000000000 SEGGER_SYSVIEW_RecordSystime
-     /tmp/cc34iHaW.s:6087   .text.SEGGER_SYSVIEW_SendTaskList:0000000000000000 SEGGER_SYSVIEW_SendTaskList
-     /tmp/cc34iHaW.s:5556   .text.SEGGER_SYSVIEW_GetSysDesc:0000000000000000 SEGGER_SYSVIEW_GetSysDesc
-     /tmp/cc34iHaW.s:8929   .text.SEGGER_SYSVIEW_SendNumModules:0000000000000000 SEGGER_SYSVIEW_SendNumModules
-     /tmp/cc34iHaW.s:8861   .text.SEGGER_SYSVIEW_SendModuleDescription:0000000000000000 SEGGER_SYSVIEW_SendModuleDescription
-     /tmp/cc34iHaW.s:8668   .text.SEGGER_SYSVIEW_SendModule:0000000000000000 SEGGER_SYSVIEW_SendModule
-     /tmp/cc34iHaW.s:455    .text._TrySendOverflowPacket:0000000000000000 $t
-     /tmp/cc34iHaW.s:459    .text._TrySendOverflowPacket:0000000000000000 _TrySendOverflowPacket
-     /tmp/cc34iHaW.s:614    .text._TrySendOverflowPacket:00000000000000d8 $d
-     /tmp/cc34iHaW.s:620    .text._SendPacket:0000000000000000 $t
-     /tmp/cc34iHaW.s:624    .text._SendPacket:0000000000000000 _SendPacket
-     /tmp/cc34iHaW.s:885    .text._SendPacket:0000000000000188 $d
-     /tmp/cc34iHaW.s:892    .text._VPrintHost:0000000000000000 $t
-     /tmp/cc34iHaW.s:896    .text._VPrintHost:0000000000000000 _VPrintHost
-     /tmp/cc34iHaW.s:1138   .text._VPrintHost:0000000000000178 $d
-     /tmp/cc34iHaW.s:1143   .text._StoreChar:0000000000000000 $t
-     /tmp/cc34iHaW.s:1147   .text._StoreChar:0000000000000000 _StoreChar
-     /tmp/cc34iHaW.s:1319   .text._PrintUnsigned:0000000000000000 $t
-     /tmp/cc34iHaW.s:1323   .text._PrintUnsigned:0000000000000000 _PrintUnsigned
-     /tmp/cc34iHaW.s:1533   .text._PrintUnsigned:0000000000000124 $d
-     /tmp/cc34iHaW.s:10063  .rodata._aV2C.5005:0000000000000000 _aV2C.5005
-     /tmp/cc34iHaW.s:1538   .text._PrintInt:0000000000000000 $t
-     /tmp/cc34iHaW.s:1542   .text._PrintInt:0000000000000000 _PrintInt
-     /tmp/cc34iHaW.s:1747   .text._VPrintTarget:0000000000000000 $t
-     /tmp/cc34iHaW.s:1751   .text._VPrintTarget:0000000000000000 _VPrintTarget
-     /tmp/cc34iHaW.s:1840   .text._VPrintTarget:000000000000007c $d
-     /tmp/cc34iHaW.s:1854   .text._VPrintTarget:00000000000000b4 $t
-     /tmp/cc34iHaW.s:2160   .text._VPrintTarget:00000000000002bc $d
-     /tmp/cc34iHaW.s:2163   .text._VPrintTarget:00000000000002c0 $t
-     /tmp/cc34iHaW.s:2283   .rodata:0000000000000000 $d
-     /tmp/cc34iHaW.s:2287   .text.SEGGER_SYSVIEW_Init:0000000000000000 $t
-ARM GAS  /tmp/cc34iHaW.s 			page 227
+     /tmp/cc6BtNgK.s:21     .rodata._abSync:0000000000000000 $d
+     /tmp/cc6BtNgK.s:24     .rodata._abSync:0000000000000000 _abSync
+     /tmp/cc6BtNgK.s:27     .bss._UpBuffer:0000000000000000 $d
+     /tmp/cc6BtNgK.s:30     .bss._UpBuffer:0000000000000000 _UpBuffer
+     /tmp/cc6BtNgK.s:33     .bss._DownBuffer:0000000000000000 $d
+     /tmp/cc6BtNgK.s:36     .bss._DownBuffer:0000000000000000 _DownBuffer
+     /tmp/cc6BtNgK.s:39     .bss._SYSVIEW_Globals:0000000000000000 $d
+     /tmp/cc6BtNgK.s:42     .bss._SYSVIEW_Globals:0000000000000000 _SYSVIEW_Globals
+     /tmp/cc6BtNgK.s:45     .bss._pFirstModule:0000000000000000 $d
+     /tmp/cc6BtNgK.s:48     .bss._pFirstModule:0000000000000000 _pFirstModule
+     /tmp/cc6BtNgK.s:53     .bss._NumModules:0000000000000000 _NumModules
+     /tmp/cc6BtNgK.s:54     .bss._NumModules:0000000000000000 $d
+     /tmp/cc6BtNgK.s:56     .bss._aPacket:0000000000000000 $d
+     /tmp/cc6BtNgK.s:59     .bss._aPacket:0000000000000000 _aPacket
+     /tmp/cc6BtNgK.s:62     .text._EncodeData:0000000000000000 $t
+     /tmp/cc6BtNgK.s:66     .text._EncodeData:0000000000000000 _EncodeData
+     /tmp/cc6BtNgK.s:139    .text._EncodeStr:0000000000000000 $t
+     /tmp/cc6BtNgK.s:143    .text._EncodeStr:0000000000000000 _EncodeStr
+     /tmp/cc6BtNgK.s:270    .text._PreparePacket:0000000000000000 $t
+     /tmp/cc6BtNgK.s:274    .text._PreparePacket:0000000000000000 _PreparePacket
+     /tmp/cc6BtNgK.s:313    .text._HandleIncomingPacket:0000000000000000 $t
+     /tmp/cc6BtNgK.s:317    .text._HandleIncomingPacket:0000000000000000 _HandleIncomingPacket
+     /tmp/cc6BtNgK.s:5213   .text.SEGGER_SYSVIEW_Start:0000000000000000 SEGGER_SYSVIEW_Start
+     /tmp/cc6BtNgK.s:5480   .text.SEGGER_SYSVIEW_Stop:0000000000000000 SEGGER_SYSVIEW_Stop
+     /tmp/cc6BtNgK.s:6205   .text.SEGGER_SYSVIEW_RecordSystime:0000000000000000 SEGGER_SYSVIEW_RecordSystime
+     /tmp/cc6BtNgK.s:6087   .text.SEGGER_SYSVIEW_SendTaskList:0000000000000000 SEGGER_SYSVIEW_SendTaskList
+     /tmp/cc6BtNgK.s:5556   .text.SEGGER_SYSVIEW_GetSysDesc:0000000000000000 SEGGER_SYSVIEW_GetSysDesc
+     /tmp/cc6BtNgK.s:8929   .text.SEGGER_SYSVIEW_SendNumModules:0000000000000000 SEGGER_SYSVIEW_SendNumModules
+     /tmp/cc6BtNgK.s:8861   .text.SEGGER_SYSVIEW_SendModuleDescription:0000000000000000 SEGGER_SYSVIEW_SendModuleDescription
+     /tmp/cc6BtNgK.s:8668   .text.SEGGER_SYSVIEW_SendModule:0000000000000000 SEGGER_SYSVIEW_SendModule
+     /tmp/cc6BtNgK.s:455    .text._TrySendOverflowPacket:0000000000000000 $t
+     /tmp/cc6BtNgK.s:459    .text._TrySendOverflowPacket:0000000000000000 _TrySendOverflowPacket
+     /tmp/cc6BtNgK.s:614    .text._TrySendOverflowPacket:00000000000000d8 $d
+     /tmp/cc6BtNgK.s:620    .text._SendPacket:0000000000000000 $t
+     /tmp/cc6BtNgK.s:624    .text._SendPacket:0000000000000000 _SendPacket
+     /tmp/cc6BtNgK.s:885    .text._SendPacket:0000000000000188 $d
+     /tmp/cc6BtNgK.s:892    .text._VPrintHost:0000000000000000 $t
+     /tmp/cc6BtNgK.s:896    .text._VPrintHost:0000000000000000 _VPrintHost
+     /tmp/cc6BtNgK.s:1138   .text._VPrintHost:0000000000000178 $d
+     /tmp/cc6BtNgK.s:1143   .text._StoreChar:0000000000000000 $t
+     /tmp/cc6BtNgK.s:1147   .text._StoreChar:0000000000000000 _StoreChar
+     /tmp/cc6BtNgK.s:1319   .text._PrintUnsigned:0000000000000000 $t
+     /tmp/cc6BtNgK.s:1323   .text._PrintUnsigned:0000000000000000 _PrintUnsigned
+     /tmp/cc6BtNgK.s:1533   .text._PrintUnsigned:0000000000000124 $d
+     /tmp/cc6BtNgK.s:10063  .rodata._aV2C.5005:0000000000000000 _aV2C.5005
+     /tmp/cc6BtNgK.s:1538   .text._PrintInt:0000000000000000 $t
+     /tmp/cc6BtNgK.s:1542   .text._PrintInt:0000000000000000 _PrintInt
+     /tmp/cc6BtNgK.s:1747   .text._VPrintTarget:0000000000000000 $t
+     /tmp/cc6BtNgK.s:1751   .text._VPrintTarget:0000000000000000 _VPrintTarget
+     /tmp/cc6BtNgK.s:1840   .text._VPrintTarget:000000000000007c $d
+     /tmp/cc6BtNgK.s:1854   .text._VPrintTarget:00000000000000b4 $t
+     /tmp/cc6BtNgK.s:2160   .text._VPrintTarget:00000000000002bc $d
+     /tmp/cc6BtNgK.s:2163   .text._VPrintTarget:00000000000002c0 $t
+     /tmp/cc6BtNgK.s:2283   .rodata:0000000000000000 $d
+     /tmp/cc6BtNgK.s:2287   .text.SEGGER_SYSVIEW_Init:0000000000000000 $t
+ARM GAS  /tmp/cc6BtNgK.s 			page 227
 
 
-     /tmp/cc34iHaW.s:2292   .text.SEGGER_SYSVIEW_Init:0000000000000000 SEGGER_SYSVIEW_Init
-     /tmp/cc34iHaW.s:2370   .text.SEGGER_SYSVIEW_Init:0000000000000064 $d
-     /tmp/cc34iHaW.s:2379   .text.SEGGER_SYSVIEW_SetRAMBase:0000000000000000 $t
-     /tmp/cc34iHaW.s:2384   .text.SEGGER_SYSVIEW_SetRAMBase:0000000000000000 SEGGER_SYSVIEW_SetRAMBase
-     /tmp/cc34iHaW.s:2422   .text.SEGGER_SYSVIEW_SetRAMBase:0000000000000018 $d
-     /tmp/cc34iHaW.s:2427   .text.SEGGER_SYSVIEW_RecordVoid:0000000000000000 $t
-     /tmp/cc34iHaW.s:2432   .text.SEGGER_SYSVIEW_RecordVoid:0000000000000000 SEGGER_SYSVIEW_RecordVoid
-     /tmp/cc34iHaW.s:2488   .text.SEGGER_SYSVIEW_RecordVoid:0000000000000034 $d
-     /tmp/cc34iHaW.s:2493   .text.SEGGER_SYSVIEW_RecordU32:0000000000000000 $t
-     /tmp/cc34iHaW.s:2498   .text.SEGGER_SYSVIEW_RecordU32:0000000000000000 SEGGER_SYSVIEW_RecordU32
-     /tmp/cc34iHaW.s:2593   .text.SEGGER_SYSVIEW_RecordU32:0000000000000074 $d
-     /tmp/cc34iHaW.s:2598   .text.SEGGER_SYSVIEW_RecordU32x2:0000000000000000 $t
-     /tmp/cc34iHaW.s:2603   .text.SEGGER_SYSVIEW_RecordU32x2:0000000000000000 SEGGER_SYSVIEW_RecordU32x2
-     /tmp/cc34iHaW.s:2734   .text.SEGGER_SYSVIEW_RecordU32x2:00000000000000ac $d
-     /tmp/cc34iHaW.s:2739   .text.SEGGER_SYSVIEW_RecordU32x3:0000000000000000 $t
-     /tmp/cc34iHaW.s:2744   .text.SEGGER_SYSVIEW_RecordU32x3:0000000000000000 SEGGER_SYSVIEW_RecordU32x3
-     /tmp/cc34iHaW.s:2911   .text.SEGGER_SYSVIEW_RecordU32x3:00000000000000e8 $d
-     /tmp/cc34iHaW.s:2916   .text.SEGGER_SYSVIEW_RecordU32x4:0000000000000000 $t
-     /tmp/cc34iHaW.s:2921   .text.SEGGER_SYSVIEW_RecordU32x4:0000000000000000 SEGGER_SYSVIEW_RecordU32x4
-     /tmp/cc34iHaW.s:3123   .text.SEGGER_SYSVIEW_RecordU32x4:0000000000000120 $d
-     /tmp/cc34iHaW.s:3128   .text.SEGGER_SYSVIEW_RecordU32x5:0000000000000000 $t
-     /tmp/cc34iHaW.s:3133   .text.SEGGER_SYSVIEW_RecordU32x5:0000000000000000 SEGGER_SYSVIEW_RecordU32x5
-     /tmp/cc34iHaW.s:3370   .text.SEGGER_SYSVIEW_RecordU32x5:0000000000000158 $d
-     /tmp/cc34iHaW.s:3375   .text.SEGGER_SYSVIEW_RecordU32x6:0000000000000000 $t
-     /tmp/cc34iHaW.s:3380   .text.SEGGER_SYSVIEW_RecordU32x6:0000000000000000 SEGGER_SYSVIEW_RecordU32x6
-     /tmp/cc34iHaW.s:3652   .text.SEGGER_SYSVIEW_RecordU32x6:0000000000000190 $d
-     /tmp/cc34iHaW.s:3657   .text.SEGGER_SYSVIEW_RecordU32x7:0000000000000000 $t
-     /tmp/cc34iHaW.s:3662   .text.SEGGER_SYSVIEW_RecordU32x7:0000000000000000 SEGGER_SYSVIEW_RecordU32x7
-     /tmp/cc34iHaW.s:3969   .text.SEGGER_SYSVIEW_RecordU32x7:00000000000001c8 $d
-     /tmp/cc34iHaW.s:3974   .text.SEGGER_SYSVIEW_RecordU32x8:0000000000000000 $t
-     /tmp/cc34iHaW.s:3979   .text.SEGGER_SYSVIEW_RecordU32x8:0000000000000000 SEGGER_SYSVIEW_RecordU32x8
-     /tmp/cc34iHaW.s:4321   .text.SEGGER_SYSVIEW_RecordU32x8:0000000000000200 $d
-     /tmp/cc34iHaW.s:4326   .text.SEGGER_SYSVIEW_RecordU32x9:0000000000000000 $t
-     /tmp/cc34iHaW.s:4331   .text.SEGGER_SYSVIEW_RecordU32x9:0000000000000000 SEGGER_SYSVIEW_RecordU32x9
-     /tmp/cc34iHaW.s:4708   .text.SEGGER_SYSVIEW_RecordU32x9:000000000000023c $d
-     /tmp/cc34iHaW.s:4713   .text.SEGGER_SYSVIEW_RecordU32x10:0000000000000000 $t
-     /tmp/cc34iHaW.s:4718   .text.SEGGER_SYSVIEW_RecordU32x10:0000000000000000 SEGGER_SYSVIEW_RecordU32x10
-     /tmp/cc34iHaW.s:5130   .text.SEGGER_SYSVIEW_RecordU32x10:0000000000000278 $d
-     /tmp/cc34iHaW.s:5135   .text.SEGGER_SYSVIEW_RecordString:0000000000000000 $t
-     /tmp/cc34iHaW.s:5140   .text.SEGGER_SYSVIEW_RecordString:0000000000000000 SEGGER_SYSVIEW_RecordString
-     /tmp/cc34iHaW.s:5203   .text.SEGGER_SYSVIEW_RecordString:0000000000000044 $d
-     /tmp/cc34iHaW.s:5208   .text.SEGGER_SYSVIEW_Start:0000000000000000 $t
-     /tmp/cc34iHaW.s:5468   .text.SEGGER_SYSVIEW_Start:000000000000016c $d
-     /tmp/cc34iHaW.s:5475   .text.SEGGER_SYSVIEW_Stop:0000000000000000 $t
-     /tmp/cc34iHaW.s:5545   .text.SEGGER_SYSVIEW_Stop:0000000000000040 $d
-     /tmp/cc34iHaW.s:5551   .text.SEGGER_SYSVIEW_GetSysDesc:0000000000000000 $t
-     /tmp/cc34iHaW.s:5767   .text.SEGGER_SYSVIEW_GetSysDesc:000000000000012c $d
-     /tmp/cc34iHaW.s:5773   .text.SEGGER_SYSVIEW_SendTaskInfo:0000000000000000 $t
-     /tmp/cc34iHaW.s:5778   .text.SEGGER_SYSVIEW_SendTaskInfo:0000000000000000 SEGGER_SYSVIEW_SendTaskInfo
-     /tmp/cc34iHaW.s:6076   .text.SEGGER_SYSVIEW_SendTaskInfo:00000000000001c0 $d
-     /tmp/cc34iHaW.s:6082   .text.SEGGER_SYSVIEW_SendTaskList:0000000000000000 $t
-     /tmp/cc34iHaW.s:6123   .text.SEGGER_SYSVIEW_SendTaskList:0000000000000020 $d
-     /tmp/cc34iHaW.s:6128   .text.SEGGER_SYSVIEW_SendSysDesc:0000000000000000 $t
-     /tmp/cc34iHaW.s:6133   .text.SEGGER_SYSVIEW_SendSysDesc:0000000000000000 SEGGER_SYSVIEW_SendSysDesc
-     /tmp/cc34iHaW.s:6195   .text.SEGGER_SYSVIEW_SendSysDesc:0000000000000040 $d
-     /tmp/cc34iHaW.s:6200   .text.SEGGER_SYSVIEW_RecordSystime:0000000000000000 $t
-     /tmp/cc34iHaW.s:6273   .text.SEGGER_SYSVIEW_RecordSystime:000000000000004c $d
-ARM GAS  /tmp/cc34iHaW.s 			page 228
+     /tmp/cc6BtNgK.s:2292   .text.SEGGER_SYSVIEW_Init:0000000000000000 SEGGER_SYSVIEW_Init
+     /tmp/cc6BtNgK.s:2370   .text.SEGGER_SYSVIEW_Init:0000000000000064 $d
+     /tmp/cc6BtNgK.s:2379   .text.SEGGER_SYSVIEW_SetRAMBase:0000000000000000 $t
+     /tmp/cc6BtNgK.s:2384   .text.SEGGER_SYSVIEW_SetRAMBase:0000000000000000 SEGGER_SYSVIEW_SetRAMBase
+     /tmp/cc6BtNgK.s:2422   .text.SEGGER_SYSVIEW_SetRAMBase:0000000000000018 $d
+     /tmp/cc6BtNgK.s:2427   .text.SEGGER_SYSVIEW_RecordVoid:0000000000000000 $t
+     /tmp/cc6BtNgK.s:2432   .text.SEGGER_SYSVIEW_RecordVoid:0000000000000000 SEGGER_SYSVIEW_RecordVoid
+     /tmp/cc6BtNgK.s:2488   .text.SEGGER_SYSVIEW_RecordVoid:0000000000000034 $d
+     /tmp/cc6BtNgK.s:2493   .text.SEGGER_SYSVIEW_RecordU32:0000000000000000 $t
+     /tmp/cc6BtNgK.s:2498   .text.SEGGER_SYSVIEW_RecordU32:0000000000000000 SEGGER_SYSVIEW_RecordU32
+     /tmp/cc6BtNgK.s:2593   .text.SEGGER_SYSVIEW_RecordU32:0000000000000074 $d
+     /tmp/cc6BtNgK.s:2598   .text.SEGGER_SYSVIEW_RecordU32x2:0000000000000000 $t
+     /tmp/cc6BtNgK.s:2603   .text.SEGGER_SYSVIEW_RecordU32x2:0000000000000000 SEGGER_SYSVIEW_RecordU32x2
+     /tmp/cc6BtNgK.s:2734   .text.SEGGER_SYSVIEW_RecordU32x2:00000000000000ac $d
+     /tmp/cc6BtNgK.s:2739   .text.SEGGER_SYSVIEW_RecordU32x3:0000000000000000 $t
+     /tmp/cc6BtNgK.s:2744   .text.SEGGER_SYSVIEW_RecordU32x3:0000000000000000 SEGGER_SYSVIEW_RecordU32x3
+     /tmp/cc6BtNgK.s:2911   .text.SEGGER_SYSVIEW_RecordU32x3:00000000000000e8 $d
+     /tmp/cc6BtNgK.s:2916   .text.SEGGER_SYSVIEW_RecordU32x4:0000000000000000 $t
+     /tmp/cc6BtNgK.s:2921   .text.SEGGER_SYSVIEW_RecordU32x4:0000000000000000 SEGGER_SYSVIEW_RecordU32x4
+     /tmp/cc6BtNgK.s:3123   .text.SEGGER_SYSVIEW_RecordU32x4:0000000000000120 $d
+     /tmp/cc6BtNgK.s:3128   .text.SEGGER_SYSVIEW_RecordU32x5:0000000000000000 $t
+     /tmp/cc6BtNgK.s:3133   .text.SEGGER_SYSVIEW_RecordU32x5:0000000000000000 SEGGER_SYSVIEW_RecordU32x5
+     /tmp/cc6BtNgK.s:3370   .text.SEGGER_SYSVIEW_RecordU32x5:0000000000000158 $d
+     /tmp/cc6BtNgK.s:3375   .text.SEGGER_SYSVIEW_RecordU32x6:0000000000000000 $t
+     /tmp/cc6BtNgK.s:3380   .text.SEGGER_SYSVIEW_RecordU32x6:0000000000000000 SEGGER_SYSVIEW_RecordU32x6
+     /tmp/cc6BtNgK.s:3652   .text.SEGGER_SYSVIEW_RecordU32x6:0000000000000190 $d
+     /tmp/cc6BtNgK.s:3657   .text.SEGGER_SYSVIEW_RecordU32x7:0000000000000000 $t
+     /tmp/cc6BtNgK.s:3662   .text.SEGGER_SYSVIEW_RecordU32x7:0000000000000000 SEGGER_SYSVIEW_RecordU32x7
+     /tmp/cc6BtNgK.s:3969   .text.SEGGER_SYSVIEW_RecordU32x7:00000000000001c8 $d
+     /tmp/cc6BtNgK.s:3974   .text.SEGGER_SYSVIEW_RecordU32x8:0000000000000000 $t
+     /tmp/cc6BtNgK.s:3979   .text.SEGGER_SYSVIEW_RecordU32x8:0000000000000000 SEGGER_SYSVIEW_RecordU32x8
+     /tmp/cc6BtNgK.s:4321   .text.SEGGER_SYSVIEW_RecordU32x8:0000000000000200 $d
+     /tmp/cc6BtNgK.s:4326   .text.SEGGER_SYSVIEW_RecordU32x9:0000000000000000 $t
+     /tmp/cc6BtNgK.s:4331   .text.SEGGER_SYSVIEW_RecordU32x9:0000000000000000 SEGGER_SYSVIEW_RecordU32x9
+     /tmp/cc6BtNgK.s:4708   .text.SEGGER_SYSVIEW_RecordU32x9:000000000000023c $d
+     /tmp/cc6BtNgK.s:4713   .text.SEGGER_SYSVIEW_RecordU32x10:0000000000000000 $t
+     /tmp/cc6BtNgK.s:4718   .text.SEGGER_SYSVIEW_RecordU32x10:0000000000000000 SEGGER_SYSVIEW_RecordU32x10
+     /tmp/cc6BtNgK.s:5130   .text.SEGGER_SYSVIEW_RecordU32x10:0000000000000278 $d
+     /tmp/cc6BtNgK.s:5135   .text.SEGGER_SYSVIEW_RecordString:0000000000000000 $t
+     /tmp/cc6BtNgK.s:5140   .text.SEGGER_SYSVIEW_RecordString:0000000000000000 SEGGER_SYSVIEW_RecordString
+     /tmp/cc6BtNgK.s:5203   .text.SEGGER_SYSVIEW_RecordString:0000000000000044 $d
+     /tmp/cc6BtNgK.s:5208   .text.SEGGER_SYSVIEW_Start:0000000000000000 $t
+     /tmp/cc6BtNgK.s:5468   .text.SEGGER_SYSVIEW_Start:000000000000016c $d
+     /tmp/cc6BtNgK.s:5475   .text.SEGGER_SYSVIEW_Stop:0000000000000000 $t
+     /tmp/cc6BtNgK.s:5545   .text.SEGGER_SYSVIEW_Stop:0000000000000040 $d
+     /tmp/cc6BtNgK.s:5551   .text.SEGGER_SYSVIEW_GetSysDesc:0000000000000000 $t
+     /tmp/cc6BtNgK.s:5767   .text.SEGGER_SYSVIEW_GetSysDesc:000000000000012c $d
+     /tmp/cc6BtNgK.s:5773   .text.SEGGER_SYSVIEW_SendTaskInfo:0000000000000000 $t
+     /tmp/cc6BtNgK.s:5778   .text.SEGGER_SYSVIEW_SendTaskInfo:0000000000000000 SEGGER_SYSVIEW_SendTaskInfo
+     /tmp/cc6BtNgK.s:6076   .text.SEGGER_SYSVIEW_SendTaskInfo:00000000000001c0 $d
+     /tmp/cc6BtNgK.s:6082   .text.SEGGER_SYSVIEW_SendTaskList:0000000000000000 $t
+     /tmp/cc6BtNgK.s:6123   .text.SEGGER_SYSVIEW_SendTaskList:0000000000000020 $d
+     /tmp/cc6BtNgK.s:6128   .text.SEGGER_SYSVIEW_SendSysDesc:0000000000000000 $t
+     /tmp/cc6BtNgK.s:6133   .text.SEGGER_SYSVIEW_SendSysDesc:0000000000000000 SEGGER_SYSVIEW_SendSysDesc
+     /tmp/cc6BtNgK.s:6195   .text.SEGGER_SYSVIEW_SendSysDesc:0000000000000040 $d
+     /tmp/cc6BtNgK.s:6200   .text.SEGGER_SYSVIEW_RecordSystime:0000000000000000 $t
+     /tmp/cc6BtNgK.s:6273   .text.SEGGER_SYSVIEW_RecordSystime:000000000000004c $d
+ARM GAS  /tmp/cc6BtNgK.s 			page 228
 
 
-     /tmp/cc34iHaW.s:6279   .text.SEGGER_SYSVIEW_RecordEnterISR:0000000000000000 $t
-     /tmp/cc34iHaW.s:6284   .text.SEGGER_SYSVIEW_RecordEnterISR:0000000000000000 SEGGER_SYSVIEW_RecordEnterISR
-     /tmp/cc34iHaW.s:6382   .text.SEGGER_SYSVIEW_RecordEnterISR:0000000000000078 $d
-     /tmp/cc34iHaW.s:6388   .text.SEGGER_SYSVIEW_RecordExitISR:0000000000000000 $t
-     /tmp/cc34iHaW.s:6393   .text.SEGGER_SYSVIEW_RecordExitISR:0000000000000000 SEGGER_SYSVIEW_RecordExitISR
-     /tmp/cc34iHaW.s:6448   .text.SEGGER_SYSVIEW_RecordExitISR:0000000000000034 $d
-     /tmp/cc34iHaW.s:6453   .text.SEGGER_SYSVIEW_RecordExitISRToScheduler:0000000000000000 $t
-     /tmp/cc34iHaW.s:6458   .text.SEGGER_SYSVIEW_RecordExitISRToScheduler:0000000000000000 SEGGER_SYSVIEW_RecordExitISRToScheduler
-     /tmp/cc34iHaW.s:6513   .text.SEGGER_SYSVIEW_RecordExitISRToScheduler:0000000000000034 $d
-     /tmp/cc34iHaW.s:6518   .text.SEGGER_SYSVIEW_RecordEnterTimer:0000000000000000 $t
-     /tmp/cc34iHaW.s:6523   .text.SEGGER_SYSVIEW_RecordEnterTimer:0000000000000000 SEGGER_SYSVIEW_RecordEnterTimer
-     /tmp/cc34iHaW.s:6621   .text.SEGGER_SYSVIEW_RecordEnterTimer:0000000000000078 $d
-     /tmp/cc34iHaW.s:6627   .text.SEGGER_SYSVIEW_RecordExitTimer:0000000000000000 $t
-     /tmp/cc34iHaW.s:6632   .text.SEGGER_SYSVIEW_RecordExitTimer:0000000000000000 SEGGER_SYSVIEW_RecordExitTimer
-     /tmp/cc34iHaW.s:6687   .text.SEGGER_SYSVIEW_RecordExitTimer:0000000000000034 $d
-     /tmp/cc34iHaW.s:6692   .text.SEGGER_SYSVIEW_RecordEndCall:0000000000000000 $t
-     /tmp/cc34iHaW.s:6697   .text.SEGGER_SYSVIEW_RecordEndCall:0000000000000000 SEGGER_SYSVIEW_RecordEndCall
-     /tmp/cc34iHaW.s:6791   .text.SEGGER_SYSVIEW_RecordEndCall:0000000000000070 $d
-     /tmp/cc34iHaW.s:6796   .text.SEGGER_SYSVIEW_RecordEndCallU32:0000000000000000 $t
-     /tmp/cc34iHaW.s:6801   .text.SEGGER_SYSVIEW_RecordEndCallU32:0000000000000000 SEGGER_SYSVIEW_RecordEndCallU32
-     /tmp/cc34iHaW.s:6931   .text.SEGGER_SYSVIEW_RecordEndCallU32:00000000000000ac $d
-     /tmp/cc34iHaW.s:6936   .text.SEGGER_SYSVIEW_OnIdle:0000000000000000 $t
-     /tmp/cc34iHaW.s:6941   .text.SEGGER_SYSVIEW_OnIdle:0000000000000000 SEGGER_SYSVIEW_OnIdle
-     /tmp/cc34iHaW.s:6996   .text.SEGGER_SYSVIEW_OnIdle:0000000000000034 $d
-     /tmp/cc34iHaW.s:7001   .text.SEGGER_SYSVIEW_OnTaskCreate:0000000000000000 $t
-     /tmp/cc34iHaW.s:7006   .text.SEGGER_SYSVIEW_OnTaskCreate:0000000000000000 SEGGER_SYSVIEW_OnTaskCreate
-     /tmp/cc34iHaW.s:7107   .text.SEGGER_SYSVIEW_OnTaskCreate:000000000000007c $d
-     /tmp/cc34iHaW.s:7113   .text.SEGGER_SYSVIEW_OnTaskTerminate:0000000000000000 $t
-     /tmp/cc34iHaW.s:7118   .text.SEGGER_SYSVIEW_OnTaskTerminate:0000000000000000 SEGGER_SYSVIEW_OnTaskTerminate
-     /tmp/cc34iHaW.s:7219   .text.SEGGER_SYSVIEW_OnTaskTerminate:000000000000007c $d
-     /tmp/cc34iHaW.s:7225   .text.SEGGER_SYSVIEW_OnTaskStartExec:0000000000000000 $t
-     /tmp/cc34iHaW.s:7230   .text.SEGGER_SYSVIEW_OnTaskStartExec:0000000000000000 SEGGER_SYSVIEW_OnTaskStartExec
-     /tmp/cc34iHaW.s:7331   .text.SEGGER_SYSVIEW_OnTaskStartExec:000000000000007c $d
-     /tmp/cc34iHaW.s:7337   .text.SEGGER_SYSVIEW_OnTaskStopExec:0000000000000000 $t
-     /tmp/cc34iHaW.s:7342   .text.SEGGER_SYSVIEW_OnTaskStopExec:0000000000000000 SEGGER_SYSVIEW_OnTaskStopExec
-     /tmp/cc34iHaW.s:7397   .text.SEGGER_SYSVIEW_OnTaskStopExec:0000000000000034 $d
-     /tmp/cc34iHaW.s:7402   .text.SEGGER_SYSVIEW_OnTaskStartReady:0000000000000000 $t
-     /tmp/cc34iHaW.s:7407   .text.SEGGER_SYSVIEW_OnTaskStartReady:0000000000000000 SEGGER_SYSVIEW_OnTaskStartReady
-     /tmp/cc34iHaW.s:7508   .text.SEGGER_SYSVIEW_OnTaskStartReady:000000000000007c $d
-     /tmp/cc34iHaW.s:7514   .text.SEGGER_SYSVIEW_OnTaskStopReady:0000000000000000 $t
-     /tmp/cc34iHaW.s:7519   .text.SEGGER_SYSVIEW_OnTaskStopReady:0000000000000000 SEGGER_SYSVIEW_OnTaskStopReady
-     /tmp/cc34iHaW.s:7656   .text.SEGGER_SYSVIEW_OnTaskStopReady:00000000000000b8 $d
-     /tmp/cc34iHaW.s:7662   .text.SEGGER_SYSVIEW_OnUserStart:0000000000000000 $t
-     /tmp/cc34iHaW.s:7667   .text.SEGGER_SYSVIEW_OnUserStart:0000000000000000 SEGGER_SYSVIEW_OnUserStart
-     /tmp/cc34iHaW.s:7761   .text.SEGGER_SYSVIEW_OnUserStart:0000000000000070 $d
-     /tmp/cc34iHaW.s:7766   .text.SEGGER_SYSVIEW_OnUserStop:0000000000000000 $t
-     /tmp/cc34iHaW.s:7771   .text.SEGGER_SYSVIEW_OnUserStop:0000000000000000 SEGGER_SYSVIEW_OnUserStop
-     /tmp/cc34iHaW.s:7865   .text.SEGGER_SYSVIEW_OnUserStop:0000000000000070 $d
-     /tmp/cc34iHaW.s:7870   .text.SEGGER_SYSVIEW_NameResource:0000000000000000 $t
-     /tmp/cc34iHaW.s:7875   .text.SEGGER_SYSVIEW_NameResource:0000000000000000 SEGGER_SYSVIEW_NameResource
-     /tmp/cc34iHaW.s:7980   .text.SEGGER_SYSVIEW_NameResource:0000000000000088 $d
-     /tmp/cc34iHaW.s:7986   .text.SEGGER_SYSVIEW_SendPacket:0000000000000000 $t
-     /tmp/cc34iHaW.s:7991   .text.SEGGER_SYSVIEW_SendPacket:0000000000000000 SEGGER_SYSVIEW_SendPacket
-     /tmp/cc34iHaW.s:8052   .text.SEGGER_SYSVIEW_EncodeU32:0000000000000000 $t
-     /tmp/cc34iHaW.s:8057   .text.SEGGER_SYSVIEW_EncodeU32:0000000000000000 SEGGER_SYSVIEW_EncodeU32
-     /tmp/cc34iHaW.s:8131   .text.SEGGER_SYSVIEW_EncodeString:0000000000000000 $t
-     /tmp/cc34iHaW.s:8136   .text.SEGGER_SYSVIEW_EncodeString:0000000000000000 SEGGER_SYSVIEW_EncodeString
-ARM GAS  /tmp/cc34iHaW.s 			page 229
+     /tmp/cc6BtNgK.s:6279   .text.SEGGER_SYSVIEW_RecordEnterISR:0000000000000000 $t
+     /tmp/cc6BtNgK.s:6284   .text.SEGGER_SYSVIEW_RecordEnterISR:0000000000000000 SEGGER_SYSVIEW_RecordEnterISR
+     /tmp/cc6BtNgK.s:6382   .text.SEGGER_SYSVIEW_RecordEnterISR:0000000000000078 $d
+     /tmp/cc6BtNgK.s:6388   .text.SEGGER_SYSVIEW_RecordExitISR:0000000000000000 $t
+     /tmp/cc6BtNgK.s:6393   .text.SEGGER_SYSVIEW_RecordExitISR:0000000000000000 SEGGER_SYSVIEW_RecordExitISR
+     /tmp/cc6BtNgK.s:6448   .text.SEGGER_SYSVIEW_RecordExitISR:0000000000000034 $d
+     /tmp/cc6BtNgK.s:6453   .text.SEGGER_SYSVIEW_RecordExitISRToScheduler:0000000000000000 $t
+     /tmp/cc6BtNgK.s:6458   .text.SEGGER_SYSVIEW_RecordExitISRToScheduler:0000000000000000 SEGGER_SYSVIEW_RecordExitISRToScheduler
+     /tmp/cc6BtNgK.s:6513   .text.SEGGER_SYSVIEW_RecordExitISRToScheduler:0000000000000034 $d
+     /tmp/cc6BtNgK.s:6518   .text.SEGGER_SYSVIEW_RecordEnterTimer:0000000000000000 $t
+     /tmp/cc6BtNgK.s:6523   .text.SEGGER_SYSVIEW_RecordEnterTimer:0000000000000000 SEGGER_SYSVIEW_RecordEnterTimer
+     /tmp/cc6BtNgK.s:6621   .text.SEGGER_SYSVIEW_RecordEnterTimer:0000000000000078 $d
+     /tmp/cc6BtNgK.s:6627   .text.SEGGER_SYSVIEW_RecordExitTimer:0000000000000000 $t
+     /tmp/cc6BtNgK.s:6632   .text.SEGGER_SYSVIEW_RecordExitTimer:0000000000000000 SEGGER_SYSVIEW_RecordExitTimer
+     /tmp/cc6BtNgK.s:6687   .text.SEGGER_SYSVIEW_RecordExitTimer:0000000000000034 $d
+     /tmp/cc6BtNgK.s:6692   .text.SEGGER_SYSVIEW_RecordEndCall:0000000000000000 $t
+     /tmp/cc6BtNgK.s:6697   .text.SEGGER_SYSVIEW_RecordEndCall:0000000000000000 SEGGER_SYSVIEW_RecordEndCall
+     /tmp/cc6BtNgK.s:6791   .text.SEGGER_SYSVIEW_RecordEndCall:0000000000000070 $d
+     /tmp/cc6BtNgK.s:6796   .text.SEGGER_SYSVIEW_RecordEndCallU32:0000000000000000 $t
+     /tmp/cc6BtNgK.s:6801   .text.SEGGER_SYSVIEW_RecordEndCallU32:0000000000000000 SEGGER_SYSVIEW_RecordEndCallU32
+     /tmp/cc6BtNgK.s:6931   .text.SEGGER_SYSVIEW_RecordEndCallU32:00000000000000ac $d
+     /tmp/cc6BtNgK.s:6936   .text.SEGGER_SYSVIEW_OnIdle:0000000000000000 $t
+     /tmp/cc6BtNgK.s:6941   .text.SEGGER_SYSVIEW_OnIdle:0000000000000000 SEGGER_SYSVIEW_OnIdle
+     /tmp/cc6BtNgK.s:6996   .text.SEGGER_SYSVIEW_OnIdle:0000000000000034 $d
+     /tmp/cc6BtNgK.s:7001   .text.SEGGER_SYSVIEW_OnTaskCreate:0000000000000000 $t
+     /tmp/cc6BtNgK.s:7006   .text.SEGGER_SYSVIEW_OnTaskCreate:0000000000000000 SEGGER_SYSVIEW_OnTaskCreate
+     /tmp/cc6BtNgK.s:7107   .text.SEGGER_SYSVIEW_OnTaskCreate:000000000000007c $d
+     /tmp/cc6BtNgK.s:7113   .text.SEGGER_SYSVIEW_OnTaskTerminate:0000000000000000 $t
+     /tmp/cc6BtNgK.s:7118   .text.SEGGER_SYSVIEW_OnTaskTerminate:0000000000000000 SEGGER_SYSVIEW_OnTaskTerminate
+     /tmp/cc6BtNgK.s:7219   .text.SEGGER_SYSVIEW_OnTaskTerminate:000000000000007c $d
+     /tmp/cc6BtNgK.s:7225   .text.SEGGER_SYSVIEW_OnTaskStartExec:0000000000000000 $t
+     /tmp/cc6BtNgK.s:7230   .text.SEGGER_SYSVIEW_OnTaskStartExec:0000000000000000 SEGGER_SYSVIEW_OnTaskStartExec
+     /tmp/cc6BtNgK.s:7331   .text.SEGGER_SYSVIEW_OnTaskStartExec:000000000000007c $d
+     /tmp/cc6BtNgK.s:7337   .text.SEGGER_SYSVIEW_OnTaskStopExec:0000000000000000 $t
+     /tmp/cc6BtNgK.s:7342   .text.SEGGER_SYSVIEW_OnTaskStopExec:0000000000000000 SEGGER_SYSVIEW_OnTaskStopExec
+     /tmp/cc6BtNgK.s:7397   .text.SEGGER_SYSVIEW_OnTaskStopExec:0000000000000034 $d
+     /tmp/cc6BtNgK.s:7402   .text.SEGGER_SYSVIEW_OnTaskStartReady:0000000000000000 $t
+     /tmp/cc6BtNgK.s:7407   .text.SEGGER_SYSVIEW_OnTaskStartReady:0000000000000000 SEGGER_SYSVIEW_OnTaskStartReady
+     /tmp/cc6BtNgK.s:7508   .text.SEGGER_SYSVIEW_OnTaskStartReady:000000000000007c $d
+     /tmp/cc6BtNgK.s:7514   .text.SEGGER_SYSVIEW_OnTaskStopReady:0000000000000000 $t
+     /tmp/cc6BtNgK.s:7519   .text.SEGGER_SYSVIEW_OnTaskStopReady:0000000000000000 SEGGER_SYSVIEW_OnTaskStopReady
+     /tmp/cc6BtNgK.s:7656   .text.SEGGER_SYSVIEW_OnTaskStopReady:00000000000000b8 $d
+     /tmp/cc6BtNgK.s:7662   .text.SEGGER_SYSVIEW_OnUserStart:0000000000000000 $t
+     /tmp/cc6BtNgK.s:7667   .text.SEGGER_SYSVIEW_OnUserStart:0000000000000000 SEGGER_SYSVIEW_OnUserStart
+     /tmp/cc6BtNgK.s:7761   .text.SEGGER_SYSVIEW_OnUserStart:0000000000000070 $d
+     /tmp/cc6BtNgK.s:7766   .text.SEGGER_SYSVIEW_OnUserStop:0000000000000000 $t
+     /tmp/cc6BtNgK.s:7771   .text.SEGGER_SYSVIEW_OnUserStop:0000000000000000 SEGGER_SYSVIEW_OnUserStop
+     /tmp/cc6BtNgK.s:7865   .text.SEGGER_SYSVIEW_OnUserStop:0000000000000070 $d
+     /tmp/cc6BtNgK.s:7870   .text.SEGGER_SYSVIEW_NameResource:0000000000000000 $t
+     /tmp/cc6BtNgK.s:7875   .text.SEGGER_SYSVIEW_NameResource:0000000000000000 SEGGER_SYSVIEW_NameResource
+     /tmp/cc6BtNgK.s:7980   .text.SEGGER_SYSVIEW_NameResource:0000000000000088 $d
+     /tmp/cc6BtNgK.s:7986   .text.SEGGER_SYSVIEW_SendPacket:0000000000000000 $t
+     /tmp/cc6BtNgK.s:7991   .text.SEGGER_SYSVIEW_SendPacket:0000000000000000 SEGGER_SYSVIEW_SendPacket
+     /tmp/cc6BtNgK.s:8052   .text.SEGGER_SYSVIEW_EncodeU32:0000000000000000 $t
+     /tmp/cc6BtNgK.s:8057   .text.SEGGER_SYSVIEW_EncodeU32:0000000000000000 SEGGER_SYSVIEW_EncodeU32
+     /tmp/cc6BtNgK.s:8131   .text.SEGGER_SYSVIEW_EncodeString:0000000000000000 $t
+     /tmp/cc6BtNgK.s:8136   .text.SEGGER_SYSVIEW_EncodeString:0000000000000000 SEGGER_SYSVIEW_EncodeString
+ARM GAS  /tmp/cc6BtNgK.s 			page 229
 
 
-     /tmp/cc34iHaW.s:8176   .text.SEGGER_SYSVIEW_EncodeData:0000000000000000 $t
-     /tmp/cc34iHaW.s:8181   .text.SEGGER_SYSVIEW_EncodeData:0000000000000000 SEGGER_SYSVIEW_EncodeData
-     /tmp/cc34iHaW.s:8221   .text.SEGGER_SYSVIEW_EncodeId:0000000000000000 $t
-     /tmp/cc34iHaW.s:8226   .text.SEGGER_SYSVIEW_EncodeId:0000000000000000 SEGGER_SYSVIEW_EncodeId
-     /tmp/cc34iHaW.s:8306   .text.SEGGER_SYSVIEW_EncodeId:000000000000005c $d
-     /tmp/cc34iHaW.s:8311   .text.SEGGER_SYSVIEW_ShrinkId:0000000000000000 $t
-     /tmp/cc34iHaW.s:8316   .text.SEGGER_SYSVIEW_ShrinkId:0000000000000000 SEGGER_SYSVIEW_ShrinkId
-     /tmp/cc34iHaW.s:8357   .text.SEGGER_SYSVIEW_ShrinkId:0000000000000020 $d
-     /tmp/cc34iHaW.s:8362   .text.SEGGER_SYSVIEW_RegisterModule:0000000000000000 $t
-     /tmp/cc34iHaW.s:8367   .text.SEGGER_SYSVIEW_RegisterModule:0000000000000000 SEGGER_SYSVIEW_RegisterModule
-     /tmp/cc34iHaW.s:8478   .text.SEGGER_SYSVIEW_RegisterModule:0000000000000088 $d
-     /tmp/cc34iHaW.s:8484   .text.SEGGER_SYSVIEW_RecordModuleDescription:0000000000000000 $t
-     /tmp/cc34iHaW.s:8489   .text.SEGGER_SYSVIEW_RecordModuleDescription:0000000000000000 SEGGER_SYSVIEW_RecordModuleDescription
-     /tmp/cc34iHaW.s:8657   .text.SEGGER_SYSVIEW_RecordModuleDescription:00000000000000e8 $d
-     /tmp/cc34iHaW.s:8663   .text.SEGGER_SYSVIEW_SendModule:0000000000000000 $t
-     /tmp/cc34iHaW.s:8850   .text.SEGGER_SYSVIEW_SendModule:00000000000000f4 $d
-     /tmp/cc34iHaW.s:8856   .text.SEGGER_SYSVIEW_SendModuleDescription:0000000000000000 $t
-     /tmp/cc34iHaW.s:8919   .text.SEGGER_SYSVIEW_SendModuleDescription:0000000000000034 $d
-     /tmp/cc34iHaW.s:8924   .text.SEGGER_SYSVIEW_SendNumModules:0000000000000000 $t
-     /tmp/cc34iHaW.s:9023   .text.SEGGER_SYSVIEW_SendNumModules:0000000000000070 $d
-     /tmp/cc34iHaW.s:9029   .text.SEGGER_SYSVIEW_PrintfHostEx:0000000000000000 $t
-     /tmp/cc34iHaW.s:9034   .text.SEGGER_SYSVIEW_PrintfHostEx:0000000000000000 SEGGER_SYSVIEW_PrintfHostEx
-     /tmp/cc34iHaW.s:9091   .text.SEGGER_SYSVIEW_PrintfHost:0000000000000000 $t
-     /tmp/cc34iHaW.s:9096   .text.SEGGER_SYSVIEW_PrintfHost:0000000000000000 SEGGER_SYSVIEW_PrintfHost
-     /tmp/cc34iHaW.s:9154   .text.SEGGER_SYSVIEW_WarnfHost:0000000000000000 $t
-     /tmp/cc34iHaW.s:9159   .text.SEGGER_SYSVIEW_WarnfHost:0000000000000000 SEGGER_SYSVIEW_WarnfHost
-     /tmp/cc34iHaW.s:9217   .text.SEGGER_SYSVIEW_ErrorfHost:0000000000000000 $t
-     /tmp/cc34iHaW.s:9222   .text.SEGGER_SYSVIEW_ErrorfHost:0000000000000000 SEGGER_SYSVIEW_ErrorfHost
-     /tmp/cc34iHaW.s:9280   .text.SEGGER_SYSVIEW_PrintfTargetEx:0000000000000000 $t
-     /tmp/cc34iHaW.s:9285   .text.SEGGER_SYSVIEW_PrintfTargetEx:0000000000000000 SEGGER_SYSVIEW_PrintfTargetEx
-     /tmp/cc34iHaW.s:9342   .text.SEGGER_SYSVIEW_PrintfTarget:0000000000000000 $t
-     /tmp/cc34iHaW.s:9347   .text.SEGGER_SYSVIEW_PrintfTarget:0000000000000000 SEGGER_SYSVIEW_PrintfTarget
-     /tmp/cc34iHaW.s:9405   .text.SEGGER_SYSVIEW_WarnfTarget:0000000000000000 $t
-     /tmp/cc34iHaW.s:9410   .text.SEGGER_SYSVIEW_WarnfTarget:0000000000000000 SEGGER_SYSVIEW_WarnfTarget
-     /tmp/cc34iHaW.s:9468   .text.SEGGER_SYSVIEW_ErrorfTarget:0000000000000000 $t
-     /tmp/cc34iHaW.s:9473   .text.SEGGER_SYSVIEW_ErrorfTarget:0000000000000000 SEGGER_SYSVIEW_ErrorfTarget
-     /tmp/cc34iHaW.s:9531   .text.SEGGER_SYSVIEW_Print:0000000000000000 $t
-     /tmp/cc34iHaW.s:9536   .text.SEGGER_SYSVIEW_Print:0000000000000000 SEGGER_SYSVIEW_Print
-     /tmp/cc34iHaW.s:9668   .text.SEGGER_SYSVIEW_Print:00000000000000b0 $d
-     /tmp/cc34iHaW.s:9673   .text.SEGGER_SYSVIEW_Warn:0000000000000000 $t
-     /tmp/cc34iHaW.s:9678   .text.SEGGER_SYSVIEW_Warn:0000000000000000 SEGGER_SYSVIEW_Warn
-     /tmp/cc34iHaW.s:9810   .text.SEGGER_SYSVIEW_Warn:00000000000000b0 $d
-     /tmp/cc34iHaW.s:9815   .text.SEGGER_SYSVIEW_Error:0000000000000000 $t
-     /tmp/cc34iHaW.s:9820   .text.SEGGER_SYSVIEW_Error:0000000000000000 SEGGER_SYSVIEW_Error
-     /tmp/cc34iHaW.s:9952   .text.SEGGER_SYSVIEW_Error:00000000000000b0 $d
-     /tmp/cc34iHaW.s:9957   .text.SEGGER_SYSVIEW_EnableEvents:0000000000000000 $t
-     /tmp/cc34iHaW.s:9962   .text.SEGGER_SYSVIEW_EnableEvents:0000000000000000 SEGGER_SYSVIEW_EnableEvents
-     /tmp/cc34iHaW.s:10004  .text.SEGGER_SYSVIEW_EnableEvents:0000000000000020 $d
-     /tmp/cc34iHaW.s:10009  .text.SEGGER_SYSVIEW_DisableEvents:0000000000000000 $t
-     /tmp/cc34iHaW.s:10014  .text.SEGGER_SYSVIEW_DisableEvents:0000000000000000 SEGGER_SYSVIEW_DisableEvents
-     /tmp/cc34iHaW.s:10055  .text.SEGGER_SYSVIEW_DisableEvents:0000000000000020 $d
-     /tmp/cc34iHaW.s:10060  .rodata._aV2C.5005:0000000000000000 $d
+     /tmp/cc6BtNgK.s:8176   .text.SEGGER_SYSVIEW_EncodeData:0000000000000000 $t
+     /tmp/cc6BtNgK.s:8181   .text.SEGGER_SYSVIEW_EncodeData:0000000000000000 SEGGER_SYSVIEW_EncodeData
+     /tmp/cc6BtNgK.s:8221   .text.SEGGER_SYSVIEW_EncodeId:0000000000000000 $t
+     /tmp/cc6BtNgK.s:8226   .text.SEGGER_SYSVIEW_EncodeId:0000000000000000 SEGGER_SYSVIEW_EncodeId
+     /tmp/cc6BtNgK.s:8306   .text.SEGGER_SYSVIEW_EncodeId:000000000000005c $d
+     /tmp/cc6BtNgK.s:8311   .text.SEGGER_SYSVIEW_ShrinkId:0000000000000000 $t
+     /tmp/cc6BtNgK.s:8316   .text.SEGGER_SYSVIEW_ShrinkId:0000000000000000 SEGGER_SYSVIEW_ShrinkId
+     /tmp/cc6BtNgK.s:8357   .text.SEGGER_SYSVIEW_ShrinkId:0000000000000020 $d
+     /tmp/cc6BtNgK.s:8362   .text.SEGGER_SYSVIEW_RegisterModule:0000000000000000 $t
+     /tmp/cc6BtNgK.s:8367   .text.SEGGER_SYSVIEW_RegisterModule:0000000000000000 SEGGER_SYSVIEW_RegisterModule
+     /tmp/cc6BtNgK.s:8478   .text.SEGGER_SYSVIEW_RegisterModule:0000000000000088 $d
+     /tmp/cc6BtNgK.s:8484   .text.SEGGER_SYSVIEW_RecordModuleDescription:0000000000000000 $t
+     /tmp/cc6BtNgK.s:8489   .text.SEGGER_SYSVIEW_RecordModuleDescription:0000000000000000 SEGGER_SYSVIEW_RecordModuleDescription
+     /tmp/cc6BtNgK.s:8657   .text.SEGGER_SYSVIEW_RecordModuleDescription:00000000000000e8 $d
+     /tmp/cc6BtNgK.s:8663   .text.SEGGER_SYSVIEW_SendModule:0000000000000000 $t
+     /tmp/cc6BtNgK.s:8850   .text.SEGGER_SYSVIEW_SendModule:00000000000000f4 $d
+     /tmp/cc6BtNgK.s:8856   .text.SEGGER_SYSVIEW_SendModuleDescription:0000000000000000 $t
+     /tmp/cc6BtNgK.s:8919   .text.SEGGER_SYSVIEW_SendModuleDescription:0000000000000034 $d
+     /tmp/cc6BtNgK.s:8924   .text.SEGGER_SYSVIEW_SendNumModules:0000000000000000 $t
+     /tmp/cc6BtNgK.s:9023   .text.SEGGER_SYSVIEW_SendNumModules:0000000000000070 $d
+     /tmp/cc6BtNgK.s:9029   .text.SEGGER_SYSVIEW_PrintfHostEx:0000000000000000 $t
+     /tmp/cc6BtNgK.s:9034   .text.SEGGER_SYSVIEW_PrintfHostEx:0000000000000000 SEGGER_SYSVIEW_PrintfHostEx
+     /tmp/cc6BtNgK.s:9091   .text.SEGGER_SYSVIEW_PrintfHost:0000000000000000 $t
+     /tmp/cc6BtNgK.s:9096   .text.SEGGER_SYSVIEW_PrintfHost:0000000000000000 SEGGER_SYSVIEW_PrintfHost
+     /tmp/cc6BtNgK.s:9154   .text.SEGGER_SYSVIEW_WarnfHost:0000000000000000 $t
+     /tmp/cc6BtNgK.s:9159   .text.SEGGER_SYSVIEW_WarnfHost:0000000000000000 SEGGER_SYSVIEW_WarnfHost
+     /tmp/cc6BtNgK.s:9217   .text.SEGGER_SYSVIEW_ErrorfHost:0000000000000000 $t
+     /tmp/cc6BtNgK.s:9222   .text.SEGGER_SYSVIEW_ErrorfHost:0000000000000000 SEGGER_SYSVIEW_ErrorfHost
+     /tmp/cc6BtNgK.s:9280   .text.SEGGER_SYSVIEW_PrintfTargetEx:0000000000000000 $t
+     /tmp/cc6BtNgK.s:9285   .text.SEGGER_SYSVIEW_PrintfTargetEx:0000000000000000 SEGGER_SYSVIEW_PrintfTargetEx
+     /tmp/cc6BtNgK.s:9342   .text.SEGGER_SYSVIEW_PrintfTarget:0000000000000000 $t
+     /tmp/cc6BtNgK.s:9347   .text.SEGGER_SYSVIEW_PrintfTarget:0000000000000000 SEGGER_SYSVIEW_PrintfTarget
+     /tmp/cc6BtNgK.s:9405   .text.SEGGER_SYSVIEW_WarnfTarget:0000000000000000 $t
+     /tmp/cc6BtNgK.s:9410   .text.SEGGER_SYSVIEW_WarnfTarget:0000000000000000 SEGGER_SYSVIEW_WarnfTarget
+     /tmp/cc6BtNgK.s:9468   .text.SEGGER_SYSVIEW_ErrorfTarget:0000000000000000 $t
+     /tmp/cc6BtNgK.s:9473   .text.SEGGER_SYSVIEW_ErrorfTarget:0000000000000000 SEGGER_SYSVIEW_ErrorfTarget
+     /tmp/cc6BtNgK.s:9531   .text.SEGGER_SYSVIEW_Print:0000000000000000 $t
+     /tmp/cc6BtNgK.s:9536   .text.SEGGER_SYSVIEW_Print:0000000000000000 SEGGER_SYSVIEW_Print
+     /tmp/cc6BtNgK.s:9668   .text.SEGGER_SYSVIEW_Print:00000000000000b0 $d
+     /tmp/cc6BtNgK.s:9673   .text.SEGGER_SYSVIEW_Warn:0000000000000000 $t
+     /tmp/cc6BtNgK.s:9678   .text.SEGGER_SYSVIEW_Warn:0000000000000000 SEGGER_SYSVIEW_Warn
+     /tmp/cc6BtNgK.s:9810   .text.SEGGER_SYSVIEW_Warn:00000000000000b0 $d
+     /tmp/cc6BtNgK.s:9815   .text.SEGGER_SYSVIEW_Error:0000000000000000 $t
+     /tmp/cc6BtNgK.s:9820   .text.SEGGER_SYSVIEW_Error:0000000000000000 SEGGER_SYSVIEW_Error
+     /tmp/cc6BtNgK.s:9952   .text.SEGGER_SYSVIEW_Error:00000000000000b0 $d
+     /tmp/cc6BtNgK.s:9957   .text.SEGGER_SYSVIEW_EnableEvents:0000000000000000 $t
+     /tmp/cc6BtNgK.s:9962   .text.SEGGER_SYSVIEW_EnableEvents:0000000000000000 SEGGER_SYSVIEW_EnableEvents
+     /tmp/cc6BtNgK.s:10004  .text.SEGGER_SYSVIEW_EnableEvents:0000000000000020 $d
+     /tmp/cc6BtNgK.s:10009  .text.SEGGER_SYSVIEW_DisableEvents:0000000000000000 $t
+     /tmp/cc6BtNgK.s:10014  .text.SEGGER_SYSVIEW_DisableEvents:0000000000000000 SEGGER_SYSVIEW_DisableEvents
+     /tmp/cc6BtNgK.s:10055  .text.SEGGER_SYSVIEW_DisableEvents:0000000000000020 $d
+     /tmp/cc6BtNgK.s:10060  .rodata._aV2C.5005:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS
 SEGGER_RTT_ReadNoLock
 SEGGER_RTT_WriteSkipNoLock
-ARM GAS  /tmp/cc34iHaW.s 			page 230
+ARM GAS  /tmp/cc6BtNgK.s 			page 230
 
 
 _SEGGER_RTT

@@ -1,5 +1,6 @@
 ######################################
-# Makefile by Disco2Makefile.py
+# Makefile for STM32 Microcontroller
+# GNU GCC based
 ######################################
 
 ######################################
@@ -12,11 +13,23 @@ TARGET = STM32F769I_DISCOVERY
 ######################################
 GCC_BIN           ?= /usr/bin/
 GCC_PREFIX        ?= arm-none-eabi
+
 OPENOCD           ?= openocd
 OPENOCD_INTERFACE ?= interface/stlink-v2-1.cfg
 OPENOCD_CMDS      ?=
 OPENOCD_TARGET    ?= target/stm32f7x.cfg
 
+JLINK             ?= JLinkExe
+JLINK_DEVICE      ?= STM32F769NI
+JLINK_SPEED       ?= 1000
+JLINK_INTERFACE   ?= SWD
+
+######################################
+#Choose Debugger
+#-SEGGER_JLINK enables Systemview
+#- Else default = OPENOCD
+######################################
+DEBUGGER          ?= SEGGER_JLINK
 
 ######################################
 # building variables
@@ -122,7 +135,6 @@ BIN = $(CP) -O binary -S
 #######################################
 # macros for gcc
 AS_DEFS =
-#C_DEFS = -DUSE_HAL_DRIVER -D_TIMEVAL_DEFINED -D_SYS_TIME_H_  -DSTM32F769xx -DUSE_STM32F769I_DISCO
 C_DEFS = -D__weak="__attribute__((weak))" -D__packed="__attribute__((__packed__))" -DUSE_HAL_DRIVER -DSTM32F769xx -DARM_MATH_CM7 -DUSE_STM32F769I_DISCO -D_TIMEVAL_DEFINED -D_SYS_TIME_H_ -DSTM32F7xx
 # includes for gcc
 AS_INCLUDES =
@@ -204,7 +216,21 @@ $(BUILD_DIR):
 	mkdir -p $@		
 
 #######################################
-# Flash the stm.
+# Flash/debug the MCU
+
+ifeq ($(DEBUGGER),SEGGER_JLINK)
+
+flash:
+	JLinkExe -if $(JLINK_INTERFACE) -device $(JLINK_DEVICE) -speed $(JLINK_SPEED) -CommanderScript .jlink/flash.jlink
+
+reset:
+	JLinkExe -if $(JLINK_INTERFACE) -device $(JLINK_DEVICE) -speed $(JLINK_SPEED) -CommanderScript .jlink/reset.jlink
+
+jlink:
+	JLinkExe -if $(JLINK_INTERFACE) -device $(JLINK_DEVICE) -speed $(JLINK_SPEED)
+
+else
+
 flash:
 	$(OPENOCD) -d2 -f $(OPENOCD_INTERFACE) $(OPENOCD_CMDS) -f $(OPENOCD_TARGET) -c init -c targets -c "reset halt" \
                  -c "flash write_image erase $(BUILD_DIR)/$(TARGET).elf" -c "verify_image $(BUILD_DIR)/$(TARGET).elf" -c "reset run" -c shutdown
@@ -224,6 +250,9 @@ gdb: $(BUILD_DIR)/$(TARGET).elf
 
 erase:
 	$(OPENOCD) -d2 -f $(OPENOCD_INTERFACE) -f $(OPENOCD_TARGET) -c init -c targets -c "halt" -c "stm32f1x mass_erase 0" -c shutdown
+
+endif
+
 #######################################
 # clean up
 #######################################

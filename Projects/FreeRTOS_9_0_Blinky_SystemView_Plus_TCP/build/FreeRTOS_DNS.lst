@@ -1,4 +1,4 @@
-ARM GAS  /tmp/cczZaeLN.s 			page 1
+ARM GAS  /tmp/ccdhRZ4O.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
   29:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * license that applies is dependent on the processor on which FreeRTOS+TCP is
   30:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * executed, as follows:
   31:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  *
-ARM GAS  /tmp/cczZaeLN.s 			page 2
+ARM GAS  /tmp/ccdhRZ4O.s 			page 2
 
 
   32:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h ****  * If FreeRTOS+TCP is executed on one of the processors listed under the Special
@@ -118,7 +118,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
   86:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #define ipPROTOCOL_TCP			( 6 )
   87:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** #define ipPROTOCOL_UDP			( 17 )
   88:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
-ARM GAS  /tmp/cczZaeLN.s 			page 3
+ARM GAS  /tmp/ccdhRZ4O.s 			page 3
 
 
   89:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** /* Dimensions the buffers that are filled by received Ethernet frames. */
@@ -178,7 +178,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  143:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** {
  144:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	eNetworkUp,		/* The network is configured. */
  145:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	eNetworkDown	/* The network connection has been lost. */
-ARM GAS  /tmp/cczZaeLN.s 			page 4
+ARM GAS  /tmp/ccdhRZ4O.s 			page 4
 
 
  146:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** } eIPCallbackEvent_t;
@@ -238,7 +238,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  200:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
  201:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 
  202:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	static portINLINE int32_t  FreeRTOS_max_int32  (int32_t  a, int32_t  b) { return a >= b ? a : b; }
-ARM GAS  /tmp/cczZaeLN.s 			page 5
+ARM GAS  /tmp/ccdhRZ4O.s 			page 5
 
 
  203:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP.h **** 	static portINLINE uint32_t FreeRTOS_max_uint32 (uint32_t a, uint32_t b) { return a >= b ? a : b; }
@@ -298,7 +298,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
    7:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h ****  ***                                                                         ***
    8:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h ****  ***                                                                         ***
    9:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h ****  ***   FREERTOS+TCP IS STILL IN THE LAB (mainly because the FTP and HTTP     ***
-ARM GAS  /tmp/cczZaeLN.s 			page 6
+ARM GAS  /tmp/ccdhRZ4O.s 			page 6
 
 
   10:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h ****  ***   demos have a dependency on FreeRTOS+FAT, which is only in the Labs    ***
@@ -358,7 +358,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
   64:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 
   65:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** /* Application level configuration options. */
   66:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** #include "FreeRTOSIPConfig.h"
-ARM GAS  /tmp/cczZaeLN.s 			page 7
+ARM GAS  /tmp/ccdhRZ4O.s 			page 7
 
 
   67:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** #include "FreeRTOSIPConfigDefaults.h"
@@ -418,7 +418,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  121:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** {
  122:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 	uint8_t ucVersionHeaderLength;        /*  0 + 1 =  1 */
  123:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 	uint8_t ucDifferentiatedServicesCode; /*  1 + 1 =  2 */
-ARM GAS  /tmp/cczZaeLN.s 			page 8
+ARM GAS  /tmp/ccdhRZ4O.s 			page 8
 
 
  124:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 	uint16_t usLength;                    /*  2 + 2 =  4 */
@@ -478,7 +478,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  178:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 	uint8_t  ucTCPFlags;		/* +  1 = 14 */
  179:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 	uint16_t usWindow;			/* +  2 = 15 */
  180:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 	uint16_t usChecksum;		/* +  2 = 18 */
-ARM GAS  /tmp/cczZaeLN.s 			page 9
+ARM GAS  /tmp/ccdhRZ4O.s 			page 9
 
 
  181:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 	uint16_t usUrgent;			/* +  2 = 20 */
@@ -538,7 +538,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  235:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** struct xUDP_PACKET
  236:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** {
  237:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 	EthernetHeader_t xEthernetHeader; /*  0 + 14 = 14 */
-ARM GAS  /tmp/cczZaeLN.s 			page 10
+ARM GAS  /tmp/ccdhRZ4O.s 			page 10
 
 
  238:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 	IPHeader_t xIPHeader;             /* 14 + 20 = 34 */
@@ -598,7 +598,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  292:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** {
  293:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 	eIPEvent_t eEventType;
  294:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 	void *pvData;
-ARM GAS  /tmp/cczZaeLN.s 			page 11
+ARM GAS  /tmp/ccdhRZ4O.s 			page 11
 
 
  295:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** } IPStackEvent_t;
@@ -658,7 +658,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  349:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 	#define ipARP_REPLY ( 0x0002 )
  350:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 
  351:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** #endif /* ipconfigBYTE_ORDER == pdFREERTOS_LITTLE_ENDIAN */
-ARM GAS  /tmp/cczZaeLN.s 			page 12
+ARM GAS  /tmp/ccdhRZ4O.s 			page 12
 
 
  352:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 
@@ -718,7 +718,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  406:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** { \
  407:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 	( (uint8_t*)( pxBase ) ) [ offsetof( xType, xField ) + 0 ] = ( uint8_t )   ( ( ulValue ) >> 24 ); 
  408:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 	( (uint8_t*)( pxBase ) ) [ offsetof( xType, xField ) + 1 ] = ( uint8_t ) ( ( ( ulValue ) >> 16 ) &
-ARM GAS  /tmp/cczZaeLN.s 			page 13
+ARM GAS  /tmp/ccdhRZ4O.s 			page 13
 
 
  409:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 	( (uint8_t*)( pxBase ) ) [ offsetof( xType, xField ) + 2 ] = ( uint8_t ) ( ( ( ulValue ) >> 8 ) & 
@@ -778,7 +778,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  463:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** eFrameProcessingResult_t eConsiderFrameForProcessing( const uint8_t * const pucEthernetBuffer );
  464:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 
  465:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** /*
-ARM GAS  /tmp/cczZaeLN.s 			page 14
+ARM GAS  /tmp/ccdhRZ4O.s 			page 14
 
 
  466:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h ****  * Return the checksum generated over xDataLengthBytes from pucNextData.
@@ -838,7 +838,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  520:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 	{
  521:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 		uint32_t ulRemoteIP;		/* IP address of remote machine */
  522:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 		uint16_t usRemotePort;		/* Port on remote machine */
-ARM GAS  /tmp/cczZaeLN.s 			page 15
+ARM GAS  /tmp/ccdhRZ4O.s 			page 15
 
 
  523:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 		struct {
@@ -898,7 +898,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  577:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 		StreamBuffer_t *txStream;
  578:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 		#if( ipconfigUSE_TCP_WIN == 1 )
  579:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 			NetworkBufferDescriptor_t *pxAckMessage;
-ARM GAS  /tmp/cczZaeLN.s 			page 16
+ARM GAS  /tmp/ccdhRZ4O.s 			page 16
 
 
  580:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 		#endif /* ipconfigUSE_TCP_WIN */
@@ -958,7 +958,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  634:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 	EventBits_t xEventBits;
  635:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 	EventGroupHandle_t xEventGroup;
  636:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 
-ARM GAS  /tmp/cczZaeLN.s 			page 17
+ARM GAS  /tmp/ccdhRZ4O.s 			page 17
 
 
  637:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h **** 	ListItem_t xBoundSocketListItem; /* Used to reference the socket from a bound sockets list. */
@@ -1018,7 +1018,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  691:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h ****  * Calculate the upper-layer checksum
  692:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h ****  * Works both for UDP, ICMP and TCP packages
  693:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h ****  * bOut = true: checksum will be set in outgoing packets
-ARM GAS  /tmp/cczZaeLN.s 			page 18
+ARM GAS  /tmp/ccdhRZ4O.s 			page 18
 
 
  694:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_IP_Private.h ****  * bOut = false: checksum will be calculated for incoming packets
@@ -1078,7 +1078,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
   81              	.LCFI6:
   82              		.cfi_def_cfa_offset 4
   83              		.cfi_offset 7, -4
-ARM GAS  /tmp/cczZaeLN.s 			page 19
+ARM GAS  /tmp/ccdhRZ4O.s 			page 19
 
 
   84 0002 83B0     		sub	sp, sp, #12
@@ -1138,7 +1138,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  131              		.align	2
  134              	xLLMNR_MacAdress:
  135 0000 01       		.byte	1
-ARM GAS  /tmp/cczZaeLN.s 			page 20
+ARM GAS  /tmp/ccdhRZ4O.s 			page 20
 
 
  136 0001 00       		.byte	0
@@ -1198,7 +1198,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
   42:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c ****  *
   43:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c ****  * FreeRTOS+TCP is distributed in the hope that it will be useful.  You cannot
   44:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c ****  * use FreeRTOS+TCP unless you agree that you use the software 'as is'.
-ARM GAS  /tmp/cczZaeLN.s 			page 21
+ARM GAS  /tmp/ccdhRZ4O.s 			page 21
 
 
   45:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c ****  * FreeRTOS+TCP is provided WITHOUT ANY WARRANTY; without even the implied
@@ -1258,7 +1258,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
   99:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 	#define ipconfigDNS_REQUEST_ATTEMPTS		5
  100:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** #endif
  101:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 
-ARM GAS  /tmp/cczZaeLN.s 			page 22
+ARM GAS  /tmp/ccdhRZ4O.s 			page 22
 
 
  102:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** /* If the top two bits in the first character of a name field are set then the
@@ -1318,7 +1318,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  156:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** static uint32_t prvGetHostByName( const char *pcHostName, TickType_t xIdentifier, TickType_t xReadT
  157:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 
  158:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** /*
-ARM GAS  /tmp/cczZaeLN.s 			page 23
+ARM GAS  /tmp/ccdhRZ4O.s 			page 23
 
 
  159:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c ****  * The NBNS and the LLMNR protocol share this reply function.
@@ -1378,7 +1378,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  213:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** typedef struct xDNSTail DNSTail_t;
  214:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 
  215:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** #if( ipconfigUSE_LLMNR == 1 )
-ARM GAS  /tmp/cczZaeLN.s 			page 24
+ARM GAS  /tmp/ccdhRZ4O.s 			page 24
 
 
  216:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 
@@ -1438,7 +1438,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  270:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** #if( ipconfigUSE_DNS_CACHE == 1 )
  271:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 	uint32_t FreeRTOS_dnslookup( const char *pcHostName )
  272:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 	{
-ARM GAS  /tmp/cczZaeLN.s 			page 25
+ARM GAS  /tmp/ccdhRZ4O.s 			page 25
 
 
  150              		.loc 3 272 0
@@ -1498,7 +1498,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  199              		.thumb
  200              		.thumb_func
  202              	FreeRTOS_gethostbyname:
-ARM GAS  /tmp/cczZaeLN.s 			page 26
+ARM GAS  /tmp/ccdhRZ4O.s 			page 26
 
 
  203              	.LFB30:
@@ -1558,7 +1558,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  236 001c 80BD     		pop	{r7, pc}
  237              		.cfi_endproc
  238              	.LFE30:
-ARM GAS  /tmp/cczZaeLN.s 			page 27
+ARM GAS  /tmp/ccdhRZ4O.s 			page 27
 
 
  240 001e 00BF     		.section	.text.vDNSInitialise,"ax",%progbits
@@ -1618,7 +1618,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  315:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 	{
  280              		.loc 3 315 0
  281              		.cfi_startproc
-ARM GAS  /tmp/cczZaeLN.s 			page 28
+ARM GAS  /tmp/ccdhRZ4O.s 			page 28
 
 
  282              		@ args = 0, pretend = 0, frame = 24
@@ -1678,7 +1678,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  323 002e 7B68     		ldr	r3, [r7, #4]
  324 0030 9A42     		cmp	r2, r3
  325 0032 08D1     		bne	.L14
-ARM GAS  /tmp/cczZaeLN.s 			page 29
+ARM GAS  /tmp/ccdhRZ4O.s 			page 29
 
 
  329:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 				{
@@ -1738,7 +1738,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  370 0086 9A42     		cmp	r2, r3
  371 0088 C6D1     		bne	.L15
  338:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 				}
-ARM GAS  /tmp/cczZaeLN.s 			page 30
+ARM GAS  /tmp/ccdhRZ4O.s 			page 30
 
 
  339:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 			}
@@ -1798,7 +1798,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  415              		.cfi_offset 7, -8
  416              		.cfi_offset 14, -4
  417 0002 82B0     		sub	sp, sp, #8
-ARM GAS  /tmp/cczZaeLN.s 			page 31
+ARM GAS  /tmp/ccdhRZ4O.s 			page 31
 
 
  418              	.LCFI30:
@@ -1858,7 +1858,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  464 000c 3B60     		str	r3, [r7]
  362:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 		size_t lLength = strlen( pcHostName );
  465              		.loc 3 362 0
-ARM GAS  /tmp/cczZaeLN.s 			page 32
+ARM GAS  /tmp/ccdhRZ4O.s 			page 32
 
 
  466 000e F868     		ldr	r0, [r7, #12]
@@ -1918,7 +1918,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  377:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 			pxCallback->xRemaningTime = xTimeout;
  506              		.loc 3 377 0
  507 005a 3B69     		ldr	r3, [r7, #16]
-ARM GAS  /tmp/cczZaeLN.s 			page 33
+ARM GAS  /tmp/ccdhRZ4O.s 			page 33
 
 
  508 005c 3A68     		ldr	r2, [r7]
@@ -1978,7 +1978,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  553              		.thumb_func
  555              	vDNSDoCallback:
  556              	.LFB35:
-ARM GAS  /tmp/cczZaeLN.s 			page 34
+ARM GAS  /tmp/ccdhRZ4O.s 			page 34
 
 
  388:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 	/*-----------------------------------------------------------*/
@@ -2038,7 +2038,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  406:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 					DNSCallback_t *pxCallback = ( DNSCallback_t * ) listGET_LIST_ITEM_OWNER( pxIterator );
  593              		.loc 3 406 0
  594 0026 FB69     		ldr	r3, [r7, #28]
-ARM GAS  /tmp/cczZaeLN.s 			page 35
+ARM GAS  /tmp/ccdhRZ4O.s 			page 35
 
 
  595 0028 DB68     		ldr	r3, [r3, #12]
@@ -2098,7 +2098,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  415:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 				}
  416:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 			}
  417:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 		}
-ARM GAS  /tmp/cczZaeLN.s 			page 36
+ARM GAS  /tmp/ccdhRZ4O.s 			page 36
 
 
  418:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 		xTaskResumeAll();
@@ -2158,7 +2158,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  683 000a 7A60     		str	r2, [r7, #4]
  684 000c 3B60     		str	r3, [r7]
  430:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** uint32_t ulIPAddress = 0UL;
-ARM GAS  /tmp/cczZaeLN.s 			page 37
+ARM GAS  /tmp/ccdhRZ4O.s 			page 37
 
 
  685              		.loc 3 430 0
@@ -2218,7 +2218,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  459:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 				/* The user has provided a callback function, so do not block on recvfrom() */
  460:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 				xReadTimeOut_ms  = 0;
  711              		.loc 3 460 0
-ARM GAS  /tmp/cczZaeLN.s 			page 38
+ARM GAS  /tmp/ccdhRZ4O.s 			page 38
 
 
  712 003a 0023     		movs	r3, #0
@@ -2278,7 +2278,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  748              		.cfi_def_cfa_offset 8
  749 0072 BD46     		mov	sp, r7
  750              	.LCFI48:
-ARM GAS  /tmp/cczZaeLN.s 			page 39
+ARM GAS  /tmp/ccdhRZ4O.s 			page 39
 
 
  751              		.cfi_def_cfa_register 13
@@ -2338,7 +2338,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  493:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** #if( ipconfigUSE_LLMNR == 1 )
  494:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 	BaseType_t bHasDot = pdFALSE;
  793              		.loc 3 494 0
-ARM GAS  /tmp/cczZaeLN.s 			page 40
+ARM GAS  /tmp/ccdhRZ4O.s 			page 40
 
 
  794 0014 0023     		movs	r3, #0
@@ -2398,7 +2398,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  825              		.loc 3 515 0 is_stmt 1
  826 003a F868     		ldr	r0, [r7, #12]
  827 003c FFF7FEFF 		bl	strlen
-ARM GAS  /tmp/cczZaeLN.s 			page 41
+ARM GAS  /tmp/ccdhRZ4O.s 			page 41
 
 
  828 0040 0346     		mov	r3, r0
@@ -2458,7 +2458,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  531:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 			if( pucUDPPayloadBuffer != NULL )
  867              		.loc 3 531 0
  868 008c 7B69     		ldr	r3, [r7, #20]
-ARM GAS  /tmp/cczZaeLN.s 			page 42
+ARM GAS  /tmp/ccdhRZ4O.s 			page 42
 
 
  869 008e 002B     		cmp	r3, #0
@@ -2518,7 +2518,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  553:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 					/* Use DNS server. */
  554:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 					xAddress.sin_addr = ulIPAddress;
  902              		.loc 3 554 0
-ARM GAS  /tmp/cczZaeLN.s 			page 43
+ARM GAS  /tmp/ccdhRZ4O.s 			page 43
 
 
  903 00ca BB69     		ldr	r3, [r7, #24]
@@ -2578,7 +2578,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  943 0118 7B69     		ldr	r3, [r7, #20]
  944 011a 1846     		mov	r0, r3
  945 011c B968     		ldr	r1, [r7, #8]
-ARM GAS  /tmp/cczZaeLN.s 			page 44
+ARM GAS  /tmp/ccdhRZ4O.s 			page 44
 
 
  946 011e FFF7FEFF 		bl	prvParseDNSReply
@@ -2638,7 +2638,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  592:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 		FreeRTOS_closesocket( xDNSSocket );
  975              		.loc 3 592 0 is_stmt 1
  976 014a F86A     		ldr	r0, [r7, #44]
-ARM GAS  /tmp/cczZaeLN.s 			page 45
+ARM GAS  /tmp/ccdhRZ4O.s 			page 45
 
 
  977 014c FFF7FEFF 		bl	FreeRTOS_closesocket
@@ -2698,7 +2698,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  602:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** uint8_t *pucStart, *pucByte;
  603:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** DNSTail_t *pxTail;
  604:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** static const DNSMessage_t xDefaultPartDNSHeader =
-ARM GAS  /tmp/cczZaeLN.s 			page 46
+ARM GAS  /tmp/ccdhRZ4O.s 			page 46
 
 
  605:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** {
@@ -2758,7 +2758,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  1050 0036 B868     		ldr	r0, [r7, #8]
  1051 0038 FFF7FEFF 		bl	strlen
  1052 003c 0246     		mov	r2, r0
-ARM GAS  /tmp/cczZaeLN.s 			page 47
+ARM GAS  /tmp/ccdhRZ4O.s 			page 47
 
 
  1053 003e BB69     		ldr	r3, [r7, #24]
@@ -2818,7 +2818,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  651:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 		*pucStart = ( uint8_t ) ( ( uint32_t ) pucByte - ( uint32_t ) pucStart );
  1087              		.loc 3 651 0 is_stmt 1
  1088 006c BA69     		ldr	r2, [r7, #24]
-ARM GAS  /tmp/cczZaeLN.s 			page 48
+ARM GAS  /tmp/ccdhRZ4O.s 			page 48
 
 
  1089 006e FB69     		ldr	r3, [r7, #28]
@@ -2878,7 +2878,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  665:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 	/* Return the total size of the generated message, which is the space from
  666:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 	the last written byte to the beginning of the buffer. */
  667:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 	return ( ( uint32_t ) pucByte - ( uint32_t ) pucUDPPayloadBuffer + 1 ) + sizeof( *pxTail );
-ARM GAS  /tmp/cczZaeLN.s 			page 49
+ARM GAS  /tmp/ccdhRZ4O.s 			page 49
 
 
  1130              		.loc 3 667 0
@@ -2938,7 +2938,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  1178 000c 0023     		movs	r3, #0
  1179 000e 7B61     		str	r3, [r7, #20]
  676:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 		/* Determine if the name is the fully coded name, or an offset to the name
-ARM GAS  /tmp/cczZaeLN.s 			page 50
+ARM GAS  /tmp/ccdhRZ4O.s 			page 50
 
 
  677:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 		elsewhere in the message. */
@@ -2998,7 +2998,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  1218 0048 5A1C     		adds	r2, r3, #1
  1219 004a FA60     		str	r2, [r7, #12]
  1220 004c 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
-ARM GAS  /tmp/cczZaeLN.s 			page 51
+ARM GAS  /tmp/ccdhRZ4O.s 			page 51
 
 
  1221 004e 3B61     		str	r3, [r7, #16]
@@ -3058,7 +3058,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  701:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 
  702:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 		return pucByte;
  1264              		.loc 3 702 0
-ARM GAS  /tmp/cczZaeLN.s 			page 52
+ARM GAS  /tmp/ccdhRZ4O.s 			page 52
 
 
  1265 008c FB68     		ldr	r3, [r7, #12]
@@ -3118,7 +3118,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  712:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 	{
  713:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 		/* Jump over the two byte offset. */
  714:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 		pucByte += sizeof( uint16_t );
-ARM GAS  /tmp/cczZaeLN.s 			page 53
+ARM GAS  /tmp/ccdhRZ4O.s 			page 53
 
 
  1312              		.loc 3 714 0
@@ -3178,7 +3178,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  1348              		.cfi_def_cfa_register 13
  1349              		@ sp needed
  1350 0040 5DF8047B 		ldr	r7, [sp], #4
-ARM GAS  /tmp/cczZaeLN.s 			page 54
+ARM GAS  /tmp/ccdhRZ4O.s 			page 54
 
 
  1351              	.LCFI70:
@@ -3238,7 +3238,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  742:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 	return pdFAIL;
  1397              		.loc 3 742 0
  1398 0022 0023     		movs	r3, #0
-ARM GAS  /tmp/cczZaeLN.s 			page 55
+ARM GAS  /tmp/ccdhRZ4O.s 			page 55
 
 
  743:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** }
@@ -3298,7 +3298,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  1434 0006 7860     		str	r0, [r7, #4]
  1435 0008 3960     		str	r1, [r7]
  764:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** DNSMessage_t *pxDNSMessageHeader;
-ARM GAS  /tmp/cczZaeLN.s 			page 56
+ARM GAS  /tmp/ccdhRZ4O.s 			page 56
 
 
  765:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** uint32_t ulIPAddress = 0UL;
@@ -3358,7 +3358,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  785:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 		/* Skip any question records. */
  786:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 		usQuestions = FreeRTOS_ntohs( pxDNSMessageHeader->usQuestions );
  1470              		.loc 3 786 0
-ARM GAS  /tmp/cczZaeLN.s 			page 57
+ARM GAS  /tmp/ccdhRZ4O.s 			page 57
 
 
  1471 0054 D7F8C430 		ldr	r3, [r7, #196]
@@ -3418,7 +3418,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  1510              	.L86:
  802:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 			}
  803:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 			else
-ARM GAS  /tmp/cczZaeLN.s 			page 58
+ARM GAS  /tmp/ccdhRZ4O.s 			page 58
 
 
  804:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** #endif /* ipconfigUSE_DNS_CACHE */
@@ -3478,7 +3478,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  1543 00f8 D7F8C430 		ldr	r3, [r7, #196]
  1544 00fc DB88     		ldrh	r3, [r3, #6]	@ unaligned
  1545 00fe 9BB2     		uxth	r3, r3
-ARM GAS  /tmp/cczZaeLN.s 			page 59
+ARM GAS  /tmp/ccdhRZ4O.s 			page 59
 
 
  1546 0100 1B02     		lsls	r3, r3, #8
@@ -3538,7 +3538,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  839:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 					/* Sanity check the data length. */
  840:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 					if( ( size_t ) *pucByte == sizeof( uint32_t ) )
  1585              		.loc 3 840 0
-ARM GAS  /tmp/cczZaeLN.s 			page 60
+ARM GAS  /tmp/ccdhRZ4O.s 			page 60
 
 
  1586 015a D7F8BC30 		ldr	r3, [r7, #188]
@@ -3598,7 +3598,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  1619 01ac 31E0     		b	.L93
  1620              	.L92:
  1621 01ae 30E0     		b	.L93
-ARM GAS  /tmp/cczZaeLN.s 			page 61
+ARM GAS  /tmp/ccdhRZ4O.s 			page 61
 
 
  1622              	.L91:
@@ -3658,7 +3658,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  1662 020e 92D3     		bcc	.L94
  1663 0210 4CE1     		b	.L83
  1664              	.L93:
-ARM GAS  /tmp/cczZaeLN.s 			page 62
+ARM GAS  /tmp/ccdhRZ4O.s 			page 62
 
 
  1665 0212 4BE1     		b	.L83
@@ -3718,7 +3718,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  1703 0264 40D0     		beq	.L95
  1704              	.LBB7:
  890:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 				{
-ARM GAS  /tmp/cczZaeLN.s 			page 63
+ARM GAS  /tmp/ccdhRZ4O.s 			page 63
 
 
  891:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 				BaseType_t xDataLength = pxNetworkBuffer->xDataLength + sizeof( UDPHeader_t ) +
@@ -3778,7 +3778,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  1741              		.loc 3 907 0
  1742 02b8 D7F8AC30 		ldr	r3, [r7, #172]
  1743 02bc 9B69     		ldr	r3, [r3, #24]
-ARM GAS  /tmp/cczZaeLN.s 			page 64
+ARM GAS  /tmp/ccdhRZ4O.s 			page 64
 
 
  1744 02be 2A33     		adds	r3, r3, #42
@@ -3838,7 +3838,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  1780 0308 0333     		adds	r3, r3, #3
  1781 030a 0022     		movs	r2, #0
  1782 030c 1A70     		strb	r2, [r3]
-ARM GAS  /tmp/cczZaeLN.s 			page 65
+ARM GAS  /tmp/ccdhRZ4O.s 			page 65
 
 
  926:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 					vSetField16( pxDNSMessageHeader, DNSMessage_t, usAnswers, 1 );	/* Provide a single answer */
@@ -3898,7 +3898,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  1829 0374 1A70     		strb	r2, [r3]
  934:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 					vSetField16( pxAnswer, LLMNRAnswer_t, usClass, dnsCLASS_IN );	/* 1: Class IN */
  1830              		.loc 3 934 0
-ARM GAS  /tmp/cczZaeLN.s 			page 66
+ARM GAS  /tmp/ccdhRZ4O.s 			page 66
 
 
  1831 0376 D7F89830 		ldr	r3, [r7, #152]
@@ -3958,7 +3958,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  1882 03ec 5269     		ldr	r2, [r2, #20]
  1883 03ee 120E     		lsrs	r2, r2, #24
  1884 03f0 0A43     		orrs	r2, r2, r1
-ARM GAS  /tmp/cczZaeLN.s 			page 67
+ARM GAS  /tmp/ccdhRZ4O.s 			page 67
 
 
  1885 03f2 120E     		lsrs	r2, r2, #24
@@ -4018,7 +4018,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  1939 046e 134A     		ldr	r2, .L98+4
  1940 0470 5269     		ldr	r2, [r2, #20]
  1941 0472 120E     		lsrs	r2, r2, #24
-ARM GAS  /tmp/cczZaeLN.s 			page 68
+ARM GAS  /tmp/ccdhRZ4O.s 			page 68
 
 
  1942 0474 D2B2     		uxtb	r2, r2
@@ -4078,7 +4078,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  1979 04b6 80BD     		pop	{r7, pc}
  1980              	.L99:
  1981              		.align	2
-ARM GAS  /tmp/cczZaeLN.s 			page 69
+ARM GAS  /tmp/ccdhRZ4O.s 			page 69
 
 
  1982              	.L98:
@@ -4138,7 +4138,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  998:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 				}
  999:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 
 1000:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 				pucTarget -= 1;
-ARM GAS  /tmp/cczZaeLN.s 			page 70
+ARM GAS  /tmp/ccdhRZ4O.s 			page 70
 
 
 1001:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 				pucSource -= 2;
@@ -4198,7 +4198,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
 1055:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 
 1056:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 				/* Should not occur: pucUDPPayloadBuffer is part of a xNetworkBufferDescriptor */
 1057:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 				if( pxNetworkBuffer != NULL )
-ARM GAS  /tmp/cczZaeLN.s 			page 71
+ARM GAS  /tmp/ccdhRZ4O.s 			page 71
 
 
 1058:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 				{
@@ -4258,7 +4258,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  2012 0006 C823     		movs	r3, #200
  2013 0008 3B60     		str	r3, [r7]
 1095:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 
-ARM GAS  /tmp/cczZaeLN.s 			page 72
+ARM GAS  /tmp/ccdhRZ4O.s 			page 72
 
 
 1096:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 	/* This must be the first time this function has been called.  Create
@@ -4318,7 +4318,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  2050 0048 0D4B     		ldr	r3, .L104
  2051 004a 1A68     		ldr	r2, [r3]
  2052 004c 3C46     		mov	r4, r7
-ARM GAS  /tmp/cczZaeLN.s 			page 73
+ARM GAS  /tmp/ccdhRZ4O.s 			page 73
 
 
  2053 004e 0423     		movs	r3, #4
@@ -4378,7 +4378,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
 1124:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 	{
  2099              		.loc 3 1124 0
  2100              		.cfi_startproc
-ARM GAS  /tmp/cczZaeLN.s 			page 74
+ARM GAS  /tmp/ccdhRZ4O.s 			page 74
 
 
  2101              		@ args = 0, pretend = 0, frame = 24
@@ -4438,7 +4438,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  2144 0038 3B69     		ldr	r3, [r7, #16]
  2145 003a DA68     		ldr	r2, [r3, #12]	@ unaligned
  2146 003c 3B69     		ldr	r3, [r7, #16]
-ARM GAS  /tmp/cczZaeLN.s 			page 75
+ARM GAS  /tmp/ccdhRZ4O.s 			page 75
 
 
  2147 003e 1A61     		str	r2, [r3, #16]	@ unaligned
@@ -4498,7 +4498,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  2195              		.loc 3 1141 0
  2196 0092 7B69     		ldr	r3, [r7, #20]
  2197 0094 93F82220 		ldrb	r2, [r3, #34]	@ zero_extendqisi2
-ARM GAS  /tmp/cczZaeLN.s 			page 76
+ARM GAS  /tmp/ccdhRZ4O.s 			page 76
 
 
  2198 0098 93F82330 		ldrb	r3, [r3, #35]	@ zero_extendqisi2
@@ -4558,7 +4558,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  2233 00d0 00000000 		.word	usPacketIdentifier
  2234              		.cfi_endproc
  2235              	.LFE44:
-ARM GAS  /tmp/cczZaeLN.s 			page 77
+ARM GAS  /tmp/ccdhRZ4O.s 			page 77
 
 
  2237              		.section	.text.prvProcessDNSCache,"ax",%progbits
@@ -4618,7 +4618,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  2276 0020 DB00     		lsls	r3, r3, #3
  2277 0022 0B44     		add	r3, r3, r1
  2278 0024 1B79     		ldrb	r3, [r3, #4]	@ zero_extendqisi2
-ARM GAS  /tmp/cczZaeLN.s 			page 78
+ARM GAS  /tmp/ccdhRZ4O.s 			page 78
 
 
  2279 0026 002B     		cmp	r3, #0
@@ -4678,7 +4678,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  2319 006a 1968     		ldr	r1, [r3]
  2320 006c 2248     		ldr	r0, .L120
  2321 006e 7A69     		ldr	r2, [r7, #20]
-ARM GAS  /tmp/cczZaeLN.s 			page 79
+ARM GAS  /tmp/ccdhRZ4O.s 			page 79
 
 
  2322 0070 1346     		mov	r3, r2
@@ -4738,7 +4738,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
 1206:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 				/* Called to add or update an item */
 1207:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 				strncpy( xDNSCache[ xFreeEntry ].pcName, pcName, sizeof( xDNSCache[ xFreeEntry ].pcName ) );
  2359              		.loc 3 1207 0
-ARM GAS  /tmp/cczZaeLN.s 			page 80
+ARM GAS  /tmp/ccdhRZ4O.s 			page 80
 
 
  2360 00a2 164B     		ldr	r3, .L120+4
@@ -4798,7 +4798,7 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  2403 00ee 002B     		cmp	r3, #0
 1219:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 		{
 1220:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 			FreeRTOS_debug_printf( ( "prvProcessDNSCache: %s: '%s' @ %lxip\n", xLookUp ? "look-up" : "add", 
-ARM GAS  /tmp/cczZaeLN.s 			page 81
+ARM GAS  /tmp/ccdhRZ4O.s 			page 81
 
 
 1221:../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/FreeRTOS_DNS.c **** 		}
@@ -4854,79 +4854,79 @@ ARM GAS  /tmp/cczZaeLN.s 			page 1
  2463              		.file 9 "../../../FreeRTOS_9_0/Source/include/task.h"
  2464              		.file 10 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_Sockets.h"
  2465              		.file 11 "../../../FreeRTOS-Plus/Source/FreeRTOS-Plus-TCP/include/FreeRTOS_DNS.h"
-ARM GAS  /tmp/cczZaeLN.s 			page 82
+ARM GAS  /tmp/ccdhRZ4O.s 			page 82
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 FreeRTOS_DNS.c
-     /tmp/cczZaeLN.s:21     .text.FreeRTOS_min_uint32:0000000000000000 $t
-     /tmp/cczZaeLN.s:25     .text.FreeRTOS_min_uint32:0000000000000000 FreeRTOS_min_uint32
-     /tmp/cczZaeLN.s:68     .text.usChar2u16:0000000000000000 $t
-     /tmp/cczZaeLN.s:72     .text.usChar2u16:0000000000000000 usChar2u16
-     /tmp/cczZaeLN.s:124    .bss.xDNSCache:0000000000000000 $d
-     /tmp/cczZaeLN.s:127    .bss.xDNSCache:0000000000000000 xDNSCache
-     /tmp/cczZaeLN.s:134    .rodata.xLLMNR_MacAdress:0000000000000000 xLLMNR_MacAdress
-     /tmp/cczZaeLN.s:131    .rodata.xLLMNR_MacAdress:0000000000000000 $d
-     /tmp/cczZaeLN.s:142    .text.FreeRTOS_dnslookup:0000000000000000 $t
-     /tmp/cczZaeLN.s:147    .text.FreeRTOS_dnslookup:0000000000000000 FreeRTOS_dnslookup
-     /tmp/cczZaeLN.s:2242   .text.prvProcessDNSCache:0000000000000000 prvProcessDNSCache
-     /tmp/cczZaeLN.s:191    .bss.xCallbackList:0000000000000000 $d
-     /tmp/cczZaeLN.s:194    .bss.xCallbackList:0000000000000000 xCallbackList
-     /tmp/cczZaeLN.s:197    .text.FreeRTOS_gethostbyname:0000000000000000 $t
-     /tmp/cczZaeLN.s:202    .text.FreeRTOS_gethostbyname:0000000000000000 FreeRTOS_gethostbyname
-     /tmp/cczZaeLN.s:664    .text.FreeRTOS_gethostbyname_a:0000000000000000 FreeRTOS_gethostbyname_a
-     /tmp/cczZaeLN.s:241    .text.vDNSInitialise:0000000000000000 $t
-     /tmp/cczZaeLN.s:246    .text.vDNSInitialise:0000000000000000 vDNSInitialise
-     /tmp/cczZaeLN.s:268    .text.vDNSInitialise:000000000000000c $d
-     /tmp/cczZaeLN.s:273    .text.vDNSCheckCallBack:0000000000000000 $t
-     /tmp/cczZaeLN.s:278    .text.vDNSCheckCallBack:0000000000000000 vDNSCheckCallBack
-     /tmp/cczZaeLN.s:395    .text.vDNSCheckCallBack:00000000000000a4 $d
-     /tmp/cczZaeLN.s:401    .text.FreeRTOS_gethostbyname_cancel:0000000000000000 $t
-     /tmp/cczZaeLN.s:406    .text.FreeRTOS_gethostbyname_cancel:0000000000000000 FreeRTOS_gethostbyname_cancel
-     /tmp/cczZaeLN.s:440    .text.vDNSSetCallBack:0000000000000000 $t
-     /tmp/cczZaeLN.s:444    .text.vDNSSetCallBack:0000000000000000 vDNSSetCallBack
-     /tmp/cczZaeLN.s:546    .text.vDNSSetCallBack:0000000000000090 $d
-     /tmp/cczZaeLN.s:551    .text.vDNSDoCallback:0000000000000000 $t
-     /tmp/cczZaeLN.s:555    .text.vDNSDoCallback:0000000000000000 vDNSDoCallback
-     /tmp/cczZaeLN.s:653    .text.vDNSDoCallback:0000000000000078 $d
-     /tmp/cczZaeLN.s:659    .text.FreeRTOS_gethostbyname_a:0000000000000000 $t
-     /tmp/cczZaeLN.s:766    .text.prvGetHostByName:0000000000000000 prvGetHostByName
-     /tmp/cczZaeLN.s:757    .text.FreeRTOS_gethostbyname_a:0000000000000078 $d
-     /tmp/cczZaeLN.s:2425   .bss.usIdentifier.5988:0000000000000000 usIdentifier.5988
-     /tmp/cczZaeLN.s:762    .text.prvGetHostByName:0000000000000000 $t
-     /tmp/cczZaeLN.s:1993   .text.prvCreateDNSSocket:0000000000000000 prvCreateDNSSocket
-     /tmp/cczZaeLN.s:1004   .text.prvCreateDNSMessage:0000000000000000 prvCreateDNSMessage
-     /tmp/cczZaeLN.s:1417   .text.prvParseDNSReply:0000000000000000 prvParseDNSReply
-     /tmp/cczZaeLN.s:994    .text.prvGetHostByName:000000000000015c $d
-     /tmp/cczZaeLN.s:2431   .bss.ulAddressLength.6000:0000000000000000 ulAddressLength.6000
-     /tmp/cczZaeLN.s:1000   .text.prvCreateDNSMessage:0000000000000000 $t
-     /tmp/cczZaeLN.s:1148   .text.prvCreateDNSMessage:00000000000000c4 $d
-     /tmp/cczZaeLN.s:2437   .rodata.xDefaultPartDNSHeader.6023:0000000000000000 xDefaultPartDNSHeader.6023
-     /tmp/cczZaeLN.s:1153   .text.prvReadNameField:0000000000000000 $t
-     /tmp/cczZaeLN.s:1157   .text.prvReadNameField:0000000000000000 prvReadNameField
-     /tmp/cczZaeLN.s:1284   .text.prvSkipNameField:0000000000000000 $t
-     /tmp/cczZaeLN.s:1288   .text.prvSkipNameField:0000000000000000 prvSkipNameField
-     /tmp/cczZaeLN.s:1359   .text.ulDNSHandlePacket:0000000000000000 $t
-     /tmp/cczZaeLN.s:1364   .text.ulDNSHandlePacket:0000000000000000 ulDNSHandlePacket
-     /tmp/cczZaeLN.s:1413   .text.prvParseDNSReply:0000000000000000 $t
-     /tmp/cczZaeLN.s:2097   .text.prvReplyDNSMessage:0000000000000000 prvReplyDNSMessage
-     /tmp/cczZaeLN.s:1983   .text.prvParseDNSReply:00000000000004b8 $d
-     /tmp/cczZaeLN.s:1989   .text.prvCreateDNSSocket:0000000000000000 $t
-     /tmp/cczZaeLN.s:2088   .text.prvCreateDNSSocket:0000000000000080 $d
-     /tmp/cczZaeLN.s:2448   .bss.xSocket.6083:0000000000000000 xSocket.6083
-ARM GAS  /tmp/cczZaeLN.s 			page 83
+     /tmp/ccdhRZ4O.s:21     .text.FreeRTOS_min_uint32:0000000000000000 $t
+     /tmp/ccdhRZ4O.s:25     .text.FreeRTOS_min_uint32:0000000000000000 FreeRTOS_min_uint32
+     /tmp/ccdhRZ4O.s:68     .text.usChar2u16:0000000000000000 $t
+     /tmp/ccdhRZ4O.s:72     .text.usChar2u16:0000000000000000 usChar2u16
+     /tmp/ccdhRZ4O.s:124    .bss.xDNSCache:0000000000000000 $d
+     /tmp/ccdhRZ4O.s:127    .bss.xDNSCache:0000000000000000 xDNSCache
+     /tmp/ccdhRZ4O.s:134    .rodata.xLLMNR_MacAdress:0000000000000000 xLLMNR_MacAdress
+     /tmp/ccdhRZ4O.s:131    .rodata.xLLMNR_MacAdress:0000000000000000 $d
+     /tmp/ccdhRZ4O.s:142    .text.FreeRTOS_dnslookup:0000000000000000 $t
+     /tmp/ccdhRZ4O.s:147    .text.FreeRTOS_dnslookup:0000000000000000 FreeRTOS_dnslookup
+     /tmp/ccdhRZ4O.s:2242   .text.prvProcessDNSCache:0000000000000000 prvProcessDNSCache
+     /tmp/ccdhRZ4O.s:191    .bss.xCallbackList:0000000000000000 $d
+     /tmp/ccdhRZ4O.s:194    .bss.xCallbackList:0000000000000000 xCallbackList
+     /tmp/ccdhRZ4O.s:197    .text.FreeRTOS_gethostbyname:0000000000000000 $t
+     /tmp/ccdhRZ4O.s:202    .text.FreeRTOS_gethostbyname:0000000000000000 FreeRTOS_gethostbyname
+     /tmp/ccdhRZ4O.s:664    .text.FreeRTOS_gethostbyname_a:0000000000000000 FreeRTOS_gethostbyname_a
+     /tmp/ccdhRZ4O.s:241    .text.vDNSInitialise:0000000000000000 $t
+     /tmp/ccdhRZ4O.s:246    .text.vDNSInitialise:0000000000000000 vDNSInitialise
+     /tmp/ccdhRZ4O.s:268    .text.vDNSInitialise:000000000000000c $d
+     /tmp/ccdhRZ4O.s:273    .text.vDNSCheckCallBack:0000000000000000 $t
+     /tmp/ccdhRZ4O.s:278    .text.vDNSCheckCallBack:0000000000000000 vDNSCheckCallBack
+     /tmp/ccdhRZ4O.s:395    .text.vDNSCheckCallBack:00000000000000a4 $d
+     /tmp/ccdhRZ4O.s:401    .text.FreeRTOS_gethostbyname_cancel:0000000000000000 $t
+     /tmp/ccdhRZ4O.s:406    .text.FreeRTOS_gethostbyname_cancel:0000000000000000 FreeRTOS_gethostbyname_cancel
+     /tmp/ccdhRZ4O.s:440    .text.vDNSSetCallBack:0000000000000000 $t
+     /tmp/ccdhRZ4O.s:444    .text.vDNSSetCallBack:0000000000000000 vDNSSetCallBack
+     /tmp/ccdhRZ4O.s:546    .text.vDNSSetCallBack:0000000000000090 $d
+     /tmp/ccdhRZ4O.s:551    .text.vDNSDoCallback:0000000000000000 $t
+     /tmp/ccdhRZ4O.s:555    .text.vDNSDoCallback:0000000000000000 vDNSDoCallback
+     /tmp/ccdhRZ4O.s:653    .text.vDNSDoCallback:0000000000000078 $d
+     /tmp/ccdhRZ4O.s:659    .text.FreeRTOS_gethostbyname_a:0000000000000000 $t
+     /tmp/ccdhRZ4O.s:766    .text.prvGetHostByName:0000000000000000 prvGetHostByName
+     /tmp/ccdhRZ4O.s:757    .text.FreeRTOS_gethostbyname_a:0000000000000078 $d
+     /tmp/ccdhRZ4O.s:2425   .bss.usIdentifier.5988:0000000000000000 usIdentifier.5988
+     /tmp/ccdhRZ4O.s:762    .text.prvGetHostByName:0000000000000000 $t
+     /tmp/ccdhRZ4O.s:1993   .text.prvCreateDNSSocket:0000000000000000 prvCreateDNSSocket
+     /tmp/ccdhRZ4O.s:1004   .text.prvCreateDNSMessage:0000000000000000 prvCreateDNSMessage
+     /tmp/ccdhRZ4O.s:1417   .text.prvParseDNSReply:0000000000000000 prvParseDNSReply
+     /tmp/ccdhRZ4O.s:994    .text.prvGetHostByName:000000000000015c $d
+     /tmp/ccdhRZ4O.s:2431   .bss.ulAddressLength.6000:0000000000000000 ulAddressLength.6000
+     /tmp/ccdhRZ4O.s:1000   .text.prvCreateDNSMessage:0000000000000000 $t
+     /tmp/ccdhRZ4O.s:1148   .text.prvCreateDNSMessage:00000000000000c4 $d
+     /tmp/ccdhRZ4O.s:2437   .rodata.xDefaultPartDNSHeader.6023:0000000000000000 xDefaultPartDNSHeader.6023
+     /tmp/ccdhRZ4O.s:1153   .text.prvReadNameField:0000000000000000 $t
+     /tmp/ccdhRZ4O.s:1157   .text.prvReadNameField:0000000000000000 prvReadNameField
+     /tmp/ccdhRZ4O.s:1284   .text.prvSkipNameField:0000000000000000 $t
+     /tmp/ccdhRZ4O.s:1288   .text.prvSkipNameField:0000000000000000 prvSkipNameField
+     /tmp/ccdhRZ4O.s:1359   .text.ulDNSHandlePacket:0000000000000000 $t
+     /tmp/ccdhRZ4O.s:1364   .text.ulDNSHandlePacket:0000000000000000 ulDNSHandlePacket
+     /tmp/ccdhRZ4O.s:1413   .text.prvParseDNSReply:0000000000000000 $t
+     /tmp/ccdhRZ4O.s:2097   .text.prvReplyDNSMessage:0000000000000000 prvReplyDNSMessage
+     /tmp/ccdhRZ4O.s:1983   .text.prvParseDNSReply:00000000000004b8 $d
+     /tmp/ccdhRZ4O.s:1989   .text.prvCreateDNSSocket:0000000000000000 $t
+     /tmp/ccdhRZ4O.s:2088   .text.prvCreateDNSSocket:0000000000000080 $d
+     /tmp/ccdhRZ4O.s:2448   .bss.xSocket.6083:0000000000000000 xSocket.6083
+ARM GAS  /tmp/ccdhRZ4O.s 			page 83
 
 
-     /tmp/cczZaeLN.s:2093   .text.prvReplyDNSMessage:0000000000000000 $t
-     /tmp/cczZaeLN.s:2232   .text.prvReplyDNSMessage:00000000000000cc $d
-     /tmp/cczZaeLN.s:2238   .text.prvProcessDNSCache:0000000000000000 $t
-     /tmp/cczZaeLN.s:2416   .text.prvProcessDNSCache:00000000000000f8 $d
-     /tmp/cczZaeLN.s:2454   .bss.xFreeEntry.6102:0000000000000000 xFreeEntry.6102
-     /tmp/cczZaeLN.s:2422   .bss.usIdentifier.5988:0000000000000000 $d
-     /tmp/cczZaeLN.s:2428   .bss.ulAddressLength.6000:0000000000000000 $d
-     /tmp/cczZaeLN.s:2434   .rodata.xDefaultPartDNSHeader.6023:0000000000000000 $d
-     /tmp/cczZaeLN.s:2445   .bss.xSocket.6083:0000000000000000 $d
-     /tmp/cczZaeLN.s:2451   .bss.xFreeEntry.6102:0000000000000000 $d
+     /tmp/ccdhRZ4O.s:2093   .text.prvReplyDNSMessage:0000000000000000 $t
+     /tmp/ccdhRZ4O.s:2232   .text.prvReplyDNSMessage:00000000000000cc $d
+     /tmp/ccdhRZ4O.s:2238   .text.prvProcessDNSCache:0000000000000000 $t
+     /tmp/ccdhRZ4O.s:2416   .text.prvProcessDNSCache:00000000000000f8 $d
+     /tmp/ccdhRZ4O.s:2454   .bss.xFreeEntry.6102:0000000000000000 xFreeEntry.6102
+     /tmp/ccdhRZ4O.s:2422   .bss.usIdentifier.5988:0000000000000000 $d
+     /tmp/ccdhRZ4O.s:2428   .bss.ulAddressLength.6000:0000000000000000 $d
+     /tmp/ccdhRZ4O.s:2434   .rodata.xDefaultPartDNSHeader.6023:0000000000000000 $d
+     /tmp/ccdhRZ4O.s:2445   .bss.xSocket.6083:0000000000000000 $d
+     /tmp/ccdhRZ4O.s:2451   .bss.xFreeEntry.6102:0000000000000000 $d
                      .debug_frame:0000000000000010 $d
 
 UNDEFINED SYMBOLS

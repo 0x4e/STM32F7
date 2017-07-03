@@ -149,7 +149,8 @@ void blink_task(void *pvParameters)
 	(void) pvParameters;
 	while(1){
 		BSP_LED_Toggle(LED2);	// Debugging, watch Calculation Time
-		vTaskDelay(200);
+		vTaskDelay(500);
+		FreeRTOS_printf( ( "In the Blink_Task" ) );
 	}
 }
 
@@ -199,7 +200,7 @@ int main(void)
 
 
 
-  xTaskCreate(blink_task, "Blink_task", configMINIMAL_STACK_SIZE*2, NULL, 1, ( TaskHandle_t * )NULL);
+  xTaskCreate(blink_task, "Blink_task", configMINIMAL_STACK_SIZE, NULL, 1, ( TaskHandle_t * )NULL);
   xTaskCreate(BSP_Config_task, "BSP_Config", configMINIMAL_STACK_SIZE*2, NULL, 1, ( TaskHandle_t * )NULL);
 
   //BSP_Config();
@@ -224,7 +225,7 @@ static void prvMiscInitialisation( void )
 
 void vApplicationIdleHook( void )
 {
-const TickType_t xToggleRate = pdMS_TO_TICKS( 1000UL );
+const TickType_t xToggleRate = pdMS_TO_TICKS( 2000UL );
 static TickType_t xLastToggle = 0, xTimeNow;
 
 	xTimeNow = xTaskGetTickCount();
@@ -235,6 +236,7 @@ static TickType_t xLastToggle = 0, xTimeNow;
 	{
 		BSP_LED_Toggle(LED1);
 		xLastToggle += xToggleRate;
+		FreeRTOS_printf( ( "In the IDEL TASK") );
 	}
 }
 
@@ -536,7 +538,7 @@ static void BSP_Config_task(void *pvParameters)
   BSP_LED_Init(LED2);
 
   /* Initialize the LCD */
-  //BSP_LCD_Init();
+  BSP_LCD_Init();
   
   /* Initialize the LCD Layers */
   //BSP_LCD_LayerDefaultInit(1, LCD_FB_START_ADDRESS);
@@ -558,7 +560,8 @@ static void BSP_Config_task(void *pvParameters)
   while(1){
       vTaskDelay(1000);
 	  //HAL_Delay(100);
-	  vTaskSuspend(NULL);
+	  //vTaskSuspend(NULL);
+	  vTaskDelete(NULL);
   }
 }
 

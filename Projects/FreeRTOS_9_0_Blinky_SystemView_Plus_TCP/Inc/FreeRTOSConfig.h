@@ -315,8 +315,8 @@ If not defined, the local broadcast address will be used, e.g. 192.168.0.255
 */
 #define configUDP_LOGGING_ADDR0	192
 #define configUDP_LOGGING_ADDR1	168
-#define configUDP_LOGGING_ADDR2	0
-#define configUDP_LOGGING_ADDR3	100
+#define configUDP_LOGGING_ADDR2	1
+#define configUDP_LOGGING_ADDR3	110
 
 
 #endif /* FREERTOS_CONFIG_H */
