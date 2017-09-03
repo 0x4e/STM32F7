@@ -1,0 +1,1638 @@
+ARM GAS  /tmp/ccZFcvrO.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m7
+   3              		.eabi_attribute 27, 1
+   4              		.eabi_attribute 28, 1
+   5              		.fpu fpv5-sp-d16
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 6
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.thumb
+  16              		.file	"stm32f769i_discovery_sdram.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              		.comm	sdramHandle,52,4
+  21              		.section	.bss.Timing,"aw",%nobits
+  22              		.align	2
+  25              	Timing:
+  26 0000 00000000 		.space	28
+  26      00000000 
+  26      00000000 
+  26      00000000 
+  26      00000000 
+  27              		.section	.bss.Command,"aw",%nobits
+  28              		.align	2
+  31              	Command:
+  32 0000 00000000 		.space	16
+  32      00000000 
+  32      00000000 
+  32      00000000 
+  33              		.section	.text.BSP_SDRAM_Init,"ax",%progbits
+  34              		.align	2
+  35              		.global	BSP_SDRAM_Init
+  36              		.thumb
+  37              		.thumb_func
+  39              	BSP_SDRAM_Init:
+  40              	.LFB135:
+  41              		.file 1 "../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c"
+   1:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /**
+   2:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   ******************************************************************************
+   3:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @file    stm32f769i_discovery_sdram.c
+   4:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @author  MCD Application Team
+   5:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @version V1.1.0
+   6:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @date    29-August-2016
+   7:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @brief   This file includes the SDRAM driver for the MT48LC4M32B2B5-6A memory 
+   8:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   *          device mounted on STM32F769I-DISCOVERY boards.
+   9:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   @verbatim
+  10:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   How To use this driver:
+  11:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   -----------------------
+  12:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****    - This driver is used to drive the MT48LC4M32B2B5-6A SDRAM external memory mounted
+  13:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****      on STM32F769I-DISCOVERY board.
+  14:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****    - This driver does not need a specific component driver for the SDRAM device
+ARM GAS  /tmp/ccZFcvrO.s 			page 2
+
+
+  15:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****      to be included with.
+  16:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+  17:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Driver description:
+  18:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   ------------------
+  19:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   + Initialization steps:
+  20:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****      o Initialize the SDRAM external memory using the BSP_SDRAM_Init() function. This 
+  21:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****        function includes the MSP layer hardware resources initialization and the
+  22:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****        FMC controller configuration to interface with the external SDRAM memory.
+  23:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****      o It contains the SDRAM initialization sequence to program the SDRAM external 
+  24:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****        device using the function BSP_SDRAM_Initialization_sequence(). Note that this 
+  25:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****        sequence is standard for all SDRAM devices, but can include some differences
+  26:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****        from a device to another. If it is the case, the right sequence should be 
+  27:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****        implemented separately.
+  28:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+  29:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   + SDRAM read/write operations
+  30:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****      o SDRAM external memory can be accessed with read/write operations once it is
+  31:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****        initialized.
+  32:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****        Read/write operation can be performed with AHB access using the functions
+  33:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****        BSP_SDRAM_ReadData()/BSP_SDRAM_WriteData(), or by DMA transfer using the functions
+  34:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****        BSP_SDRAM_ReadData_DMA()/BSP_SDRAM_WriteData_DMA().
+  35:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****      o The AHB access is performed with 32-bit width transaction, the DMA transfer
+  36:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****        configuration is fixed at single (no burst) word transfer (see the 
+  37:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****        SDRAM_MspInit() static function).
+  38:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****      o User can implement his own functions for read/write access with his desired 
+  39:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****        configurations.
+  40:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****      o If interrupt mode is used for DMA transfer, the function BSP_SDRAM_DMA_IRQHandler()
+  41:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****        is called in IRQ handler file, to serve the generated interrupt once the DMA 
+  42:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****        transfer is complete.
+  43:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****      o You can send a command to the SDRAM device in runtime using the function 
+  44:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****        BSP_SDRAM_Sendcmd(), and giving the desired command as parameter chosen between 
+  45:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****        the predefined commands of the "FMC_SDRAM_CommandTypeDef" structure. 
+  46:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   @endverbatim
+  47:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   ******************************************************************************
+  48:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @attention
+  49:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   *
+  50:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
+  51:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   *
+  52:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * Redistribution and use in source and binary forms, with or without modification,
+  53:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * are permitted provided that the following conditions are met:
+  54:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   *   1. Redistributions of source code must retain the above copyright notice,
+  55:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   *      this list of conditions and the following disclaimer.
+  56:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   *   2. Redistributions in binary form must reproduce the above copyright notice,
+  57:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   *      this list of conditions and the following disclaimer in the documentation
+  58:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   *      and/or other materials provided with the distribution.
+  59:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   *   3. Neither the name of STMicroelectronics nor the names of its contributors
+  60:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   *      may be used to endorse or promote products derived from this software
+  61:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   *      without specific prior written permission.
+  62:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   *
+  63:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  64:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  65:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  66:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  67:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  68:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  69:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  70:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  71:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ARM GAS  /tmp/ccZFcvrO.s 			page 3
+
+
+  72:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  73:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   *
+  74:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   ******************************************************************************
+  75:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */
+  76:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+  77:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /* Includes ------------------------------------------------------------------*/
+  78:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** #include "stm32f769i_discovery_sdram.h"
+  79:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+  80:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /** @addtogroup BSP
+  81:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @{
+  82:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */
+  83:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+  84:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /** @addtogroup STM32F769I_DISCOVERY
+  85:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @{
+  86:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */ 
+  87:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+  88:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /** @defgroup STM32F769I_DISCOVERY_SDRAM
+  89:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @{
+  90:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */ 
+  91:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+  92:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /** @defgroup STM32F769I_DISCOVERY_SDRAM_Private_Types_Definitions
+  93:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @{
+  94:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */ 
+  95:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /**
+  96:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @}
+  97:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */
+  98:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+  99:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /** @defgroup STM32F769I_DISCOVERY_SDRAM_Private_Defines
+ 100:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @{
+ 101:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */
+ 102:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /**
+ 103:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @}
+ 104:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */
+ 105:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 106:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /** @defgroup STM32F769I_DISCOVERY_SDRAM_Private_Macros
+ 107:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @{
+ 108:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */  
+ 109:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /**
+ 110:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @}
+ 111:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */
+ 112:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 113:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /** @defgroup STM32F769I_DISCOVERY_SDRAM_Private_Variables
+ 114:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @{
+ 115:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */       
+ 116:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** SDRAM_HandleTypeDef sdramHandle;
+ 117:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** static FMC_SDRAM_TimingTypeDef Timing;
+ 118:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** static FMC_SDRAM_CommandTypeDef Command;
+ 119:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /**
+ 120:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @}
+ 121:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */ 
+ 122:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 123:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /** @defgroup STM32F769I_DISCOVERY_SDRAM_Private_Function_Prototypes
+ 124:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @{
+ 125:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */ 
+ 126:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /**
+ 127:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @}
+ 128:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */
+ARM GAS  /tmp/ccZFcvrO.s 			page 4
+
+
+ 129:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     
+ 130:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /** @defgroup STM32F769I_DISCOVERY_SDRAM_Private_Functions
+ 131:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @{
+ 132:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */ 
+ 133:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 134:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /**
+ 135:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @brief  Initializes the SDRAM device.
+ 136:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @retval SDRAM status
+ 137:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */
+ 138:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** uint8_t BSP_SDRAM_Init(void)
+ 139:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** { 
+  42              		.loc 1 139 0
+  43              		.cfi_startproc
+  44              		@ args = 0, pretend = 0, frame = 0
+  45              		@ frame_needed = 1, uses_anonymous_args = 0
+  46 0000 80B5     		push	{r7, lr}
+  47              	.LCFI0:
+  48              		.cfi_def_cfa_offset 8
+  49              		.cfi_offset 7, -8
+  50              		.cfi_offset 14, -4
+  51 0002 00AF     		add	r7, sp, #0
+  52              	.LCFI1:
+  53              		.cfi_def_cfa_register 7
+ 140:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   static uint8_t sdramstatus = SDRAM_ERROR;
+ 141:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* SDRAM device configuration */
+ 142:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   sdramHandle.Instance = FMC_SDRAM_DEVICE;
+  54              		.loc 1 142 0
+  55 0004 294B     		ldr	r3, .L5
+  56 0006 2A4A     		ldr	r2, .L5+4
+  57 0008 1A60     		str	r2, [r3]
+ 143:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     
+ 144:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* Timing configuration for 100Mhz as SDRAM clock frequency (System clock is up to 200Mhz) */
+ 145:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Timing.LoadToActiveDelay    = 2;
+  58              		.loc 1 145 0
+  59 000a 2A4B     		ldr	r3, .L5+8
+  60 000c 0222     		movs	r2, #2
+  61 000e 1A60     		str	r2, [r3]
+ 146:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Timing.ExitSelfRefreshDelay = 7;
+  62              		.loc 1 146 0
+  63 0010 284B     		ldr	r3, .L5+8
+  64 0012 0722     		movs	r2, #7
+  65 0014 5A60     		str	r2, [r3, #4]
+ 147:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Timing.SelfRefreshTime      = 4;
+  66              		.loc 1 147 0
+  67 0016 274B     		ldr	r3, .L5+8
+  68 0018 0422     		movs	r2, #4
+  69 001a 9A60     		str	r2, [r3, #8]
+ 148:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Timing.RowCycleDelay        = 7;
+  70              		.loc 1 148 0
+  71 001c 254B     		ldr	r3, .L5+8
+  72 001e 0722     		movs	r2, #7
+  73 0020 DA60     		str	r2, [r3, #12]
+ 149:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Timing.WriteRecoveryTime    = 2;
+  74              		.loc 1 149 0
+  75 0022 244B     		ldr	r3, .L5+8
+  76 0024 0222     		movs	r2, #2
+  77 0026 1A61     		str	r2, [r3, #16]
+ARM GAS  /tmp/ccZFcvrO.s 			page 5
+
+
+ 150:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Timing.RPDelay              = 2;
+  78              		.loc 1 150 0
+  79 0028 224B     		ldr	r3, .L5+8
+  80 002a 0222     		movs	r2, #2
+  81 002c 5A61     		str	r2, [r3, #20]
+ 151:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Timing.RCDDelay             = 2;
+  82              		.loc 1 151 0
+  83 002e 214B     		ldr	r3, .L5+8
+  84 0030 0222     		movs	r2, #2
+  85 0032 9A61     		str	r2, [r3, #24]
+ 152:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 153:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   sdramHandle.Init.SDBank             = FMC_SDRAM_BANK1;
+  86              		.loc 1 153 0
+  87 0034 1D4B     		ldr	r3, .L5
+  88 0036 0022     		movs	r2, #0
+  89 0038 5A60     		str	r2, [r3, #4]
+ 154:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   sdramHandle.Init.ColumnBitsNumber   = FMC_SDRAM_COLUMN_BITS_NUM_8;
+  90              		.loc 1 154 0
+  91 003a 1C4B     		ldr	r3, .L5
+  92 003c 0022     		movs	r2, #0
+  93 003e 9A60     		str	r2, [r3, #8]
+ 155:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   sdramHandle.Init.RowBitsNumber      = FMC_SDRAM_ROW_BITS_NUM_12;
+  94              		.loc 1 155 0
+  95 0040 1A4B     		ldr	r3, .L5
+  96 0042 0422     		movs	r2, #4
+  97 0044 DA60     		str	r2, [r3, #12]
+ 156:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   sdramHandle.Init.MemoryDataWidth    = SDRAM_MEMORY_WIDTH;
+  98              		.loc 1 156 0
+  99 0046 194B     		ldr	r3, .L5
+ 100 0048 2022     		movs	r2, #32
+ 101 004a 1A61     		str	r2, [r3, #16]
+ 157:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   sdramHandle.Init.InternalBankNumber = FMC_SDRAM_INTERN_BANKS_NUM_4;
+ 102              		.loc 1 157 0
+ 103 004c 174B     		ldr	r3, .L5
+ 104 004e 4022     		movs	r2, #64
+ 105 0050 5A61     		str	r2, [r3, #20]
+ 158:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   sdramHandle.Init.CASLatency         = FMC_SDRAM_CAS_LATENCY_3;
+ 106              		.loc 1 158 0
+ 107 0052 164B     		ldr	r3, .L5
+ 108 0054 4FF4C072 		mov	r2, #384
+ 109 0058 9A61     		str	r2, [r3, #24]
+ 159:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   sdramHandle.Init.WriteProtection    = FMC_SDRAM_WRITE_PROTECTION_DISABLE;
+ 110              		.loc 1 159 0
+ 111 005a 144B     		ldr	r3, .L5
+ 112 005c 0022     		movs	r2, #0
+ 113 005e DA61     		str	r2, [r3, #28]
+ 160:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   sdramHandle.Init.SDClockPeriod      = SDCLOCK_PERIOD;
+ 114              		.loc 1 160 0
+ 115 0060 124B     		ldr	r3, .L5
+ 116 0062 4FF40062 		mov	r2, #2048
+ 117 0066 1A62     		str	r2, [r3, #32]
+ 161:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   sdramHandle.Init.ReadBurst          = FMC_SDRAM_RBURST_ENABLE;
+ 118              		.loc 1 161 0
+ 119 0068 104B     		ldr	r3, .L5
+ 120 006a 4FF48052 		mov	r2, #4096
+ 121 006e 5A62     		str	r2, [r3, #36]
+ 162:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   sdramHandle.Init.ReadPipeDelay      = FMC_SDRAM_RPIPE_DELAY_0;
+ARM GAS  /tmp/ccZFcvrO.s 			page 6
+
+
+ 122              		.loc 1 162 0
+ 123 0070 0E4B     		ldr	r3, .L5
+ 124 0072 0022     		movs	r2, #0
+ 125 0074 9A62     		str	r2, [r3, #40]
+ 163:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 164:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* SDRAM controller initialization */
+ 165:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 166:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   BSP_SDRAM_MspInit(&sdramHandle, NULL); /* __weak function can be rewritten by the application */
+ 126              		.loc 1 166 0
+ 127 0076 0D48     		ldr	r0, .L5
+ 128 0078 0021     		movs	r1, #0
+ 129 007a FFF7FEFF 		bl	BSP_SDRAM_MspInit
+ 167:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 168:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   if(HAL_SDRAM_Init(&sdramHandle, &Timing) != HAL_OK)
+ 130              		.loc 1 168 0
+ 131 007e 0B48     		ldr	r0, .L5
+ 132 0080 0C49     		ldr	r1, .L5+8
+ 133 0082 FFF7FEFF 		bl	HAL_SDRAM_Init
+ 134 0086 0346     		mov	r3, r0
+ 135 0088 002B     		cmp	r3, #0
+ 136 008a 03D0     		beq	.L2
+ 169:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   {
+ 170:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     sdramstatus = SDRAM_ERROR;
+ 137              		.loc 1 170 0
+ 138 008c 0A4B     		ldr	r3, .L5+12
+ 139 008e 0122     		movs	r2, #1
+ 140 0090 1A70     		strb	r2, [r3]
+ 141 0092 02E0     		b	.L3
+ 142              	.L2:
+ 171:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   }
+ 172:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   else
+ 173:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   {
+ 174:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     sdramstatus = SDRAM_OK;
+ 143              		.loc 1 174 0
+ 144 0094 084B     		ldr	r3, .L5+12
+ 145 0096 0022     		movs	r2, #0
+ 146 0098 1A70     		strb	r2, [r3]
+ 147              	.L3:
+ 175:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   }
+ 176:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 177:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* SDRAM initialization sequence */
+ 178:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   BSP_SDRAM_Initialization_sequence(REFRESH_COUNT);
+ 148              		.loc 1 178 0
+ 149 009a 40F20360 		movw	r0, #1539
+ 150 009e FFF7FEFF 		bl	BSP_SDRAM_Initialization_sequence
+ 179:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 180:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   return sdramstatus;
+ 151              		.loc 1 180 0
+ 152 00a2 054B     		ldr	r3, .L5+12
+ 153 00a4 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 181:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** }
+ 154              		.loc 1 181 0
+ 155 00a6 1846     		mov	r0, r3
+ 156 00a8 80BD     		pop	{r7, pc}
+ 157              	.L6:
+ 158 00aa 00BF     		.align	2
+ 159              	.L5:
+ARM GAS  /tmp/ccZFcvrO.s 			page 7
+
+
+ 160 00ac 00000000 		.word	sdramHandle
+ 161 00b0 400100A0 		.word	-1610612416
+ 162 00b4 00000000 		.word	Timing
+ 163 00b8 00000000 		.word	sdramstatus.9315
+ 164              		.cfi_endproc
+ 165              	.LFE135:
+ 167              		.section	.text.BSP_SDRAM_DeInit,"ax",%progbits
+ 168              		.align	2
+ 169              		.global	BSP_SDRAM_DeInit
+ 170              		.thumb
+ 171              		.thumb_func
+ 173              	BSP_SDRAM_DeInit:
+ 174              	.LFB136:
+ 182:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 183:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /**
+ 184:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @brief  DeInitializes the SDRAM device.
+ 185:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @retval SDRAM status
+ 186:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */
+ 187:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** uint8_t BSP_SDRAM_DeInit(void)
+ 188:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** { 
+ 175              		.loc 1 188 0
+ 176              		.cfi_startproc
+ 177              		@ args = 0, pretend = 0, frame = 0
+ 178              		@ frame_needed = 1, uses_anonymous_args = 0
+ 179 0000 80B5     		push	{r7, lr}
+ 180              	.LCFI2:
+ 181              		.cfi_def_cfa_offset 8
+ 182              		.cfi_offset 7, -8
+ 183              		.cfi_offset 14, -4
+ 184 0002 00AF     		add	r7, sp, #0
+ 185              	.LCFI3:
+ 186              		.cfi_def_cfa_register 7
+ 189:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   static uint8_t sdramstatus = SDRAM_ERROR;
+ 190:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* SDRAM device de-initialization */
+ 191:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   sdramHandle.Instance = FMC_SDRAM_DEVICE;
+ 187              		.loc 1 191 0
+ 188 0004 0B4B     		ldr	r3, .L11
+ 189 0006 0C4A     		ldr	r2, .L11+4
+ 190 0008 1A60     		str	r2, [r3]
+ 192:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 193:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   if(HAL_SDRAM_DeInit(&sdramHandle) != HAL_OK)
+ 191              		.loc 1 193 0
+ 192 000a 0A48     		ldr	r0, .L11
+ 193 000c FFF7FEFF 		bl	HAL_SDRAM_DeInit
+ 194 0010 0346     		mov	r3, r0
+ 195 0012 002B     		cmp	r3, #0
+ 196 0014 03D0     		beq	.L8
+ 194:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   {
+ 195:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     sdramstatus = SDRAM_ERROR;
+ 197              		.loc 1 195 0
+ 198 0016 094B     		ldr	r3, .L11+8
+ 199 0018 0122     		movs	r2, #1
+ 200 001a 1A70     		strb	r2, [r3]
+ 201 001c 02E0     		b	.L9
+ 202              	.L8:
+ 196:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   }
+ 197:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   else
+ARM GAS  /tmp/ccZFcvrO.s 			page 8
+
+
+ 198:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   {
+ 199:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     sdramstatus = SDRAM_OK;
+ 203              		.loc 1 199 0
+ 204 001e 074B     		ldr	r3, .L11+8
+ 205 0020 0022     		movs	r2, #0
+ 206 0022 1A70     		strb	r2, [r3]
+ 207              	.L9:
+ 200:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   }
+ 201:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 202:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* SDRAM controller de-initialization */
+ 203:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   BSP_SDRAM_MspDeInit(&sdramHandle, NULL);
+ 208              		.loc 1 203 0
+ 209 0024 0348     		ldr	r0, .L11
+ 210 0026 0021     		movs	r1, #0
+ 211 0028 FFF7FEFF 		bl	BSP_SDRAM_MspDeInit
+ 204:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 205:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   return sdramstatus;
+ 212              		.loc 1 205 0
+ 213 002c 034B     		ldr	r3, .L11+8
+ 214 002e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 206:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** }
+ 215              		.loc 1 206 0
+ 216 0030 1846     		mov	r0, r3
+ 217 0032 80BD     		pop	{r7, pc}
+ 218              	.L12:
+ 219              		.align	2
+ 220              	.L11:
+ 221 0034 00000000 		.word	sdramHandle
+ 222 0038 400100A0 		.word	-1610612416
+ 223 003c 00000000 		.word	sdramstatus.9319
+ 224              		.cfi_endproc
+ 225              	.LFE136:
+ 227              		.section	.text.BSP_SDRAM_Initialization_sequence,"ax",%progbits
+ 228              		.align	2
+ 229              		.global	BSP_SDRAM_Initialization_sequence
+ 230              		.thumb
+ 231              		.thumb_func
+ 233              	BSP_SDRAM_Initialization_sequence:
+ 234              	.LFB137:
+ 207:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 208:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /**
+ 209:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @brief  Programs the SDRAM device.
+ 210:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @param  RefreshCount: SDRAM refresh counter value 
+ 211:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @retval None
+ 212:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */
+ 213:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** void BSP_SDRAM_Initialization_sequence(uint32_t RefreshCount)
+ 214:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** {
+ 235              		.loc 1 214 0
+ 236              		.cfi_startproc
+ 237              		@ args = 0, pretend = 0, frame = 16
+ 238              		@ frame_needed = 1, uses_anonymous_args = 0
+ 239 0000 80B5     		push	{r7, lr}
+ 240              	.LCFI4:
+ 241              		.cfi_def_cfa_offset 8
+ 242              		.cfi_offset 7, -8
+ 243              		.cfi_offset 14, -4
+ 244 0002 84B0     		sub	sp, sp, #16
+ARM GAS  /tmp/ccZFcvrO.s 			page 9
+
+
+ 245              	.LCFI5:
+ 246              		.cfi_def_cfa_offset 24
+ 247 0004 00AF     		add	r7, sp, #0
+ 248              	.LCFI6:
+ 249              		.cfi_def_cfa_register 7
+ 250 0006 7860     		str	r0, [r7, #4]
+ 215:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   __IO uint32_t tmpmrd = 0;
+ 251              		.loc 1 215 0
+ 252 0008 0023     		movs	r3, #0
+ 253 000a FB60     		str	r3, [r7, #12]
+ 216:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 217:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* Step 1: Configure a clock configuration enable command */
+ 218:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Command.CommandMode            = FMC_SDRAM_CMD_CLK_ENABLE;
+ 254              		.loc 1 218 0
+ 255 000c 2A4B     		ldr	r3, .L14
+ 256 000e 0122     		movs	r2, #1
+ 257 0010 1A60     		str	r2, [r3]
+ 219:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Command.CommandTarget          = FMC_SDRAM_CMD_TARGET_BANK1;
+ 258              		.loc 1 219 0
+ 259 0012 294B     		ldr	r3, .L14
+ 260 0014 1022     		movs	r2, #16
+ 261 0016 5A60     		str	r2, [r3, #4]
+ 220:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Command.AutoRefreshNumber      = 1;
+ 262              		.loc 1 220 0
+ 263 0018 274B     		ldr	r3, .L14
+ 264 001a 0122     		movs	r2, #1
+ 265 001c 9A60     		str	r2, [r3, #8]
+ 221:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Command.ModeRegisterDefinition = 0;
+ 266              		.loc 1 221 0
+ 267 001e 264B     		ldr	r3, .L14
+ 268 0020 0022     		movs	r2, #0
+ 269 0022 DA60     		str	r2, [r3, #12]
+ 222:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 223:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* Send the command */
+ 224:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   HAL_SDRAM_SendCommand(&sdramHandle, &Command, SDRAM_TIMEOUT);
+ 270              		.loc 1 224 0
+ 271 0024 2548     		ldr	r0, .L14+4
+ 272 0026 2449     		ldr	r1, .L14
+ 273 0028 4FF6FF72 		movw	r2, #65535
+ 274 002c FFF7FEFF 		bl	HAL_SDRAM_SendCommand
+ 225:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 226:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* Step 2: Insert 100 us minimum delay */ 
+ 227:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* Inserted delay is equal to 1 ms due to systick time base unit (ms) */
+ 228:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   HAL_Delay(1);
+ 275              		.loc 1 228 0
+ 276 0030 0120     		movs	r0, #1
+ 277 0032 FFF7FEFF 		bl	HAL_Delay
+ 229:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     
+ 230:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* Step 3: Configure a PALL (precharge all) command */ 
+ 231:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Command.CommandMode            = FMC_SDRAM_CMD_PALL;
+ 278              		.loc 1 231 0
+ 279 0036 204B     		ldr	r3, .L14
+ 280 0038 0222     		movs	r2, #2
+ 281 003a 1A60     		str	r2, [r3]
+ 232:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Command.CommandTarget          = FMC_SDRAM_CMD_TARGET_BANK1;
+ 282              		.loc 1 232 0
+ 283 003c 1E4B     		ldr	r3, .L14
+ARM GAS  /tmp/ccZFcvrO.s 			page 10
+
+
+ 284 003e 1022     		movs	r2, #16
+ 285 0040 5A60     		str	r2, [r3, #4]
+ 233:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Command.AutoRefreshNumber      = 1;
+ 286              		.loc 1 233 0
+ 287 0042 1D4B     		ldr	r3, .L14
+ 288 0044 0122     		movs	r2, #1
+ 289 0046 9A60     		str	r2, [r3, #8]
+ 234:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Command.ModeRegisterDefinition = 0;
+ 290              		.loc 1 234 0
+ 291 0048 1B4B     		ldr	r3, .L14
+ 292 004a 0022     		movs	r2, #0
+ 293 004c DA60     		str	r2, [r3, #12]
+ 235:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 236:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* Send the command */
+ 237:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   HAL_SDRAM_SendCommand(&sdramHandle, &Command, SDRAM_TIMEOUT);  
+ 294              		.loc 1 237 0
+ 295 004e 1B48     		ldr	r0, .L14+4
+ 296 0050 1949     		ldr	r1, .L14
+ 297 0052 4FF6FF72 		movw	r2, #65535
+ 298 0056 FFF7FEFF 		bl	HAL_SDRAM_SendCommand
+ 238:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 239:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* Step 4: Configure an Auto Refresh command */ 
+ 240:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Command.CommandMode            = FMC_SDRAM_CMD_AUTOREFRESH_MODE;
+ 299              		.loc 1 240 0
+ 300 005a 174B     		ldr	r3, .L14
+ 301 005c 0322     		movs	r2, #3
+ 302 005e 1A60     		str	r2, [r3]
+ 241:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Command.CommandTarget          = FMC_SDRAM_CMD_TARGET_BANK1;
+ 303              		.loc 1 241 0
+ 304 0060 154B     		ldr	r3, .L14
+ 305 0062 1022     		movs	r2, #16
+ 306 0064 5A60     		str	r2, [r3, #4]
+ 242:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Command.AutoRefreshNumber      = 8;
+ 307              		.loc 1 242 0
+ 308 0066 144B     		ldr	r3, .L14
+ 309 0068 0822     		movs	r2, #8
+ 310 006a 9A60     		str	r2, [r3, #8]
+ 243:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Command.ModeRegisterDefinition = 0;
+ 311              		.loc 1 243 0
+ 312 006c 124B     		ldr	r3, .L14
+ 313 006e 0022     		movs	r2, #0
+ 314 0070 DA60     		str	r2, [r3, #12]
+ 244:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 245:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* Send the command */
+ 246:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   HAL_SDRAM_SendCommand(&sdramHandle, &Command, SDRAM_TIMEOUT);
+ 315              		.loc 1 246 0
+ 316 0072 1248     		ldr	r0, .L14+4
+ 317 0074 1049     		ldr	r1, .L14
+ 318 0076 4FF6FF72 		movw	r2, #65535
+ 319 007a FFF7FEFF 		bl	HAL_SDRAM_SendCommand
+ 247:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 248:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* Step 5: Program the external memory mode register */
+ 249:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   tmpmrd = (uint32_t)SDRAM_MODEREG_BURST_LENGTH_1          |\
+ 320              		.loc 1 249 0
+ 321 007e 4FF40C73 		mov	r3, #560
+ 322 0082 FB60     		str	r3, [r7, #12]
+ 250:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****                      SDRAM_MODEREG_BURST_TYPE_SEQUENTIAL   |\
+ARM GAS  /tmp/ccZFcvrO.s 			page 11
+
+
+ 251:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****                      SDRAM_MODEREG_CAS_LATENCY_3           |\
+ 252:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****                      SDRAM_MODEREG_OPERATING_MODE_STANDARD |\
+ 253:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****                      SDRAM_MODEREG_WRITEBURST_MODE_SINGLE;
+ 254:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 255:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Command.CommandMode            = FMC_SDRAM_CMD_LOAD_MODE;
+ 323              		.loc 1 255 0
+ 324 0084 0C4B     		ldr	r3, .L14
+ 325 0086 0422     		movs	r2, #4
+ 326 0088 1A60     		str	r2, [r3]
+ 256:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Command.CommandTarget          = FMC_SDRAM_CMD_TARGET_BANK1;
+ 327              		.loc 1 256 0
+ 328 008a 0B4B     		ldr	r3, .L14
+ 329 008c 1022     		movs	r2, #16
+ 330 008e 5A60     		str	r2, [r3, #4]
+ 257:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Command.AutoRefreshNumber      = 1;
+ 331              		.loc 1 257 0
+ 332 0090 094B     		ldr	r3, .L14
+ 333 0092 0122     		movs	r2, #1
+ 334 0094 9A60     		str	r2, [r3, #8]
+ 258:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   Command.ModeRegisterDefinition = tmpmrd;
+ 335              		.loc 1 258 0
+ 336 0096 FB68     		ldr	r3, [r7, #12]
+ 337 0098 074A     		ldr	r2, .L14
+ 338 009a D360     		str	r3, [r2, #12]
+ 259:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 260:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* Send the command */
+ 261:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   HAL_SDRAM_SendCommand(&sdramHandle, &Command, SDRAM_TIMEOUT);
+ 339              		.loc 1 261 0
+ 340 009c 0748     		ldr	r0, .L14+4
+ 341 009e 0649     		ldr	r1, .L14
+ 342 00a0 4FF6FF72 		movw	r2, #65535
+ 343 00a4 FFF7FEFF 		bl	HAL_SDRAM_SendCommand
+ 262:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 263:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* Step 6: Set the refresh rate counter */
+ 264:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* Set the device refresh rate */
+ 265:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   HAL_SDRAM_ProgramRefreshRate(&sdramHandle, RefreshCount); 
+ 344              		.loc 1 265 0
+ 345 00a8 0448     		ldr	r0, .L14+4
+ 346 00aa 7968     		ldr	r1, [r7, #4]
+ 347 00ac FFF7FEFF 		bl	HAL_SDRAM_ProgramRefreshRate
+ 266:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** }
+ 348              		.loc 1 266 0
+ 349 00b0 1037     		adds	r7, r7, #16
+ 350              	.LCFI7:
+ 351              		.cfi_def_cfa_offset 8
+ 352 00b2 BD46     		mov	sp, r7
+ 353              	.LCFI8:
+ 354              		.cfi_def_cfa_register 13
+ 355              		@ sp needed
+ 356 00b4 80BD     		pop	{r7, pc}
+ 357              	.L15:
+ 358 00b6 00BF     		.align	2
+ 359              	.L14:
+ 360 00b8 00000000 		.word	Command
+ 361 00bc 00000000 		.word	sdramHandle
+ 362              		.cfi_endproc
+ 363              	.LFE137:
+ARM GAS  /tmp/ccZFcvrO.s 			page 12
+
+
+ 365              		.section	.text.BSP_SDRAM_ReadData,"ax",%progbits
+ 366              		.align	2
+ 367              		.global	BSP_SDRAM_ReadData
+ 368              		.thumb
+ 369              		.thumb_func
+ 371              	BSP_SDRAM_ReadData:
+ 372              	.LFB138:
+ 267:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 268:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /**
+ 269:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @brief  Reads an amount of data from the SDRAM memory in polling mode.
+ 270:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @param  uwStartAddress: Read start address
+ 271:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @param  pData: Pointer to data to be read  
+ 272:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @param  uwDataSize: Size of read data from the memory
+ 273:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @retval SDRAM status
+ 274:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */
+ 275:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** uint8_t BSP_SDRAM_ReadData(uint32_t uwStartAddress, uint32_t *pData, uint32_t uwDataSize)
+ 276:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** {
+ 373              		.loc 1 276 0
+ 374              		.cfi_startproc
+ 375              		@ args = 0, pretend = 0, frame = 16
+ 376              		@ frame_needed = 1, uses_anonymous_args = 0
+ 377 0000 80B5     		push	{r7, lr}
+ 378              	.LCFI9:
+ 379              		.cfi_def_cfa_offset 8
+ 380              		.cfi_offset 7, -8
+ 381              		.cfi_offset 14, -4
+ 382 0002 84B0     		sub	sp, sp, #16
+ 383              	.LCFI10:
+ 384              		.cfi_def_cfa_offset 24
+ 385 0004 00AF     		add	r7, sp, #0
+ 386              	.LCFI11:
+ 387              		.cfi_def_cfa_register 7
+ 388 0006 F860     		str	r0, [r7, #12]
+ 389 0008 B960     		str	r1, [r7, #8]
+ 390 000a 7A60     		str	r2, [r7, #4]
+ 277:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   if(HAL_SDRAM_Read_32b(&sdramHandle, (uint32_t *)uwStartAddress, pData, uwDataSize) != HAL_OK)
+ 391              		.loc 1 277 0
+ 392 000c FB68     		ldr	r3, [r7, #12]
+ 393 000e 0848     		ldr	r0, .L19
+ 394 0010 1946     		mov	r1, r3
+ 395 0012 BA68     		ldr	r2, [r7, #8]
+ 396 0014 7B68     		ldr	r3, [r7, #4]
+ 397 0016 FFF7FEFF 		bl	HAL_SDRAM_Read_32b
+ 398 001a 0346     		mov	r3, r0
+ 399 001c 002B     		cmp	r3, #0
+ 400 001e 01D0     		beq	.L17
+ 278:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   {
+ 279:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     return SDRAM_ERROR;
+ 401              		.loc 1 279 0
+ 402 0020 0123     		movs	r3, #1
+ 403 0022 00E0     		b	.L18
+ 404              	.L17:
+ 280:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   }
+ 281:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   else
+ 282:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   {
+ 283:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     return SDRAM_OK;
+ 405              		.loc 1 283 0
+ARM GAS  /tmp/ccZFcvrO.s 			page 13
+
+
+ 406 0024 0023     		movs	r3, #0
+ 407              	.L18:
+ 284:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   } 
+ 285:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** }
+ 408              		.loc 1 285 0
+ 409 0026 1846     		mov	r0, r3
+ 410 0028 1037     		adds	r7, r7, #16
+ 411              	.LCFI12:
+ 412              		.cfi_def_cfa_offset 8
+ 413 002a BD46     		mov	sp, r7
+ 414              	.LCFI13:
+ 415              		.cfi_def_cfa_register 13
+ 416              		@ sp needed
+ 417 002c 80BD     		pop	{r7, pc}
+ 418              	.L20:
+ 419 002e 00BF     		.align	2
+ 420              	.L19:
+ 421 0030 00000000 		.word	sdramHandle
+ 422              		.cfi_endproc
+ 423              	.LFE138:
+ 425              		.section	.text.BSP_SDRAM_ReadData_DMA,"ax",%progbits
+ 426              		.align	2
+ 427              		.global	BSP_SDRAM_ReadData_DMA
+ 428              		.thumb
+ 429              		.thumb_func
+ 431              	BSP_SDRAM_ReadData_DMA:
+ 432              	.LFB139:
+ 286:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 287:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /**
+ 288:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @brief  Reads an amount of data from the SDRAM memory in DMA mode.
+ 289:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @param  uwStartAddress: Read start address
+ 290:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @param  pData: Pointer to data to be read  
+ 291:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @param  uwDataSize: Size of read data from the memory
+ 292:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @retval SDRAM status
+ 293:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */
+ 294:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** uint8_t BSP_SDRAM_ReadData_DMA(uint32_t uwStartAddress, uint32_t *pData, uint32_t uwDataSize)
+ 295:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** {
+ 433              		.loc 1 295 0
+ 434              		.cfi_startproc
+ 435              		@ args = 0, pretend = 0, frame = 16
+ 436              		@ frame_needed = 1, uses_anonymous_args = 0
+ 437 0000 80B5     		push	{r7, lr}
+ 438              	.LCFI14:
+ 439              		.cfi_def_cfa_offset 8
+ 440              		.cfi_offset 7, -8
+ 441              		.cfi_offset 14, -4
+ 442 0002 84B0     		sub	sp, sp, #16
+ 443              	.LCFI15:
+ 444              		.cfi_def_cfa_offset 24
+ 445 0004 00AF     		add	r7, sp, #0
+ 446              	.LCFI16:
+ 447              		.cfi_def_cfa_register 7
+ 448 0006 F860     		str	r0, [r7, #12]
+ 449 0008 B960     		str	r1, [r7, #8]
+ 450 000a 7A60     		str	r2, [r7, #4]
+ 296:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   if(HAL_SDRAM_Read_DMA(&sdramHandle, (uint32_t *)uwStartAddress, pData, uwDataSize) != HAL_OK)
+ 451              		.loc 1 296 0
+ARM GAS  /tmp/ccZFcvrO.s 			page 14
+
+
+ 452 000c FB68     		ldr	r3, [r7, #12]
+ 453 000e 0848     		ldr	r0, .L24
+ 454 0010 1946     		mov	r1, r3
+ 455 0012 BA68     		ldr	r2, [r7, #8]
+ 456 0014 7B68     		ldr	r3, [r7, #4]
+ 457 0016 FFF7FEFF 		bl	HAL_SDRAM_Read_DMA
+ 458 001a 0346     		mov	r3, r0
+ 459 001c 002B     		cmp	r3, #0
+ 460 001e 01D0     		beq	.L22
+ 297:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   {
+ 298:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     return SDRAM_ERROR;
+ 461              		.loc 1 298 0
+ 462 0020 0123     		movs	r3, #1
+ 463 0022 00E0     		b	.L23
+ 464              	.L22:
+ 299:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   }
+ 300:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   else
+ 301:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   {
+ 302:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     return SDRAM_OK;
+ 465              		.loc 1 302 0
+ 466 0024 0023     		movs	r3, #0
+ 467              	.L23:
+ 303:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   }     
+ 304:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** }
+ 468              		.loc 1 304 0
+ 469 0026 1846     		mov	r0, r3
+ 470 0028 1037     		adds	r7, r7, #16
+ 471              	.LCFI17:
+ 472              		.cfi_def_cfa_offset 8
+ 473 002a BD46     		mov	sp, r7
+ 474              	.LCFI18:
+ 475              		.cfi_def_cfa_register 13
+ 476              		@ sp needed
+ 477 002c 80BD     		pop	{r7, pc}
+ 478              	.L25:
+ 479 002e 00BF     		.align	2
+ 480              	.L24:
+ 481 0030 00000000 		.word	sdramHandle
+ 482              		.cfi_endproc
+ 483              	.LFE139:
+ 485              		.section	.text.BSP_SDRAM_WriteData,"ax",%progbits
+ 486              		.align	2
+ 487              		.global	BSP_SDRAM_WriteData
+ 488              		.thumb
+ 489              		.thumb_func
+ 491              	BSP_SDRAM_WriteData:
+ 492              	.LFB140:
+ 305:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 306:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /**
+ 307:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @brief  Writes an amount of data to the SDRAM memory in polling mode.
+ 308:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @param  uwStartAddress: Write start address
+ 309:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @param  pData: Pointer to data to be written  
+ 310:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @param  uwDataSize: Size of written data from the memory
+ 311:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @retval SDRAM status
+ 312:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */
+ 313:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** uint8_t BSP_SDRAM_WriteData(uint32_t uwStartAddress, uint32_t *pData, uint32_t uwDataSize) 
+ 314:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** {
+ARM GAS  /tmp/ccZFcvrO.s 			page 15
+
+
+ 493              		.loc 1 314 0
+ 494              		.cfi_startproc
+ 495              		@ args = 0, pretend = 0, frame = 16
+ 496              		@ frame_needed = 1, uses_anonymous_args = 0
+ 497 0000 80B5     		push	{r7, lr}
+ 498              	.LCFI19:
+ 499              		.cfi_def_cfa_offset 8
+ 500              		.cfi_offset 7, -8
+ 501              		.cfi_offset 14, -4
+ 502 0002 84B0     		sub	sp, sp, #16
+ 503              	.LCFI20:
+ 504              		.cfi_def_cfa_offset 24
+ 505 0004 00AF     		add	r7, sp, #0
+ 506              	.LCFI21:
+ 507              		.cfi_def_cfa_register 7
+ 508 0006 F860     		str	r0, [r7, #12]
+ 509 0008 B960     		str	r1, [r7, #8]
+ 510 000a 7A60     		str	r2, [r7, #4]
+ 315:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   if(HAL_SDRAM_Write_32b(&sdramHandle, (uint32_t *)uwStartAddress, pData, uwDataSize) != HAL_OK)
+ 511              		.loc 1 315 0
+ 512 000c FB68     		ldr	r3, [r7, #12]
+ 513 000e 0848     		ldr	r0, .L29
+ 514 0010 1946     		mov	r1, r3
+ 515 0012 BA68     		ldr	r2, [r7, #8]
+ 516 0014 7B68     		ldr	r3, [r7, #4]
+ 517 0016 FFF7FEFF 		bl	HAL_SDRAM_Write_32b
+ 518 001a 0346     		mov	r3, r0
+ 519 001c 002B     		cmp	r3, #0
+ 520 001e 01D0     		beq	.L27
+ 316:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   {
+ 317:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     return SDRAM_ERROR;
+ 521              		.loc 1 317 0
+ 522 0020 0123     		movs	r3, #1
+ 523 0022 00E0     		b	.L28
+ 524              	.L27:
+ 318:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   }
+ 319:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   else
+ 320:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   {
+ 321:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     return SDRAM_OK;
+ 525              		.loc 1 321 0
+ 526 0024 0023     		movs	r3, #0
+ 527              	.L28:
+ 322:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   }
+ 323:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** }
+ 528              		.loc 1 323 0
+ 529 0026 1846     		mov	r0, r3
+ 530 0028 1037     		adds	r7, r7, #16
+ 531              	.LCFI22:
+ 532              		.cfi_def_cfa_offset 8
+ 533 002a BD46     		mov	sp, r7
+ 534              	.LCFI23:
+ 535              		.cfi_def_cfa_register 13
+ 536              		@ sp needed
+ 537 002c 80BD     		pop	{r7, pc}
+ 538              	.L30:
+ 539 002e 00BF     		.align	2
+ 540              	.L29:
+ARM GAS  /tmp/ccZFcvrO.s 			page 16
+
+
+ 541 0030 00000000 		.word	sdramHandle
+ 542              		.cfi_endproc
+ 543              	.LFE140:
+ 545              		.section	.text.BSP_SDRAM_WriteData_DMA,"ax",%progbits
+ 546              		.align	2
+ 547              		.global	BSP_SDRAM_WriteData_DMA
+ 548              		.thumb
+ 549              		.thumb_func
+ 551              	BSP_SDRAM_WriteData_DMA:
+ 552              	.LFB141:
+ 324:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 325:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /**
+ 326:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @brief  Writes an amount of data to the SDRAM memory in DMA mode.
+ 327:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @param  uwStartAddress: Write start address
+ 328:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @param  pData: Pointer to data to be written  
+ 329:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @param  uwDataSize: Size of written data from the memory
+ 330:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @retval SDRAM status
+ 331:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */
+ 332:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** uint8_t BSP_SDRAM_WriteData_DMA(uint32_t uwStartAddress, uint32_t *pData, uint32_t uwDataSize) 
+ 333:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** {
+ 553              		.loc 1 333 0
+ 554              		.cfi_startproc
+ 555              		@ args = 0, pretend = 0, frame = 16
+ 556              		@ frame_needed = 1, uses_anonymous_args = 0
+ 557 0000 80B5     		push	{r7, lr}
+ 558              	.LCFI24:
+ 559              		.cfi_def_cfa_offset 8
+ 560              		.cfi_offset 7, -8
+ 561              		.cfi_offset 14, -4
+ 562 0002 84B0     		sub	sp, sp, #16
+ 563              	.LCFI25:
+ 564              		.cfi_def_cfa_offset 24
+ 565 0004 00AF     		add	r7, sp, #0
+ 566              	.LCFI26:
+ 567              		.cfi_def_cfa_register 7
+ 568 0006 F860     		str	r0, [r7, #12]
+ 569 0008 B960     		str	r1, [r7, #8]
+ 570 000a 7A60     		str	r2, [r7, #4]
+ 334:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   if(HAL_SDRAM_Write_DMA(&sdramHandle, (uint32_t *)uwStartAddress, pData, uwDataSize) != HAL_OK)
+ 571              		.loc 1 334 0
+ 572 000c FB68     		ldr	r3, [r7, #12]
+ 573 000e 0848     		ldr	r0, .L34
+ 574 0010 1946     		mov	r1, r3
+ 575 0012 BA68     		ldr	r2, [r7, #8]
+ 576 0014 7B68     		ldr	r3, [r7, #4]
+ 577 0016 FFF7FEFF 		bl	HAL_SDRAM_Write_DMA
+ 578 001a 0346     		mov	r3, r0
+ 579 001c 002B     		cmp	r3, #0
+ 580 001e 01D0     		beq	.L32
+ 335:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   {
+ 336:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     return SDRAM_ERROR;
+ 581              		.loc 1 336 0
+ 582 0020 0123     		movs	r3, #1
+ 583 0022 00E0     		b	.L33
+ 584              	.L32:
+ 337:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   }
+ 338:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   else
+ARM GAS  /tmp/ccZFcvrO.s 			page 17
+
+
+ 339:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   {
+ 340:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     return SDRAM_OK;
+ 585              		.loc 1 340 0
+ 586 0024 0023     		movs	r3, #0
+ 587              	.L33:
+ 341:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   } 
+ 342:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** }
+ 588              		.loc 1 342 0
+ 589 0026 1846     		mov	r0, r3
+ 590 0028 1037     		adds	r7, r7, #16
+ 591              	.LCFI27:
+ 592              		.cfi_def_cfa_offset 8
+ 593 002a BD46     		mov	sp, r7
+ 594              	.LCFI28:
+ 595              		.cfi_def_cfa_register 13
+ 596              		@ sp needed
+ 597 002c 80BD     		pop	{r7, pc}
+ 598              	.L35:
+ 599 002e 00BF     		.align	2
+ 600              	.L34:
+ 601 0030 00000000 		.word	sdramHandle
+ 602              		.cfi_endproc
+ 603              	.LFE141:
+ 605              		.section	.text.BSP_SDRAM_Sendcmd,"ax",%progbits
+ 606              		.align	2
+ 607              		.global	BSP_SDRAM_Sendcmd
+ 608              		.thumb
+ 609              		.thumb_func
+ 611              	BSP_SDRAM_Sendcmd:
+ 612              	.LFB142:
+ 343:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 344:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /**
+ 345:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @brief  Sends command to the SDRAM bank.
+ 346:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @param  SdramCmd: Pointer to SDRAM command structure 
+ 347:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @retval SDRAM status
+ 348:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */  
+ 349:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** uint8_t BSP_SDRAM_Sendcmd(FMC_SDRAM_CommandTypeDef *SdramCmd)
+ 350:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** {
+ 613              		.loc 1 350 0
+ 614              		.cfi_startproc
+ 615              		@ args = 0, pretend = 0, frame = 8
+ 616              		@ frame_needed = 1, uses_anonymous_args = 0
+ 617 0000 80B5     		push	{r7, lr}
+ 618              	.LCFI29:
+ 619              		.cfi_def_cfa_offset 8
+ 620              		.cfi_offset 7, -8
+ 621              		.cfi_offset 14, -4
+ 622 0002 82B0     		sub	sp, sp, #8
+ 623              	.LCFI30:
+ 624              		.cfi_def_cfa_offset 16
+ 625 0004 00AF     		add	r7, sp, #0
+ 626              	.LCFI31:
+ 627              		.cfi_def_cfa_register 7
+ 628 0006 7860     		str	r0, [r7, #4]
+ 351:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   if(HAL_SDRAM_SendCommand(&sdramHandle, SdramCmd, SDRAM_TIMEOUT) != HAL_OK)
+ 629              		.loc 1 351 0
+ 630 0008 0748     		ldr	r0, .L39
+ARM GAS  /tmp/ccZFcvrO.s 			page 18
+
+
+ 631 000a 7968     		ldr	r1, [r7, #4]
+ 632 000c 4FF6FF72 		movw	r2, #65535
+ 633 0010 FFF7FEFF 		bl	HAL_SDRAM_SendCommand
+ 634 0014 0346     		mov	r3, r0
+ 635 0016 002B     		cmp	r3, #0
+ 636 0018 01D0     		beq	.L37
+ 352:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   {
+ 353:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     return SDRAM_ERROR;
+ 637              		.loc 1 353 0
+ 638 001a 0123     		movs	r3, #1
+ 639 001c 00E0     		b	.L38
+ 640              	.L37:
+ 354:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   }
+ 355:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   else
+ 356:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   {
+ 357:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     return SDRAM_OK;
+ 641              		.loc 1 357 0
+ 642 001e 0023     		movs	r3, #0
+ 643              	.L38:
+ 358:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   }
+ 359:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** }
+ 644              		.loc 1 359 0
+ 645 0020 1846     		mov	r0, r3
+ 646 0022 0837     		adds	r7, r7, #8
+ 647              	.LCFI32:
+ 648              		.cfi_def_cfa_offset 8
+ 649 0024 BD46     		mov	sp, r7
+ 650              	.LCFI33:
+ 651              		.cfi_def_cfa_register 13
+ 652              		@ sp needed
+ 653 0026 80BD     		pop	{r7, pc}
+ 654              	.L40:
+ 655              		.align	2
+ 656              	.L39:
+ 657 0028 00000000 		.word	sdramHandle
+ 658              		.cfi_endproc
+ 659              	.LFE142:
+ 661              		.section	.text.BSP_SDRAM_MspInit,"ax",%progbits
+ 662              		.align	2
+ 663              		.weak	BSP_SDRAM_MspInit
+ 664              		.thumb
+ 665              		.thumb_func
+ 667              	BSP_SDRAM_MspInit:
+ 668              	.LFB143:
+ 360:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 361:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /**
+ 362:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @brief  Initializes SDRAM MSP.
+ 363:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @param  hsdram: SDRAM handle
+ 364:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @retval None
+ 365:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */
+ 366:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** __weak void BSP_SDRAM_MspInit(SDRAM_HandleTypeDef  *hsdram, void *Params)
+ 367:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** {  
+ 669              		.loc 1 367 0
+ 670              		.cfi_startproc
+ 671              		@ args = 0, pretend = 0, frame = 64
+ 672              		@ frame_needed = 1, uses_anonymous_args = 0
+ 673 0000 80B5     		push	{r7, lr}
+ARM GAS  /tmp/ccZFcvrO.s 			page 19
+
+
+ 674              	.LCFI34:
+ 675              		.cfi_def_cfa_offset 8
+ 676              		.cfi_offset 7, -8
+ 677              		.cfi_offset 14, -4
+ 678 0002 90B0     		sub	sp, sp, #64
+ 679              	.LCFI35:
+ 680              		.cfi_def_cfa_offset 72
+ 681 0004 00AF     		add	r7, sp, #0
+ 682              	.LCFI36:
+ 683              		.cfi_def_cfa_register 7
+ 684 0006 7860     		str	r0, [r7, #4]
+ 685 0008 3960     		str	r1, [r7]
+ 686              	.LBB2:
+ 368:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   static DMA_HandleTypeDef dma_handle;
+ 369:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   GPIO_InitTypeDef gpio_init_structure;
+ 370:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 371:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* Enable FMC clock */
+ 372:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   __HAL_RCC_FMC_CLK_ENABLE();
+ 687              		.loc 1 372 0
+ 688 000a 704A     		ldr	r2, .L42
+ 689 000c 6F4B     		ldr	r3, .L42
+ 690 000e 9B6B     		ldr	r3, [r3, #56]
+ 691 0010 43F00103 		orr	r3, r3, #1
+ 692 0014 9363     		str	r3, [r2, #56]
+ 693 0016 6D4B     		ldr	r3, .L42
+ 694 0018 9B6B     		ldr	r3, [r3, #56]
+ 695 001a 03F00103 		and	r3, r3, #1
+ 696 001e BB62     		str	r3, [r7, #40]
+ 697 0020 BB6A     		ldr	r3, [r7, #40]
+ 698              	.LBE2:
+ 699              	.LBB3:
+ 373:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 374:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* Enable chosen DMAx clock */
+ 375:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   __DMAx_CLK_ENABLE();
+ 700              		.loc 1 375 0
+ 701 0022 6A4A     		ldr	r2, .L42
+ 702 0024 694B     		ldr	r3, .L42
+ 703 0026 1B6B     		ldr	r3, [r3, #48]
+ 704 0028 43F48003 		orr	r3, r3, #4194304
+ 705 002c 1363     		str	r3, [r2, #48]
+ 706 002e 674B     		ldr	r3, .L42
+ 707 0030 1B6B     		ldr	r3, [r3, #48]
+ 708 0032 03F48003 		and	r3, r3, #4194304
+ 709 0036 7B62     		str	r3, [r7, #36]
+ 710 0038 7B6A     		ldr	r3, [r7, #36]
+ 711              	.LBE3:
+ 712              	.LBB4:
+ 376:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 377:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* Enable GPIOs clock */
+ 378:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   __HAL_RCC_GPIOD_CLK_ENABLE();
+ 713              		.loc 1 378 0
+ 714 003a 644A     		ldr	r2, .L42
+ 715 003c 634B     		ldr	r3, .L42
+ 716 003e 1B6B     		ldr	r3, [r3, #48]
+ 717 0040 43F00803 		orr	r3, r3, #8
+ 718 0044 1363     		str	r3, [r2, #48]
+ 719 0046 614B     		ldr	r3, .L42
+ARM GAS  /tmp/ccZFcvrO.s 			page 20
+
+
+ 720 0048 1B6B     		ldr	r3, [r3, #48]
+ 721 004a 03F00803 		and	r3, r3, #8
+ 722 004e 3B62     		str	r3, [r7, #32]
+ 723 0050 3B6A     		ldr	r3, [r7, #32]
+ 724              	.LBE4:
+ 725              	.LBB5:
+ 379:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   __HAL_RCC_GPIOE_CLK_ENABLE();
+ 726              		.loc 1 379 0
+ 727 0052 5E4A     		ldr	r2, .L42
+ 728 0054 5D4B     		ldr	r3, .L42
+ 729 0056 1B6B     		ldr	r3, [r3, #48]
+ 730 0058 43F01003 		orr	r3, r3, #16
+ 731 005c 1363     		str	r3, [r2, #48]
+ 732 005e 5B4B     		ldr	r3, .L42
+ 733 0060 1B6B     		ldr	r3, [r3, #48]
+ 734 0062 03F01003 		and	r3, r3, #16
+ 735 0066 FB61     		str	r3, [r7, #28]
+ 736 0068 FB69     		ldr	r3, [r7, #28]
+ 737              	.LBE5:
+ 738              	.LBB6:
+ 380:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   __HAL_RCC_GPIOF_CLK_ENABLE();
+ 739              		.loc 1 380 0
+ 740 006a 584A     		ldr	r2, .L42
+ 741 006c 574B     		ldr	r3, .L42
+ 742 006e 1B6B     		ldr	r3, [r3, #48]
+ 743 0070 43F02003 		orr	r3, r3, #32
+ 744 0074 1363     		str	r3, [r2, #48]
+ 745 0076 554B     		ldr	r3, .L42
+ 746 0078 1B6B     		ldr	r3, [r3, #48]
+ 747 007a 03F02003 		and	r3, r3, #32
+ 748 007e BB61     		str	r3, [r7, #24]
+ 749 0080 BB69     		ldr	r3, [r7, #24]
+ 750              	.LBE6:
+ 751              	.LBB7:
+ 381:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   __HAL_RCC_GPIOG_CLK_ENABLE();
+ 752              		.loc 1 381 0
+ 753 0082 524A     		ldr	r2, .L42
+ 754 0084 514B     		ldr	r3, .L42
+ 755 0086 1B6B     		ldr	r3, [r3, #48]
+ 756 0088 43F04003 		orr	r3, r3, #64
+ 757 008c 1363     		str	r3, [r2, #48]
+ 758 008e 4F4B     		ldr	r3, .L42
+ 759 0090 1B6B     		ldr	r3, [r3, #48]
+ 760 0092 03F04003 		and	r3, r3, #64
+ 761 0096 7B61     		str	r3, [r7, #20]
+ 762 0098 7B69     		ldr	r3, [r7, #20]
+ 763              	.LBE7:
+ 764              	.LBB8:
+ 382:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   __HAL_RCC_GPIOH_CLK_ENABLE();
+ 765              		.loc 1 382 0
+ 766 009a 4C4A     		ldr	r2, .L42
+ 767 009c 4B4B     		ldr	r3, .L42
+ 768 009e 1B6B     		ldr	r3, [r3, #48]
+ 769 00a0 43F08003 		orr	r3, r3, #128
+ 770 00a4 1363     		str	r3, [r2, #48]
+ 771 00a6 494B     		ldr	r3, .L42
+ 772 00a8 1B6B     		ldr	r3, [r3, #48]
+ARM GAS  /tmp/ccZFcvrO.s 			page 21
+
+
+ 773 00aa 03F08003 		and	r3, r3, #128
+ 774 00ae 3B61     		str	r3, [r7, #16]
+ 775 00b0 3B69     		ldr	r3, [r7, #16]
+ 776              	.LBE8:
+ 777              	.LBB9:
+ 383:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   __HAL_RCC_GPIOI_CLK_ENABLE();
+ 778              		.loc 1 383 0
+ 779 00b2 464A     		ldr	r2, .L42
+ 780 00b4 454B     		ldr	r3, .L42
+ 781 00b6 1B6B     		ldr	r3, [r3, #48]
+ 782 00b8 43F48073 		orr	r3, r3, #256
+ 783 00bc 1363     		str	r3, [r2, #48]
+ 784 00be 434B     		ldr	r3, .L42
+ 785 00c0 1B6B     		ldr	r3, [r3, #48]
+ 786 00c2 03F48073 		and	r3, r3, #256
+ 787 00c6 FB60     		str	r3, [r7, #12]
+ 788 00c8 FB68     		ldr	r3, [r7, #12]
+ 789              	.LBE9:
+ 384:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 385:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* Common GPIO configuration */
+ 386:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   gpio_init_structure.Mode      = GPIO_MODE_AF_PP;
+ 790              		.loc 1 386 0
+ 791 00ca 0223     		movs	r3, #2
+ 792 00cc 3B63     		str	r3, [r7, #48]
+ 387:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   gpio_init_structure.Pull      = GPIO_PULLUP;
+ 793              		.loc 1 387 0
+ 794 00ce 0123     		movs	r3, #1
+ 795 00d0 7B63     		str	r3, [r7, #52]
+ 388:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   gpio_init_structure.Speed     = GPIO_SPEED_HIGH;
+ 796              		.loc 1 388 0
+ 797 00d2 0323     		movs	r3, #3
+ 798 00d4 BB63     		str	r3, [r7, #56]
+ 389:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   gpio_init_structure.Alternate = GPIO_AF12_FMC;
+ 799              		.loc 1 389 0
+ 800 00d6 0C23     		movs	r3, #12
+ 801 00d8 FB63     		str	r3, [r7, #60]
+ 390:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 391:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* GPIOD configuration */
+ 392:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   gpio_init_structure.Pin   = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_8| GPIO_PIN_9 | GPIO_PIN_10 |\
+ 802              		.loc 1 392 0
+ 803 00da 4CF20373 		movw	r3, #50947
+ 804 00de FB62     		str	r3, [r7, #44]
+ 393:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****                               GPIO_PIN_14 | GPIO_PIN_15;
+ 394:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****  
+ 395:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****    
+ 396:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   HAL_GPIO_Init(GPIOD, &gpio_init_structure);
+ 805              		.loc 1 396 0
+ 806 00e0 07F12C03 		add	r3, r7, #44
+ 807 00e4 3A48     		ldr	r0, .L42+4
+ 808 00e6 1946     		mov	r1, r3
+ 809 00e8 FFF7FEFF 		bl	HAL_GPIO_Init
+ 397:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 398:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* GPIOE configuration */  
+ 399:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   gpio_init_structure.Pin   = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_7| GPIO_PIN_8 | GPIO_PIN_9 |\
+ 810              		.loc 1 399 0
+ 811 00ec 4FF68373 		movw	r3, #65411
+ 812 00f0 FB62     		str	r3, [r7, #44]
+ARM GAS  /tmp/ccZFcvrO.s 			page 22
+
+
+ 400:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****                               GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 |
+ 401:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****                               GPIO_PIN_15;
+ 402:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****       
+ 403:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   HAL_GPIO_Init(GPIOE, &gpio_init_structure);
+ 813              		.loc 1 403 0
+ 814 00f2 07F12C03 		add	r3, r7, #44
+ 815 00f6 3748     		ldr	r0, .L42+8
+ 816 00f8 1946     		mov	r1, r3
+ 817 00fa FFF7FEFF 		bl	HAL_GPIO_Init
+ 404:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 405:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* GPIOF configuration */  
+ 406:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   gpio_init_structure.Pin   = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2| GPIO_PIN_3 | GPIO_PIN_4 |\
+ 818              		.loc 1 406 0
+ 819 00fe 4FF63F03 		movw	r3, #63551
+ 820 0102 FB62     		str	r3, [r7, #44]
+ 407:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****                               GPIO_PIN_5 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 |\
+ 408:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****                               GPIO_PIN_15;
+ 409:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     
+ 410:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   HAL_GPIO_Init(GPIOF, &gpio_init_structure);
+ 821              		.loc 1 410 0
+ 822 0104 07F12C03 		add	r3, r7, #44
+ 823 0108 3348     		ldr	r0, .L42+12
+ 824 010a 1946     		mov	r1, r3
+ 825 010c FFF7FEFF 		bl	HAL_GPIO_Init
+ 411:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 412:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* GPIOG configuration */  
+ 413:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   gpio_init_structure.Pin   = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_4|\
+ 826              		.loc 1 413 0
+ 827 0110 48F23713 		movw	r3, #33079
+ 828 0114 FB62     		str	r3, [r7, #44]
+ 414:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****                               GPIO_PIN_5 | GPIO_PIN_8 | GPIO_PIN_15;
+ 415:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   HAL_GPIO_Init(GPIOG, &gpio_init_structure);
+ 829              		.loc 1 415 0
+ 830 0116 07F12C03 		add	r3, r7, #44
+ 831 011a 3048     		ldr	r0, .L42+16
+ 832 011c 1946     		mov	r1, r3
+ 833 011e FFF7FEFF 		bl	HAL_GPIO_Init
+ 416:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 417:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* GPIOH configuration */  
+ 418:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   gpio_init_structure.Pin   = GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_5 | GPIO_PIN_8 | GPIO_PIN_9 |\
+ 834              		.loc 1 418 0
+ 835 0122 4FF62C73 		movw	r3, #65324
+ 836 0126 FB62     		str	r3, [r7, #44]
+ 419:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****                               GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 |
+ 420:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****                               GPIO_PIN_15;
+ 421:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   HAL_GPIO_Init(GPIOH, &gpio_init_structure); 
+ 837              		.loc 1 421 0
+ 838 0128 07F12C03 		add	r3, r7, #44
+ 839 012c 2C48     		ldr	r0, .L42+20
+ 840 012e 1946     		mov	r1, r3
+ 841 0130 FFF7FEFF 		bl	HAL_GPIO_Init
+ 422:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 423:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* GPIOI configuration */  
+ 424:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   gpio_init_structure.Pin   = GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4 |\
+ 842              		.loc 1 424 0
+ 843 0134 40F2FF63 		movw	r3, #1791
+ 844 0138 FB62     		str	r3, [r7, #44]
+ARM GAS  /tmp/ccZFcvrO.s 			page 23
+
+
+ 425:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****                               GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_9 | GPIO_PIN_10;
+ 426:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   HAL_GPIO_Init(GPIOI, &gpio_init_structure);  
+ 845              		.loc 1 426 0
+ 846 013a 07F12C03 		add	r3, r7, #44
+ 847 013e 2948     		ldr	r0, .L42+24
+ 848 0140 1946     		mov	r1, r3
+ 849 0142 FFF7FEFF 		bl	HAL_GPIO_Init
+ 427:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 428:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* Configure common DMA parameters */
+ 429:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   dma_handle.Init.Channel             = SDRAM_DMAx_CHANNEL;
+ 850              		.loc 1 429 0
+ 851 0146 284B     		ldr	r3, .L42+28
+ 852 0148 0022     		movs	r2, #0
+ 853 014a 5A60     		str	r2, [r3, #4]
+ 430:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   dma_handle.Init.Direction           = DMA_MEMORY_TO_MEMORY;
+ 854              		.loc 1 430 0
+ 855 014c 264B     		ldr	r3, .L42+28
+ 856 014e 8022     		movs	r2, #128
+ 857 0150 9A60     		str	r2, [r3, #8]
+ 431:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   dma_handle.Init.PeriphInc           = DMA_PINC_ENABLE;
+ 858              		.loc 1 431 0
+ 859 0152 254B     		ldr	r3, .L42+28
+ 860 0154 4FF40072 		mov	r2, #512
+ 861 0158 DA60     		str	r2, [r3, #12]
+ 432:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   dma_handle.Init.MemInc              = DMA_MINC_ENABLE;
+ 862              		.loc 1 432 0
+ 863 015a 234B     		ldr	r3, .L42+28
+ 864 015c 4FF48062 		mov	r2, #1024
+ 865 0160 1A61     		str	r2, [r3, #16]
+ 433:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   dma_handle.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;
+ 866              		.loc 1 433 0
+ 867 0162 214B     		ldr	r3, .L42+28
+ 868 0164 4FF48052 		mov	r2, #4096
+ 869 0168 5A61     		str	r2, [r3, #20]
+ 434:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   dma_handle.Init.MemDataAlignment    = DMA_MDATAALIGN_WORD;
+ 870              		.loc 1 434 0
+ 871 016a 1F4B     		ldr	r3, .L42+28
+ 872 016c 4FF48042 		mov	r2, #16384
+ 873 0170 9A61     		str	r2, [r3, #24]
+ 435:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   dma_handle.Init.Mode                = DMA_NORMAL;
+ 874              		.loc 1 435 0
+ 875 0172 1D4B     		ldr	r3, .L42+28
+ 876 0174 0022     		movs	r2, #0
+ 877 0176 DA61     		str	r2, [r3, #28]
+ 436:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   dma_handle.Init.Priority            = DMA_PRIORITY_HIGH;
+ 878              		.loc 1 436 0
+ 879 0178 1B4B     		ldr	r3, .L42+28
+ 880 017a 4FF40032 		mov	r2, #131072
+ 881 017e 1A62     		str	r2, [r3, #32]
+ 437:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   dma_handle.Init.FIFOMode            = DMA_FIFOMODE_DISABLE;         
+ 882              		.loc 1 437 0
+ 883 0180 194B     		ldr	r3, .L42+28
+ 884 0182 0022     		movs	r2, #0
+ 885 0184 5A62     		str	r2, [r3, #36]
+ 438:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   dma_handle.Init.FIFOThreshold       = DMA_FIFO_THRESHOLD_FULL;
+ 886              		.loc 1 438 0
+ 887 0186 184B     		ldr	r3, .L42+28
+ARM GAS  /tmp/ccZFcvrO.s 			page 24
+
+
+ 888 0188 0322     		movs	r2, #3
+ 889 018a 9A62     		str	r2, [r3, #40]
+ 439:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   dma_handle.Init.MemBurst            = DMA_MBURST_SINGLE;
+ 890              		.loc 1 439 0
+ 891 018c 164B     		ldr	r3, .L42+28
+ 892 018e 0022     		movs	r2, #0
+ 893 0190 DA62     		str	r2, [r3, #44]
+ 440:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   dma_handle.Init.PeriphBurst         = DMA_PBURST_SINGLE; 
+ 894              		.loc 1 440 0
+ 895 0192 154B     		ldr	r3, .L42+28
+ 896 0194 0022     		movs	r2, #0
+ 897 0196 1A63     		str	r2, [r3, #48]
+ 441:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 442:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   dma_handle.Instance = SDRAM_DMAx_STREAM;
+ 898              		.loc 1 442 0
+ 899 0198 134B     		ldr	r3, .L42+28
+ 900 019a 144A     		ldr	r2, .L42+32
+ 901 019c 1A60     		str	r2, [r3]
+ 443:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 444:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****    /* Associate the DMA handle */
+ 445:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   __HAL_LINKDMA(hsdram, hdma, dma_handle);
+ 902              		.loc 1 445 0
+ 903 019e 7B68     		ldr	r3, [r7, #4]
+ 904 01a0 114A     		ldr	r2, .L42+28
+ 905 01a2 1A63     		str	r2, [r3, #48]
+ 906 01a4 104A     		ldr	r2, .L42+28
+ 907 01a6 7B68     		ldr	r3, [r7, #4]
+ 908 01a8 9363     		str	r3, [r2, #56]
+ 446:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 447:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* Deinitialize the stream for new transfer */
+ 448:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   HAL_DMA_DeInit(&dma_handle);
+ 909              		.loc 1 448 0
+ 910 01aa 0F48     		ldr	r0, .L42+28
+ 911 01ac FFF7FEFF 		bl	HAL_DMA_DeInit
+ 449:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 450:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* Configure the DMA stream */
+ 451:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   HAL_DMA_Init(&dma_handle); 
+ 912              		.loc 1 451 0
+ 913 01b0 0D48     		ldr	r0, .L42+28
+ 914 01b2 FFF7FEFF 		bl	HAL_DMA_Init
+ 452:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 453:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   /* NVIC configuration for DMA transfer complete interrupt */
+ 454:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   HAL_NVIC_SetPriority(SDRAM_DMAx_IRQn, 0x0F, 0);
+ 915              		.loc 1 454 0
+ 916 01b6 3820     		movs	r0, #56
+ 917 01b8 0F21     		movs	r1, #15
+ 918 01ba 0022     		movs	r2, #0
+ 919 01bc FFF7FEFF 		bl	HAL_NVIC_SetPriority
+ 455:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   HAL_NVIC_EnableIRQ(SDRAM_DMAx_IRQn);
+ 920              		.loc 1 455 0
+ 921 01c0 3820     		movs	r0, #56
+ 922 01c2 FFF7FEFF 		bl	HAL_NVIC_EnableIRQ
+ 456:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** }
+ 923              		.loc 1 456 0
+ 924 01c6 4037     		adds	r7, r7, #64
+ 925              	.LCFI37:
+ 926              		.cfi_def_cfa_offset 8
+ARM GAS  /tmp/ccZFcvrO.s 			page 25
+
+
+ 927 01c8 BD46     		mov	sp, r7
+ 928              	.LCFI38:
+ 929              		.cfi_def_cfa_register 13
+ 930              		@ sp needed
+ 931 01ca 80BD     		pop	{r7, pc}
+ 932              	.L43:
+ 933              		.align	2
+ 934              	.L42:
+ 935 01cc 00380240 		.word	1073887232
+ 936 01d0 000C0240 		.word	1073875968
+ 937 01d4 00100240 		.word	1073876992
+ 938 01d8 00140240 		.word	1073878016
+ 939 01dc 00180240 		.word	1073879040
+ 940 01e0 001C0240 		.word	1073880064
+ 941 01e4 00200240 		.word	1073881088
+ 942 01e8 00000000 		.word	dma_handle.9351
+ 943 01ec 10640240 		.word	1073898512
+ 944              		.cfi_endproc
+ 945              	.LFE143:
+ 947              		.section	.text.BSP_SDRAM_MspDeInit,"ax",%progbits
+ 948              		.align	2
+ 949              		.weak	BSP_SDRAM_MspDeInit
+ 950              		.thumb
+ 951              		.thumb_func
+ 953              	BSP_SDRAM_MspDeInit:
+ 954              	.LFB144:
+ 457:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 458:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** /**
+ 459:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @brief  DeInitializes SDRAM MSP.
+ 460:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @param  hsdram: SDRAM handle
+ 461:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   * @retval None
+ 462:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   */
+ 463:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** __weak void BSP_SDRAM_MspDeInit(SDRAM_HandleTypeDef  *hsdram, void *Params)
+ 464:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** {  
+ 955              		.loc 1 464 0
+ 956              		.cfi_startproc
+ 957              		@ args = 0, pretend = 0, frame = 8
+ 958              		@ frame_needed = 1, uses_anonymous_args = 0
+ 959 0000 80B5     		push	{r7, lr}
+ 960              	.LCFI39:
+ 961              		.cfi_def_cfa_offset 8
+ 962              		.cfi_offset 7, -8
+ 963              		.cfi_offset 14, -4
+ 964 0002 82B0     		sub	sp, sp, #8
+ 965              	.LCFI40:
+ 966              		.cfi_def_cfa_offset 16
+ 967 0004 00AF     		add	r7, sp, #0
+ 968              	.LCFI41:
+ 969              		.cfi_def_cfa_register 7
+ 970 0006 7860     		str	r0, [r7, #4]
+ 971 0008 3960     		str	r1, [r7]
+ 465:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     static DMA_HandleTypeDef dma_handle;
+ 466:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****   
+ 467:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     /* Disable NVIC configuration for DMA interrupt */
+ 468:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     HAL_NVIC_DisableIRQ(SDRAM_DMAx_IRQn);
+ 972              		.loc 1 468 0
+ 973 000a 3820     		movs	r0, #56
+ARM GAS  /tmp/ccZFcvrO.s 			page 26
+
+
+ 974 000c FFF7FEFF 		bl	HAL_NVIC_DisableIRQ
+ 469:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 470:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     /* Deinitialize the stream for new transfer */
+ 471:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     dma_handle.Instance = SDRAM_DMAx_STREAM;
+ 975              		.loc 1 471 0
+ 976 0010 044B     		ldr	r3, .L45
+ 977 0012 054A     		ldr	r2, .L45+4
+ 978 0014 1A60     		str	r2, [r3]
+ 472:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     HAL_DMA_DeInit(&dma_handle);
+ 979              		.loc 1 472 0
+ 980 0016 0348     		ldr	r0, .L45
+ 981 0018 FFF7FEFF 		bl	HAL_DMA_DeInit
+ 473:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** 
+ 474:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****     /* GPIO pins clock, FMC clock and DMA clock can be shut down in the applications
+ 475:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c ****        by surcharging this __weak function */ 
+ 476:../../Drivers/BSP/STM32F769I-Discovery/stm32f769i_discovery_sdram.c **** }
+ 982              		.loc 1 476 0
+ 983 001c 0837     		adds	r7, r7, #8
+ 984              	.LCFI42:
+ 985              		.cfi_def_cfa_offset 8
+ 986 001e BD46     		mov	sp, r7
+ 987              	.LCFI43:
+ 988              		.cfi_def_cfa_register 13
+ 989              		@ sp needed
+ 990 0020 80BD     		pop	{r7, pc}
+ 991              	.L46:
+ 992 0022 00BF     		.align	2
+ 993              	.L45:
+ 994 0024 00000000 		.word	dma_handle.9365
+ 995 0028 10640240 		.word	1073898512
+ 996              		.cfi_endproc
+ 997              	.LFE144:
+ 999              		.section	.data.sdramstatus.9315,"aw",%progbits
+ 1002              	sdramstatus.9315:
+ 1003 0000 01       		.byte	1
+ 1004              		.section	.data.sdramstatus.9319,"aw",%progbits
+ 1007              	sdramstatus.9319:
+ 1008 0000 01       		.byte	1
+ 1009              		.section	.bss.dma_handle.9351,"aw",%nobits
+ 1010              		.align	2
+ 1013              	dma_handle.9351:
+ 1014 0000 00000000 		.space	96
+ 1014      00000000 
+ 1014      00000000 
+ 1014      00000000 
+ 1014      00000000 
+ 1015              		.section	.bss.dma_handle.9365,"aw",%nobits
+ 1016              		.align	2
+ 1019              	dma_handle.9365:
+ 1020 0000 00000000 		.space	96
+ 1020      00000000 
+ 1020      00000000 
+ 1020      00000000 
+ 1020      00000000 
+ 1021              		.text
+ 1022              	.Letext0:
+ 1023              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ARM GAS  /tmp/ccZFcvrO.s 			page 27
+
+
+ 1024              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 1025              		.file 4 "../../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f769xx.h"
+ 1026              		.file 5 "../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+ 1027              		.file 6 "../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio.h"
+ 1028              		.file 7 "../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
+ 1029              		.file 8 "../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_ll_fmc.h"
+ 1030              		.file 9 "../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_sdram.h"
+ 1031              		.file 10 "../../Drivers/CMSIS/Include/core_cm7.h"
+ARM GAS  /tmp/ccZFcvrO.s 			page 28
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32f769i_discovery_sdram.c
+                            *COM*:0000000000000034 sdramHandle
+     /tmp/ccZFcvrO.s:22     .bss.Timing:0000000000000000 $d
+     /tmp/ccZFcvrO.s:25     .bss.Timing:0000000000000000 Timing
+     /tmp/ccZFcvrO.s:28     .bss.Command:0000000000000000 $d
+     /tmp/ccZFcvrO.s:31     .bss.Command:0000000000000000 Command
+     /tmp/ccZFcvrO.s:34     .text.BSP_SDRAM_Init:0000000000000000 $t
+     /tmp/ccZFcvrO.s:39     .text.BSP_SDRAM_Init:0000000000000000 BSP_SDRAM_Init
+     /tmp/ccZFcvrO.s:667    .text.BSP_SDRAM_MspInit:0000000000000000 BSP_SDRAM_MspInit
+     /tmp/ccZFcvrO.s:233    .text.BSP_SDRAM_Initialization_sequence:0000000000000000 BSP_SDRAM_Initialization_sequence
+     /tmp/ccZFcvrO.s:160    .text.BSP_SDRAM_Init:00000000000000ac $d
+     /tmp/ccZFcvrO.s:1002   .data.sdramstatus.9315:0000000000000000 sdramstatus.9315
+     /tmp/ccZFcvrO.s:168    .text.BSP_SDRAM_DeInit:0000000000000000 $t
+     /tmp/ccZFcvrO.s:173    .text.BSP_SDRAM_DeInit:0000000000000000 BSP_SDRAM_DeInit
+     /tmp/ccZFcvrO.s:953    .text.BSP_SDRAM_MspDeInit:0000000000000000 BSP_SDRAM_MspDeInit
+     /tmp/ccZFcvrO.s:221    .text.BSP_SDRAM_DeInit:0000000000000034 $d
+     /tmp/ccZFcvrO.s:1007   .data.sdramstatus.9319:0000000000000000 sdramstatus.9319
+     /tmp/ccZFcvrO.s:228    .text.BSP_SDRAM_Initialization_sequence:0000000000000000 $t
+     /tmp/ccZFcvrO.s:360    .text.BSP_SDRAM_Initialization_sequence:00000000000000b8 $d
+     /tmp/ccZFcvrO.s:366    .text.BSP_SDRAM_ReadData:0000000000000000 $t
+     /tmp/ccZFcvrO.s:371    .text.BSP_SDRAM_ReadData:0000000000000000 BSP_SDRAM_ReadData
+     /tmp/ccZFcvrO.s:421    .text.BSP_SDRAM_ReadData:0000000000000030 $d
+     /tmp/ccZFcvrO.s:426    .text.BSP_SDRAM_ReadData_DMA:0000000000000000 $t
+     /tmp/ccZFcvrO.s:431    .text.BSP_SDRAM_ReadData_DMA:0000000000000000 BSP_SDRAM_ReadData_DMA
+     /tmp/ccZFcvrO.s:481    .text.BSP_SDRAM_ReadData_DMA:0000000000000030 $d
+     /tmp/ccZFcvrO.s:486    .text.BSP_SDRAM_WriteData:0000000000000000 $t
+     /tmp/ccZFcvrO.s:491    .text.BSP_SDRAM_WriteData:0000000000000000 BSP_SDRAM_WriteData
+     /tmp/ccZFcvrO.s:541    .text.BSP_SDRAM_WriteData:0000000000000030 $d
+     /tmp/ccZFcvrO.s:546    .text.BSP_SDRAM_WriteData_DMA:0000000000000000 $t
+     /tmp/ccZFcvrO.s:551    .text.BSP_SDRAM_WriteData_DMA:0000000000000000 BSP_SDRAM_WriteData_DMA
+     /tmp/ccZFcvrO.s:601    .text.BSP_SDRAM_WriteData_DMA:0000000000000030 $d
+     /tmp/ccZFcvrO.s:606    .text.BSP_SDRAM_Sendcmd:0000000000000000 $t
+     /tmp/ccZFcvrO.s:611    .text.BSP_SDRAM_Sendcmd:0000000000000000 BSP_SDRAM_Sendcmd
+     /tmp/ccZFcvrO.s:657    .text.BSP_SDRAM_Sendcmd:0000000000000028 $d
+     /tmp/ccZFcvrO.s:662    .text.BSP_SDRAM_MspInit:0000000000000000 $t
+     /tmp/ccZFcvrO.s:935    .text.BSP_SDRAM_MspInit:00000000000001cc $d
+     /tmp/ccZFcvrO.s:1013   .bss.dma_handle.9351:0000000000000000 dma_handle.9351
+     /tmp/ccZFcvrO.s:948    .text.BSP_SDRAM_MspDeInit:0000000000000000 $t
+     /tmp/ccZFcvrO.s:994    .text.BSP_SDRAM_MspDeInit:0000000000000024 $d
+     /tmp/ccZFcvrO.s:1019   .bss.dma_handle.9365:0000000000000000 dma_handle.9365
+     /tmp/ccZFcvrO.s:1010   .bss.dma_handle.9351:0000000000000000 $d
+     /tmp/ccZFcvrO.s:1016   .bss.dma_handle.9365:0000000000000000 $d
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+HAL_SDRAM_Init
+HAL_SDRAM_DeInit
+HAL_SDRAM_SendCommand
+HAL_Delay
+HAL_SDRAM_ProgramRefreshRate
+HAL_SDRAM_Read_32b
+HAL_SDRAM_Read_DMA
+HAL_SDRAM_Write_32b
+HAL_SDRAM_Write_DMA
+HAL_GPIO_Init
+HAL_DMA_DeInit
+ARM GAS  /tmp/ccZFcvrO.s 			page 29
+
+
+HAL_DMA_Init
+HAL_NVIC_SetPriority
+HAL_NVIC_EnableIRQ
+HAL_NVIC_DisableIRQ
