@@ -36,7 +36,6 @@
 
 extern void xPortSysTickHandler(void);
 extern TIM_HandleTypeDef htim13;
-extern DMA_HandleTypeDef hdma_adc1;
 
 /* External variables --------------------------------------------------------*/
 //extern TIM_HandleTypeDef htim1;

@@ -150,11 +150,13 @@ void blink_task(void *pvParameters)
 	(void) pvParameters;
 	while(1){
 		BSP_LED_Toggle(LED2);	// Debugging, watch Calculation Time
-		vTaskDelay(500);
 		FreeRTOS_printf( ( "In the Blink_Task" ) );
+		vTaskDelay(500);
+		vTaskDelay(500);
+		  SEGGER_SYSVIEW_Print("Test Test Test");
+
 	}
 }
-
 
 
 /**
@@ -188,6 +190,18 @@ int main(void)
   /* Miscellaneous initialisation including preparing the logging and seeding
   the random number generator. */
   prvMiscInitialisation();
+
+
+  HAL_Delay(1000);
+  HAL_Delay(1000);
+  HAL_Delay(1000);
+  HAL_Delay(1000);
+  HAL_Delay(1000);
+  HAL_Delay(1000);
+  HAL_Delay(1000);
+  HAL_Delay(1000);
+
+
 
   /* Initialise the network interface.
   ***NOTE*** Tasks that use the network are created in the network event hook
@@ -333,6 +347,7 @@ volatile uint32_t ulMallocFailures = 0;
 	ulMallocFailures++;
 }
 /*-----------------------------------------------------------*/
+
 
 void vApplicationStackOverflowHook( TaskHandle_t pxTask, char *pcTaskName )
 {

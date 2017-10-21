@@ -100,6 +100,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f7xx_hal.h"
+#include "SEGGER_SYSVIEW_FreeRTOS.h"
 
 
 int lUDPLoggingPrintf( const char *pcFormatString, ... );
@@ -742,6 +743,8 @@ HAL_StatusTypeDef xResult = HAL_ERROR;
 void HAL_ETH_IRQHandler(ETH_HandleTypeDef *heth)
 {
 	uint32_t dmasr;
+
+	traceISR_ENTER();
 
 	STM32_STAT_INC( int_count );
 

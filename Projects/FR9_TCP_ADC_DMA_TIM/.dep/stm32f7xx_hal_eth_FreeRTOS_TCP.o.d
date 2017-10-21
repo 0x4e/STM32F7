@@ -60,7 +60,10 @@ build/stm32f7xx_hal_eth_FreeRTOS_TCP.o: \
  ../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rtc_ex.h \
  ../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim.h \
  ../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h \
- ../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dsi.h
+ ../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dsi.h \
+ ../../../SystemView/Sample/OS/SEGGER_SYSVIEW_FreeRTOS.h \
+ ../../../SystemView/SEGGER/SEGGER_SYSVIEW.h \
+ ../../../SystemView/SEGGER/SEGGER.h ../../../SystemView/Config/Global.h
 
 ../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 
@@ -185,3 +188,11 @@ Inc/stm32f7xx_hal_conf.h:
 ../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h:
 
 ../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dsi.h:
+
+../../../SystemView/Sample/OS/SEGGER_SYSVIEW_FreeRTOS.h:
+
+../../../SystemView/SEGGER/SEGGER_SYSVIEW.h:
+
+../../../SystemView/SEGGER/SEGGER.h:
+
+../../../SystemView/Config/Global.h:

@@ -42,27 +42,8 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
-#define mainCREATE_UDP_CLI_TASKS				0
-#define mainCREATE_TCP_ECHO_CLIENT_TASKS_SINGLE	0
-#define mainCREATE_SIMPLE_TCP_ECHO_SERVER		0
+
 #define mainCREATE_UDP_LOGGING_TASK 			1
-
-
-/* UDP CLI task parameters --------------------------------------------------
-See http://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/UDP_CLI.html */
-#define mainUDP_CLI_TASK_PRIORITY		( tskIDLE_PRIORITY + 1 )
-#define mainUDP_CLI_PORT_NUMBER			( 5001UL )
-#define mainUDP_CLI_TASK_STACK_SIZE		( configMINIMAL_STACK_SIZE * 5 )
-
-/* Simple echo client task parameters ---------------------------------------
-See http://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/TCP_Echo_Clients.html */
-#define mainECHO_CLIENT_TASK_STACK_SIZE ( configMINIMAL_STACK_SIZE * 4 )
-#define mainECHO_CLIENT_TASK_PRIORITY	( tskIDLE_PRIORITY + 1 )
-
-/* Simple echo server task parameters ---------------------------------------
-See http://www.freertos.org/FreeRTOS-Plus/FreeRTOS_Plus_TCP/TCP_Echo_Server.html */
-#define mainECHO_SERVER_TASK_PRIORITY	( tskIDLE_PRIORITY + 2 )
-#define	mainECHO_SERVER_STACK_SIZE		( configMINIMAL_STACK_SIZE * 4 )
 
 /* Define names that will be used for DNS, LLMNR and NBNS searches.  This allows
 mainHOST_NAME to be used when the IP address is not known.  For example
@@ -103,29 +84,6 @@ static void prvMiscInitialisation( void );
  * run time.  See http://www.freertos.org/a00111.html.
  */
 static void prvInitialiseHeap( void );
-
-/*
- * Register a set of example CLI commands that interact with the file system.
- * These are very basic.
- */
-extern void vRegisterFileSystemCLICommands( void );
-
-/*
- * Register a set of example CLI commands that interact with the TCP/IP stack.
- */
-extern void vRegisterTCPCLICommands( void );
-
-/*
- * Register the standard CLI examples, which will include the taskstats command
- * if configUSE_STATS_FORMATTING_FUNCTIONS is set to 1 in FreeRTOSConfig.h.
- */
-extern void vRegisterSampleCLICommands( void );
-
-/*
- * Starts an interface to FreeRTOS+CLI that uses a UDP port for input and
- * output.
- */
-extern void vStartUDPCommandInterpreterTask( uint16_t usStackSize, uint32_t ulPort, UBaseType_t uxPriority );
 
 
 /* The default IP and MAC address used by the demo.  The address configuration
@@ -190,6 +148,20 @@ int main(void)
   /* Miscellaneous initialisation including preparing the logging and seeding
   the random number generator. */
   prvMiscInitialisation();
+
+
+
+
+  HAL_Delay(1000);
+  HAL_Delay(1000);
+  HAL_Delay(1000);
+  HAL_Delay(1000);
+  HAL_Delay(1000);
+  HAL_Delay(1000);
+  HAL_Delay(1000);
+  HAL_Delay(1000);
+
+
 
   /* Initialise the network interface.
   ***NOTE*** Tasks that use the network are created in the network event hook
@@ -267,38 +239,6 @@ static BaseType_t xTasksAlreadyCreated = pdFALSE;
 			#if( mainCREATE_UDP_LOGGING_TASK == 1 )
 			{
 				vUDPLoggingTaskCreate();
-			}
-			#endif
-
-			#if( ( mainCREATE_FTP_SERVER == 1 ) || ( mainCREATE_HTTP_SERVER == 1 ) )
-			{
-				/* Let the server work task now it can now create the servers. */
-				xTaskNotifyGive( xServerWorkTaskHandle );
-			}
-			#endif
-
-			#if( mainCREATE_TCP_ECHO_CLIENT_TASKS_SINGLE == 1 )
-			{
-				vStartTCPEchoClientTasks_SingleTasks( mainECHO_CLIENT_TASK_STACK_SIZE, mainECHO_CLIENT_TASK_PRIORITY );
-			}
-			#endif
-
-			#if( mainCREATE_SIMPLE_TCP_ECHO_SERVER == 1 )
-			{
-				vStartSimpleTCPServerTasks( mainECHO_SERVER_STACK_SIZE, mainECHO_SERVER_TASK_PRIORITY );
-			}
-			#endif
-
-			/* Register example commands with the FreeRTOS+CLI command
-			interpreter via the UDP port specified by the
-			mainUDP_CLI_PORT_NUMBER constant.  If the HTTP or FTP servers are
-			being created then file system related commands will also be
-			registered from the TCP server task. */
-			#if( mainCREATE_UDP_CLI_TASKS == 1 )
-			{
-				vRegisterSampleCLICommands();
-				vRegisterTCPCLICommands();
-				vStartUDPCommandInterpreterTask( mainUDP_CLI_TASK_STACK_SIZE, mainUDP_CLI_PORT_NUMBER, mainUDP_CLI_TASK_PRIORITY );
 			}
 			#endif
 
