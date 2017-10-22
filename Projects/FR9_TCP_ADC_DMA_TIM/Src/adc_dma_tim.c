@@ -28,7 +28,7 @@ SemaphoreHandle_t xSemaphore = NULL;
 DMA_HandleTypeDef  g_DmaHandle;
 TIM_HandleTypeDef htim4;
 
-#define ADC_BUFFER_LENGTH 1024*2 //NOTE - for simplicity the buffer should be a power of 2. Buffer is 32 bit
+#define ADC_BUFFER_LENGTH 1024 //NOTE - for simplicity the buffer should be a power of 2. Buffer is 32 bit
 #define MAX_TX_PACKETSIZE 1024
 #define HALF_BUFFER (ADC_BUFFER_LENGTH/2)
 #define QUATER_PACKET (MAX_TX_PACKETSIZE/4)
@@ -295,12 +295,12 @@ static void adc_task( void *pvParameters)
 						( const void * )pucUDPPayloadBuffer,
 						//sizeof( pucUDPPayloadBuffer ),
 						MAX_TX_PACKETSIZE,
-						0,
+						FREERTOS_ZERO_COPY,
 						&xDestinationAddress,
 						sizeof( xDestinationAddress ) );
 
 			}
-			if( iReturned != 0 )
+			if( iReturned == 0 )
 			{
 				/* The buffer pointed to by pucUDPPayloadBuffer was successfully
 				passed (by reference) into the IP stack and is now queued for sending.
@@ -316,7 +316,7 @@ static void adc_task( void *pvParameters)
 				passed (by reference) to the IP stack.  To prevent memory and network
 				buffer leaks the buffer must be either reused or, as in this case,
 				released back to the IP stack. */
-				FreeRTOS_ReleaseUDPPayloadBuffer( ( void * ) pucUDPPayloadBuffer );
+				//FreeRTOS_ReleaseUDPPayloadBuffer( ( void * ) pucUDPPayloadBuffer );
 				//SEGGER_SYSVIEW_Print("buffer fail");
 			}
 		}
