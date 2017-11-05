@@ -1,0 +1,352 @@
+ARM GAS  /tmp/cc8kMeOz.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m7
+   3              		.eabi_attribute 27, 1
+   4              		.eabi_attribute 28, 1
+   5              		.fpu fpv5-sp-d16
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 6
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.thumb
+  16              		.file	"stm32f7xx_hal_msp.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              		.section	.text.HAL_MspInit,"ax",%progbits
+  21              		.align	2
+  22              		.global	HAL_MspInit
+  23              		.thumb
+  24              		.thumb_func
+  26              	HAL_MspInit:
+  27              	.LFB135:
+  28              		.file 1 "Src/stm32f7xx_hal_msp.c"
+   1:Src/stm32f7xx_hal_msp.c **** /**
+   2:Src/stm32f7xx_hal_msp.c ****   ******************************************************************************
+   3:Src/stm32f7xx_hal_msp.c ****   * File Name          : stm32f7xx_hal_msp.c
+   4:Src/stm32f7xx_hal_msp.c ****   * Description        : This file provides code for the MSP Initialization 
+   5:Src/stm32f7xx_hal_msp.c ****   *                      and de-Initialization codes.
+   6:Src/stm32f7xx_hal_msp.c ****   ******************************************************************************
+   7:Src/stm32f7xx_hal_msp.c ****   *
+   8:Src/stm32f7xx_hal_msp.c ****   * Copyright (c) 2017 STMicroelectronics International N.V. 
+   9:Src/stm32f7xx_hal_msp.c ****   * All rights reserved.
+  10:Src/stm32f7xx_hal_msp.c ****   *
+  11:Src/stm32f7xx_hal_msp.c ****   * Redistribution and use in source and binary forms, with or without 
+  12:Src/stm32f7xx_hal_msp.c ****   * modification, are permitted, provided that the following conditions are met:
+  13:Src/stm32f7xx_hal_msp.c ****   *
+  14:Src/stm32f7xx_hal_msp.c ****   * 1. Redistribution of source code must retain the above copyright notice, 
+  15:Src/stm32f7xx_hal_msp.c ****   *    this list of conditions and the following disclaimer.
+  16:Src/stm32f7xx_hal_msp.c ****   * 2. Redistributions in binary form must reproduce the above copyright notice,
+  17:Src/stm32f7xx_hal_msp.c ****   *    this list of conditions and the following disclaimer in the documentation
+  18:Src/stm32f7xx_hal_msp.c ****   *    and/or other materials provided with the distribution.
+  19:Src/stm32f7xx_hal_msp.c ****   * 3. Neither the name of STMicroelectronics nor the names of other 
+  20:Src/stm32f7xx_hal_msp.c ****   *    contributors to this software may be used to endorse or promote products 
+  21:Src/stm32f7xx_hal_msp.c ****   *    derived from this software without specific written permission.
+  22:Src/stm32f7xx_hal_msp.c ****   * 4. This software, including modifications and/or derivative works of this 
+  23:Src/stm32f7xx_hal_msp.c ****   *    software, must execute solely and exclusively on microcontroller or
+  24:Src/stm32f7xx_hal_msp.c ****   *    microprocessor devices manufactured by or for STMicroelectronics.
+  25:Src/stm32f7xx_hal_msp.c ****   * 5. Redistribution and use of this software other than as permitted under 
+  26:Src/stm32f7xx_hal_msp.c ****   *    this license is void and will automatically terminate your rights under 
+  27:Src/stm32f7xx_hal_msp.c ****   *    this license. 
+  28:Src/stm32f7xx_hal_msp.c ****   *
+  29:Src/stm32f7xx_hal_msp.c ****   * THIS SOFTWARE IS PROVIDED BY STMICROELECTRONICS AND CONTRIBUTORS "AS IS" 
+  30:Src/stm32f7xx_hal_msp.c ****   * AND ANY EXPRESS, IMPLIED OR STATUTORY WARRANTIES, INCLUDING, BUT NOT 
+ARM GAS  /tmp/cc8kMeOz.s 			page 2
+
+
+  31:Src/stm32f7xx_hal_msp.c ****   * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A 
+  32:Src/stm32f7xx_hal_msp.c ****   * PARTICULAR PURPOSE AND NON-INFRINGEMENT OF THIRD PARTY INTELLECTUAL PROPERTY
+  33:Src/stm32f7xx_hal_msp.c ****   * RIGHTS ARE DISCLAIMED TO THE FULLEST EXTENT PERMITTED BY LAW. IN NO EVENT 
+  34:Src/stm32f7xx_hal_msp.c ****   * SHALL STMICROELECTRONICS OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+  35:Src/stm32f7xx_hal_msp.c ****   * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  36:Src/stm32f7xx_hal_msp.c ****   * LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, 
+  37:Src/stm32f7xx_hal_msp.c ****   * OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
+  38:Src/stm32f7xx_hal_msp.c ****   * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
+  39:Src/stm32f7xx_hal_msp.c ****   * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+  40:Src/stm32f7xx_hal_msp.c ****   * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  41:Src/stm32f7xx_hal_msp.c ****   *
+  42:Src/stm32f7xx_hal_msp.c ****   ******************************************************************************
+  43:Src/stm32f7xx_hal_msp.c ****   */
+  44:Src/stm32f7xx_hal_msp.c **** /* Includes ------------------------------------------------------------------*/
+  45:Src/stm32f7xx_hal_msp.c **** #include "stm32f7xx_hal.h"
+  46:Src/stm32f7xx_hal_msp.c **** 
+  47:Src/stm32f7xx_hal_msp.c **** extern void Error_Handler(void);
+  48:Src/stm32f7xx_hal_msp.c **** /* USER CODE BEGIN 0 */
+  49:Src/stm32f7xx_hal_msp.c **** 
+  50:Src/stm32f7xx_hal_msp.c **** /* USER CODE END 0 */
+  51:Src/stm32f7xx_hal_msp.c **** /**
+  52:Src/stm32f7xx_hal_msp.c ****   * Initializes the Global MSP.
+  53:Src/stm32f7xx_hal_msp.c ****   */
+  54:Src/stm32f7xx_hal_msp.c **** void HAL_MspInit(void)
+  55:Src/stm32f7xx_hal_msp.c **** {
+  29              		.loc 1 55 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 1, uses_anonymous_args = 0
+  33 0000 80B5     		push	{r7, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 7, -8
+  37              		.cfi_offset 14, -4
+  38 0002 00AF     		add	r7, sp, #0
+  39              	.LCFI1:
+  40              		.cfi_def_cfa_register 7
+  56:Src/stm32f7xx_hal_msp.c ****   /* USER CODE BEGIN MspInit 0 */
+  57:Src/stm32f7xx_hal_msp.c **** 
+  58:Src/stm32f7xx_hal_msp.c ****   /* USER CODE END MspInit 0 */
+  59:Src/stm32f7xx_hal_msp.c **** 
+  60:Src/stm32f7xx_hal_msp.c ****   HAL_NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_4);
+  41              		.loc 1 60 0
+  42 0004 0320     		movs	r0, #3
+  43 0006 FFF7FEFF 		bl	HAL_NVIC_SetPriorityGrouping
+  61:Src/stm32f7xx_hal_msp.c **** 
+  62:Src/stm32f7xx_hal_msp.c ****   /* System interrupt init*/
+  63:Src/stm32f7xx_hal_msp.c ****   /* MemoryManagement_IRQn interrupt configuration */
+  64:Src/stm32f7xx_hal_msp.c ****   HAL_NVIC_SetPriority(MemoryManagement_IRQn, 0, 0);
+  44              		.loc 1 64 0
+  45 000a 6FF00B00 		mvn	r0, #11
+  46 000e 0021     		movs	r1, #0
+  47 0010 0022     		movs	r2, #0
+  48 0012 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  65:Src/stm32f7xx_hal_msp.c ****   /* BusFault_IRQn interrupt configuration */
+  66:Src/stm32f7xx_hal_msp.c ****   HAL_NVIC_SetPriority(BusFault_IRQn, 0, 0);
+  49              		.loc 1 66 0
+ARM GAS  /tmp/cc8kMeOz.s 			page 3
+
+
+  50 0016 6FF00A00 		mvn	r0, #10
+  51 001a 0021     		movs	r1, #0
+  52 001c 0022     		movs	r2, #0
+  53 001e FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  67:Src/stm32f7xx_hal_msp.c ****   /* UsageFault_IRQn interrupt configuration */
+  68:Src/stm32f7xx_hal_msp.c ****   HAL_NVIC_SetPriority(UsageFault_IRQn, 0, 0);
+  54              		.loc 1 68 0
+  55 0022 6FF00900 		mvn	r0, #9
+  56 0026 0021     		movs	r1, #0
+  57 0028 0022     		movs	r2, #0
+  58 002a FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  69:Src/stm32f7xx_hal_msp.c ****   /* SVCall_IRQn interrupt configuration */
+  70:Src/stm32f7xx_hal_msp.c ****   HAL_NVIC_SetPriority(SVCall_IRQn, 0, 0);
+  59              		.loc 1 70 0
+  60 002e 6FF00400 		mvn	r0, #4
+  61 0032 0021     		movs	r1, #0
+  62 0034 0022     		movs	r2, #0
+  63 0036 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  71:Src/stm32f7xx_hal_msp.c ****   /* DebugMonitor_IRQn interrupt configuration */
+  72:Src/stm32f7xx_hal_msp.c ****   HAL_NVIC_SetPriority(DebugMonitor_IRQn, 0, 0);
+  64              		.loc 1 72 0
+  65 003a 6FF00300 		mvn	r0, #3
+  66 003e 0021     		movs	r1, #0
+  67 0040 0022     		movs	r2, #0
+  68 0042 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  73:Src/stm32f7xx_hal_msp.c ****   /* PendSV_IRQn interrupt configuration */
+  74:Src/stm32f7xx_hal_msp.c ****   HAL_NVIC_SetPriority(PendSV_IRQn, 15, 0);
+  69              		.loc 1 74 0
+  70 0046 6FF00100 		mvn	r0, #1
+  71 004a 0F21     		movs	r1, #15
+  72 004c 0022     		movs	r2, #0
+  73 004e FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  75:Src/stm32f7xx_hal_msp.c ****   /* SysTick_IRQn interrupt configuration */
+  76:Src/stm32f7xx_hal_msp.c ****   HAL_NVIC_SetPriority(SysTick_IRQn, 15, 0);
+  74              		.loc 1 76 0
+  75 0052 4FF0FF30 		mov	r0, #-1
+  76 0056 0F21     		movs	r1, #15
+  77 0058 0022     		movs	r2, #0
+  78 005a FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  77:Src/stm32f7xx_hal_msp.c **** 
+  78:Src/stm32f7xx_hal_msp.c ****   /* USER CODE BEGIN MspInit 1 */
+  79:Src/stm32f7xx_hal_msp.c **** 
+  80:Src/stm32f7xx_hal_msp.c ****   /* USER CODE END MspInit 1 */
+  81:Src/stm32f7xx_hal_msp.c **** }
+  79              		.loc 1 81 0
+  80 005e 80BD     		pop	{r7, pc}
+  81              		.cfi_endproc
+  82              	.LFE135:
+  84              		.section	.text.HAL_RTC_MspInit,"ax",%progbits
+  85              		.align	2
+  86              		.global	HAL_RTC_MspInit
+  87              		.thumb
+  88              		.thumb_func
+  90              	HAL_RTC_MspInit:
+  91              	.LFB136:
+  82:Src/stm32f7xx_hal_msp.c **** 
+  83:Src/stm32f7xx_hal_msp.c **** void HAL_RTC_MspInit(RTC_HandleTypeDef* hrtc)
+ARM GAS  /tmp/cc8kMeOz.s 			page 4
+
+
+  84:Src/stm32f7xx_hal_msp.c **** {
+  92              		.loc 1 84 0
+  93              		.cfi_startproc
+  94              		@ args = 0, pretend = 0, frame = 8
+  95              		@ frame_needed = 1, uses_anonymous_args = 0
+  96              		@ link register save eliminated.
+  97 0000 80B4     		push	{r7}
+  98              	.LCFI2:
+  99              		.cfi_def_cfa_offset 4
+ 100              		.cfi_offset 7, -4
+ 101 0002 83B0     		sub	sp, sp, #12
+ 102              	.LCFI3:
+ 103              		.cfi_def_cfa_offset 16
+ 104 0004 00AF     		add	r7, sp, #0
+ 105              	.LCFI4:
+ 106              		.cfi_def_cfa_register 7
+ 107 0006 7860     		str	r0, [r7, #4]
+  85:Src/stm32f7xx_hal_msp.c **** 
+  86:Src/stm32f7xx_hal_msp.c ****   if(hrtc->Instance==RTC)
+ 108              		.loc 1 86 0
+ 109 0008 7B68     		ldr	r3, [r7, #4]
+ 110 000a 1B68     		ldr	r3, [r3]
+ 111 000c 064A     		ldr	r2, .L4
+ 112 000e 9342     		cmp	r3, r2
+ 113 0010 05D1     		bne	.L2
+  87:Src/stm32f7xx_hal_msp.c ****   {
+  88:Src/stm32f7xx_hal_msp.c ****   /* USER CODE BEGIN RTC_MspInit 0 */
+  89:Src/stm32f7xx_hal_msp.c **** 
+  90:Src/stm32f7xx_hal_msp.c ****   /* USER CODE END RTC_MspInit 0 */
+  91:Src/stm32f7xx_hal_msp.c ****     /* Peripheral clock enable */
+  92:Src/stm32f7xx_hal_msp.c ****     __HAL_RCC_RTC_ENABLE();
+ 114              		.loc 1 92 0
+ 115 0012 064A     		ldr	r2, .L4+4
+ 116 0014 054B     		ldr	r3, .L4+4
+ 117 0016 1B6F     		ldr	r3, [r3, #112]
+ 118 0018 43F40043 		orr	r3, r3, #32768
+ 119 001c 1367     		str	r3, [r2, #112]
+ 120              	.L2:
+  93:Src/stm32f7xx_hal_msp.c ****   /* USER CODE BEGIN RTC_MspInit 1 */
+  94:Src/stm32f7xx_hal_msp.c **** 
+  95:Src/stm32f7xx_hal_msp.c ****   /* USER CODE END RTC_MspInit 1 */
+  96:Src/stm32f7xx_hal_msp.c ****   }
+  97:Src/stm32f7xx_hal_msp.c **** 
+  98:Src/stm32f7xx_hal_msp.c **** }
+ 121              		.loc 1 98 0
+ 122 001e 0C37     		adds	r7, r7, #12
+ 123              	.LCFI5:
+ 124              		.cfi_def_cfa_offset 4
+ 125 0020 BD46     		mov	sp, r7
+ 126              	.LCFI6:
+ 127              		.cfi_def_cfa_register 13
+ 128              		@ sp needed
+ 129 0022 5DF8047B 		ldr	r7, [sp], #4
+ 130              	.LCFI7:
+ 131              		.cfi_restore 7
+ 132              		.cfi_def_cfa_offset 0
+ 133 0026 7047     		bx	lr
+ARM GAS  /tmp/cc8kMeOz.s 			page 5
+
+
+ 134              	.L5:
+ 135              		.align	2
+ 136              	.L4:
+ 137 0028 00280040 		.word	1073752064
+ 138 002c 00380240 		.word	1073887232
+ 139              		.cfi_endproc
+ 140              	.LFE136:
+ 142              		.section	.text.HAL_RTC_MspDeInit,"ax",%progbits
+ 143              		.align	2
+ 144              		.global	HAL_RTC_MspDeInit
+ 145              		.thumb
+ 146              		.thumb_func
+ 148              	HAL_RTC_MspDeInit:
+ 149              	.LFB137:
+  99:Src/stm32f7xx_hal_msp.c **** 
+ 100:Src/stm32f7xx_hal_msp.c **** void HAL_RTC_MspDeInit(RTC_HandleTypeDef* hrtc)
+ 101:Src/stm32f7xx_hal_msp.c **** {
+ 150              		.loc 1 101 0
+ 151              		.cfi_startproc
+ 152              		@ args = 0, pretend = 0, frame = 8
+ 153              		@ frame_needed = 1, uses_anonymous_args = 0
+ 154              		@ link register save eliminated.
+ 155 0000 80B4     		push	{r7}
+ 156              	.LCFI8:
+ 157              		.cfi_def_cfa_offset 4
+ 158              		.cfi_offset 7, -4
+ 159 0002 83B0     		sub	sp, sp, #12
+ 160              	.LCFI9:
+ 161              		.cfi_def_cfa_offset 16
+ 162 0004 00AF     		add	r7, sp, #0
+ 163              	.LCFI10:
+ 164              		.cfi_def_cfa_register 7
+ 165 0006 7860     		str	r0, [r7, #4]
+ 102:Src/stm32f7xx_hal_msp.c **** 
+ 103:Src/stm32f7xx_hal_msp.c ****   if(hrtc->Instance==RTC)
+ 166              		.loc 1 103 0
+ 167 0008 7B68     		ldr	r3, [r7, #4]
+ 168 000a 1B68     		ldr	r3, [r3]
+ 169 000c 064A     		ldr	r2, .L8
+ 170 000e 9342     		cmp	r3, r2
+ 171 0010 05D1     		bne	.L6
+ 104:Src/stm32f7xx_hal_msp.c ****   {
+ 105:Src/stm32f7xx_hal_msp.c ****   /* USER CODE BEGIN RTC_MspDeInit 0 */
+ 106:Src/stm32f7xx_hal_msp.c **** 
+ 107:Src/stm32f7xx_hal_msp.c ****   /* USER CODE END RTC_MspDeInit 0 */
+ 108:Src/stm32f7xx_hal_msp.c ****     /* Peripheral clock disable */
+ 109:Src/stm32f7xx_hal_msp.c ****     __HAL_RCC_RTC_DISABLE();
+ 172              		.loc 1 109 0
+ 173 0012 064A     		ldr	r2, .L8+4
+ 174 0014 054B     		ldr	r3, .L8+4
+ 175 0016 1B6F     		ldr	r3, [r3, #112]
+ 176 0018 23F40043 		bic	r3, r3, #32768
+ 177 001c 1367     		str	r3, [r2, #112]
+ 178              	.L6:
+ 110:Src/stm32f7xx_hal_msp.c ****   }
+ 111:Src/stm32f7xx_hal_msp.c ****   /* USER CODE BEGIN RTC_MspDeInit 1 */
+ 112:Src/stm32f7xx_hal_msp.c **** 
+ARM GAS  /tmp/cc8kMeOz.s 			page 6
+
+
+ 113:Src/stm32f7xx_hal_msp.c ****   /* USER CODE END RTC_MspDeInit 1 */
+ 114:Src/stm32f7xx_hal_msp.c **** 
+ 115:Src/stm32f7xx_hal_msp.c **** }
+ 179              		.loc 1 115 0
+ 180 001e 0C37     		adds	r7, r7, #12
+ 181              	.LCFI11:
+ 182              		.cfi_def_cfa_offset 4
+ 183 0020 BD46     		mov	sp, r7
+ 184              	.LCFI12:
+ 185              		.cfi_def_cfa_register 13
+ 186              		@ sp needed
+ 187 0022 5DF8047B 		ldr	r7, [sp], #4
+ 188              	.LCFI13:
+ 189              		.cfi_restore 7
+ 190              		.cfi_def_cfa_offset 0
+ 191 0026 7047     		bx	lr
+ 192              	.L9:
+ 193              		.align	2
+ 194              	.L8:
+ 195 0028 00280040 		.word	1073752064
+ 196 002c 00380240 		.word	1073887232
+ 197              		.cfi_endproc
+ 198              	.LFE137:
+ 200              		.text
+ 201              	.Letext0:
+ 202              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 203              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 204              		.file 4 "../../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f769xx.h"
+ 205              		.file 5 "../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+ 206              		.file 6 "../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rtc.h"
+ 207              		.file 7 "../../Drivers/CMSIS/Include/core_cm7.h"
+ARM GAS  /tmp/cc8kMeOz.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32f7xx_hal_msp.c
+     /tmp/cc8kMeOz.s:21     .text.HAL_MspInit:0000000000000000 $t
+     /tmp/cc8kMeOz.s:26     .text.HAL_MspInit:0000000000000000 HAL_MspInit
+     /tmp/cc8kMeOz.s:85     .text.HAL_RTC_MspInit:0000000000000000 $t
+     /tmp/cc8kMeOz.s:90     .text.HAL_RTC_MspInit:0000000000000000 HAL_RTC_MspInit
+     /tmp/cc8kMeOz.s:137    .text.HAL_RTC_MspInit:0000000000000028 $d
+     /tmp/cc8kMeOz.s:143    .text.HAL_RTC_MspDeInit:0000000000000000 $t
+     /tmp/cc8kMeOz.s:148    .text.HAL_RTC_MspDeInit:0000000000000000 HAL_RTC_MspDeInit
+     /tmp/cc8kMeOz.s:195    .text.HAL_RTC_MspDeInit:0000000000000028 $d
+                     .debug_frame:0000000000000010 $d
+
+UNDEFINED SYMBOLS
+HAL_NVIC_SetPriorityGrouping
+HAL_NVIC_SetPriority

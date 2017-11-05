@@ -1,0 +1,6 @@
+r
+h
+loadbin build/STM32F769I_DISCOVERY.bin 0x08000000
+r
+g
+qc

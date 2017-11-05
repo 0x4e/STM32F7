@@ -1,0 +1,420 @@
+ARM GAS  /tmp/ccHDYNfw.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m7
+   3              		.eabi_attribute 27, 1
+   4              		.eabi_attribute 28, 1
+   5              		.fpu fpv5-sp-d16
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 6
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.thumb
+  16              		.file	"stm32f7xx_hal_ltdc_ex.c"
+  17              		.text
+  18              	.Ltext0:
+  19              		.cfi_sections	.debug_frame
+  20              		.section	.text.HAL_LTDC_StructInitFromVideoConfig,"ax",%progbits
+  21              		.align	2
+  22              		.global	HAL_LTDC_StructInitFromVideoConfig
+  23              		.thumb
+  24              		.thumb_func
+  26              	HAL_LTDC_StructInitFromVideoConfig:
+  27              	.LFB135:
+  28              		.file 1 "../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c"
+   1:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** /**
+   2:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   ******************************************************************************
+   3:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @file    stm32f7xx_hal_ltdc_ex.c
+   4:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @author  MCD Application Team
+   5:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @version V1.1.2
+   6:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @date    23-September-2016 
+   7:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @brief   LTDC Extension HAL module driver.
+   8:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   ******************************************************************************
+   9:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @attention
+  10:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   *
+  11:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
+  12:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   *
+  13:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * Redistribution and use in source and binary forms, with or without modification,
+  14:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * are permitted provided that the following conditions are met:
+  15:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   *   1. Redistributions of source code must retain the above copyright notice,
+  16:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   *      this list of conditions and the following disclaimer.
+  17:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   *   2. Redistributions in binary form must reproduce the above copyright notice,
+  18:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   *      this list of conditions and the following disclaimer in the documentation
+  19:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   *      and/or other materials provided with the distribution.
+  20:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   *   3. Neither the name of STMicroelectronics nor the names of its contributors
+  21:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   *      may be used to endorse or promote products derived from this software
+  22:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   *      without specific prior written permission.
+  23:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   *
+  24:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  25:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  26:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  27:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  28:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  29:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  30:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ARM GAS  /tmp/ccHDYNfw.s 			page 2
+
+
+  31:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  32:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  33:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  34:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   *
+  35:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   ******************************************************************************
+  36:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   */ 
+  37:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** 
+  38:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** /* Includes ------------------------------------------------------------------*/
+  39:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** #include "stm32f7xx_hal.h"
+  40:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** 
+  41:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** /** @addtogroup STM32F7xx_HAL_Driver
+  42:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @{
+  43:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   */
+  44:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** /** @defgroup LTDCEx LTDCEx
+  45:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @brief LTDC HAL module driver
+  46:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @{
+  47:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   */
+  48:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** 
+  49:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** #ifdef HAL_LTDC_MODULE_ENABLED
+  50:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** 
+  51:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** /* Private typedef -----------------------------------------------------------*/
+  52:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** /* Private define ------------------------------------------------------------*/
+  53:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** /* Private macro -------------------------------------------------------------*/
+  54:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** /* Private variables ---------------------------------------------------------*/
+  55:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** /* Private function prototypes -----------------------------------------------*/
+  56:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** /* Exported functions --------------------------------------------------------*/
+  57:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** 
+  58:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** /** @defgroup LTDCEx_Exported_Functions LTDC Extended Exported Functions
+  59:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @{
+  60:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   */
+  61:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** 
+  62:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** /** @defgroup LTDCEx_Exported_Functions_Group1 Initialization and Configuration functions
+  63:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****  *  @brief   Initialization and Configuration functions
+  64:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****  *
+  65:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** @verbatim   
+  66:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****  ===============================================================================
+  67:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****                 ##### Initialization and Configuration functions #####
+  68:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****  ===============================================================================  
+  69:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****     [..]  This section provides functions allowing to:
+  70:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****       (+) Initialize and configure the LTDC
+  71:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** 
+  72:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** @endverbatim
+  73:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @{
+  74:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   */
+  75:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** #if defined (STM32F769xx) || defined (STM32F779xx)
+  76:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** /**
+  77:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @brief  Retrieve common parameters from DSI Video mode configuration structure
+  78:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @param  hltdc: pointer to a LTDC_HandleTypeDef structure that contains
+  79:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   *                the configuration information for the LTDC.
+  80:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @param  VidCfg: pointer to a DSI_VidCfgTypeDef structure that contains
+  81:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   *                 the DSI video mode configuration parameters
+  82:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @note   The implementation of this function is taking into account the LTDC
+  83:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   *         polarities inversion as described in the current LTDC specification
+  84:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @retval HAL status
+  85:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   */
+  86:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** HAL_StatusTypeDef HAL_LTDC_StructInitFromVideoConfig(LTDC_HandleTypeDef* hltdc, DSI_VidCfgTypeDef *
+  87:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** {
+ARM GAS  /tmp/ccHDYNfw.s 			page 3
+
+
+  29              		.loc 1 87 0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 8
+  32              		@ frame_needed = 1, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34 0000 80B4     		push	{r7}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 4
+  37              		.cfi_offset 7, -4
+  38 0002 83B0     		sub	sp, sp, #12
+  39              	.LCFI1:
+  40              		.cfi_def_cfa_offset 16
+  41 0004 00AF     		add	r7, sp, #0
+  42              	.LCFI2:
+  43              		.cfi_def_cfa_register 7
+  44 0006 7860     		str	r0, [r7, #4]
+  45 0008 3960     		str	r1, [r7]
+  88:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   /* Retrieve signal polarities from DSI */
+  89:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   
+  90:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   /* The following polarity is inverted:
+  91:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****                      LTDC_DEPOLARITY_AL <-> LTDC_DEPOLARITY_AH */
+  92:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   
+  93:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   /* Note 1 : Code in line w/ Current LTDC specification */
+  94:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   hltdc->Init.DEPolarity = (VidCfg->DEPolarity == DSI_DATA_ENABLE_ACTIVE_HIGH) ? LTDC_DEPOLARITY_AL
+  46              		.loc 1 94 0
+  47 000a 3B68     		ldr	r3, [r7]
+  48 000c 5B6A     		ldr	r3, [r3, #36]
+  49 000e 002B     		cmp	r3, #0
+  50 0010 01D1     		bne	.L2
+  51              		.loc 1 94 0 is_stmt 0 discriminator 1
+  52 0012 0022     		movs	r2, #0
+  53 0014 01E0     		b	.L3
+  54              	.L2:
+  55              		.loc 1 94 0 discriminator 2
+  56 0016 4FF00052 		mov	r2, #536870912
+  57              	.L3:
+  58              		.loc 1 94 0 discriminator 4
+  59 001a 7B68     		ldr	r3, [r7, #4]
+  60 001c DA60     		str	r2, [r3, #12]
+  95:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   hltdc->Init.VSPolarity = (VidCfg->VSPolarity == DSI_VSYNC_ACTIVE_HIGH) ? LTDC_VSPOLARITY_AH : LTD
+  61              		.loc 1 95 0 is_stmt 1 discriminator 4
+  62 001e 3B68     		ldr	r3, [r7]
+  63 0020 1B6A     		ldr	r3, [r3, #32]
+  64 0022 002B     		cmp	r3, #0
+  65 0024 02D1     		bne	.L4
+  66              		.loc 1 95 0 is_stmt 0 discriminator 1
+  67 0026 4FF08042 		mov	r2, #1073741824
+  68 002a 00E0     		b	.L5
+  69              	.L4:
+  70              		.loc 1 95 0 discriminator 2
+  71 002c 0022     		movs	r2, #0
+  72              	.L5:
+  73              		.loc 1 95 0 discriminator 4
+  74 002e 7B68     		ldr	r3, [r7, #4]
+  75 0030 9A60     		str	r2, [r3, #8]
+  96:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   hltdc->Init.HSPolarity = (VidCfg->HSPolarity == DSI_HSYNC_ACTIVE_HIGH) ? LTDC_HSPOLARITY_AH : LTD
+  76              		.loc 1 96 0 is_stmt 1 discriminator 4
+ARM GAS  /tmp/ccHDYNfw.s 			page 4
+
+
+  77 0032 3B68     		ldr	r3, [r7]
+  78 0034 DB69     		ldr	r3, [r3, #28]
+  79 0036 002B     		cmp	r3, #0
+  80 0038 02D1     		bne	.L6
+  81              		.loc 1 96 0 is_stmt 0 discriminator 1
+  82 003a 4FF00042 		mov	r2, #-2147483648
+  83 003e 00E0     		b	.L7
+  84              	.L6:
+  85              		.loc 1 96 0 discriminator 2
+  86 0040 0022     		movs	r2, #0
+  87              	.L7:
+  88              		.loc 1 96 0 discriminator 4
+  89 0042 7B68     		ldr	r3, [r7, #4]
+  90 0044 5A60     		str	r2, [r3, #4]
+  97:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** 
+  98:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   /* Note 2: Code to be used in case LTDC polarities inversion updated in the specification */
+  99:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   /* hltdc->Init.DEPolarity = VidCfg->DEPolarity << 29;
+ 100:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****      hltdc->Init.VSPolarity = VidCfg->VSPolarity << 29;
+ 101:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****      hltdc->Init.HSPolarity = VidCfg->HSPolarity << 29; */
+ 102:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****     
+ 103:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   /* Retrieve vertical timing parameters from DSI */
+ 104:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   hltdc->Init.VerticalSync       = VidCfg->VerticalSyncActive - 1;
+  91              		.loc 1 104 0 is_stmt 1 discriminator 4
+  92 0046 3B68     		ldr	r3, [r7]
+  93 0048 5B6B     		ldr	r3, [r3, #52]
+  94 004a 5A1E     		subs	r2, r3, #1
+  95 004c 7B68     		ldr	r3, [r7, #4]
+  96 004e 9A61     		str	r2, [r3, #24]
+ 105:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   hltdc->Init.AccumulatedVBP     = VidCfg->VerticalSyncActive + VidCfg->VerticalBackPorch - 1;
+  97              		.loc 1 105 0 discriminator 4
+  98 0050 3B68     		ldr	r3, [r7]
+  99 0052 5A6B     		ldr	r2, [r3, #52]
+ 100 0054 3B68     		ldr	r3, [r7]
+ 101 0056 9B6B     		ldr	r3, [r3, #56]
+ 102 0058 1344     		add	r3, r3, r2
+ 103 005a 5A1E     		subs	r2, r3, #1
+ 104 005c 7B68     		ldr	r3, [r7, #4]
+ 105 005e 1A62     		str	r2, [r3, #32]
+ 106:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   hltdc->Init.AccumulatedActiveH = VidCfg->VerticalSyncActive + VidCfg->VerticalBackPorch + VidCfg-
+ 106              		.loc 1 106 0 discriminator 4
+ 107 0060 3B68     		ldr	r3, [r7]
+ 108 0062 5A6B     		ldr	r2, [r3, #52]
+ 109 0064 3B68     		ldr	r3, [r7]
+ 110 0066 9B6B     		ldr	r3, [r3, #56]
+ 111 0068 1A44     		add	r2, r2, r3
+ 112 006a 3B68     		ldr	r3, [r7]
+ 113 006c 1B6C     		ldr	r3, [r3, #64]
+ 114 006e 1344     		add	r3, r3, r2
+ 115 0070 5A1E     		subs	r2, r3, #1
+ 116 0072 7B68     		ldr	r3, [r7, #4]
+ 117 0074 9A62     		str	r2, [r3, #40]
+ 107:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   hltdc->Init.TotalHeigh         = VidCfg->VerticalSyncActive + VidCfg->VerticalBackPorch + VidCfg-
+ 118              		.loc 1 107 0 discriminator 4
+ 119 0076 3B68     		ldr	r3, [r7]
+ 120 0078 5A6B     		ldr	r2, [r3, #52]
+ 121 007a 3B68     		ldr	r3, [r7]
+ 122 007c 9B6B     		ldr	r3, [r3, #56]
+ARM GAS  /tmp/ccHDYNfw.s 			page 5
+
+
+ 123 007e 1A44     		add	r2, r2, r3
+ 124 0080 3B68     		ldr	r3, [r7]
+ 125 0082 1B6C     		ldr	r3, [r3, #64]
+ 126 0084 1A44     		add	r2, r2, r3
+ 127 0086 3B68     		ldr	r3, [r7]
+ 128 0088 DB6B     		ldr	r3, [r3, #60]
+ 129 008a 1344     		add	r3, r3, r2
+ 130 008c 5A1E     		subs	r2, r3, #1
+ 131 008e 7B68     		ldr	r3, [r7, #4]
+ 132 0090 1A63     		str	r2, [r3, #48]
+ 108:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   
+ 109:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   return HAL_OK;
+ 133              		.loc 1 109 0 discriminator 4
+ 134 0092 0023     		movs	r3, #0
+ 110:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** }
+ 135              		.loc 1 110 0 discriminator 4
+ 136 0094 1846     		mov	r0, r3
+ 137 0096 0C37     		adds	r7, r7, #12
+ 138              	.LCFI3:
+ 139              		.cfi_def_cfa_offset 4
+ 140 0098 BD46     		mov	sp, r7
+ 141              	.LCFI4:
+ 142              		.cfi_def_cfa_register 13
+ 143              		@ sp needed
+ 144 009a 5DF8047B 		ldr	r7, [sp], #4
+ 145              	.LCFI5:
+ 146              		.cfi_restore 7
+ 147              		.cfi_def_cfa_offset 0
+ 148 009e 7047     		bx	lr
+ 149              		.cfi_endproc
+ 150              	.LFE135:
+ 152              		.section	.text.HAL_LTDC_StructInitFromAdaptedCommandConfig,"ax",%progbits
+ 153              		.align	2
+ 154              		.global	HAL_LTDC_StructInitFromAdaptedCommandConfig
+ 155              		.thumb
+ 156              		.thumb_func
+ 158              	HAL_LTDC_StructInitFromAdaptedCommandConfig:
+ 159              	.LFB136:
+ 111:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** 
+ 112:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** /**
+ 113:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @brief  Retrieve common parameters from DSI Adapted command mode configuration structure
+ 114:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @param  hltdc: pointer to a LTDC_HandleTypeDef structure that contains
+ 115:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   *                the configuration information for the LTDC.
+ 116:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @param  CmdCfg: pointer to a DSI_CmdCfgTypeDef structure that contains
+ 117:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   *                 the DSI command mode configuration parameters
+ 118:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @note   The implementation of this function is taking into account the LTDC
+ 119:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   *         polarities inversion as described in the current LTDC specification
+ 120:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   * @retval HAL status
+ 121:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   */
+ 122:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** HAL_StatusTypeDef HAL_LTDC_StructInitFromAdaptedCommandConfig(LTDC_HandleTypeDef* hltdc, DSI_CmdCfg
+ 123:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** {
+ 160              		.loc 1 123 0
+ 161              		.cfi_startproc
+ 162              		@ args = 0, pretend = 0, frame = 8
+ 163              		@ frame_needed = 1, uses_anonymous_args = 0
+ 164              		@ link register save eliminated.
+ 165 0000 80B4     		push	{r7}
+ARM GAS  /tmp/ccHDYNfw.s 			page 6
+
+
+ 166              	.LCFI6:
+ 167              		.cfi_def_cfa_offset 4
+ 168              		.cfi_offset 7, -4
+ 169 0002 83B0     		sub	sp, sp, #12
+ 170              	.LCFI7:
+ 171              		.cfi_def_cfa_offset 16
+ 172 0004 00AF     		add	r7, sp, #0
+ 173              	.LCFI8:
+ 174              		.cfi_def_cfa_register 7
+ 175 0006 7860     		str	r0, [r7, #4]
+ 176 0008 3960     		str	r1, [r7]
+ 124:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   /* Retrieve signal polarities from DSI */
+ 125:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   
+ 126:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   /* The following polarities are inverted:
+ 127:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****                      LTDC_DEPOLARITY_AL <-> LTDC_DEPOLARITY_AH
+ 128:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** 	                   LTDC_VSPOLARITY_AL <-> LTDC_VSPOLARITY_AH
+ 129:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** 	                   LTDC_HSPOLARITY_AL <-> LTDC_HSPOLARITY_AH)*/
+ 130:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   
+ 131:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   /* Note 1 : Code in line w/ Current LTDC specification */
+ 132:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   hltdc->Init.DEPolarity = (CmdCfg->DEPolarity == DSI_DATA_ENABLE_ACTIVE_HIGH) ? LTDC_DEPOLARITY_AL
+ 177              		.loc 1 132 0
+ 178 000a 3B68     		ldr	r3, [r7]
+ 179 000c DB69     		ldr	r3, [r3, #28]
+ 180 000e 002B     		cmp	r3, #0
+ 181 0010 01D1     		bne	.L10
+ 182              		.loc 1 132 0 is_stmt 0 discriminator 1
+ 183 0012 0022     		movs	r2, #0
+ 184 0014 01E0     		b	.L11
+ 185              	.L10:
+ 186              		.loc 1 132 0 discriminator 2
+ 187 0016 4FF00052 		mov	r2, #536870912
+ 188              	.L11:
+ 189              		.loc 1 132 0 discriminator 4
+ 190 001a 7B68     		ldr	r3, [r7, #4]
+ 191 001c DA60     		str	r2, [r3, #12]
+ 133:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   hltdc->Init.VSPolarity = (CmdCfg->VSPolarity == DSI_VSYNC_ACTIVE_HIGH) ? LTDC_VSPOLARITY_AL : LTD
+ 192              		.loc 1 133 0 is_stmt 1 discriminator 4
+ 193 001e 3B68     		ldr	r3, [r7]
+ 194 0020 9B69     		ldr	r3, [r3, #24]
+ 195 0022 002B     		cmp	r3, #0
+ 196 0024 01D1     		bne	.L12
+ 197              		.loc 1 133 0 is_stmt 0 discriminator 1
+ 198 0026 0022     		movs	r2, #0
+ 199 0028 01E0     		b	.L13
+ 200              	.L12:
+ 201              		.loc 1 133 0 discriminator 2
+ 202 002a 4FF08042 		mov	r2, #1073741824
+ 203              	.L13:
+ 204              		.loc 1 133 0 discriminator 4
+ 205 002e 7B68     		ldr	r3, [r7, #4]
+ 206 0030 9A60     		str	r2, [r3, #8]
+ 134:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   hltdc->Init.HSPolarity = (CmdCfg->HSPolarity == DSI_HSYNC_ACTIVE_HIGH) ? LTDC_HSPOLARITY_AL : LTD
+ 207              		.loc 1 134 0 is_stmt 1 discriminator 4
+ 208 0032 3B68     		ldr	r3, [r7]
+ 209 0034 5B69     		ldr	r3, [r3, #20]
+ 210 0036 002B     		cmp	r3, #0
+ 211 0038 01D1     		bne	.L14
+ARM GAS  /tmp/ccHDYNfw.s 			page 7
+
+
+ 212              		.loc 1 134 0 is_stmt 0 discriminator 1
+ 213 003a 0022     		movs	r2, #0
+ 214 003c 01E0     		b	.L15
+ 215              	.L14:
+ 216              		.loc 1 134 0 discriminator 2
+ 217 003e 4FF00042 		mov	r2, #-2147483648
+ 218              	.L15:
+ 219              		.loc 1 134 0 discriminator 4
+ 220 0042 7B68     		ldr	r3, [r7, #4]
+ 221 0044 5A60     		str	r2, [r3, #4]
+ 135:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   
+ 136:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   /* Note 2: Code to be used in case LTDC polarities inversion updated in the specification */
+ 137:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   /* hltdc->Init.DEPolarity = CmdCfg->DEPolarity << 29;
+ 138:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****      hltdc->Init.VSPolarity = CmdCfg->VSPolarity << 29;
+ 139:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****      hltdc->Init.HSPolarity = CmdCfg->HSPolarity << 29; */
+ 140:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   
+ 141:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c ****   return HAL_OK;
+ 222              		.loc 1 141 0 is_stmt 1 discriminator 4
+ 223 0046 0023     		movs	r3, #0
+ 142:../../Drivers/STM32F7xx_HAL_Driver/Src/stm32f7xx_hal_ltdc_ex.c **** }
+ 224              		.loc 1 142 0 discriminator 4
+ 225 0048 1846     		mov	r0, r3
+ 226 004a 0C37     		adds	r7, r7, #12
+ 227              	.LCFI9:
+ 228              		.cfi_def_cfa_offset 4
+ 229 004c BD46     		mov	sp, r7
+ 230              	.LCFI10:
+ 231              		.cfi_def_cfa_register 13
+ 232              		@ sp needed
+ 233 004e 5DF8047B 		ldr	r7, [sp], #4
+ 234              	.LCFI11:
+ 235              		.cfi_restore 7
+ 236              		.cfi_def_cfa_offset 0
+ 237 0052 7047     		bx	lr
+ 238              		.cfi_endproc
+ 239              	.LFE136:
+ 241              		.text
+ 242              	.Letext0:
+ 243              		.file 2 "/usr/arm-none-eabi/include/machine/_default_types.h"
+ 244              		.file 3 "/usr/arm-none-eabi/include/sys/_stdint.h"
+ 245              		.file 4 "../../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f769xx.h"
+ 246              		.file 5 "../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+ 247              		.file 6 "../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_ltdc.h"
+ 248              		.file 7 "../../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dsi.h"
+ 249              		.file 8 "../../Drivers/CMSIS/Include/core_cm7.h"
+ARM GAS  /tmp/ccHDYNfw.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32f7xx_hal_ltdc_ex.c
+     /tmp/ccHDYNfw.s:21     .text.HAL_LTDC_StructInitFromVideoConfig:0000000000000000 $t
+     /tmp/ccHDYNfw.s:26     .text.HAL_LTDC_StructInitFromVideoConfig:0000000000000000 HAL_LTDC_StructInitFromVideoConfig
+     /tmp/ccHDYNfw.s:153    .text.HAL_LTDC_StructInitFromAdaptedCommandConfig:0000000000000000 $t
+     /tmp/ccHDYNfw.s:158    .text.HAL_LTDC_StructInitFromAdaptedCommandConfig:0000000000000000 HAL_LTDC_StructInitFromAdaptedCommandConfig
+                     .debug_frame:0000000000000010 $d
+
+NO UNDEFINED SYMBOLS
