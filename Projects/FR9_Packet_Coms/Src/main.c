@@ -495,22 +495,22 @@ static void BSP_Config_task(void *pvParameters)
 
   /* Initialize the LCD */
   BSP_LCD_Init();
-  
+
   /* Initialize the LCD Layers */
   BSP_LCD_LayerDefaultInit(1, LCD_FB_START_ADDRESS);
-  
+
   /* Set LCD Foreground Layer  */
   BSP_LCD_SelectLayer(1);
-  
+
   BSP_LCD_SetFont(&LCD_DEFAULT_FONT);
-  
+
   /* Initialize LCD Log module */
   LCD_LOG_Init();
-  
+
   /* Show Header and Footer texts */
   LCD_LOG_SetHeader((uint8_t *)"FreeRTOS Blinky_TCP");
   //LCD_LOG_SetFooter((uint8_t *)"STM32F769I-DISOVERY board");
-  
+
   //LCD_UsrLog ("  Blink LED BLINK!!!...\n");
   BSP_LCD_DisplayStringAt(0, 30, (uint8_t *)"This example shows the different", CENTER_MODE);
   BSP_LCD_DisplayStringAt(0, 45, (uint8_t *)"LCD Features, use User button to display", CENTER_MODE);

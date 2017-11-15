@@ -184,6 +184,10 @@ static void coms_packet_rx_task( void *pvParameters )
 
 	uint32_t PayloadLength;
 	uint32_t RxDataPtr;
+	uint32_t i;
+
+	unsigned char rx_data;
+	const int rx_timeout = 50;
 
 	/*just to remove compiler warning*/
 	(void) pvParameters;
@@ -227,31 +231,33 @@ static void coms_packet_rx_task( void *pvParameters )
            /* Data was received and can be processed here. */
     	   SEGGER_SYSVIEW_Print("got some data COMS");
 
-    		unsigned char rx_data;
-    		const int rx_timeout = 50;
 
-    		for (int i = 0; i < lBytes; i++){
+
+    		for (i = 0; i < lBytes; i++){
 
     			rx_data = pucUDPPayloadBuffer[i];
 
     			switch(RxState){
-    			case 0:
+    			case 0: //Find start byte
     				if (rx_data == 2){
-
+    					RxState++;
+    					RxTimer = rx_timeout;
+        	            RxDataPtr = 0;
+        	            PayloadLength = 0;
     				}
     				else {
     					RxState = 0;
+
     				}
     				break;
-    			case 1:
+    			case 1: //length of payload (most significant byte)
     	            PayloadLength = (unsigned int)rx_data << 8;
     	            RxState++;
     	            RxTimer = rx_timeout;
-    	            RxDataPtr = 0;
-    	            PayloadLength = 0;
+
     	            break;
-    			}
-    	        case 2:
+
+    	        case 2: //length of payload (least significant byte)
     	            PayloadLength |= (unsigned int)rx_data;
     	            if (PayloadLength <= PACKET_MAX_PL_LEN && PayloadLength > 0) {
     	                RxState++;
@@ -268,13 +274,17 @@ static void coms_packet_rx_task( void *pvParameters )
     	            RxTimer = rx_timeout;
     	            break;
     	        case 4:
+    	        	if (rx_data ==3){
     	        	coms_packet_process_rx(RxBuffer, PayloadLength, xComPortListeningSocket, &xClient);
+    	        	}
     	            RxState = 0;
     	            break;
 
     	        default:
     	            RxState = 0;
     	            break;
+    			}
+
     		}
 
     		FreeRTOS_ReleaseUDPPayloadBuffer( ( void * ) pucUDPPayloadBuffer );
@@ -287,15 +297,17 @@ static void coms_packet_timeout_task( void *pvParameters )
 {
 	/*just to remove compiler warning*/
 	(void) pvParameters;
-	if (0 < RxTimer){
-		RxTimer--;
+	while(1){
+		if (0 < RxTimer){
+			RxTimer--;
 
+		}
+		else{
+			RxState = 0;
+			RxTimer = 0;
+		}
+		vTaskDelay(10);
 	}
-	else{
-		RxState = 0;
-		RxTimer = 0;
-	}
-	vTaskDelay(10);
 }
 
 
