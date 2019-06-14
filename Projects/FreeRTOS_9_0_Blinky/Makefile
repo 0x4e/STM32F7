@@ -1,5 +1,6 @@
 ######################################
-# Makefile by Disco2Makefile.py
+# Makefile for STM32 Microcontroller
+# GNU GCC based
 ######################################
 
 ######################################
@@ -10,11 +11,25 @@ TARGET = STM32F769I_DISCOVERY
 ######################################
 #JTAG and environment configuration
 ######################################
+GCC_BIN           ?= ~/ARM/Utilities/gcc-arm-none-eabi-7-2017-q4-major/bin
+GCC_PREFIX        ?= arm-none-eabi
+
 OPENOCD           ?= openocd
 OPENOCD_INTERFACE ?= interface/stlink-v2-1.cfg
 OPENOCD_CMDS      ?=
 OPENOCD_TARGET    ?= target/stm32f7x.cfg
 
+JLINK             ?= JLinkExe
+JLINK_DEVICE      ?= STM32F769NI
+JLINK_SPEED       ?= 1000
+JLINK_INTERFACE   ?= SWD
+
+######################################
+#Choose Debugger
+#-SEGGER_JLINK enables Systemview
+#- Else default = OPENOCD
+######################################
+DEBUGGER          ?= SEGGER_JLINK
 
 ######################################
 # building variables
@@ -85,11 +100,12 @@ ASM_SOURCES = \
 #######################################
 # binaries
 #######################################
-CC = arm-none-eabi-gcc
-AS = arm-none-eabi-gcc -x assembler-with-cpp
-CP = arm-none-eabi-objcopy
-AR = arm-none-eabi-ar
-SZ = arm-none-eabi-size
+CC = $(GCC_BIN)/$(GCC_PREFIX)-gcc
+AS = $(GCC_BIN)/$(GCC_PREFIX)-gcc -x assembler-with-cpp
+CP = $(GCC_BIN)/$(GCC_PREFIX)-objcopy
+AR = $(GCC_BIN)/$(GCC_PREFIX)-ar
+SZ = $(GCC_BIN)/$(GCC_PREFIX)-size -A -x
+OBJDUMP = $(GCC_BIN)/$(GCC_PREFIX)-objdump
 HEX = $(CP) -O ihex
 BIN = $(CP) -O binary -S
  
@@ -116,8 +132,8 @@ C_INCLUDES += -I../../../FreeRTOS_9_0/Source/CMSIS_RTOS
 C_INCLUDES += -I../../Utilities
 C_INCLUDES += -I../../Utilities/Log
 # compile gcc flags
-ASFLAGS = -mthumb -mcpu=cortex-m7 -mfpu=fpv5-sp-d16 -mfloat-abi=hard $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
-CFLAGS = -mthumb -mcpu=cortex-m7 -mfpu=fpv5-sp-d16 -mfloat-abi=hard $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
+ASFLAGS = -mthumb -mcpu=cortex-m7 -mfpu=fpv5-sp-d16 -mfloat-abi=hard $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -fno-builtin
+CFLAGS = -mthumb -mcpu=cortex-m7 -mfpu=fpv5-sp-d16 -mfloat-abi=hard $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -fno-builtin
 ifeq ($(DEBUG), 1)
 CFLAGS += -g -gdwarf-2
 endif
@@ -135,7 +151,7 @@ LIBDIR =
 LDFLAGS = -mthumb -mcpu=cortex-m7 -mfpu=fpv5-sp-d16 -mfloat-abi=hard -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections
 
 # default action: build all
-all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin
+all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin $(BUILD_DIR)/$(TARGET).lss
 
 #######################################
 # build the application
@@ -157,6 +173,9 @@ $(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) Makefile
 	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
 	$(SZ) $@
 
+$(BUILD_DIR)/%.lss: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
+	$(OBJDUMP) -S $< > $@
+
 $(BUILD_DIR)/%.hex: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
 	$(HEX) $< $@
 	
@@ -167,7 +186,21 @@ $(BUILD_DIR):
 	mkdir -p $@		
 
 #######################################
-# Flash the stm.
+# Flash/debug the MCU
+
+ifeq ($(DEBUGGER),SEGGER_JLINK)
+
+flash:
+	JLinkExe -if $(JLINK_INTERFACE) -device $(JLINK_DEVICE) -speed $(JLINK_SPEED) -CommanderScript .jlink/flash.jlink
+
+reset:
+	JLinkExe -if $(JLINK_INTERFACE) -device $(JLINK_DEVICE) -speed $(JLINK_SPEED) -CommanderScript .jlink/reset.jlink
+
+jlink:
+	JLinkExe -if $(JLINK_INTERFACE) -device $(JLINK_DEVICE) -speed $(JLINK_SPEED)
+
+else
+
 flash:
 	$(OPENOCD) -d2 -f $(OPENOCD_INTERFACE) $(OPENOCD_CMDS) -f $(OPENOCD_TARGET) -c init -c targets -c "reset halt" \
                  -c "flash write_image erase $(BUILD_DIR)/$(TARGET).elf" -c "verify_image $(BUILD_DIR)/$(TARGET).elf" -c "reset run" -c shutdown
@@ -187,6 +220,9 @@ gdb: $(BUILD_DIR)/$(TARGET).elf
 
 erase:
 	$(OPENOCD) -d2 -f $(OPENOCD_INTERFACE) -f $(OPENOCD_TARGET) -c init -c targets -c "halt" -c "stm32f1x mass_erase 0" -c shutdown
+
+endif
+
 #######################################
 # clean up
 #######################################

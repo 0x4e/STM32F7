@@ -11,7 +11,7 @@ TARGET = STM32F769I_DISCOVERY
 ######################################
 #JTAG and environment configuration
 ######################################
-GCC_BIN           ?= /usr/bin/
+GCC_BIN           ?= /home/nick/ARM/Utilities/gcc-arm-none-eabi-7-2017-q4-major/bin
 GCC_PREFIX        ?= arm-none-eabi
 
 OPENOCD           ?= openocd
